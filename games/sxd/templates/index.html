@@ -1,0 +1,296 @@
+<?php $title='神仙道|神仙道官网|49仙道|49you神仙道|材料|伙伴|攻略';
+$keywords="神仙道,神仙道官网,49仙道,49you神仙道,神仙道材料,神仙道伙伴,神仙道攻略";
+$description="神仙道,神仙道官网,49仙道,49you神仙道是一款以修仙为故事背景的中国风角色扮演类网页游戏。49you神仙道官网提供神仙道伙伴、材料掉落等攻略。"?>
+<?php include('header.html'); ?>
+<script type="text/javascript" src="js/js_list.js"></script>
+<script type="text/javascript">
+function newschange(id){
+	for(i=1;i<=3;i++){
+		$("#newsli"+i)[0].className='n2';
+		$("#newlist"+i).css("display","none");
+	}
+	$("#newsli"+id)[0].className='n1';
+	$("#newlist"+id).css("display","");
+}
+function picchange(id){
+	if(id==1){
+		$("#picli1")[0].className='n1';
+		$("#piclist1").css("display","");
+		
+		$("#picli2")[0].className='n02';
+		$("#piclist2").css("display","none");
+	}else{
+		$("#picli1")[0].className='n01';
+		$("#piclist1").css("display","none");
+		
+		$("#picli2")[0].className='n2';
+		$("#piclist2").css("display","");
+	}
+	
+}
+if (top.location != self.location)top.location=self.location;
+</script>
+
+
+<div class="main">
+  <div class="l">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--left_server start-->
+<? include('lefter_server.html'); ?> 
+<!--left_server end-->
+    <div class="dj">
+      <ul>
+        <li><a href="<?=get_newslink('2099')?>#xl" target="_blank"><img src="images/BANNER1.jpg" width="174" height="74" /></a></li>
+        <li><a href="<?=get_newslink('2099')?>#hb" target="_blank"><img src="images/BANNER2.jpg" width="174" height="74" /></a></li>
+        <li><a href="<?=get_newslink('2099')?>#mg" target="_blank"><img src="images/BANNER3.jpg" width="174" height="74" /></a></li>
+
+      </ul>
+    </div>
+<!--lefter_kf start-->
+<? include('lefter_kf.html'); ?> 
+<!--lefter_kf end-->
+<!--lefter_yx start-->
+<? include('lefter_yx.html'); ?> 
+<!--lefter_yx end-->
+<!--lefter_mt start-->
+<? include('lefter_mt.html'); ?> 
+<!--lefter_mt end-->
+  </div>
+  <div class="r">
+    <div class="p1">
+      <div class="news">
+        <h3><a href="news.html?pid=122&cid=123" onmouseover="newschange(1);" id="newsli1" title="新闻热点" class="n1">热点</a><a href="news.html?pid=122&cid=124" onmouseover="newschange(2);" id="newsli2" title="新闻公告" class="n2">公告</a><a href="news.html?pid=122&cid=125" onmouseover="newschange(3);" id="newsli3" title="新闻活动" class="n2">活动</a></h3>
+        <ul id="newlist1">
+          <?if($rs_news){
+            foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="123"){?>
+		<li <?if($v["attachment"]=="red"){?>class="red_li"<?}?>><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+		  <?}
+            }
+          }?>
+          <a href="news.html?pid=122&cid=123" title="神仙道_新闻热点_更多" target="_blank"  class="more">更多>></a>
+        </ul>
+        <ul id="newlist2" style="display:none;">
+          <?if($rs_news){
+            foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="124"){?>
+		<li <?if($v["attachment"]=="red"){?>class="red_li"<?}?>><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+		  <?}
+            }
+          }?>
+          <a href="news.html?pid=122&cid=124" title="神仙道_公告"  target="_blank" class="more">更多>></a>
+        </ul>
+        <ul id="newlist3" style="display:none;">
+          <?if($rs_news){
+            foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="125"){?>
+		<li <?if($v["attachment"]=="red"){?>class="red_li"<?}?>><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+		  <?}
+            }
+          }?>
+          <a href="news.html?pid=122&cid=125" title="神仙道_活动" target="_blank" class="more">更多>></a>
+        </ul>
+      </div>
+      <div class="ind_2">
+        <div class="ind_3">
+          <div class="server_order">游戏区选择：
+            <select id="servers" onchange="javascript:serverchange(this.value)">
+          <?if($rs_server){
+            foreach($rs_server as $k=> $v){?>
+              <option value="<?=$v["server_sid"]?>">双线<?=$v["server_num"]?>区</option>
+              <?}
+              }?>
+            </select>
+          </div>
+          <ul id="rankTab">
+            <li id="li_0" class="on"><a href="javascript:repchange('0','plt');"><strong>等 级</strong></a></li>
+            <li id="li_1" ><a href="javascript:repchange('1','mt');">副 本</a></li>
+            <li id="li_2" ><a href="javascript:repchange('2','pft');">声 望</a></li>
+          </ul>
+          <table width="407" border="0" cellspacing="0" class="rankTable" id="rankTable1">
+            <tr>
+              <th width="50" height="19" align="center" id="tl_0">名次</th>
+              <th width="131" align="left" id="tl_1">角色名称</th>
+              <th width="76" align="left" id="tl_2">等级</th>
+              </tr>
+            <tr id="tr1">
+              <td class="num" id="field0">1</td>
+              <td height="21" id="field1">&nbsp;</td>
+              <td id="field2">&nbsp;</td>
+              </tr>
+            <tr id="tr2">
+              <td class="num" id="field0">2</td>
+              <td height="22" id="field1">&nbsp;</td>
+              <td id="field2">&nbsp;</td>
+              </tr>
+            <tr id="tr3">
+              <td height="21" class="num" id="field0">3</td>
+              <td id="field1">&nbsp;</td>
+              <td id="field2">&nbsp;</td>
+              </tr>
+            <tr id="tr4">
+              <td height="21" class="num" id="field0">4</td>
+              <td id="field1">&nbsp;</td>
+              <td id="field2">&nbsp;</td>
+              </tr>
+            <tr id="tr5">
+              <td class="num" id="field0">5</td>
+              <td id="field1">&nbsp;</td>
+              <td id="field2">&nbsp;</td>
+              </tr>
+            <tr id="tr6">
+              <td height="24" class="num" id="field0">6</td>
+              <td id="field1">&nbsp;</td>
+              <td id="field2">&nbsp;</td>
+              </tr>
+            <tr id="tr7">
+              <td height="21" class="num" id="field0">7</td>
+              <td id="field1">&nbsp;</td>
+              <td id="field2">&nbsp;</td>
+              </tr>
+            <tr id="tr8"  style="border-bottom:none;">
+              <td class="num" id="field0">8</td>
+              <td id="field1">&nbsp;</td>
+              <td id="field2">&nbsp;</td>
+              </tr>
+          </table>
+          <script>
+		  set_url("<?=YOU_ROOT?>/ajax_server.html");
+		  serverchange($('#servers').val());
+          </script>
+          <div class="cl"></div>
+        </div>
+      </div>
+    </div>
+    <div class="faq">
+      <ul>
+        <li><a href="cardlist.html" target="_blank"><img src="images/BANNERa1.jpg" width="170" height="85" /></a></li>
+        <li><a href="<?=get_newslink('1009')?>" target="_blank"><img src="images/BANNERa2.jpg" width="170" height="85" /></a></li>
+        <li><a href="page_vip.html" target="_blank"><img src="images/BANNERa3.jpg" width="170" height="85" /></a></li>
+        <li><a href="<?=get_newslink('964')?>" target="_blank"><img src="images/BANNERa4.jpg" width="170" height="85" /></a></li>
+      </ul>
+    </div>
+     <div class="sharedspacer"></div>
+     <div>
+
+<div class="hd">
+    <h1>新手指引</h1>
+      <ul class="list clear">
+          <?if($rs_gamexs){
+            foreach($rs_gamexs as $k=> $v){?>
+			<li <?if($v["attachment"]=="red"){?>class="red_li"<?}?>><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+            <?}
+          }?>
+      </ul>
+      <a class="more" href="news.html?pid=128&cid=131" title="神仙道_新手指引">更多&gt;&gt;</a> </div>
+
+<div class="hd">
+      <h2>高手进阶</h2>
+      <ul class="list">
+          <?if($rs_gamegs){
+            foreach($rs_gamegs as $k=> $v){?>
+			<li <?if($v["attachment"]=="red"){?>class="red_li"<?}?>><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>"  title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+            <?}
+          }?>
+      </ul>
+      <a class="more" href="news.html?pid=128&cid=132" title="神仙道_高手宝典">更多&gt;&gt;</a></div>
+      
+      </div>
+ <div class="sharedspacer"></div>      
+      
+      <div class="yxzl">
+      <h3>游戏资料</h3>
+      <ul>
+        <li><strong>【新手指引】</strong>
+        <p><a href="<?=get_newslink('955')?>" target="_blank">职业介绍</a>|
+<a href="<?=get_newslink('956')?>" target="_blank">门派阵营</a>|	
+<a href="<?=get_newslink('957')?>" target="_blank">帮派介绍</a>|
+<a href="<?=get_newslink('961')?>" target="_blank">体力详解</a>|
+<a href="<?=get_newslink('959')?>" target="_blank">战报地址</a>|
+<a href="<?=get_newslink('960')?>" target="_blank">游戏助手</a>|
+<a href="<?=get_newslink('963')?>" target="_blank">好友听众</a>|
+<a href="<?=get_newslink('964')?>" target="_blank">新手帮助</a><br />
+<a href="<?=get_newslink('992')?>" target="_blank">清理缓存</a>|
+<a href="<?=get_newslink('1065')?>" target="_blank">网络异常处理方法</a>|
+</p>
+</li>
+        <li><strong>【特色系统】</strong>
+          <p><a href="<?=get_newslink('966')?>" target="_blank">猎命命格</a>|
+          <a href="page_vip.html" target="_blank">VIP系统</a>|
+<a href="<?=get_newslink('967')?>" target="_blank">副本玉牌</a>|
+<a href="<?=get_newslink('975')?>" target="_blank">伙伴系统</a>|
+<a href="<?=get_newslink('976')?>" target="_blank">药园系统</a>|
+<a href="<?=get_newslink('977')?>" target="_blank">竞技场系统</a>|
+<a href="<?=get_newslink('978')?>" target="_blank">PK系统</a>|
+<a href="<?=get_newslink('979')?>" target="_blank">阵法系统</a><br />
+<a href="<?=get_newslink('980')?>" target="_blank">阅历奇术</a>|
+<a href="<?=get_newslink('981')?>" target="_blank">练功系统</a>|
+<a href="<?=get_newslink('982')?>" target="_blank">变身系统</a>|
+</p>
+        </li>
+        <li><strong>【玩法要点】</strong>
+        <p><a href="<?=get_newslink('1557')?>" target="_blank">仙履奇缘</a>|
+<a href="<?=get_newslink('983')?>" target="_blank">伙伴大全</a>|
+<a href="<?=get_newslink('974')?>" target="_blank">命格大全</a>|
+<a href="<?=get_newslink('984')?>" target="_blank">装备制作</a>|
+<a href="<?=get_newslink('985')?>" target="_blank">装备强化</a>|
+<a href="<?=get_newslink('958')?>" target="_blank">世界BOSS</a>|
+<a href="<?=get_newslink('986')?>" target="_blank">神秘商人</a>|
+        </p></li>
+      </ul> 
+      <a href="gamedata.html" class="more">更多>></a></div>
+    
+ <div class="sharedspacer"></div>
+ <div>
+  <div class="hd">
+      <h3>玩家心情</h3>
+      <ul class="list">
+          <?if($rs_gamehd){
+            foreach($rs_gamehd as $k=> $v){?>
+			<li <?if($v["attachment"]=="red"){?>class="red_li"<?}?>><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["subtitle"]?></a></li>
+            <?}
+          }?>
+      </ul>
+      <a class="more" href="news.html?pid=128&cid=178" title="神仙道_玩家心情">更多&gt;&gt;</a></div>
+      
+      
+      <div class="hd">
+      <h4>常见问题</h4>
+      <ul class="list">
+          <?if($rs_gamequ){
+            foreach($rs_gamequ as $k=> $v){?>
+			<li <?if($v["attachment"]=="red"){?>class="red_li"<?}?>><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["subtitle"]?></a></li>
+            <?}
+          }?>
+      </ul>
+      <a class="more" href="news.html?pid=126&cid=136" title="神仙道_常见问题">更多&gt;&gt;</a> </div>
+ </div>
+ <div class="sharedspacer"></div> 
+ 
+     <div class="pic">
+      <h3><a href="javascript:void(0);" onmouseover="picchange(1);" id="picli1" class="n1" title="神仙道_游戏图鉴">游戏图鉴</a><a href="javascript:void(0);" onmouseover="picchange(2);" id="picli2" class="n02" title="神仙道_玩家截图">玩家截图</a></h3>
+      <div id="piclist1"><ul>
+          <?if($rs_gamepic){
+            foreach($rs_gamepic as $k=> $v){?>
+             <li><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><img src="<?=$v['pic']?>" width="122" height="100" alt="<?=$v["summary"]?>"/></a></li>
+            <?}
+            }?>
+      </ul> <a class="more" href="news.html?pid=127&cid=138" title="神仙道_游戏图鉴">更多&gt;&gt;</a></div>
+      <div id="piclist2" style="display:none;">
+    <ul>
+          <?if($rs_memberpic){
+            foreach($rs_memberpic as $k=> $v){?>
+             <li><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><img src="<?=$v['pic']?>" width="122" height="100" alt="<?=$v["summary"]?>"/></a></li>
+            <?}
+            }?>
+      </ul> <a class="more" href="news.html?pid=127&cid=139" title="神仙道_玩家截图">更多&gt;&gt;</a></div>
+    </div>
+ <div class="bg1">抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</div>   
+       
+  </div>
+</div>
+</div>
+
+<? include('footer.html'); ?> 

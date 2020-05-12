@@ -1,0 +1,77 @@
+<?php $title="{$row_news[title]}_{$row_news[cate_name]}_49you一骑当先官方网站"; 
+
+if(empty($row_news["pic"])){
+    $keywords=$row_news["source"];
+    $description=$row_news["summary"];
+}
+?>
+<?php include('header.html'); ?>
+ <!--content -->
+ <div class="content">
+
+    <div class="left">
+<?php include('lefter_login.html'); ?>
+<?php include('lefter_server.html'); ?>	  
+<?php include('lefter_info.html'); ?>
+<?php include('lefter_kf.html'); ?>
+	 <div class="clear"></div>
+     </div>
+	 
+	 <!--right -->
+	 <div id="n-right">
+	    <div class="hdp"><? include('lefter_gg.html'); ?></div>
+	   
+	    <div id="n-right-t"><h1><?=$row_news['cate_name']?></h1><span>您现在的位置：<a href="/">一骑当先</a>>><?if($row_news['reurl']!=''){?>
+            <a href='<?=$row_news['reurl']?>'><?=$row_news['cate_name']?></a>
+            <?}else{?>
+            <?=$row_news['cate_name']?>
+            <?}?></span></div>
+		
+		<div id="n-right-c">
+		   <div id="n-right-c1">
+		      
+			  <div id="news-1">
+			      <div id="news-detail-t">
+				    <h1><?=$row_news['title']?></h1>
+					<div id="news-detail-t-1">发布时间：<?= date('Y-m-d H:i:s',$row_news['add_time'])?><span>作者：49you</span></div>
+				  </div>
+				  
+				  <div id="news-detail-c"><?=$row_news['content']?></div><br/>
+                  
+<!--info_tg start-->
+<?if(!PUBLIC_INFOTAG || in_array($game_id,$game_infotag)){?>
+<? include('info_tg.html'); ?> 
+<?}else{
+	require(WEB_ROOT.'/games/info_tg.html');
+}?>
+
+<!--info_tg end-->
+<div class="page_inf"> 
+<ul>  
+<?if($row_move){
+foreach($row_move as $k=>$v){
+    if($v["ty"]==1){?>
+<li><a href="<?=get_newslink($v["info_id"])?>">上一篇：<?=$v["subtitle"]?></a></li>
+<?}else if($v["ty"]==2){?>
+<li><a href="<?=get_newslink($v["info_id"])?>">下一篇：<?=$v["subtitle"]?></a></li>
+<?		}
+}
+}?>
+</ul>
+      </div>
+				  <div class="clear"></div>
+			  </div>
+			  
+		      <div class="clear"></div>
+		   </div>
+      		 <div><img src="../images/neiye_03_2.gif" width="720" height="29"></div>
+		</div>
+		
+		<div class="clear"></div>
+	 </div>
+	 <!--right end -->
+	 
+	 <div class="clear"></div>
+ </div><!--content end -->
+<?php include('footer.html'); ?>
+

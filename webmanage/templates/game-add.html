@@ -1,0 +1,299 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th colspan="2" style="font-weight:bold">基本资料</th>
+			</tr>
+			<tr>
+				<th>游戏编码：</th>
+				<td>
+					<input type="text" name="game_code" id="game_code" value="<?=$rs['game_code']?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th>游戏名称：</th>
+				<td>
+                	
+					<input type="text" name="game_name" id="game_name" value="<?=$rs['game_name']?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th>平台游戏名称：</th>
+				<td>
+                	
+					<input type="text" name="game_nickname" id="game_nickname" value="<?=$rs['game_nickname']?>" class="input_w200"  />
+				</td>
+			</tr>
+
+			<tr>
+				<th>类别名称：</th>
+				<td>
+                	<select name='game_class' >
+                    	<?=cfg_to_opt($cfg_game_type,false,$rs['game_class'])?>
+                    </select>
+					
+				</td>
+			</tr>
+			<tr>
+				<th>货币名称：</th>
+				<td>
+					<input type="text" name="game_currency" id="game_currency" value="<?=$rs['game_currency']?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th>推荐度：</th>
+				<td>
+					<input type="text" name="game_recom" id="game_recom" value="<?=$rs['game_recom']?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th colspan="2" style="font-weight:bold">游戏图片</th>
+			</tr>
+            <tr>
+				<th>游戏小图标：</th>
+				<td>
+                	
+						<input name="pic5" id="pic5" class="input_w200" value="<?=file_exists("$gamepicdir/16_16.jpg") ? "$gamepicdir/16_16.jpg" : "";?>" type="text">&nbsp;
+						<input name="upload_btn" id="upload_btn" class="btn" value="上传" onclick="popupWindow('upload-img.php?upload_input=pic5&amp;&amp;is_pic=1&amp;thumb=1&amp;thumb_w=16&amp;thumb_h=16',460,240);" type="button">&nbsp;16x16
+                        <?if(file_exists("$gamepicdir/16_16.jpg")){?>
+                        <p><img src="<?="$gamepicdir/16_16.jpg"?>" /> </p>
+                        <?}?>
+				</td>
+			</tr>
+            <tr>
+				<th>推荐游戏封面图：</th>
+				<td>
+                	
+						<input name="pic1" id="pic1" class="input_w200" value="<?=file_exists("$gamepicdir/140_129.jpg") ? "$gamepicdir/140_129.jpg" : "";?>" type="text">&nbsp;
+						<input name="upload_btn" id="upload_btn" class="btn" value="上传" onclick="popupWindow('upload-img.php?upload_input=pic1&amp;&amp;is_pic=1&amp;thumb=1&amp;thumb_w=140&amp;thumb_h=129',460,240);" type="button">
+						&nbsp;140x129
+                        <?if(file_exists("$gamepicdir/140_129.jpg")){?>
+                        <p><img src="<?="$gamepicdir/140_129.jpg"?>" /> </p>
+                        <?}?>
+				</td>
+			</tr>
+            <tr>
+				<th>最新开服封面图：</th>
+				<td>
+                	
+						<input name="pic2" id="pic2" class="input_w200" value="<?=file_exists("$gamepicdir/115_58.jpg") ? "$gamepicdir/115_58.jpg" : "";?>" type="text">&nbsp;
+						<input name="upload_btn" id="upload_btn" class="btn" value="上传" onclick="popupWindow('upload-img.php?upload_input=pic2&amp;&amp;is_pic=1&amp;thumb=1&amp;thumb_w=115&amp;thumb_h=58',460,240);" type="button">&nbsp;115x58
+                        <?if(file_exists("$gamepicdir/115_58.jpg")){?>
+                        <p><img src="<?="$gamepicdir/115_58.jpg"?>" /> </p>
+                        <?}?>
+				</td>
+			</tr>
+            <tr>
+				<th>支付中心封面图：</th>
+				<td>
+                	
+						<input name="pic3" id="pic3" class="input_w200" value="<?=file_exists("$gamepicdir/140_72.jpg") ? "$gamepicdir/140_72.jpg" : "";?>" type="text">&nbsp;
+						<input name="upload_btn" id="upload_btn" class="btn" value="上传" onclick="popupWindow('upload-img.php?upload_input=pic3&amp;&amp;is_pic=1&amp;thumb=1&amp;thumb_w=140&amp;thumb_h=72',460,240);" type="button">&nbsp;140x72
+                        <?if(file_exists("$gamepicdir/140_72.jpg")){?>
+                        <p><img src="<?="$gamepicdir/140_72.jpg"?>" /> </p>
+                        <?}?>
+				</td>
+			</tr>
+            <tr>
+				<th>游戏中心封面图：</th>
+				<td>
+                	
+						<input name="pic4" id="pic4" class="input_w200" value="<?=file_exists("$gamepicdir/706_240.jpg") ? "$gamepicdir/706_240.jpg" : "";?>" type="text">&nbsp;
+						<input name="upload_btn" id="upload_btn" class="btn" value="上传" onclick="popupWindow('upload-img.php?upload_input=pic4&amp;&amp;is_pic=1&amp;thumb=1&amp;thumb_w=706&amp;thumb_h=240',460,240);" type="button">&nbsp;706x240
+                        <?if(file_exists("$gamepicdir/706_240.jpg")){?>
+                        <p><img src="<?="$gamepicdir/706_240.jpg"?>" /> </p>
+                        <?}?>
+				</td>
+			</tr>
+			<tr>
+				<th>礼包领取封面图：</th>
+				<td>
+						<input name="pic6" id="pic6" class="input_w200" value="<?=file_exists("$gamepicdir/258_144.jpg") ? "$gamepicdir/258_144.jpg" : "";?>" type="text">&nbsp;
+						<input name="upload_btn" id="upload_btn" class="btn" value="上传" onclick="popupWindow('upload-img.php?upload_input=pic6&amp;&amp;is_pic=1&amp;thumb=1&amp;thumb_w=258&amp;thumb_h=144',460,240);" type="button">&nbsp;258x144
+                        <?if(file_exists("$gamepicdir/258_144.jpg")){?>
+                        <p><img src="<?="$gamepicdir/258_144.jpg"?>" /> </p>
+                        <?}?>
+				</td>
+			</tr>
+			<tr>
+				<th colspan="2" style="font-weight:bold">链接地址</th>
+			</tr>
+			<tr>
+				<th>官网地址：</th>
+				<td>
+					<input type="text" name="game_web" id="game_web" value="<?=$rs['game_web']?>" class="input_w400"  />
+				</td>
+			</tr>
+			<tr>
+				<th>论坛地址：</th>
+				<td>
+					<input type="text" name="game_bbs" id="game_bbs" value="<?=$rs['game_bbs']?>" class="input_w400"  />
+				</td>
+			</tr>
+			<tr>
+				<th>客服中心地址：</th>
+				<td>
+					<input type="text" name="game_service" id="game_service" value="<?=$rs['game_service']?>" class="input_w400"  />
+				</td>
+			</tr>
+			<tr>
+				<th>游戏指南地址：</th>
+				<td>
+					<input type="text" name="game_guide" id="game_guide" value="<?=$rs['game_guide']?>" class="input_w400"  />
+				</td>
+			</tr>
+			<tr>
+				<th>新手引导地址：</th>
+				<td>
+					<input type="text" name="game_guidenew" id="game_guidenew" value="<?=$rs['game_guidenew']?>" class="input_w400"  />
+				</td>
+			</tr>
+			<tr>
+				<th>充值地址：</th>
+				<td>
+					<input type="text" name="game_pay" id="game_pay" value="<?=$rs['game_pay']?>" class="input_w400"  />
+				</td>
+			</tr>
+			<tr>
+				<th>退出地址：</th>
+				<td>
+					<input type="text" name="game_quit" id="game_quit" value="<?=$rs['game_quit']?>" class="input_w400"  />
+				</td>
+			</tr>
+            
+            <tr>
+				<th>游戏侧边栏地址：</th>
+				<td>
+					<input type="text" name="game_leftbar" id="game_leftbar" value="<?=$rs['game_leftbar']?>" class="input_w400"  />
+                    注意：不填则为平台默认的侧边栏样式。
+				</td>
+			</tr>
+            
+            <tr>
+				<th>游戏侧边栏宽度：</th>
+				<td>
+					<input type="text" name="game_leftwidth" id="game_leftwidth" value="<?=$rs['game_leftwidth']?>" class="input_w400"  />
+                    注意：不填则为平台默认的80。
+				</td>
+			</tr>
+
+			<tr>
+				<th colspan="2" style="font-weight:bold">状态控制</th>
+			</tr>
+			<tr>
+				<th>是否新游戏：</th>
+				<td>
+                    <input name="game_isnew" value="1" <?=$rs['game_isnew']=='1' ? 'checked' : '' ?> type="radio">是
+                    <input name="game_isnew" value="0" <?=$rs['game_isnew']!='1' ? 'checked' : '' ?> type="radio">否
+				</td>
+			</tr>
+			<tr>
+				<th>是否热门游戏：</th>
+				<td>
+                    <input name="game_ishot" value="1" <?=$rs['game_ishot']=='1' ? 'checked' : '' ?> type="radio">是
+                    <input name="game_ishot" value="0" <?=$rs['game_ishot']!='1' ? 'checked' : '' ?> type="radio">否
+				</td>
+			</tr>
+            <tr>
+				<th>是否开放礼包领取：</th>
+				<td>
+                    <input name="game_package" value="1" <?=$rs['game_package']=='1' ? 'checked' : '' ?> type="radio">是
+                    <input name="game_package" value="0" <?=$rs['game_package']!='1' ? 'checked' : '' ?> type="radio">否
+				</td>
+			</tr>
+            <tr>
+				<th>使用顶部导行栏：</th>
+				<td>
+                	<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+                    <tr>
+                    <td>
+                    <input name="game_istopbar" value="1" <?=$rs['game_istopbar']=='1' ? 'checked' : '' ?> type="radio">是
+                    <input name="game_istopbar" value="0" <?=$rs['game_istopbar']!='1' ? 'checked' : '' ?> type="radio">否
+                    </td>
+                    <th>自动隐藏顶部导行栏：</th>
+                    <td>
+                    <input name="game_autohidetop" value="1" <?=$rs['game_autohidetop']=='1' ? 'checked' : '' ?> type="radio">是
+                    <input name="game_autohidetop" value="0" <?=$rs['game_autohidetop']!='1' ? 'checked' : '' ?> type="radio">否
+                    </td>
+                    </tr>
+                    </table>
+				</td>
+			</tr>
+            
+            <tr>
+				<th>是否使用左边导行栏：</th>
+				<td>
+                    
+					<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+                    <tr>
+                    <td>
+                    <input name="game_isleftbar" value="1" <?=$rs['game_isleftbar']=='1' ? 'checked' : '' ?> type="radio">是
+                    <input name="game_isleftbar" value="0" <?=$rs['game_isleftbar']!='1' ? 'checked' : '' ?> type="radio">否
+                    </td>
+                    <th>自动隐藏左边导行栏：</th>
+                    <td>
+                        <input name="game_autohideleft" value="1" <?=$rs['game_autohideleft']=='1' ? 'checked' : '' ?> type="radio">是
+                        <input name="game_autohideleft" value="0" <?=$rs['game_autohideleft']!='1' ? 'checked' : '' ?> type="radio">否
+                    </td>
+                    </tr>
+                    </table>
+				</td>
+			</tr>
+			<tr>
+				<th>退出时弹出收藏游戏：</th>
+				<td>
+                    <input name="game_hasfav" value="1" <?=$rs['game_hasfav']=='1' ? 'checked' : '' ?> type="radio">开启
+                    <input name="game_hasfav" value="0" <?=$rs['game_hasfav']!='1' ? 'checked' : '' ?> type="radio">关闭
+				</td>
+			</tr>
+			<tr>
+				<th>退出时弹出推荐游戏：</th>
+				<td>
+                    <input name="game_haschangegame" value="1" <?=$rs['game_haschangegame']=='1' ? 'checked' : '' ?> type="radio">开启
+                    <input name="game_haschangegame" value="0" <?=$rs['game_haschangegame']!='1' ? 'checked' : '' ?> type="radio">关闭
+                    
+                    　推荐游戏：<select name="game_changegid" id="game_changegid" onchange="on_game_change();">
+						<?php
+							if($game_group_arr){
+								foreach($game_group_arr as $row){
+									$strSelected="";
+									if($row['game_id'] == $rs['game_changegid']){
+										$strSelected="selected";
+									}
+						?>
+						<option value="<?=$row['game_id']?>" <?=$strSelected?> ><?=$row['game_name']?></option>
+						<?php
+								}
+							}
+						?>
+					</select>
+                    <script language="javascript">on_game_change();</script>
+				</td>
+			</tr>
+			<tr>
+				<th>游戏状态：</th>
+				<td>
+                    <input name="game_status" value="1" <?=$rs['game_status']=='1' ? 'checked' : '' ?> type="radio">开启
+                    <input name="game_status" value="0" <?=$rs['game_status']!='1' ? 'checked' : '' ?> type="radio">关闭
+				</td>
+			</tr>        
+			<tr>
+				<th>游戏描述：</th>
+				<td>
+                    <textarea name="game_desc" rows="6" class="input_w400" style="width:600px;" ><?=htmlspecialchars($rs['game_desc'])?></textarea>
+				</td>
+			</tr>
+            
+
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<?php include_once("footer.html");?>

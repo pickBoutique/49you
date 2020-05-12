@@ -1,0 +1,83 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'渠道' , 'dataIndex':'advcost_advtype' , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("advtype","advtype_id","advtype_name",'1',true)?>}},
+          { 'header':'广告' , 'dataIndex':'advcost_advid'  , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("adv","adv_id","adv_name",'1',true)?>}},
+          { 'header':'日期' , 'dataIndex':'advcost_time' , 'type':'datetime' },
+          { 'header':'成本' , 'dataIndex':'advcost_cost' , 'type':'intrange' }
+          </div>
+        </div>
+
+		<div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="button" value="删除" class="btn action_del" onclick="todel();" />
+			<input type="button" value="添加" class="btn action_add" onclick="toadd();" />
+		</div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			
+			function getoperator(rs) {
+				return "<a href='###' class='action_edit' onclick=\"toedit('" + rs["advcost_id"] + "')\">编辑</a>"  + "  <a href='###' class='action_del' onclick=\"todelone('" + rs["advcost_id"] + "')\">删除</a>";
+	
+			}
+	
+			
+			var cm = new ColumnModel
+			([
+			new CheckboxModel({dataIndex: 'advcost_id'}),
+			{header: '日期', dataIndex: 'advcost_time',sortable: true,format:'yyyy-MM-dd',width:100},
+			{header: '渠道', dataIndex: 'advtype_name'},
+			{header: '广告', dataIndex: 'adv_name'},
+			{header: '成本', dataIndex: 'advcost_cost',  width: 150 },
+			{header: '操作',  width: 120, renderer: getoperator }
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+			
+			
+		});
+		
+		
+		function toadd(){
+			show_editor({ title:'添加',src:'advtypecost-add.php',  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function toedit(id){
+			show_editor({ title:'编辑',src:'advtypecost-add.php?advcost_id=' + id,  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function todel(){
+			ajax_action('advtypecost-add.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+				grid.load(); 
+			});
+		}
+		
+		function todelone(id){
+			ajax_action('advtypecost-add.php',{ act:'del' , ids:id } , '您确定要删除吗？' , function(){ 
+				grid.load();
+			});
+		}
+		
+	
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

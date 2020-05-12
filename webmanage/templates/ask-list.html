@@ -1,0 +1,106 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+		<!--<div class="searcher">
+			<strong>搜索：</strong>
+			用户邮箱： <input type="text" name="email" id="email" />&nbsp;&nbsp;
+			问题编号： <input type="text" name="ask_id" id="ask_id"/>&nbsp;&nbsp;
+			问题类别：<select name="ask_type" id="ask_type">
+			              <option value="">请选择</option>
+								<?php
+									if($cfg_ask_type)
+									{
+										foreach($cfg_ask_type as $key =>$v)
+										{
+										  echo "<option value=\"$key\">$v</option>";          
+										}
+									 }
+									?></select>
+			&nbsp;&nbsp;
+			提交日期：从 <input type="text" class="Wdate" id="start_time" name="start_time" value="<?=$start_time?>" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'end_time\',{d:-1});}'})"/> 到 <input type="text" class="Wdate" id="end_time" name="end_time" value="<?=$end_time?>" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'start_time\',{d:1});}'})"/>
+			<input type="hidden" name="cate_parent_id" id="cate_parent_id" value="<?=$cate_parent_id?>" />
+			<input type="submit" value="搜索" class="btn" />
+		</div>
+		
+		<div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="radio" name="op_column" id="op_column0" onclick="changeOperate('update')" value="" checked="checked" />更新
+			<input type="hidden" name="act" id="act" value="update" />
+			<input type="hidden" name="request" value="<?=$request?>" />
+			<input type="button" value="提交" class="btn" onclick="OperateSubmit(this.form,'checkbox_cate_id[]','ask-action.php')" />&nbsp;&nbsp;
+			<input type="button" value="添加提问" class="btn_80" onclick="location.href='ask-add.php?parent_id=<?=$cate_id?>'" />
+		</div>
+		<?=$list_html?>
+		<div class="page_html"><?=$page_html?></div>-->
+         <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'用户邮箱' , 'dataIndex':'email' , 'type':'textbox' },
+          { 'header':'问题编号' , 'dataIndex':'ask_id' , 'type':'textbox' },
+          { 'header':'问题类别' , 'dataIndex':'ask_type' , 'type':'select' , 'options':{ '全部':'', '业务类':'1' , '财务类':'2', '技术类':'3', '其它类':'4'} },
+          { 'header':'提交日期从' , 'dataIndex':'add_time' , 'type':'datetime' }</div>
+        </div>
+        
+       <div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="button" value="删除" class="btn action_del" onclick="todel();" />
+			<!--<input type="button" value="添加" class="btn action_add" onclick="toadd();" />-->
+		</div>
+        
+		<div class="searcher" id="permimag"></div>
+        
+        
+		<script>
+		var grid;
+		$(document).ready(function(){
+			
+			function getoperator(rs) {
+				return "<a href='###' class='action_edit' onclick=\"toedit('" + rs["ask_id"] + "')\">查看</a>";
+			}
+	
+			var cm = new ColumnModel
+			([
+			new CheckboxModel({dataIndex: 'ask_id'}),
+			{header: '用户邮箱', dataIndex: 'email', sortable: false, width: 100},
+			{header: '问题编号', dataIndex: 'ask_id', sortable: false, width: 100},
+			{header: '标题', dataIndex: 'title', sortable: false},
+            {header: '问题类型', dataIndex: 'ask_type', sortable: false, width: 100, renderer: '<?=$json->encode($cfg_ask_type);?>' },
+			{header: '操作状态', dataIndex: 'reply_status', sortable: false, width: 100, renderer: '<?=$json->encode($cfg_reply_status);?>' },
+			{header: '提交时间', dataIndex: 'add_time' , format:'yyyy-MM-dd', sortable: true, width: 100 },
+			{ header: '操作',  width: 40, renderer: getoperator }
+			]);
+	
+			grid = new GridView({ id: 'permimag', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+		});
+		
+		
+		function toadd(){
+			show_editor({ title:'添加',src:'ask-add.php', onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function toedit(id){
+			show_editor({ title:'查看',src:'ask-view.php?ask_id=' + id, onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function todel(){
+			if(grid.get_selected_ids() == ''){
+				alert("请选择要删除的行");
+				return;
+			}
+			ajax_action('ask-add.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+				grid.load(); 
+			});
+		}
+		
+		</script>
+	</form>
+</div>
+<?php include_once("footer.html");?>

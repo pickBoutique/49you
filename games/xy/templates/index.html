@@ -1,0 +1,179 @@
+<?php $title='飞音西游|飞音西游官网|49you飞音西游新手卡|仙宠|技能|副本|攻略';
+$keywords="飞音西游,飞音西游官网,49you飞音西游,飞音西游新手卡,飞音西游技能,飞音西游仙宠,飞音西游攻略";
+$description="飞音西游,飞音西游官网,49you飞音西游是一款音乐节奏模式与传统RPG回合制战斗完美结合的网页游戏。49you飞音西游官网提供飞音西游新手卡领取、最全的音乐歌曲弹奏、仙宠和技能等攻略及最新开服、活动等资讯。"?>
+<?php include('header.html'); ?>
+ <!--content -->
+ <div class="content">
+   <div class="left">   
+<?php include('lefter_login.html'); ?>
+<?php include('lefter_server.html'); ?>
+<?php include('lefter_kf.html'); ?>
+<?php include('lefter_yx.html'); ?>
+     </div>
+	 
+	 <!--right -->
+	 <div class="right">
+
+	   <div class="hdp">
+       <? include('lefter_gg.html'); ?> 
+       </div>
+	   
+       <div class="small-img">
+           <div class="small-img1">
+		      <ul>
+			     <li class="small-img1-1"><a href="<?=get_newslink(4168)?>" target="_blank"><img src="images/03.jpg" border="0" /></a></li>
+				 <li class="small-img1-1"><a href="<?=get_newslink(4215)?>" target="_blank"><img src="images/01.jpg" border="0" /></a></li>
+                 <li class="small-img1-1"><a href="news.html?cid=266" target="_blank"><img src="images/05.jpg" border="0" /></a></li>                 
+				 <li class="small-img1-2"><a href="<?=get_newslink(4141)?>" target="_blank"><img src="images/08.jpg" border="0" /></a></li>
+			  </ul>
+		   </div>
+           <div class="small-img2">
+		      <ul>
+			     <li class="small-img2-1"><a href="<?=get_newslink(4162)?>" target="_blank"><img src="images/06.jpg" border="0" /></a></li>
+				 <li class="small-img2-1"><a href="<?=get_newslink(4155)?>" target="_blank"><img src="images/04.jpg" border="0" /></a></li>
+				 <li class="small-img2-1"><a href="<?=get_newslink(4166)?>" target="_blank"><img src="images/07.jpg" border="0" /></a></li>
+				 <li class="small-img2-2"><a href="<?=get_newslink(4159)?>" target="_blank"><img src="images/02.jpg" border="0" /></a></li>
+			  </ul>
+		   </div>
+	   </div>
+	    
+		<!--17173-->
+		<script type="text/javascript" src="js/changetab.js"></script>
+		<div class="h-17173">
+			
+			<div class="tabmenu">
+              <ul>
+               <li onmouseover="tabChange(this,'tabcontent')" class="cli">热点</li>
+               <li onmouseover="tabChange(this,'tabcontent')">新闻</li>
+			   <li onmouseover="tabChange(this,'tabcontent')">活动</li>
+              </ul>
+            </div>
+
+            <div id="tabcontent">
+              <ul name="tabul">
+                      <?if($rs_news){
+                        foreach($rs_news as $k=> $v){
+                        if($v["cate_id"]=="1" || $v["cate_id"]=="2"){
+                        $cls = $v["attachment"]=="red" ? 'new_list_red' : '';
+                        ?>
+			    <li class="<?=$cls?>">
+                <span class="date" <? if($v["attachment"]=="red"){?>style="color:red;"<? } ?> ><?=date('m-d',$v["add_time"])?></span>
+                [<?if($v["cate_id"]=="1"){?><a href="news.html?cid=<?=$ids['gn_xw']?>" target="_blank">新闻</a><?}else{?><a href="news.html?cid=<?=$ids['gn_hd']?>" target="_blank">活动</a><?}?>]<a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>"><?=$v["subtitle"]?></a>
+                </li>
+                      <?}
+                        }
+                      }?>
+         	 </ul>
+              
+			  <ul class="hidden">
+                      <?if($rs_news){
+                        foreach($rs_news as $k=> $v){
+                        if($v["cate_id"]==$ids['gn_xw']){
+                        $cls = $v["attachment"]=="red" ? 'new_list_red' : '';
+                        ?>              
+			    <li class="<?=$cls?>"><span class="date" <? if($v["attachment"]=="red"){?>style="color:red;"<? } ?>><?=date('m-d',$v["add_time"])?></span>[<a href="news.html?cid=<?=$ids['gn_xw']?>" target="_blank">新闻</a>]<a href="<?=get_newslink($v["info_id"])?>"><?=$v["subtitle"]?></a></li>
+                      <?}
+                        }
+                      }?>
+                
+			  </ul>
+                           
+			 <ul class="hidden">
+                      <?if($rs_news){
+                        foreach($rs_news as $k=> $v){
+                        if($v["cate_id"]==$ids['gn_hd']){
+                        $cls = $v["attachment"]=="red" ? 'new_list_red' : '';
+                        ?>              
+			    <li class="<?=$cls?>">
+                <?if($v["cate_id"]=="1"){?><span class="date" <? if($v["attachment"]=="red"){?>style="color:red;"<? } ?>><?=date('m-d',$v["add_time"])?></span><? }else{ ?><span class="date" style="color:red;"><?=date('m-d',$v["add_time"])?></span><? } ?>
+                [<a href="news.html?cid=<?=$ids['gn_hd']?>" target="_blank">活动</a>]<a href="<?=get_newslink($v["info_id"])?>"><?=$v["subtitle"]?></a></li>
+                      <?}
+                        }
+                      }?>
+             </ul>
+           </div>
+	 </div><!--17173 end-->
+		
+		<!--yxgl-->
+		<div class="yxgl">
+		  <div class="yxgl-top topgl"><h1>游戏攻略</h1><span><a href="news.html?cid=<?=$ids['gamegl']?>">更多>></a></span></div>
+		  <div class="yxgl-content">
+			  <ul>
+                      <?if($rs_gamegs){
+                        foreach($rs_gamegs as $k=> $v){
+                        $cls = $v["attachment"]=="red" ? 'new_list_red' : '';
+                        ?>
+			    <li class="<?=$cls?>" ><span class="date"><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>"><?=$v["subtitle"]?></a></li>
+                      <?}
+                      }?>
+			  </ul>
+		  </div>
+		</div><!--yxgl end-->
+		
+		<!--infro -->
+        <div id="infro">
+		  <div class="infro-top"><h1>游戏资料</h1></div>
+          <div class="infro-content">
+		     <div class="infro-content1">
+			    <ul>
+			      <li> <a href="<?=get_newslink(4150)?>">好友系统</a>|<a href="<?=get_newslink(4138)?>">游戏背景</a>|<a href="<?=get_newslink(4139)?>">角色属性</a>|<a href="<?=get_newslink(4140)?>">门派介绍</a>|<a href="<?=get_newslink(4141)?>">世界地图</a>|<a href="<?=get_newslink(4142)?>">技能系统</a>|<a href="<?=get_newslink(4144)?>">任务系统</a>|<a href="<?=get_newslink(4151)?>">聊天系统</a></li>
+                   <li><a href="<?=get_newslink(4216)?>">清理缓存</a>|<a href="<?=get_newslink(4217)?>">网络异常</a></li>
+			   </ul>
+			 </div>
+			 
+			 <div class="infro-content2">
+			    <ul>
+			      <li><a href="<?=get_newslink(4143)?>">装备系统</a>|<a href="<?=get_newslink(4145)?>">锻造系统</a>|<a href="<?=get_newslink(4148)?>">帮会系统</a>|<a href="<?=get_newslink(4149)?>">广播系统</a>|<a href="<?=get_newslink(4157)?>">邮件系统</a>|<a href="<?=get_newslink(4158)?>">组队系统</a>|<a href="<?=get_newslink(4159)?>">战斗系统</a>|<a href="<?=get_newslink(4160)?>">包裹系统</a></li>
+			      <li><a href="<?=get_newslink(4163)?>">时装系统</a>|<a href="<?=get_newslink(4164)?>">商城系统</a>|<a href="<?=get_newslink(4166)?>">副本系统</a></li>
+			   </ul>
+			 </div>
+			 
+			 <div class="infro-content2">
+			    <ul>
+			      <li><a href="<?=get_newslink(4162)?>">仙宠系统</a>| <a href="<?=get_newslink(4161)?>">法器系统</a>|<a href="<?=get_newslink(4165)?>">许愿系统</a>|<a href="<?=get_newslink(4167)?>">排行榜</a>|<a href="<?=get_newslink(4146)?>">训练系统</a>|<a href="<?=get_newslink(4155)?>">师徒系统</a>|<a href="<?=get_newslink(4218)?>">离线创收</a></li>
+			   </ul>
+			 </div>
+		  </div>
+        </div>
+		
+		<!--yxgl-->
+		<div class="yxgl" style="float:left; margin-left:0;">
+          <div class="yxgl-top rchd"><h1>日常活动</h1><span><a href="news.html?cid=<?=$ids['gamerchd']?>">更多>></a></span></div>
+		  <div class="yxgl-content2">
+			  <ul>
+                      <?if($rs_gamexq){
+                        foreach($rs_gamexq as $k=> $v){
+                        $cls = $v["attachment"]=="red" ? 'new_list_red' : '';
+                        ?>
+			    <li class="<?=$cls?>" ><span class="date"><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>"><?=$v["subtitle"]?></a></li>
+                      <?}
+                      }?>
+			  </ul>
+		  </div>
+		</div><!--yxgl end-->
+			
+			<!--yxgl-->
+		<div class="yxgl">
+          <div class="yxgl-top cjwt"><h1>常见问题</h1><span><a href="news.html?cid=<?=$ids['gamecjwt']?>">更多>></a></span></div>
+		  <div class="yxgl-content2">
+			  <ul>
+                      <?if($rs_gamequ){
+                        foreach($rs_gamequ as $k=> $v){
+                        $cls = $v["attachment"]=="red" ? 'new_list_red' : '';
+                        ?>
+			    <li class="<?=$cls?>" ><span class="date"><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>"><?=$v["subtitle"]?></a></li>
+                      <?}
+                      }?>
+			  </ul>
+		  </div>
+		</div><!--yxgl end-->
+		<div class="clear"></div>
+		
+<!--hzmt-->
+<?php include('lefter_mt.html'); ?>
+<!--hzmt end-->
+	 
+	 </div><!--right end -->
+	 <div class="clear"></div>
+ </div><!--content end -->
+<?php include('footer.html'); ?>

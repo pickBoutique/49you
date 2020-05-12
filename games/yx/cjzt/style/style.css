@@ -1,0 +1,115 @@
+body{
+	color:#000;
+	font-family:'宋体',Arial, Helvetica, sans-serif;
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-color:#590100;
+	background-image:url(../images/bg.jpg);
+	background-repeat: no-repeat;
+	background-position: top;
+
+}
+
+div,p,ul,li,dl,dt,dd,h1,h2,h3,h4,h5,form,a,object{ margin:0; padding:0; word-wrap:break-word; outline:none; list-style:none;}
+
+/*
+ * 将具有默认margin和padding的标记置零
+ * @overlay *
+ * @desc	所有标记的margin、padding都在使用时具体定义
+ */
+*{
+	margin:0;
+	padding:0;
+	font-size:12px;
+}
+
+
+.main{ width:1004px; margin: 0 auto;}
+
+.wipper1{ width:1004px; height:32px; background-image:url(../images/index_02.jpg)}
+.wipper2{width:1004px; height:192px; background-image:url(../images/index_04.jpg)}
+.wipper3{width:1004px; height:328px; background-image:url(../images/index_05.jpg)}
+.wipper4{width:1004px; height:119px; background-image:url(../images/nr_01.jpg)}
+.wipper1 span{ color:#ffddb8; line-height:24px; float:right; margin-right:228px; }
+.wipper1 span a{  color:#ffddb8; line-height:24px; text-decoration:none;}
+.wipper1 span a:hover{color:#FFFF00; text-decoration:underline;}
+
+
+
+
+
+
+
+.content{ width:878px; overflow:hidden; margin:0 auto;}
+
+.nr01{
+	width:742px;
+	background-image:url(../images/nr_02.jpg);
+	margin:0 auto;
+	background-position: 8px;
+	background-repeat: repeat-y;
+	overflow:hidden;
+}
+
+.nr02{ width:742px; height:204px;overflow:hidden; background-image:url(../images/nr_03.gif);margin:0 auto;background-position: 8px;background-repeat: repeat-y;}
+
+
+
+.wipper4 h1{ margin:0 auto; font-size:28px; font-weight:bold;color:#ffefdd; padding-top:62px; width:500px; text-align:center;}
+
+
+.nr{ padding:25px 55px 0 68px; line-height:24px; color:#000; font-size:14px;}
+
+
+
+
+.f14{ font-size:14px;}
+
+.red1{
+	color:#FF0033;
+	font-size:14px;
+}
+
+.foot{
+	width:100%;
+	height:390px;
+	line-height:26px;
+	background-position: center bottom;
+	background-image:url(../images/foot.jpg);
+	background-attachment: scroll;
+	background-repeat: no-repeat;
+	z-index: -9999;
+	margin-top: 0;
+	margin-right: auto;
+	margin-bottom: 0;
+	margin-left: auto;
+	position: absolute;
+	left: -2px;
+	top: 1200px;
+}
+
+.foot p { padding-top:60px; color:#c69259; text-align:center;}
+
+.foot1{
+	width:100%;
+	height:390px;
+	line-height:26px;
+	background-position: center bottom;
+	background-image:url(../images/foot.jpg);
+	background-attachment: scroll;
+	background-repeat: no-repeat;
+	z-index: -9999;
+	margin-top: 0;
+	margin-right: auto;
+	margin-bottom: 0;
+	margin-left: auto;
+	position: absolute;
+	left: -2px;
+	top: 1000px;
+}
+
+.foot1 p { padding-top:60px; color:#c69259; text-align:center;}
+
+
+
+/*  |xGv00|32671b2a9bb7545c3590fc36888638eb */

@@ -1,0 +1,79 @@
+<?php $title='我的返利记录_推广返利_49you网页游戏平台'; ?>
+<?php $nav='return'; ?>
+<?php include('header.html'); ?>
+
+<div class="text cl ">
+<div class="con clearfix">
+<!--left-->
+<div id="coleft">
+<!--login start-->
+<? include('login_info.html'); ?> 
+<!--login end-->
+  <div class="sharedspacer8"></div>  
+  <!--server start-->
+  <? include('server_info.html'); ?> 
+  <!--server end-->
+
+  <!--service start-->
+  <? include('service_info.html'); ?> 
+  <!--service end-->          
+</div>
+<!--right-->
+<div id="coright">
+ <div class="center_newinf">
+      <div class="newinf_title">
+            	<ul><li class="nah">返利推广</li></ul></div>
+  <div class="center_list">
+  <!--return_info start-->
+  <? include('return_info.html'); ?> 
+  <!--return_info end-->
+ <div>
+ 
+ <div>
+    <ul class="tag">
+                <li class=""><a href="return_record.html">推广记录查询</a></li>
+                <li class="on"><a href="member_return.html">我的返利记录</a></li>
+    </ul></div>  
+    
+ <div class="pset2"><br />
+
+  <table width="100%" border="0" cellpadding="00" cellspacing="1" class="liebiao" >
+      <tr>
+        <td width="12%" height="22" align="center" class="liebiao-zi1 liebiaor3" >推广用户</td>
+        <td width="15%" align="center" class="liebiao-zi1 liebiaor3" >充值时间</td>
+        <td width="15%" align="center" class="liebiao-zi1 liebiaor3" >充值游戏</td>
+        <td width="17%" align="center" class="liebiao-zi1 liebiaor3" >充值金额</td>
+        <td width="9%" class="liebiao-zi1 liebiaor3 ">我的返利</td>
+        </tr>
+        <? if(!empty($list)){ 
+     		for($i=0;$i<sizeof($list);$i++ ){
+            	$v = $list[$i];
+                $color = '#FFFFFF';
+                if($i % 2 == 0){
+                	$color = '#EEFAFD';
+                }
+             ?>
+      <tr>
+        <td width="12%" height="22" align="center" bgcolor="#FFFFFF" ><?=$v['transret_recomname']?></td>
+        <td width="12%" align="center" bgcolor="#FFFFFF" ><?=date('Y-m-d',$v['transret_time'])?></td>
+        <td width="12%" align="center" bgcolor="#FFFFFF" ><?=$v['transret_game']?></td>
+        <td width="17%" align="center" bgcolor="#FFFFFF" ><?=$v['transret_charge']?>元</td>
+        <td width="9%" align="center" bgcolor="#FFFFFF" ><?=$v['transret_currency']?>平台币</td>
+        </tr>
+         <?      }
+    	} ?>
+      <tr><td colspan="5" class="liebiao-zi1"><DIV><? pager_bar($pager,WEB_ROOT."/member/templates/pager.html"); ?></DIV></td></tr>
+    </table>
+
+ </div>
+  <p class="pshow">&nbsp;</p>               
+                   
+  </div>   
+</div>
+</div>
+</div>
+
+
+</div>
+
+<? include('footer.html'); ?>

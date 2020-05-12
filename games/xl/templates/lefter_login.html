@@ -1,0 +1,55 @@
+<script type="text/javascript">
+var gid="<?=$game_id?>";
+function memberLogin(isgoto) {
+	var usname=$("#usname").val();
+	var uspsd=$("#uspsd").val();
+	var saveid=$("#save_id").val();
+	
+	$.getJSON("<?=YOU_ROOT?>/login.html?rnd="+Math.random()+"&act=ajlogin&gid="+gid+"&username="+usname+"&password="+uspsd+"&save_id="+saveid+"&format=json&jsoncallback=?",
+	function(data){
+		var _member = data;
+		if(_member.errormsg == ""){
+			if(isgoto==1){
+				top.location.href="server_list.html";
+				return;
+			}
+			var shtml ='';
+			var shtml ='';
+			shtml +='<div class="ine_2">';
+			shtml +='<p>欢迎你：<span class="red">'+_member.username+'</span></p>';
+			shtml +='<p>平台币：'+_member.money+' <a href="<?=YOU_ROOT?>/exchange.html?gid='+_member.lastg_id+'&sid='+_member.lasts_id+'"  target="_blank">兑换</a>　<a href="<?=YOU_ROOT?>/vip.html"  target="_blank">' +_member.vip +'</a></p>';
+ 			shtml +='<p>最新服务器：<a href="<?=YOU_ROOT?>/game_add.html?gid='+_member.newg_id+'&sid='+_member.news_id+'" target="_blank">'+_member.news_name+'</a></p>';
+			shtml +='<p>最近登陆服：<a href="<?=YOU_ROOT?>/game_add.html?gid='+_member.lastg_id+'&sid='+_member.lasts_id+'" target="_blank">'+_member.lasts_name+'</a></p>';
+ 
+			shtml +='<div class="b t_c">';
+			shtml +='<a href="<?=YOU_ROOT?>/bind_mail.html" target="_blank" style="color:red">密保设置</a>';
+			shtml +='<a href="<?=YOU_ROOT?>/return.html" target="_blank">推广返利</a>';
+			shtml +='<a href="<?=YOU_ROOT?>/trans_record.html" target="_blank">充值明细</a>';
+			shtml +='<a href="<?=YOU_ROOT?>/loginout.html?returl=<?=HTTP_ROOT?>/index.html">安全退出</a>';
+			shtml +='</div>';
+			$("#login").html(shtml);
+			if(usname != '')document.write(_member.script);
+		}else{
+			if(usname != '')alert(_member.errormsg);
+		}
+	});
+}
+</script>
+		<div class="login">
+	   <div class="ks-flash"><a href="server_list.html"><img src="images/kaishiyouxi_03.png"></a></div>
+	   <p><a href="<?=YOU_ROOT?>/reg.html?returl=<?=urlencode(HTTP_ROOT.$_SERVER['REQUEST_URI'])?>&gid=<?=$game_id?>"><img src="images/index2_22.png"></a></p><br/>
+	   <p><a href="<?=YOU_ROOT?>/pay_type.html?gid=<?=$game_id?>"><img src="images/index2_29.png"></a></p><br/>
+	   <p><img src="images/index2_35.png"></p><br/>
+	   <div id="login" >
+	     <p><span style="color:#846c22">账号：</span><input type="text" name="username" id="usname" /></p><br/>
+		 <p><span style="color:#846c22">密码：</span><input type="password" name="password" id="uspsd" onkeypress="javascript:if(event.keyCode==13){memberLogin(1)}" /></p><br/>
+		 <p><input type="image" src="images/index2_55.png" onclick="javascript:memberLogin(1);"></p><br/>
+		 <p style="color:#605324;">
+         <input id="save_id" name="save_id" type="checkbox" />记住登录状态 &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <a href="<?=YOU_ROOT?>/pwd_find.html" style="color:#605324;" target="_blank">忘记密码</a>
+         </p>
+         
+	   </div>
+       </div>
+       <br />
+<script language="javascript">memberLogin(0);</script>

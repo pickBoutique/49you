@@ -1,0 +1,35 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>会员名称：</th>
+				<td>
+					<input type="text" name="member_name" id="member_name" value="<?=$rs['member_name']?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th>IP地址：</th>
+				<td>
+                	
+					<input type="text" name="bg_ip" id="bg_ip" value="<?=$rs['bg_ip']?>" class="input_w200"  />
+					不填就为全部
+				</td>
+			</tr>
+<tr>
+				<th>禁止结束时间：</th>
+				<td>
+					<input type="text" name="bg_bantime" id="bg_bantime" value="<?= empty($rs['bg_bantime']) ? date('Y-m-d H:i:s',time()) : date('Y-m-d H:i:s',$rs['bg_bantime']) ?>" class="input_w200"  />
+				</td>
+		  </tr>
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<?php include_once("footer.html");?>

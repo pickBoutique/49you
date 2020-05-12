@@ -1,0 +1,50 @@
+@charset "gb2312";
+body {color: #000; padding:0px; margin:0px; background:transparent url(../images/m_bodybg.jpg); line-height:30px; font:14px/20px Georgia,"Times New Roman",Times,serif;}
+div,span,ul,li,p,h1,h2,h3,h4,h5,h6,img,p,dl,dd,dt{ margin:0px; padding:0px;}
+ul{ list-style-type: none; }
+a{ color:#fffcad; text-decoration:none;}
+a:hover{ color:#ff0000; text-decoration:none;}
+img{ border:0px;}
+form{ margin:0px; padding:0px;}
+input {vertical-align:middle; font-size:12px; padding:0 1px;border:none; margin:0}
+.red{ color:#c10000;}
+.green{ color:#339900;}
+.orange{ color:#057a05;}
+.blue{ color:#0171ee;}
+.black{ color:#000;}
+.bold{ font-weight:bold;}
+li{ list-style-type:none;}
+.fl{ float:left;}
+.fr{ float:right;}
+.cl{ clear:both;}
+.tc{ text-align:center;}
+.td_u{ text-decoration:underline;}
+.tr{ text-align:right;}
+/********************************************凡人修真2倾世仙缘专题CSS************************************************************/
+.wrap{ width:100%; margin:0 auto; padding:0; background:transparent url(../images/bg.jpg) no-repeat top center;}
+.wrap2{ width:100%; margin:0 auto; padding:0; background:transparent url(../images/bg2.jpg) no-repeat top center;}
+.m_01{ width:1000px; margin:0 auto; height:43px; background:transparent url(../images/m_01.jpg) no-repeat;}
+.snow{ width:1000px; height:300px; position:absolute; margin:0 auto;}
+.m_topnav{ float:right; font-size:12px; font-weight:bold; color:#fff; padding:12px 67px 0 0;}
+.m_topnav a{ padding:0 8px;}
+.m_topnav a:hover{ padding:0 8px; color:#FFFF99; text-decoration:underline;}
+.m_02{ width:1000px; margin:0 auto;}
+.m_head{ width:1000px; height:310px; background:transparent url(../images/m_heat.jpg) no-repeat; margin:0 auto;}
+.m_head01{ width:1000px; height:310px; background:transparent url(../images/m_heat01.jpg) no-repeat; margin:0 auto;}
+
+
+.m_03{ width:1000px; margin:0 auto;}
+.m_04{ width:1000px; margin:0 auto;}
+.m_05{ width:1000px; height:309px; margin:0 auto; background:transparent url(../images/m_05.jpg) no-repeat;}
+.m_06{ width:1000px; margin:0 auto;}
+.m_07{ width:1000px; margin:0 auto;}
+.m_08{ width:1000px; margin:0 auto;}
+.m_con{ width:1000px; margin:0 auto;}
+.m_left{ width:63px; float:left;}
+.m_middle{ width:873px; float:left;}
+.m_right{ width:64px; float:left;}
+.m_text{ width:1000px; background:transparent url(../images/m_textbg.jpg) repeat-y;}
+.m_text2{padding-left:110px; width:820px; line-height:30px; color:#690b0a;}
+
+
+

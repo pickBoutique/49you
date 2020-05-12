@@ -1,0 +1,314 @@
+<?php $title='充值中心_49you网页游戏平台'; ?>
+<?php $nav='pay'; ?>
+<?php include('header.html'); ?>
+
+<script type="text/javascript">
+    function showServer(_c, _s) {
+		ajax_action('ajax_server.html',{ gid:_c,asyn:false },null,function(data){
+			var obj = eval('(' + data + ')');
+			
+			
+			$('#server_id').html('');
+			$('#game_rate').val(obj.game.game_rate);
+			if(obj.game.game_currency=='')obj.game.game_currency="元宝";
+			//$('#game_curr').html(obj.game.game_currency);
+			$("span[name='game_curr']").html(obj.game.game_currency);
+			$("span[name='game_curr_top']").html($("span[name='game_curr']").html());
+			var shtml = '';
+			var _server = obj.servers;
+			_s = _s || 0;
+			var obj_server = document.getElementById('server_id');
+			for(var j in _server) {
+				
+				<? if(isset($_REQUEST['49youdebug'])){ ?>
+					obj_server.options.add(new Option(_server[j].server_name, _server[j].server_id));
+				<? }else{ ?>
+				if(_server[j].server_status=='1'){
+					obj_server.options.add(new Option(_server[j].server_name, _server[j].server_id));
+				}
+				<? } ?>
+			}
+			if(_s !=''){
+			obj_server.value = _s;
+			}
+			
+			on_rate_change();
+			
+		});
+    }
+
+
+
+
+	function on_pay_type_change(obj,pay_type, pay_rate,pay_type_name,pay_type_desc,pay_help){
+		if(pay_type=='account'){
+			window.location.href='exchange.html?gid=<?=$gid?>&sid=<?=$sid?>';
+		}else if(pay_type=='junnet'){
+			window.location.href='pay_junnet.html?gid=<?=$gid?>&sid=<?=$sid?>';
+		}
+		$(".paytype").removeClass('on');
+		$(obj).addClass('on');
+		
+		$("#pay_type").val(pay_type);
+		$("#pay_rate").val(pay_rate);
+		$("#pay_type_name").html(pay_type_name);
+		$("#pay_type_content").html(pay_type_desc);
+		$("#payhelp").html('<a href=\"'+pay_help+'\" style=\"color:red; padding-right:20px;\" target=\"_blank\">[充值帮助]</a>');
+		
+		on_rate_change();
+	}
+	
+	function on_amount_change(obj){
+		if(obj.value == '0'){
+			$('#other_amount').show();
+		}else{
+			$('#other_amount').hide();
+		}
+		on_rate_change();
+	}
+	
+	function on_oth_amount_blur(obj){
+		if(parseInt(obj.value) < <?=$config['min_to_charge']?> ){
+			alert("充值金额必须大于<?=$config['min_to_charge']?>");
+			obj.value = <?=$config['min_to_charge']?>;
+		}
+		
+		var v = parseInt(obj.value);
+
+		obj.value = ( isNaN(v) ? 0 : v );
+		on_rate_change();
+	}
+	
+	function on_rate_change(){
+		var money = $('#pay_amount').val();
+		if(money=='0'){
+			money = parseInt($('#oth_amount').val());
+		}
+		var cur = Math.floor( money * parseFloat($('#pay_rate').val()) );
+		var game_cur = Math.floor(cur * parseFloat($('#game_rate').val()));
+		$('#pay_amount_show').html(game_cur);
+		$('#parcen').html(parseFloat($('#pay_rate').val()) * parseFloat($('#game_rate').val()) );
+		$('#parcen_top').html($('#parcen').html());
+
+		$('#pay_point_show').html( Math.floor(cur * <?=$config['money_to_integral']?>) );
+		var addition = Math.floor(cur * (parseFloat($('#level_rate').val()) / 100)  );
+		
+		$('#addition_money').html(addition);
+	}
+	
+	$(document.body).ready(function(){
+		document.getElementById('pay_amount').value = 100;
+		<? foreach($cfg_pay_type as $k => $v){ 
+			
+			if(empty($_REQUEST['t'])){
+		?>
+			var opt = $('#opt_<?=$k?>');
+			on_pay_type_change(opt,'<?=$k?>', '<?=$cfg_pay_rate[$k]?>','<?=$v?>' , '<?=$cfg_pay_desc[$k]?>','<?=YOU_ROOT?>/<?=$cfg_pay_help[$k]?>');
+		<?  	break;
+			}else{
+				if($_REQUEST['t']==$k){ ?>
+			var opt = $('#opt_<?=$k?>');
+			on_pay_type_change(opt,'<?=$k?>', '<?=$cfg_pay_rate[$k]?>','<?=$v?>', '<?=$cfg_pay_desc[$k]?>' ,'<?=YOU_ROOT?>/<?=$cfg_pay_help[$k]?>');
+			<?		
+				}
+			}
+		   } ?>
+		   
+		 <? if($gid>0){ ?>
+		 $('#game_id').val('<?=$gid?>');
+		 	showServer('<?=$gid?>',<?=$sid?>);
+		 <? }else{ ?>  
+		 
+			<? foreach($games as $k=>$v){ ?>
+			$('#game_id').val('<?=$v['game_id']?>');
+			showServer('<?=$v['game_id']?>');
+			<?   break;
+			   } ?>
+			   
+		   <? } ?>
+		   
+		   
+	});
+	
+	function on_member_name_change(){
+		if($('#member_name').html() != '<?=$login_info[1]?>' ){
+			$('#msg_member_name').html('充值所得积分将会累计到您所填写的充值账号上');
+		}
+	}
+ 	
+</script>
+
+
+<form id="form1" name="form1" method="post" target="_blank"  action="">
+<div class="text cl ">
+<div class="con clearfix">
+<!--left-->
+<div class="left box pay fl">
+<div><img src="images/pay_top.gif" width="712" height="14" /></div>
+
+<div class="margin clearfix fl">
+<div><img src="images/pay_ico4.gif" width="171" height="30" /></div>
+            <ul class="pay_nav fl">
+            	<? foreach($cfg_pay_type as $k => $v){ 
+                if($k=="yeepay_junnet_net") continue;
+                ?>
+                <li><a href="###" id="opt_<?=$k?>" onclick="javascript:on_pay_type_change(this,'<?=$k?>','<?=$cfg_pay_rate[$k]?>','<?=$v?>','<?=$cfg_pay_desc[$k]?>','<?=YOU_ROOT?>/<?=$cfg_pay_help[$k]?>');" class="paytype" ><?=$v?></a></li>
+                <? } ?>
+            
+            </ul></div>
+            
+<div class="pay_main fr">
+                <div class="step1">
+                  <div class="tip_b">
+                  <div>
+                  <ul style="height:28px;">
+                <div style="float:left;"><h4>您当前选择的是“<span class="c_o" id="pay_type_name">网银</span>”支付方式<span class="c_o">　*兑换比例为1元=<span id="parcen_top">X</span><span name="game_curr_top"></span></span></h4></div>
+                <div style="float:right;" id="payhelp"><a href="###" style="color:red; padding-right:20px;">[充值帮助]</a></div>
+</ul>
+<ul>			<div style="float:left;">
+                <p id="pay_type_content">只要您开通网上银行服务，足不出户即可实现快捷准确的帐号充值。请勿在此通道中使用其他方式充值。</p>
+                </div>
+                </ul>
+                </div>
+                  </div>
+              </div>
+                <div class="step2">
+                    <h4><strong>2</strong>请选择您要充值到哪里</h4>
+                    <div class="step2_div" id="div_game">
+                        <p class="select_game">
+                            <label>选择充值游戏：</label>
+                            <select name="game_id" id="game_id" onchange="showServer(this.value);">
+							<? $subject=iconv("GB2312","UTF-8",convertip(get_client_ip()));
+                            foreach($games as $k=>$v){
+                            	//九天过滤北京IP充值
+								//if($v['game_id']==2 && time()> strtotime('2011-8-6 10:00:00') && strpos($subject,"北京")>-1) continue;
+                                ?>
+								<option value="<?=$v['game_id']?>" ><?=$v['game_name']?></option>
+							<? } ?>                            
+							</select>
+                        </p>
+                        
+                        <p class="change_game" id="div_server">
+                            <label>请选择服务器：</label>
+                            <select name="server_id" id="server_id" >                        
+							</select>
+                            <strong  class="red" style="font-size:14px;"></strong>
+                     
+                        </p>
+                       <p class="c_o">充值前请创建好此服角色</p>
+                    </div>
+                </div>
+                <!--step3-->
+                <div class="step3 cl">
+                    <h4><strong>3</strong>请填写并确认账号信息</h4>
+                    <div class="step3_div">
+                        <p>
+                            <label for="">充值帐号：</label>
+                            <var class="pngfix"><input type="text" name="member_name" id="member_name" onblur="on_member_name_change();" value="<?=$login_info[1]?>"/></var>
+                            <em>*</em>
+                            <span id="msg_member_name">请填写您的目标帐号</span>
+                        </p>
+                        <p>
+                            <label for="">确认帐号：</label>
+                            <var class="pngfix"><input name="re_member_name" type="text" id="re_member_name"  /></var>
+                            <em>*</em>
+                            <span>请确认您充值的帐号</span>
+                        </p>
+                        <p>
+                            <label for="">手机号码：</label>
+                            <var class="pngfix"><input name="user_phone" id="user_phone" type="text" value="" onkeyup="this.value=this.value.replace(/\D/g,'');" maxlength="20" /></var>
+                        </p>
+                        <p class="c_o">建议填写您的手机号码，以便及时处理您遇到的问题。</p>
+                    </div>
+                </div>
+                <!--step4-->
+              
+        <div class="step4">
+                    <h4><strong>4</strong>请选择金额</h4>
+                    <div class="step4_div">
+                        <p><label for="">充值金额：</label>
+                          <select name="pay_amount" id="pay_amount" onchange="on_amount_change(this);" >
+                              <option value="10">10元</option>
+                              <option value="20">20元</option>
+                              <option value="50">50元</option>
+                              <option value="100">100元</option>
+                              <option value="200">200元</option>
+                              <option value="300">300元</option>
+                              <option value="500">500元</option>
+                              <option value="800">800元</option>
+                              <option value="1000">1000元</option>
+                              <option value="2000">2000元</option>
+                              <option value="5000">5000元</option>
+                              <option value="10000">10000元</option>
+                              <option value="20000">20000元</option>
+                              <option value="50000">50000元</option>
+                              <option value="0">其它充值金额</option>
+                          </select><span class="c_o" style="margin-left:65px;">如下拉表中没有您所需金额，请选择其它金额后填写</span>
+                        </p>
+                       <p id='other_amount' style="display:none;" >
+                            <label for="">其他金额：</label>
+                            <var class="pngfix"><input name="oth_amount" type="text" id="oth_amount" onblur="on_oth_amount_blur(this);" value="100" /></var>
+                            <em>*</em>
+                            <span>请输入一个不小于<?=$config['min_to_charge']?>的整数</span>
+                       </p>
+                        <p ><label for="">获得<span name="game_curr"></span>数量：</label><em id="pay_amount_show">**</em>　
+                            <span class="c_o">*兑换比例为1元=<span id="parcen">X</span><span name="game_curr"></span></span>
+</p>
+                            <? if(!empty($level)){ ?>
+                        <p >
+<label for="">帐号等级为<?=$level['level_name']?>，本次充值可额外获得 <em id="addition_money">0</em> 平台币</label>　<a href="/news_info_215.html#vip_list" class="red" target="_blank">VIP详情</a>
+                        </p>
+<? } ?>
+
+                        <p >
+                        <label for="">今日充值赠送：</label>
+                           <strong id="pay_point_show"></strong>　平台积分
+                        </p>
+                    </div>
+                </div>
+                <p>
+                
+                    
+                    <input name="game_rate" type="hidden" id="game_rate"  value="1" />
+                    <input name="pay_type" type="hidden" id="pay_type"  value="" />
+                    <input name="pay_rate" type="hidden" id="pay_rate"  value="10" />
+                    <input name="level_rate" type="hidden" id="level_rate"  value="<?=$level['ret_rate']?>" />
+                	<input name="act" type="hidden" id="act"  value="topay" />
+                  <button type="submit" class="next hid">确定下一步</button>
+                </p>
+      </div>
+  <div class="cl"><img src="images/pay_bom.gif" width="712" height="14" /></div>
+ 
+
+ </div> 
+<!--right-->
+<div class="sidebar">
+  <!--service start-->
+  <? include('service_info.html'); ?> 
+  <!--service end-->    
+
+<div class="sharedspacer8"></div>
+
+<div class="nwes2">
+  <div class="title2"><span>充值问题</span><a target="_blank" href="service.html?cid=48" class="pl-more"><img src="images/moer.gif" /></a></div>
+  <div id="MediaNews2" class="BgColor LinePart">
+      <ul>
+      		<?
+             if($rs_news){
+             foreach($rs_news as $k=> $v){?>
+            <li class="MediaNewsLi"><a href="news_info_<?=$v['info_id']?>.html" target="_blank"><?=$v['subtitle']?></a></li>    
+            <?
+             }
+            }?>         
+            </ul>
+          </div>
+</div>
+
+</div>
+             
+</div>
+
+
+</div>
+</form>
+<? include('footer.html'); ?>

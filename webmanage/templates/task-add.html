@@ -1,0 +1,76 @@
+<?php include_once("header.html");?>
+<script language="javascript">
+	function ttchange(ttindex){
+		var thshow="";
+		var tmshow="";
+		if(ttindex==1){
+			thshow="none";
+			$('#task_hours').val('0');
+		}else if(ttindex==2){
+			thshow="none";
+			tmshow="none";
+			$('#task_hours').val('0');
+			$('#task_minutes').val('0');
+		}
+		document.getElementById("th").style.display=thshow;
+		document.getElementById("tm").style.display=tmshow;
+	}
+</script>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>任务名称：</th>
+				<td>
+					<input type="text" name="task_name" id="task_name" value="<?=$rs['task_name']?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th>执行时间：</th>
+				<td>
+                <div style="float:left">
+					每  <input type="text" name="task_num" id="task_num" value="<?=$rs['task_num']?>" class="input_w50"  />
+                    <select name="task_type" id="task_type" onchange="ttchange(this.value);">
+						<?php
+							if($task_type){
+								foreach($task_type as $k=>$row){
+									$strSelected="";
+									if($k == $rs['task_type']){
+										$strSelected="selected";
+									}
+						?>
+						<option value="<?=$k?>" <?=$strSelected?> ><?=$row?></option>
+						<?php
+								}
+							}
+						?>
+					</select>
+                    </div>
+                    <div id="th" style="float:left; margin-left:10px;"><input type="text" name="task_hours" id="task_hours" value="<?=$rs['task_hours']?>" class="input_w50"  />  时</div>
+                    <div id="tm" style="float:left; margin-left:10px;"><input type="text" name="task_minutes" id="task_minutes" value="<?=$rs['task_minutes']?>" class="input_w50"  />  分</div>
+				</td>
+			</tr>
+			<tr>
+				<th>请求地址：</th>
+				<td>
+					<input type="text" name="task_url" id="task_url" value="<?=$rs['task_url']?>" class="input_w200" style="width:300px;"  />
+				</td>
+			</tr>
+            <tr>
+				<th>是否启用：</th>
+				<td>
+                    <input name="task_enable" value="1" <?=$rs['task_enable']=='1' ? 'checked' : '' ?> type="radio">启用
+                    <input name="task_enable" value="0" <?=$rs['task_enable']!='1' ? 'checked' : '' ?> type="radio">禁用
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<?php include_once("footer.html");?>

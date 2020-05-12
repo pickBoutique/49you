@@ -1,0 +1,52 @@
+<script>
+function memberLogin() {
+		var gid=1;
+		
+		var usname=$("#usname").val();
+		var uspsd=$("#uspsd").val();
+		$.getJSON("<?=YOU_ROOT?>/login.html?act=ajlogin&gid="+gid+"&username="+usname+"&password="+uspsd+"&format=json&jsoncallback=?",
+		function(data){
+			var _member = data;
+			if(_member.errormsg == ""){
+				var shtml ='<div><ul>';
+				shtml +='<li class="li1">欢迎您：<span>'+_member.username+'</span></li>';
+				shtml +='<p class="li1">平台币：'+_member.money+' <a href="<?=YOU_ROOT?>/exchange.html?gid='+_member.lastg_id+'&sid='+_member.lasts_id+'"  target="_blank">兑换</a>　<a href="<?=YOU_ROOT?>/vip.html"  target="_blank">' +_member.vip +'</a></p>';
+				shtml +='<li class="li1">最新服务器：<a href="<?=YOU_ROOT?>/game_add.html?gid='+_member.newg_id+'&sid='+_member.news_id+'" target="_blank">'+_member.news_name+'</a></li>';
+  				shtml +='<li class="li1">最近登陆服：<a href="<?=YOU_ROOT?>/game_add.html?gid='+_member.lastg_id+'&sid='+_member.lasts_id+'" target="_blank">'+_member.lasts_name+'</a></li></ul></div>';
+				
+				shtml +='<div class="b t_c">';
+           		shtml +='<a href="<?=YOU_ROOT?>/bind_mail.html" target="_blank" style="color:red">密保设置</a>';
+            	shtml +='<a href="<?=YOU_ROOT?>/pwd_protect.html" target="_blank">设置密保</a>';
+            	shtml +='<a href="<?=YOU_ROOT?>/trans_record.html" target="_blank">充值明细</a>';
+            	shtml +='<a href="<?=YOU_ROOT?>/loginout.html?returl=<?=HTTP_ROOT?>/index.html">安全退出</a>';
+	        	shtml +='</div>';
+  				$("#login").html(shtml);
+				if(usname != '')document.write(_member.script);
+			}else{
+				if(usname != '')alert(_member.errormsg);
+			}
+		});
+    }
+	$(document).ready(function(){
+		memberLogin('','');
+	});
+</script>
+  <div style="position:absolute;"> <div class="Start"><a href="server_list.html"><img src="../images/Start.png" width="226" height="104" /></a></div></div>
+    <div class="login">
+      <div class="ine_1"></div>
+      <div class="ine_2" id="login">
+        <div><a href="<?=YOU_ROOT?>/reg.html?returl=<?=HTTP_ROOT?>/index.html"><img style="margin:0px 10px 10px 0px;" src="../images/z_1.jpg" width="90" height="28" /></a><img style="margin:0px 0px 10px 0px;" src="../images/z_2.jpg" width="90" height="28" onclick="javascript:memberLogin();" /></div>
+        <ul>
+          <li class="li1">账号：
+            <input class="inp1" type="text" name="username" id="usname" style="position:relative;" />
+          </li>
+          <li class="li1">密码：
+            <input class="inp1" type="password" name="password" id="uspsd" onkeypress="javascript:if(event.keyCode==13){Javascript:memberLogin()}" style="position:relative;" />
+          </li>
+          <li><a href="<?=YOU_ROOT?>/pwd_find.html" target="_blank"><span>忘记密码</span></a>&nbsp;&nbsp;
+            <input class="inp2" type="button" value="" onclick="javascript:memberLogin();" />
+          </li>
+        </ul>
+      </div>
+      <div class="ine_3"></div>
+    </div>

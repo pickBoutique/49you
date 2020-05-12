@@ -1,0 +1,129 @@
+body{
+	background:#eecd21 !important;
+	min-width: :auto;
+}
+#body2{
+	background:none !important;
+}
+#body3{
+	background:none !important;
+	height:1055px;
+}
+.ev_head{
+	background-image:url(head_bg.jpg);
+	background-repeat:repeat-x;
+	height:67px;
+}
+.ev_head_in{
+	width:1000px;
+	background:url(head_in.jpg) no-repeat -12px 0;
+	margin:0 auto;
+	height:100%;
+	position:relative;
+}
+.ev_head_logo{
+	position:absolute;
+	display:block;
+	width:150px;
+	height:50px;
+	top:6px;
+	left:12px;
+}
+.ev_head_in span{
+	float:left;
+	padding:28px 0 0 370px;
+}
+.ev_head_in ul{
+	float:right;
+	padding:3px 40px 0 0;
+}
+.ev_head_in ul li{
+	float: left;
+	padding:0 14px;
+}
+.ev_head_in ul li a{
+	color:#666666;
+	text-decoration:none;
+}
+.ev_head_in ul li a:hover{
+	color:#808080;
+	text-decoration:underline;
+}
+.ev_body{
+	background:url(bg_re.gif) repeat center top #eecd21;
+	height:905px;
+	border-bottom:5px solid #dfaa00;
+}
+.ev_body2{
+	background:url(bg1.jpg) no-repeat center top;
+	height:905px;
+	position:relative;
+}
+.ev_body3{
+	width:1000px;
+	margin:0 auto;
+	background:url(bg1_in.jpg?123) no-repeat center top;
+	height:905px;
+	position:relative;
+}
+.ev_footer{
+	border:none;
+	padding-top:160px;
+	_padding-top:250px;
+}
+.ev_footer_right, .ev_footer_right .color_foot{
+	color:#ee5e21 !important;
+}
+.color_foot:hover{
+	color:#ff2600 !important;
+}
+#ev_flash{
+	position:relative;
+	left:-70px;
+	_left:0px;
+}
+.content{
+	border:5px solid #d19f02;
+	background:#fedb5d;
+	width:600px;
+	position:absolute;
+	top:50px;
+	left:200px;
+	display:none;
+	z-index:999;
+}
+.content h2{
+	float:left;
+	color:#c29a07;
+	font-weight:bold;
+	padding:5px 0 0 15px;
+	display: block;
+}
+.content #close_content{
+	float:right;
+	color:#a45000;
+	padding:5px 15px 0 0;
+	display:block;
+	cursor: pointer;
+}
+.content_in{
+	margin:15px;
+	background:#fff7d3;
+	padding:15px;
+	color:#899067;
+	clear:both;
+	
+}
+.content_in h3{
+	color:#f76570;
+	text-align:center;
+	font-size:14px;
+	font-weight:bold;
+	line-height:2;
+}
+.ev_title{
+	display:none;
+}
+.content_in2{
+	display:none;
+}

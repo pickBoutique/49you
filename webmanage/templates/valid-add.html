@@ -1,0 +1,155 @@
+<?php include_once("header.html");?>
+<script language="javascript">
+function on_onlyone_change(){
+	 var val = $("input[@type=radio][name=valid_onlyone][checked]").val();
+	 if(val == '1'){
+		 $('#id_tablename').show();
+	 }else{
+		 $('#id_tablename').hide();
+	 }
+}
+
+$(document).ready(function(){
+	on_onlyone_change();
+});
+</script>
+<div class="main">
+	<form id="form1" name="form1" method="post">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>需要校验的页面名称：</th>
+				<td>
+					<input type="text" name="valid_pagecode" id="valid_pagecode" value="<?=$rs['valid_pagecode']?>" class="input_w200" />　
+				</td>
+			</tr>
+			<tr <?=$display_none?> >
+				<th>是否必须唯一：</th>
+				<td>
+					
+                    <input name="valid_onlyone" value="0" <?=$rs['valid_onlyone']!='1' ? 'checked' : '' ?> type="radio" onclick="on_onlyone_change();">不是
+                    <input name="valid_onlyone" value="1" <?=$rs['valid_onlyone']=='1' ? 'checked' : '' ?> type="radio" onclick="on_onlyone_change();">是
+                     
+				</td>
+			</tr>
+			<tr id="id_tablename" >
+				<th>需要校验的表名：</th>
+				<td>
+					<input type="text" name="valid_tablename" id="valid_tablename" value="<?=$rs['valid_tablename']?>" class="input_w200" />　
+				</td>
+			</tr>
+            <tr>
+				<th>需要校验的input控件名称(name)：</th>
+				<td>
+					<input type="text" name="valid_fieldname" id="valid_fieldname" value="<?=$rs['valid_fieldname']?>" class="input_w200" />　
+				</td>
+			</tr>
+            <tr>
+				<th>错误提示时的字段描述：</th>
+				<td>
+					<input type="text" name="valid_desc" id="valid_desc" value="<?=$rs['valid_desc']?>" class="input_w200" />　
+				</td>
+			</tr>
+            <tr>
+				<th>是否可以为空：</th>
+				<td>
+					
+                    <input name="valid_empty" value="0" <?=$rs['valid_empty']!='1' ? 'checked' : '' ?> type="radio">不是
+                    <input name="valid_empty" value="1" <?=$rs['valid_empty']=='1' ? 'checked' : '' ?> type="radio">是
+                     
+				</td>
+			</tr>
+            <tr>
+				<th>最小长度：</th>
+				<td>
+					<input type="text" name="valid_min" id="valid_min" value="<?=$rs['valid_min']?>" class="input_w200" />
+				</td>
+			</tr>
+            <tr>
+				<th>最大长度：</th>
+				<td>
+					<input type="text" name="valid_max" id="valid_max" value="<?=$rs['valid_max']?>" class="input_w200" />
+				</td>
+			</tr>
+            <tr>
+				<th>类型：</th>
+				<td>
+					<select name="valid_type">
+                        <option <?=$rs['valid_type']!='1' ? 'selected' : '' ?> value="0">限制字符校验</option>
+                        <option <?=$rs['valid_type']=='1' ? 'selected' : '' ?> value="1">正则校验</option>
+                    </select>
+				</td>
+			</tr>
+            <tr>
+				<th>要限制的字符或要校验的正则表达式：</th>
+				<td>
+					<input type="text" name="valid_regex" id="valid_regex" value="<?=$rs['valid_regex']?>" class="input_w200" />
+				</td>
+			</tr>
+            <tr>
+				<th>提示错误信息内容：</th>
+				<td>
+					<input type="text" name="valid_error" id="valid_error" value="<?=$rs['valid_error']?>" class="input_w200" />
+				</td>
+			</tr>
+            <tr>
+				<th>是否开启前台校验：</th>
+				<td>
+					
+                    <input name="valid_foreground" value="0" <?=$rs['valid_foreground']=='0' ? 'checked' : '' ?> type="radio">关闭
+                    <input name="valid_foreground" value="1" <?=$rs['valid_foreground']!='0' ? 'checked' : '' ?> type="radio">开启
+                     
+				</td>
+			</tr>
+            <tr>
+				<th>是否自动应用样式：</th>
+				<td>
+					
+                    <input name="valid_style" value="0" <?=$rs['valid_style']=='0' ? 'checked' : '' ?> type="radio">关闭
+                    <input name="valid_style" value="1" <?=$rs['valid_style']!='0' ? 'checked' : '' ?> type="radio">开启
+                    
+				</td>
+			</tr>
+            <tr>
+				<th>是否提示错误信息：</th>
+				<td>
+					
+                    <input name="valid_warning" value="0" <?=$rs['valid_warning']=='0' ? 'checked' : '' ?> type="radio">关闭
+                    <input name="valid_warning" value="1" <?=$rs['valid_warning']!='0' ? 'checked' : '' ?> type="radio">开启
+                    
+				</td>
+			</tr>
+            <tr>
+				<th>指定显示位置：</th>
+				<td>
+					
+                    <input type="text" name="valid_position" id="valid_position" value="<?=$rs['valid_position']?>" class="input_w200" />(留空则为当前文本框位置)
+                    
+				</td>
+			</tr>
+            <tr>
+				<th>配置生效的条件表达式：</th>
+				<td>
+                <textarea name="valid_where" rows="6" class="input_w400" style="width:600px;" ><?=htmlspecialchars($rs['valid_where'])?></textarea>
+                <br />
+                仅支持javascript 语法，例子:
+                <br />
+                1.判断某个单选框项是否被选中  $("input[@type=radio][name=member_type][checked]").val()=='1'
+                <br />
+                2.判断单个复选框是否被选中  $("input[@type=checkbox][name=member_type]").attr("checked")==true
+                <br />
+                3.判断多个复选框中其中某个复选项是否被选中  $("input[@type=checkbox][name=member_type][checked]").val()=='2'
+                <br />
+                4.判断当前是否为添加操作  $("input[@type=textbox][name=act]").val()=='add'
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<?php include_once("footer.html");?>

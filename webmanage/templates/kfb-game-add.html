@@ -1,0 +1,48 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>游戏名称：</th>
+				<td><input type="text" name="fg_gname" id="fg_gname" value="<?=$rs['fg_gname']?>" class="input_w200"  /></td>
+			</tr>
+			<tr>
+				<th>游戏背景：</th>
+				<td>
+					<input type="text" name="fg_past" id="fg_past" value="<?=$rs['fg_past']?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+			  <th>游戏类型：</th>
+			  <td><select name='fg_gtype' >
+              <option value="0">请选择</option>
+                    	<?=cfg_to_opt($cfg_game_type,false,$rs['fg_gtype'])?>
+                    </select>
+                    </td>
+		  </tr>
+			<tr>
+				<th>游戏介绍：</th>
+				<td>
+				  <input type="text" name="fg_desc" id="fg_desc" value="<?=$rs['fg_desc']?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th>服务器状态：</th>
+				<td>
+                    <input name="fg_status" value="1" <?=$rs['fg_status']=='1' ? 'checked' : '' ?> type="radio">
+                    上架
+                    <input name="fg_status" value="0" <?=$rs['fg_status']!='1' ? 'checked' : '' ?> type="radio">
+                    下架
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<?php include_once("footer.html");?>

@@ -1,0 +1,137 @@
+<?php $title='新手卡领取_49yo凡人修真2官方网站'; 
+$keywords="凡人修真2新手卡";
+$description="49you凡人修真2新手卡"?>
+<?php include('header.html'); ?>
+<style>.fontred{color:red;font-weight:bold}</style>
+<script language="javascript">
+function getcard(){
+	if($('#secode').val()!="49you凡人修真2"){alert("请在\"第一步\"输入\"49you凡人修真2\"");$('#secode').val("");return;}
+	if($('#country').val()==0){alert("请选择服务器！");return;}
+	window.open('<?=YOU_ROOT?>/get_package.html?ct='+$('#country').val());
+}
+</script>
+<!--main -->
+<div id="main">
+ <!--content -->
+ <div class="content">
+	 <!--left -->
+	 <div class="left">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--server -->
+<? include('lefter_server.html'); ?> 
+<!--server end -->
+<!--info -->
+<? include('lefter_info.html'); ?> 
+<!--info end -->
+<!-----kefu----->
+<? include('lefter_kf.html'); ?> 
+<!--kefu end -->
+	 </div>
+<!--left end -->
+	 <!--right -->
+	 <div class="right">
+     <!--gg -->
+<? include('lefter_gg.html'); ?> 
+<!--gg end -->
+		<!--newslist -->
+        <div id="newslist">
+		  <div class="newslist-top"><span style="margin-left:20px;">新手卡领取</span></div>
+          <div id="newslist-content" style="text-align:center;">
+		    <p style="width:639px;text-align:left;margin:0 auto;font-weight:bold;">第一步：输入游戏名称</p>
+			<p style="width:639px;text-align:left;margin:0 auto;padding-top:10px;padding-bottom:10px;"><input name="input" type="text" id="secode"/><span style="font-size:12px;color:red;margin-left:20px;">答案：49you凡人修真2</span></P>
+			<hr color="#999" size=1 width=639><br/>
+		    <p style="width:639px;text-align:left;margin:0 auto;font-weight:bold;">第二步：选择服务器</p>
+			<p style="width:639px;text-align:left;margin:0 auto;padding-top:10px;padding-bottom:10px;">
+            <select name="coid" id="country">
+       <option value="0" selected="selected">请选择服务器</option>
+<? if(!empty($cardlist)){ 
+    	foreach($cardlist as $k=>$v){?>
+        <option value="<?=$v["cardtype_id"]?>"><?=$v["cardtype_name"]?></option>
+<?}
+}?>
+      </select>
+            <span style="font-size:11px;color:#999;margin-left:20px;"><input class="inp3" type="button" name="button" value="点击领取" onClick="getcard()" /></span></P>
+			<hr color="#999" size=1 width=639><br/><br/>
+            <p style="width:639px;text-align:left;margin:0 auto;"><img src="images/xsk_03.png"></p><br/>
+			<div class="p-content">
+                <table width="638" border="0" cellspacing="1" cellpadding="0" bgcolor="#cccccc">
+                  <tr>
+                    <th colspan="3" height="30" bgcolor="#FFFF00" style="color:red;">新手成长礼包</th>
+                  </tr>
+                  <tr>
+                    <td width="20%" bgcolor="#ffffff" rowspan="12"><img src="images/xsk.jpg"></td>
+                    <td width="40%" height="20" bgcolor="#ffffff">绑定铜钱</td>
+                    <td width="40%" height="20" bgcolor="#ffffff">10000</td>
+                  </tr>
+                  <tr>
+                    <td width="40%" height="20" bgcolor="#ffffff">绑定元宝</td>
+                    <td width="40%" height="20" bgcolor="#ffffff">50</td>
+                  </tr>
+                  <tr>
+                    <td width="40%" height="20" bgcolor="#ffffff">根骨提升符*3</td>
+                    <td width="40%" height="20" bgcolor="#ffffff">提升人物灵根的时候使用</td>
+                  </tr>
+                  <tr>
+                    <td width="40%" height="20" bgcolor="#ffffff">灵宠成长石*2</td>
+                    <td width="40%" height="20" bgcolor="#ffffff">提升宠物成长时使用</td>
+                  </tr>
+                  <tr>
+                    <td width="40%" height="20" bgcolor="#ffffff">灵宠灵性石*2</td>
+                    <td width="40%" height="20" bgcolor="#ffffff">提升宠物灵性时使用</td>
+                  </tr>
+                  <tr>
+                    <td width="40%" height="20" bgcolor="#ffffff">一级强化石*5</td>
+                    <td width="40%" height="20" bgcolor="#ffffff">可对装备进行强化</td>
+                  </tr>
+                  <tr>
+                    <td width="40%" height="20" bgcolor="#ffffff">初级经验丹*3</td>
+                    <td width="40%" height="20" bgcolor="#ffffff">使用后可获得10%的经验加成效果</td>
+                  </tr>
+                  <tr>
+                    <td width="40%" height="20" bgcolor="#ffffff">初级长生丹*2</td>
+                    <td width="40%" height="20" bgcolor="#ffffff">可恢复人物气血</td>
+                  </tr>
+                  <tr>
+                    <td width="40%" height="20" bgcolor="#ffffff">初级归元丹*2</td>
+                    <td width="40%" height="20" bgcolor="#ffffff">可恢复人物精力</td>
+                  </tr>
+                  <tr>
+                    <td width="40%" height="20" bgcolor="#ffffff">蓝色洗练石*5</td>
+                    <td width="40%" height="20" bgcolor="#ffffff">可洗练蓝色装备属性</td>
+                  </tr>
+                  <tr>
+                    <td width="40%" height="20" bgcolor="#ffffff">初级开孔符*3</td>
+                    <td width="40%" height="20" bgcolor="#ffffff">可开装备第一个孔</td>
+                  </tr>
+                  <tr>
+                    <td width="40%" height="20" bgcolor="#ffffff">忆魂石*1</td>
+                    <td width="40%" height="20" bgcolor="#ffffff">使用后可获得宠物技能</td>
+                  </tr>
+                </table>
+			</div><br/><br/><br/>
+            <p style="width:639px;text-align:left;margin:0 auto;"><img src="images/xsk_06.png"></p><br/>
+			<div class="p-content">
+			   <ul>
+				 <li style="border:none; line-height: 50px; margin: 0 auto;text-align: left;width: 600px;">1)获得新手卡卡号后进入游戏</li>	
+                 <li style="border:none; line-height: 50px; margin: 0 auto;text-align: left;width: 600px;">2) 依次点击右上角的"日常"—"福利领取"—"惊喜礼包"。点击兑换新手礼包按键输入新手卡卡号即可获得。</li>
+                 <li style="border:none;"><img src="images/xsk3.jpg"></li>
+			   </ul>
+			</div>			
+			<br/><br/><br/>
+            <p style="width:639px;text-align:left;margin:0 auto;"><img src="images/xsk_09.png"></p><br/>
+			<div class="p-content">
+			   <ul>
+				 <li style="border:none; line-height: 30px; margin: 0 auto;text-align: left;width: 600px;">1、每个激活码只能使用一次，不能重复使用。</li>		
+				 <li style="border:none; line-height: 30px; margin: 0 auto;text-align: left;width: 600px;">2、该活动的所有解释权归49you网页游戏平台。</li>	
+				 </ul>
+			</div>
+			</div>
+		  <div class="newslist-footer"><img src="images/index2_82.png"></div>
+        </div>
+	 </div><!--right end -->
+	 <div class="clear"></div>
+ </div><!--content end -->
+</div><!--main end -->
+<? include('footer.html'); ?>

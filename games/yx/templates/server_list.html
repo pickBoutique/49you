@@ -1,0 +1,78 @@
+<?php $title='英雄王座|英雄王座官网|49you英雄王座新手卡|职业|跑商|宠物|攻略';
+$keywords="英雄王座,英雄王座官网,49you英雄王座,英雄王座新手卡,英雄王座职业,英雄王座宠物,英雄王座攻略";
+$description="英雄王座,英雄王座官网,49you英雄王座是一款画面精致唯美的即时战斗大型网页游戏。49you英雄王座官网提供英雄王座新手卡礼包领取、各职业玩法、宠物和跑商攻略等，以及最新开服、火爆活动等资讯。"?>
+<?php include('header.html'); ?>
+<script language="javascript">
+function getcard(){
+	if($('#secode').val()!="49you英雄王座"){alert("请在\"第一步\"输入\"49you英雄王座\"");$('#secode').val("");return;}
+	if($('#country').val()==0){alert("请选择服务器！");return;}
+	window.open('<?=YOU_ROOT?>/get_package.html?ct='+$('#country').val());
+}
+</script>
+ <!--content -->
+ <div class="content">
+
+    <div class="left">
+<?php include('lefter_login.html'); ?>
+<?php include('lefter_server.html'); ?>	  
+<?php include('lefter_info.html'); ?>
+<?php include('lefter_kf.html'); ?>
+
+	 <div class="clear"></div>
+     </div>
+	 
+	 <!--right -->
+	 <div id="n-right">
+	    <div class="hdp"><? include('lefter_gg.html'); ?></div>
+	   
+        <div id="newslist">
+<script type="text/javascript">
+function memberServers(){
+	var url="<?=YOU_ROOT?>/ajax_server.html?act=mygame&gid="+gid+"&format=json&jsoncallback=?";
+	$.getJSON(url,
+	function(data){
+		var myrs=eval(data);
+		var shtml = "";
+		for(var i in myrs){
+			shtml +='<a href="<?=YOU_ROOT?>/game_add.html?gid='+myrs[i].mg_game_id+'&sid='+myrs[i].mg_server_id+'" target="_blank">';
+			shtml +='<span class="ser"><div class="server-title">'+myrs[i].mg_server_name+'</div><font class="server-listdate" color="deepskyblue">'+myrs[i].mg_last_time+'</font></span>';
+			shtml +='</a>';
+			shtml +='</span>';
+		}
+		$("#lastgames").html(shtml);
+
+	});
+}
+</script>
+		  <div class="newslist-top"><span style="margin-left:20px;">服务器列表</span></div>
+          <div id="newslist-content">
+            <div class="server-top">&nbsp;&nbsp;&nbsp;&nbsp;推荐服务器</div>
+			<div class="server-content1">
+                      <?if($rs_servertj){
+                        foreach($rs_servertj as $k=> $v){?>
+      <a href="<?=YOU_ROOT?>/game_add.html?gid=<?=$v["server_gid"]?>&sid=<?=$v["server_id"]?>" target="_blank"><span class="ser"><div class="server-title"><?=$v["server_name"]?></div> <div class="server-listdate"><?= date('m/d H:i',$v['server_start'])?>开启</div></span></a>
+                    <?}
+                    }?>
+			</div>
+			<div class="server-top">&nbsp;&nbsp;&nbsp;&nbsp;玩过的服务器</div>
+			<div class="server-content1" id="lastgames">
+			    
+			</div>
+            <script language="javascript">memberServers();</script>
+			<div class="server-top">&nbsp;&nbsp;&nbsp;&nbsp;所有服务器</div>
+			<div class="server-content1">
+                      <?if($rs_servers){
+                        foreach($rs_servers as $k=> $v){?>
+      <a href="<?=YOU_ROOT?>/game_add.html?gid=<?=$v["server_gid"]?>&sid=<?=$v["server_id"]?>" target="_blank"><span class="ser"><div class="server-title"><?=$v["server_name"]?></div> <div class="server-listdate"><?= date('m/d H:i',$v['server_start'])?>开启</div></span></a>
+                    <?}
+                    }?>
+			</div>
+          </div>
+		 
+        </div>
+	 </div>
+	 <!--right end -->
+	 
+	 <div class="clear"></div>
+ </div><!--content end -->
+<?php include('footer.html'); ?>

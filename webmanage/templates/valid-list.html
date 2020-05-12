@@ -1,0 +1,82 @@
+<?php include_once("header.html");?>
+<div class="main">
+		 <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'页面名称' , 'dataIndex':'valid_pagecode' , 'type':'textbox' },
+          { 'header':'控件名称' , 'dataIndex':'valid_fieldname' , 'type':'textbox' },
+          { 'header':'字段描述' , 'dataIndex':'valid_desc' , 'type':'textbox' }</div>
+        </div>
+		  <div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="button" value="删除" class="btn action_del" onclick="todel();" />
+			<input type="button" value="添加" class="btn action_add" onclick="toadd();" />
+		</div>
+        
+		<div class="searcher" id="grid_list"></div>
+        
+		 
+		<script>
+		var grid;
+		$(document).ready(function(){
+			
+			function getoperator(rs) {
+				return "<a href='###' class='action_edit' onclick=\"toedit('" + rs["valid_id"] + "')\">修改</a>　<a href='###' class='action_add' onclick=\"tocopy('" + rs["valid_id"] + "')\">复制</a>";
+			}
+	
+			var cm = new ColumnModel
+			([
+			new CheckboxModel({dataIndex: 'valid_id'}),
+			{header: '页面名称', dataIndex: 'valid_pagecode', width: 140 },
+			{header: '表名', dataIndex: 'valid_tablename', width: 80},
+			{header: '控件名称', dataIndex: 'valid_fieldname', width: 100},
+			{header: '字段描述', dataIndex: 'valid_desc', width: 100 },
+			{header: '类型', dataIndex: 'valid_type', width: 100,renderer:'{0:"字符限制" , 1:"正则校验"}' },
+			/*{header: '开启前台校验', dataIndex: 'valid_foreground', width: 100, renderer:'{0:"关闭" , 1:"开启"}' },
+			{header: '自动应用样式', dataIndex: 'valid_style', width: 100, renderer:'{0:"关闭" , 1:"开启"}' },
+			{header: '提示错误信息', dataIndex: 'valid_warning', width: 100, renderer:'{0:"关闭" , 1:"开启"}' },*/
+			new BoolenModel({header: '开启前台校验', dataIndex: 'valid_foreground', priIndex: 'valid_id', url: 'valid-add.php',  width: 70 } ),
+			new BoolenModel({header: '自动应用样式', dataIndex: 'valid_style', priIndex: 'valid_id', url: 'valid-add.php',  width: 70 } ),
+			new BoolenModel({header: '提示错误信息', dataIndex: 'valid_warning', priIndex: 'valid_id', url: 'valid-add.php',  width: 70 } ),
+			{ header: '操作',  width: 70, renderer: getoperator }
+			]);
+	
+			grid = new GridView({ id: 'grid_list', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+		});
+		
+		
+		function toadd(){
+			show_editor({ title:'添加',src:'valid-add.php',  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function toedit(id){
+			show_editor({ title:'修改',src:'valid-add.php?valid_id=' + id,  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function tocopy(id){
+			show_editor({ title:'复制',src:'valid-add.php?copy=t&valid_id=' + id,  onclose:function(){
+				grid.load();
+			}});
+		}
+	
+		function todel(){
+			if(grid.get_selected_ids() == ''){
+				alert("请选择要删除的行");
+				return;
+			}
+			ajax_action('valid-add.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+				grid.load(); 
+			});
+		}
+		
+		</script>
+</div>
+<?php include_once("footer.html");?>

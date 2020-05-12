@@ -1,0 +1,45 @@
+/* ui */
+body {margin: 0px; padding:0;line-height:20px;font-family:"宋体"; font-size:12px;}
+td,p,ul,li,h2,h4{margin: 0px; padding:0; list-style:none;}
+img{ border:0;}
+a{color:#7F2908; text-decoration:none;}
+a:hover{color:#f30; text-decoration: underline;}
+.yellow{ color:#ff0}
+
+/*  home  */
+#mainBg{background:url(http://static.kunlun.com/item/xk/xinfu/images/home_bgg.jpg) no-repeat 50% 0; min-width:1000px; margin:0 auto}
+.main{margin:0 auto;width:1000px; position:relative;font-size:14px; height:730px; text-align:left; }
+.mainTop{background:url(http://static.kunlun.com/item/xk/xinfu/images/xk_02.jpg);height:280px; overflow:hidden;}
+.mainTop2{background:url(http://static.kunlun.com/item/xk/xinfu/images/xk_04.jpg);height:210px; overflow:hidden;}
+.mainEnd{background:url(http://static.kunlun.com/item/xk/xinfu/images/xk_05.jpg);height:240px; overflow:hidden;}
+#mainBg img.mainLogo{position:absolute; float:left; top:8px; left:198px; width:118px; height:155px;display:block; cursor:pointer;}
+#mainBg img.huodong01{position:absolute; float:left; top:159px; left:99px; width:167px; height:131px;display:block; cursor:pointer;}
+#mainBg img.huodong02{position:absolute; float:left; top:321px; left:74px; width:147px; height:131px;display:block; cursor:pointer;}
+#mainBg img.huodong03{position:absolute; float:left; top:489px; left:155px; width:166px; height:121px;display:block; cursor:pointer;}
+#mainBg img.huodong04{position:absolute; float:left; top:489px; left:677px; width:148px; height:123px;display:block; cursor:pointer;}
+#mainBg img.huodong05{position:absolute; float:left; top:326px; left:760px; width:163px; height:123px;display:block; cursor:pointer;}
+#mainBg img.huodong06{position:absolute; float:left; top:135px; left:690px; width:161px; height:155px;display:block; cursor:pointer;}
+#mainBg .topNav{position:absolute; float:left; top:5px; left:546px; width:457px; height:36px;display:block; cursor:pointer;}
+.topNav img{ height:32px; width:87px; float:left; border:0;}
+
+/*  subpage  */
+#subpageBg{background:url(http://static.kunlun.com/item/xk/xinfu/images/sunbpage_bgg.jpg) no-repeat 50% 0 #2C2103; min-width:1000px; margin:0 auto}
+.subpageTop{background:url(http://static.kunlun.com/item/xk/xinfu/images/nr_02.jpg);height:280px; overflow:hidden;}
+.subpageMain{background:url(http://static.kunlun.com/item/xk/xinfu/images/nr_04.jpg) no-repeat 0 0; overflow:hidden; color:#7F2908; font-size:12px;text-align:left;}
+#subpageBg img.mainLogo{position:absolute; float:left; top:50px; left:30px; width:118px; height:155px;display:block; cursor:pointer;}
+#subpageBg .topNav{position:absolute; float:left; top:5px; left:546px; width:407px; height:36px;display:block; cursor:pointer;}
+.subpageMain .fanhui{padding-top:52px; height:60px; text-align:right; width:850px;}
+.txt_w{margin:0 0 20px 183px; min-height:840px;_height:840px;  background:#FFFDE4; width:633px; border:2px solid #9A370E; border-top:0; padding:16px;}
+.txt_w h2{ text-align:center; font-size:18px; line-height:35px; padding-bottom:15px;}
+.txt_w h4{ text-align: left; font-size:14px; line-height:25px; padding-top:10px; border-bottom:3px solid #EDD6A0;}
+.txt_w p{ text-align:left; background:#FDF7DE; padding:5px 0;}
+.subpageHd{position:absolute; top:390px; left:7px;width: 177px; height:304px; overflow:hidden;}
+.subpageHd li,.subpageHd li a{ display:block; height:47px;width: 177px;}
+#leftNav01 a:hover,#leftNav01.now{background:url(http://static.kunlun.com/item/xk/xinfu/images/btn_bg.gif) no-repeat 0 0;}
+#leftNav02 a:hover,#leftNav02.now{background:url(http://static.kunlun.com/item/xk/xinfu/images/btn_bg.gif) no-repeat 0 -47px;}
+#leftNav03 a:hover,#leftNav03.now{background:url(http://static.kunlun.com/item/xk/xinfu/images/btn_bg.gif) no-repeat 0 -94px;}
+#leftNav04 a:hover,#leftNav04.now{background:url(http://static.kunlun.com/item/xk/xinfu/images/btn_bg.gif) no-repeat 0 -141px;}
+#leftNav05 a:hover,#leftNav05.now{background:url(http://static.kunlun.com/item/xk/xinfu/images/btn_bg.gif) no-repeat 0 -188px;}
+#leftNav06 a:hover,#leftNav06.now{background:url(http://static.kunlun.com/item/xk/xinfu/images/btn_bg.gif) no-repeat 0 -235px;}
+
+

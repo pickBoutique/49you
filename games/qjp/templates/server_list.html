@@ -1,0 +1,66 @@
+<?php $title='千军破'; ?>
+<?php $nav='member'; ?>
+<?php include('header.html'); ?>
+
+<div class="mid">
+<div class="ind_left">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--lefter_server start-->
+<? include('lefter_server.html'); ?> 
+<!--lefter_server end-->
+</div>
+  <div class="ind_rig">
+
+					<div class="Fwq1"></div>
+						<div class="Fwq_info">
+							<ul>
+                      <?if($rs_servertj){
+                        foreach($rs_servertj as $k=> $v){?>
+					<li><label class="label1"></label>
+					<a href="<?=YOU_ROOT?>/game_add.html?gid=<?=$v["server_gid"]?>&sid=<?=$v["server_id"]?>" target="_blank"><?=$v["server_name"]?> <?if($v["server_isnew"]==1){?><font color="red">新服开启</font><?}?></a><span class="new1"></span>
+                    </li>
+                    <?}
+                    }?>
+         
+                    </ul>
+						</div>
+                        
+					<div class="Fwq2"></div>
+						<div class="Fwq_info">
+					 <ul id="lastgames">
+                      <?if($rs_mygame){
+                        foreach($rs_mygame as $k=> $v){?>
+					<li><label class="label1"></label>
+					<a href="<?=YOU_ROOT?>/game_add.html?gid=<?=$v["mg_game_id"]?>&sid=<?=$v["mg_server_id"]?>" target="_blank"><?=$v["mg_server_name"]?> </a>
+                    </li>
+                    <?}
+                    }?>         
+        				</ul>
+
+						</div>
+					<div class="Fwq3"></div>
+						<div class="Fwq4">
+							<div class="Fwq3_top">&nbsp;</div>
+							<div class="Fwq3_mid">
+								<div class="Fwq3_info">
+									<ul>
+                      <?if($rs_servers){
+                        foreach($rs_servers as $k=> $v){?>                   
+					<li><label class="label1"></label>
+					<a href="<?=YOU_ROOT?>/game_add.html?gid=<?=$v["server_gid"]?>&sid=<?=$v["server_id"]?>" target="_blank"><?=$v["server_name"]?> <?if($v["server_isnew"]==1){?><font color="red">新服开启</font><?}?></a><span class="new1"></span></li>
+                    <?}
+                    }?>
+									</ul>
+								</div>
+							</div>
+							<div class="Fwq3_bot"></div>
+						</div>
+				</div>
+</div>
+</div>
+</div>
+
+<? include('footer.html'); ?>
+

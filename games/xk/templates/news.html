@@ -1,0 +1,54 @@
+<?php $title="{$titleinfo}_49you侠客世界官方网站 ";
+$keywords="侠客世界{$titleinfo}";
+$description="49you侠客世界{$titleinfo}。"
+?>
+<?php include('header.html'); ?>
+ <!--content -->
+ <div class="content">
+
+    <div class="left">
+<?php include('lefter_login.html'); ?>
+<?php include('lefter_server.html'); ?>	  
+<?php include('lefter_info.html'); ?>
+<?php include('lefter_kf.html'); ?>
+
+
+	 <div class="clear"></div>
+     </div>
+	 
+	 <!--right -->
+	 <div id="n-right">
+	    <div class="hdp"><? include('lefter_gg.html'); ?></div>
+	   
+	    <div id="n-right-t"><h1><?=$titleinfo?></h1><span>您现在的位置：<a href="/">侠客世界</a>>><?=$titleinfo?></span></div>
+		
+		<div id="n-right-c">
+		   <div id="n-right-c1">
+		      
+			  <div id="news-1">
+			      <ul>
+                          <?if($list_news){
+        	foreach($list_news as $k=> $v){?>
+
+				      <li><span class="date"><?=date('y-m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>"><?=$v["title"]?></a></li>
+                      		<?}}?>
+
+				  </ul>
+     <div class="newslist-page">
+    <? pager_bar($pager,WEB_ROOT."/games/pager.html"); ?>
+     </div>  
+			  </div>
+			  
+		   </div>
+		</div>
+		
+		<div class="clear"></div>
+    <div><img src="../images/neiye_03_2.gif" width="720" height="60"></div>
+
+	 </div>
+	 <!--right end -->
+	 
+	 <div class="clear"></div>
+ </div><!--content end -->
+<?php include('footer.html'); ?>
+

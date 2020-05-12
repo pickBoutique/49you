@@ -1,0 +1,65 @@
+<div class="flash-buttom"><div class="flash-login">
+<!--flash-->
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" height="155" width="224">
+      <param value="transparent" name="wmode">
+      <param value="high" name="quality"><param name="SRC" value="images/server_login.swf">
+      <embed src="images/server_login.swf" wmode="transparent" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" quality="high" height="155" width="224">
+    </object>
+</div></div>
+<script type="text/javascript">
+var gid="<?=$game_id?>";
+function memberLogin(isgoto) {
+	
+	var usname=$("#usname").val();
+	var uspsd=$("#uspsd").val();
+	var saveid=$("#save_id").val();
+	
+	$.getJSON("<?=YOU_ROOT?>/login.html?rnd="+Math.random()+"&act=ajlogin&gid="+gid+"&username="+usname+"&password="+uspsd+"&save_id="+saveid+"&format=json&jsoncallback=?",
+	function(data){
+		var _member = data;
+		if(_member.errormsg == ""){
+			if(isgoto==1){
+				top.location.href="server_list.html";
+				return;
+			}
+			var shtml ='';
+			var shtml ='';
+			shtml +='<div class="ine_2">';
+			shtml +='<p>欢迎你：<span style="color:red">'+_member.username+'</span></p>';
+			shtml +='<p>平台币：'+_member.money+' <a href="<?=YOU_ROOT?>/exchange.html?gid='+_member.lastg_id+'&sid='+_member.lasts_id+'"  target="_blank">兑换</a>　<a href="<?=YOU_ROOT?>/vip.html"  target="_blank">' +_member.vip +'</a></p>';
+ 			shtml +='<p>最新服务器：<a href="<?=YOU_ROOT?>/game_add.html?gid='+_member.newg_id+'&sid='+_member.news_id+'" target="_blank">'+_member.news_name+'</a></p>';
+			shtml +='<p>最近登陆服：<a href="<?=YOU_ROOT?>/game_add.html?gid='+_member.lastg_id+'&sid='+_member.lasts_id+'" target="_blank">'+_member.lasts_name+'</a></p>';
+ 
+			shtml +='<div class="b t_c">';
+			shtml +='<a href="<?=YOU_ROOT?>/bind_mail.html" target="_blank" style="color:red">密保设置</a>';
+			shtml +='<a href="<?=YOU_ROOT?>/return.html" target="_blank">推广返利</a>';
+			shtml +='<a href="<?=YOU_ROOT?>/trans_record.html" target="_blank">充值明细</a>';
+			shtml +='<a href="<?=YOU_ROOT?>/loginout.html?returl=<?=HTTP_ROOT?>/index.html">安全退出</a>';
+			shtml +='</div>';
+			$("#login").html(shtml);
+			if(usname != '')document.write(_member.script);
+		}else{
+			if(usname != '')alert(_member.errormsg);
+		}
+	});
+}
+
+</script>
+	   <div class="login">
+	    <div class="login-t"></div>
+		<div class="login-c">
+		   <div class="login-c1" id="login">
+		      <ul>
+			     <li><span class="login-c1-name">用户名：</span><input type="text" name="username" id="usname" class="login-c1-text"/></li>
+				 <li><span class="login-c1-name">密码：</span><input type="password" name="password" id="uspsd" onkeypress="javascript:if(event.keyCode==13){memberLogin(1)}"  class="login-c1-text"/></li>
+				 <li><input type="image" class="login-c1-img" src="images/index_19.png" onclick="javascript:memberLogin(1);"></li>
+				 <li><span class="login-c1-code"><input id="save_id" name="save_id" type="checkbox" value="" />记住登录状态<a href="<?=YOU_ROOT?>/pwd_find.html"">忘记密码？</a></span></li>
+			  </ul>
+		   </div>
+		   
+		   <div class="login-c2"><span class="login-c2-1"><a href="<?=YOU_ROOT?>/reg.html?returl=<?=urlencode(HTTP_ROOT.$_SERVER['REQUEST_URI'])?>&gid=<?=$game_id?>"></a></span><span class="login-c2-2"><a href="<?=YOU_ROOT?>/pay_type.html?gid=<?=$game_id?>"></a></span></div>
+		</div>
+	  </div>
+             <script language="javascript">
+memberLogin(0);
+             </script>

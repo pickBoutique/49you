@@ -1,0 +1,84 @@
+<?php $title='充值中心_49you网页游戏平台'; ?>
+<?php $nav='pay'; ?>
+<?php include('header.html'); ?>
+
+
+<form id="form1" name="form1" method="post" action="">
+<div class="text cl ">
+<div class="con clearfix">
+<!--left-->
+<div class="meb_left">
+    	<div class="inf_System">
+        <div class="paid">
+        <p>
+        <span class="p180"><img src="images/chzhi.png" width="123" height="57" /></span>
+        <span class="p93"><img src="images/c1.jpg" width="93" height="78" /></span>
+        <span class="p12"><img src="images/c_m.jpg" width="12" height="23" /></span>
+        <span class="p93"><img src="images/c_2a.jpg" width="93" height="78" /></span>
+        <span class="p12"><img src="images/c_m.jpg" width="12" height="23" /></span>
+        <span class="p93"><img src="images/c_3.jpg" width="93" height="78" /></span>
+        <span class="p12"><img src="images/c_m.jpg" width="12" height="23" /></span>
+        <span class="p93"><img src="images/c_4.jpg" width="93" height="78" /></span>
+        </p>
+        <div class="cl"></div>
+        </div>
+      </div>
+      
+
+  <div class="page_newinf">
+        	<div class="newinf_title">
+            	<ul>
+                	<li class="nah">选择充值游戏</li>
+              </ul>
+   	    </div>
+            <div class="paid_2">
+            <ul id="gamesel">
+<? $subject=iconv("GB2312","UTF-8",convertip(get_client_ip()));
+foreach($games as $k=>$v){
+	//九天过滤北京IP充值
+	//if($v['game_id']==2 && time()> strtotime('2011-8-6 10:00:00') && strpos($subject,"北京")>-1) continue;
+    ?>
+ <li><a href="pay_type.html?gid=<?=$v['game_id']?>" title="<?=$v['game_name']?>"><img src="/game/<?=$v['game_id']?>_140_72.jpg"  alt="<?=$v['game_name']?>"  title="<?=$v['game_name']?>" /></a>
+               <p><a    href="pay_type.html?gid=<?=$v['game_id']?>" title="<?=$v['game_name']?>"><?=$v['game_name']?></a></p> 
+              </li>
+<? } ?>
+            
+
+           
+            </ul>
+            <div class="cl"></div>
+          </div>
+            
+      </div>
+	</div>
+<!--right-->
+<div class="sidebar">
+  <!--service start-->
+  <? include('service_info.html'); ?> 
+  <!--service end-->    
+
+<div class="sharedspacer8"></div>
+
+<div class="nwes2">
+  <div class="title2"><span>充值问题</span><a target="_blank" href="service.html?cid=48" class="pl-more"><img src="images/moer.gif" /></a></div>
+  <div id="MediaNews2" class="BgColor LinePart">
+      <ul>
+      		<?
+             if($rs_news){
+             foreach($rs_news as $k=> $v){?>
+            <li class="MediaNewsLi"><a href="news_info_<?=$v['info_id']?>.html" target="_blank"><?=$v['subtitle']?></a></li>    
+            <?
+             }
+            }?>         
+            </ul>
+          </div>
+</div>
+
+</div>
+             
+</div>
+
+
+</div>
+</form>
+<? include('footer.html'); ?>

@@ -1,0 +1,18 @@
+<? 
+//广告模板-直接进游戏
+?>
+<script type="text/javascript">
+var start = document.location.href.indexOf('subtype=');
+var subtype = '';
+if(start>-1){
+	start += 8;
+	var end = document.location.href.indexOf('&',start);
+
+	if(end > -1){
+		subtype = document.location.href.substring(start,end);
+	}else{
+		subtype = document.location.href.substr(start);
+	}
+}
+window.location.href = '<?=YOU_ROOT."/reg_adv.html?act=reg&gid={$row[adv_gid]}&sid={$row[adv_sid]}&at={$row[adv_type]}&ad={$row[adv_id]}&md={$row[adv_metrid]}"; ?>&subtype='+subtype;
+</script>

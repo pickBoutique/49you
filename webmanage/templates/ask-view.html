@@ -1,0 +1,110 @@
+<?php include_once("header.html");?>
+<div class="main">
+<form id="form1" name="form1" method="post" action="ask-action.php" onsubmit="return checkForm(this);">
+<table width="100%" border="1" cellpadding="2" cellspacing="1"  class="table_add">
+<!--	<tr>
+		<td><strong>问题编号</strong></td>
+		<td><?=$ask_id?></td>
+	</tr>-->
+    	<tr>
+		<td align="center">标题：</td>
+		<td><?=$title?></td>
+	</tr>
+	<tr>
+		<td align="center">问题类别：</td>
+		<td><?=$ask_type_name?></td>
+	</tr>
+
+	<tr>
+		<td align="center">联系人姓名：</td>
+		<td><?=$contact_name?></td>
+	</tr>
+	<tr>
+		<td align="center">电话：</td>
+		<td><?=$telephone?></td>
+	</tr>
+	<tr>
+		<td align="center">邮箱：</td>
+		<td><?=$email?></td>
+	</tr>
+    <tr>
+		<td align="center">附件：</td>
+		<td>      
+          <?php
+          if($rs1)
+                {
+                  foreach($rs1 as $va){
+        ?>
+        <a target="_blank" href="<?=$va['attachment_url']?>"><?=$va['source_name']?></a><br />
+        <?php
+           }
+          }
+        ?>
+        </td>
+	</tr>
+	<tr>
+		<td align="center">问题描述：</td>
+		<td><div style="border:0px solid #EEE; margin-bottom:5px;"><?=$content?></div></td>
+	</tr>
+	
+		<?php
+		if($rs_reply){
+		?>
+	<tr>
+		<td align="center">问题回复：</td>
+		<td>
+		        <?php
+				foreach($rs_reply as $v){
+				?>
+				<div style="border:1px solid #EEE; margin-bottom:5px;">
+				<?=$v['content']?>	&nbsp;&nbsp;&nbsp;
+			   <strong><?php echo date("Y-m-d H:i:s",$v['add_time']); ?></strong>
+				</div>
+				<?php
+				}
+				?>
+		</td>
+	</tr>
+	<?php }?>
+    <tr>
+					<td align="center">回复标题：</td>
+					<td>
+						<input name="title_add" id="title_add" class="input_w400" value="回复：<?=$title?>">
+					</td>
+				</tr>			
+				<tr>
+					<td align="center">回复内容：</td>
+					<td>
+						<textarea name="content_add" id="content_add" class="input_w400" rows="8"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" height="50">
+						<input type="hidden" name="act" id="act" value="add2" />
+						<input type="hidden" name="ask_id" id="ask_id" value="<?=$ask_id?>" />
+                        <div style="padding-left:280px;">
+                        <input name="" type="submit" value="回复" class="btn" /></div>
+						<!--<input name="" type="button" onclick="javascript:history.go(-1)" value="返回" class="btn" />&nbsp;-->
+					</td>
+				</tr>
+</table>
+</form>
+</div>
+<?php include_once("footer.html");?>
+<script type="text/javascript">
+<!--
+function checkForm(dom)
+{
+	if(dom.content_add.value == '')
+	{
+		alert('请输入回复内容');
+		dom.content_add.focus();
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+-->
+</script>

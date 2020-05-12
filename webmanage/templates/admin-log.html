@@ -1,0 +1,20 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="admin-log.php">
+		<div class="searcher">
+			<strong>搜索：</strong>
+			时间从 <input type="text" class="Wdate" id="start_time" name="start_time" value="<?=$start_time?>" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'end_time\',{d:-1});}'})"/> 到 <input type="text" class="Wdate" id="end_time" name="end_time" value="<?=$end_time?>" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'start_time\',{d:1});}'})"/>
+			<input type="submit" value="搜索" class="btn" />
+		</div>
+		<div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="radio" name="op_column" id="op_column1" onclick="changeOperate('del')" checked="checked" />删除
+			<input type="hidden" name="act" id="act" value="del" />
+			<input type="hidden" name="request" value="<?=$request?>" />
+			<input type="button" value="保存" class="btn" onclick="OperateSubmit(this.form,'checkbox_admin_id[]','admin-action.php')" />
+		</div>
+		<?=$list_html?>
+		<div class="page_html"><?=$page_html?></div>
+	</form>
+</div>
+<?php include_once("footer.html");?>

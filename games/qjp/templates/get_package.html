@@ -1,0 +1,337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>千军破</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="th100">
+
+  <div class="thzz th">
+    <div class="th1 fl"><a href="#" target="_blank"><img src="../images/logo.jpg" width="104" border="0" height="35"></a></div>
+    <div class="th3 fl" style="color:#000"><span class="thrff6600">旗下游戏：</span>
+    <a href="#" target="_blank" style="color:red">传奇国度</a>|
+    <a href="#" target="_blank" style="color:red">仙侠风云</a>|
+    <a href="#" target="_blank" style="color:red">傲视天地</a>|
+    <a href="#" target="_blank" style="color:red">赵云传</a>|
+    <a href="#" target="_blank" style="color:red">天地英雄</a>|
+    <a href="#" target="_blank" style="color:#000">魔法风云</a>|
+    <a href="#" target="_blank" style="color:#000">南帝北丐</a>|
+    <a href="#" target="_blank" style="color:#000">十年一剑</a>|
+    <a href="#" target="_blank" style="color:#000">千军破</a></div>
+    <div class="fl" style="height:37px; padding-left:10px;">
+      <div class="th4_1 fl"><a  style="color:#000">设为首页</a></div>
+      <div class="th4_1 fl"><a >加入收藏</a></div> <div class="th4_1 fl"><a >保存到桌面</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="bbg">
+<div class="main">
+
+<div class="nav">
+<div class="na_1">
+<ul>
+<li><a href="#">官网首页</a></li>
+<li><a href="#">新闻公告</a></li>
+<li><a href="#">游戏资料</a></li>
+<li><a href="#">新手指南</a></li>
+</ul>
+</div>
+<div class="na_1 na_2">
+<ul style=" padding-left:17px;">
+<li><a href="#">个人中心</a></li>
+<li><a href="#" target="_blank">游戏充值</a></li>
+<li><a href="#" target="_blank">客服中心</a></li>
+<li><a href="#" target="_blank">火爆论坛</a></li>
+</ul>
+</div>
+</div>
+
+<div style="height:270px;">
+<div class="jru" style="widows:120px;"></div>
+<div class="l_gx1" style="position:relative;padding-left:26px">
+
+<div id="img_ctrl" style="position:absolute;height:257px;width:470px;overflow:hidden" class="img_ctrl_style">
+				<ul style="list-style:none outside none;padding:0px;margin-top:0px;">
+					<li><a href="#" target="_blank"><img src="../images/ben-1.gif"></a></li>
+                    <li><a href="#" target="_blank"><img src="../images/ben-1.png"></a></li>
+                    <li><a href="#" target="_blank"><img src="../images/ben-3.gif"></a></li>
+                    <li><a href="#" target="_blank"><img src="../images/ben-4.gif"></a></li>
+				</ul>
+		</div>	
+			
+			<div id="btn_ctrl" class="btn_ctrl_style" style="position:absolute;visibility:visibility">
+				<ul>
+				</ul>
+			</div>
+			
+			<script language="javascript">
+				var global_chgimg_timer;
+			    var img_count;
+			    var cur_img_index=1;
+			    var li_arr;
+			    
+			    var pic_offset=257;
+			    
+			    function start_img_control(){
+			    	
+			    	img_count=document.getElementById("img_ctrl").getElementsByTagName("ul")[0].getElementsByTagName("li").length;
+			    	
+			    	for(var lc=0;lc<img_count;lc++){
+			    		var li_obj=$("<li style=\"position:relative;cursor:pointer;\">"+(lc+1)+"</li>");
+			    		$("#btn_ctrl ul").append(li_obj);
+			    	}
+			    	
+			    	var offsetLeft=480;
+			    	if(navigator.userAgent.indexOf("MSIE 6")!=-1){
+			    		offsetLeft=400;
+			    	}
+			    	
+			    	$("#btn_ctrl").css({top:"232px",left:(offsetLeft-img_count*20)+"px",visibility:"visible"});
+			    	//$("#btn_ctrl").css({top:"260px",left:"75px",visibility:"visible"});
+			    	
+			    	var subChild=document.getElementById("btn_ctrl").firstChild;
+			    	while(subChild.tagName!="UL"){
+			    		subChild=subChild.nextSibling;
+			    	}
+			    	
+			    	li_arr=subChild.getElementsByTagName("li");
+			    	for(var lc=0;lc<img_count;lc++){
+			    		var tmp_ii=lc;
+			    		li_arr[lc].onclick=function(){on_li_click(this)};
+			    	}
+			    	
+			    	set_img_by_index(1)
+			    	global_chgimg_timer=setInterval(chg_img,5000);
+			    }
+			    
+			    function on_li_click(obj){
+			    	clearInterval(global_chgimg_timer);
+			    	cur_img_index=parseInt(obj.innerHTML);
+			    	set_img_by_index(cur_img_index);
+			    	global_chgimg_timer=setInterval(chg_img,5000);
+			    }
+			    
+			    function chg_img(){
+			    	if(cur_img_index>=img_count)
+			    		cur_img_index=1;
+			    	else
+			    		cur_img_index++;
+			    		
+			    	set_img_by_index(cur_img_index);
+			    }
+			    
+			    function set_img_by_index(index){
+			    	
+			    	document.getElementById("img_ctrl").getElementsByTagName("ul")[0].style.marginTop=(index-1)*pic_offset*(-1)+"px";
+			    	
+			    	li_arr[index-1].style.color="red";
+			    	li_arr[index-1].style.background="url('images/qh_bg02.jpg')";
+			    	for(var lii=0;lii<li_arr.length;lii++)
+			    		if(lii!=index-1){
+			    			li_arr[lii].style.color="black";
+
+			    		}
+			    }
+			    
+				start_img_control();
+			</script>
+
+</div>
+</div>
+<div class="mid">
+  <div class="ind_left">
+  <div style="position:absolute;"> <div class="Start"><a href="#"><img src="../images/Start.png" width="226" height="104" /></a></div></div>
+    <div class="login">
+      <div class="ine_1"></div>
+      <div class="ine_2">
+        <div><a href="#"><img style="margin:0px 10px 10px 0px;" src="../images/z_1.jpg" width="90" height="28" /></a><img style="margin:0px 0px 10px 0px;" src="../images/z_2.jpg" width="90" height="28" /></div>
+        <ul>
+          <li class="li1">账号：
+            <input class="inp1" type="text" name="username" id="textfield" style="position:relative;" />
+          </li>
+          <li class="li1">密码：
+            <input class="inp1" type="password" name="password" id="textfield2" style="position:relative;" />
+          </li>
+          <li><a href="#" target="_blank"><span>忘记密码</span></a>&nbsp;&nbsp;
+            <input class="inp2" type="submit" name="button" id="button" value="" />
+          </li>
+        </ul>
+      </div>
+      <div class="ine_3"></div>
+    </div>
+    <div class="kuaisu">
+      <div class="k_s"><img src="../images/b_1.png" width="226" height="28" /></div>
+          <ul>
+        <li><a href="#">推广返利</a></li>
+        <li><a href="#">积分系统</a></li>
+        <li><a href="#">VIP会员特权</a></li>
+        <li><a href="#">快速充值</a></li>
+      </ul>
+<div class="ine_3 cl"></div>
+</div>
+
+    <div class="kuaisu">
+      <div class="k_s"><img src="../images/b_3.png" width="226" height="28" /></div>
+          <ul> 
+        <li><a href="#">游戏背景</a></li>
+        <li><a href="#">游戏界面</a></li>
+        <li><a href="#">地图场景 </a></li>
+        <li><a href="#">基本操作</a></li>
+        <li><a href="#">新手任务</a></li>        
+        <li><a href="#">兵种介绍</a></li>
+
+      </ul>
+<div class="ine_3 cl"></div>
+</div>
+    <div class="kuaisu">
+      <div class="k_s"><img src="../images/b_7.png" width="226" height="28" /></div>
+          <ul>
+          <li><a href="#">城市发展</a></li> 
+          <li><a href="#">田庄发展</a></li>
+          <li><a href="#">技能详情</a></li>
+          <li><a href="#">爵位详情 </a></li>
+          <li><a href="#">建筑详情</a></li>
+          <li><a href="#">道具详情</a></li>
+          <li><a href="#">建立同盟</a></li>
+          <li><a href="#">征战沙场</a></li>
+          <li><a href="#">广征良兵</a></li>
+          <li><a href="#">攻防策略</a></li>
+          <li><a href="#">武将养成</a></li>
+          <li><a href="#">深山剿匪</a></li>
+
+      </ul>
+<div class="ine_3 cl"></div>
+</div>
+<div class="kuaisu">
+  <div class="k_s"><img src="../images/b_8.png" width="226" height="28" /></div>
+          <ul>
+          <li><a href="#">竞技系统</a></li>
+          <li><a href="#">任务系统</a></li>
+          <li><a href="#">军事系统</a></li>
+          <li><a href="#">战场系统 </a></li>
+          <li><a href="#">武将系统</a></li>
+          <li><a href="#">军团系统</a></li>
+          <li><a href="#">势力系统</a></li>
+
+      </ul>
+<div class="ine_3 cl"></div>
+</div>
+  </div>
+  <div class="ind_rig">
+   
+  <div class="news_1ist">
+   <h2><span>您的位置：首页>新手指南>新手卡领取</span><img height="30" width="118" src="../images/a_7.png"></h2>
+   <div class="page_inf">
+        	   <div class="sharedspacer"></div>
+    <div class="news_so" >
+      <select name="coid" id="country">
+        <option value="0">新手卡</option>
+        <option value="1" >蜀国</option>
+        <option value="2">吴国</option>
+      </select>
+      <select name="sidc" id="sidc">
+        <option value="254">选择服务器</option>
+        <option value="253">双线253区</option>
+        <option value="252">双线252区</option>
+      </select>
+<input class="inp3" type="submit" name="button" id="button" value="点击领取" />  <input class="inp4" type="submit" name="button" id="button" value="马上注册通行证" /></div>
+<div class="sharedspacer"></div>
+            <div class="news_conbox">
+            	<div id="u77">
+            	  <div id="u77_rtf">
+            	    <p>【新手卡奖励道具】</p>
+          	    </div>
+          	  </div>
+            	<div id="u79">
+                  <div id="u79_rtf">
+                    <p>超级传送卷轴*5，飞行令*1，洗髓丹*1，积分卷*2，爱情玫瑰*2，双倍经验药*2，随机传送卷*9，专注药水*1，消红药水*2</p>
+                  </div>
+              </div>
+                <div id="u80">
+                  <div id="u80_rtf">
+                    <p>【领取流程】</p>
+                    <p> </p>
+                    <p>           领取激活码后在游戏内的礼品兑换员领取奖品。</p>
+                    <p> </p>
+                    <p>           礼品兑换员坐标是【华景村120.22】</p>
+                  </div>
+                </div>
+                <div id="u81_container">
+                  <div id="u81_img"><img src="../新手卡领取_u81_original.jpg" /></div>
+                  <div id="u82">
+                    <div id="u82_rtf"> </div>
+                  </div>
+                </div>
+                <img id="u81" src="../新手卡领取_transparent.gif" />
+                <div id="u83">
+                  <div id="u83_rtf">
+                    <p>如果玩家找不到可以在小地图点击“M”——&gt;寻找NPC——&gt;选择礼品兑换员点击“自动寻路”即可。</p>
+                  </div>
+                </div>
+                <div id="u84_container">
+                  <div id="u84_img"><img src="../新手卡领取_u84_original.jpg" /></div>
+                  <div id="u85">
+                    <div id="u85_rtf"> </div>
+                  </div>
+                </div>
+                <img id="u84" src="../新手卡领取_transparent.gif" />
+                <div id="u86_container">
+                  <div id="u86_img"><img src="../新手卡领取_u86_original.jpg" /></div>
+                  <div id="u87">
+                    <div id="u87_rtf"> </div>
+                  </div>
+                </div>
+                <img id="u86" src="../新手卡领取_transparent.gif" />
+                <div id="u88">
+                  <div id="u88_rtf">
+                    <p>【注意】</p>
+                    <p>        1、每个账号每种礼包只能领一次礼包激活码。</p>
+                    <p>        2、每个激活码只能使用一次，不能重复使用。</p>
+                    <p>        3、该活动的所有解释权归49YOU网页游戏平台。</p>
+                  </div>
+                </div>
+                <p><span style="color: #b22222"><span style="display: none">&nbsp;</span></span></p>
+<div class="page_bot">
+	<span style="display: none">&nbsp;</span></div>
+<p>&nbsp;
+	</p>
+<div class="page_bot">
+	<span style="display: none">&nbsp;</span><span style="display: none">&nbsp;</span></div>
+<div class="page_bot">
+	<span style="display: none">&nbsp;</span></div>
+            </div>
+        </div>
+   <div class="page_inf"> 
+<ul >  
+<li><a href="#" target="_blank">上一条：酷派8910领衔 八款TD智能旗舰手机盘点</a></li>
+<li><a href="#" target="_blank">下一条：诺基亚E5周降百元 1500元超值手机搜罗</a></li>
+</ul>
+</div>     
+   <div class="sharedspacer"></div>
+          
+    </div>
+
+
+     
+  </div>
+</div>
+</div>
+</div>
+
+
+
+<div class="bot">
+<h2><a href="#">关于我们</a> | <a href="#" target="_blank">家长监护服务</a> | <a href="#">客服中心</a> | <a href="#">商务合作</a> | <a href="#">网站地图</a> | <a href="#">人才招聘</a></h2>
+<div class="b_1">
+<p>健康游戏忠告：抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</p>
+<p>Copyright ©2010 要玩游戏平台 <a href="http://www.yaowan.com" target="_blank" class="red">www.yaowan.com</a> 经营许可证编号：粤B2-201000066 文网文[2010]068 </p>
+<p>粤ICP备10000936号 Rights Reserved </p>
+</div>
+</div>
+</body>
+</html>

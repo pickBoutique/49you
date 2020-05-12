@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="网页游戏,网页小游戏,最新网页游戏,傲视天地,仙侠风云,千军破,2011年最新网页游戏,最新网页游戏开服表">
+<meta name="description" content="49网页游戏平台为大家提供最新最热门的网页游戏。包括傲视天地、仙侠风云、千军破、十年一剑、魔塔世界等多款最好玩的网页游戏。">
+<title>49you</title>
+<link href="style/Log.css" type="text/css" rel="stylesheet" />
+<script language="javascript" src="<?=HTTP_ROOT?>/js/basic.js"></script>
+<style>
+#wh_link_cen {
+   
+    height: 145px;
+    margin-left: 175px;
+    margin-top: 20px;
+    width: 300px;
+}
+#wh_link_cen li {
+    float: left;
+    line-height: 30px;
+    margin-top: 5px;
+    width: 142px;
+}
+</style>
+</head>
+
+<body>
+<? if(empty($ret_url)){ $ret_url='javascript:url_return();'; } ?>
+<br><br>
+
+ 
+   <div class="pop_mo">
+	<div class="pop_1">系统提示<a href="<?=$ret_url?>" class="pl-x"><img src="style/img/x.jpg" /></a></div>
+	<div class="pop_3">
+    
+        <div class="p_bj5" style=" height:210px;">    
+            <div class="p_3" style=" font-size:16px;font-family: '微软雅黑';color: #0F53B7;">
+            <h2><?=$title?></h2>
+            <P><?=$desc?></P>
+            </div>
+            <div class="p_3">
+            <div id="wh_link_cen"><strong>来玩玩其他游戏</strong>：
+              <ul>
+              <? $list = $db->getAll("select game_name,game_id from ".DB_PREFIX."game where game_status=1 and game_id!={$game_id} order by game_recom desc limit 0,2");
+                 if(!empty($list)){ 
+                 	foreach($list as $k=>$v){
+              ?>              
+                <li><a href="game.html?gid=<?=$v['game_id']?>"><img src="/game/<?=$v['game_id']?>_140_72.jpg"></a></li>
+              <? 	} 
+              	 } ?>
+              </ul>
+            </div>
+            </div>
+        </div>
+       
+    
+        <div style="margin: 10px 0px; height: 24px; width: 280px; float: right;">
+              <a class="btn-link btn-p2" href="<?=$ret_url?>">返回</a>
+        </div>
+        <div class="cl"></div>
+	
+	</div>
+	</div>
+  
+</body>
+</html>

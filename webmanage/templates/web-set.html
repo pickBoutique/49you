@@ -1,0 +1,80 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="web-set.php">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+        
+        <?  if(!empty($cfg_webset)){
+        	foreach($cfg_webset as $k => $val){ ?>
+			<tr>
+				<th><?=$val['name']?>：</th>
+				<td>
+                
+                <? //文本框
+                   if($val['type']=='text'){ ?>
+					<input type="text" name="<?=$k?>" id="<?=$k?>" value="<?=$config[$k]?>" class="input_w400" />
+                <? //文本编辑器
+                   }else if($val['type']=='text_editor'){ ?>
+                	<?php
+					//建立fckeditor对象
+					$oFCKeditor = new FCKeditor($k);
+					$oFCKeditor->BasePath = EDITOR_ROOT;
+					$oFCKeditor->ToolbarSet = '';
+					$oFCKeditor->Width = '100%' ;
+					$oFCKeditor->Height = '400' ;
+					$oFCKeditor->Value = $config[$k];
+					$oFCKeditor->Create() ;
+					?>
+                <? //图片上传
+                   }else if($val['type']=='img_upload'){ ?>
+                	<div class="upload_input">
+						<input type="text" name="<?=$k?>" id="<?=$k?>" class="input_w200" value="<?=$config[$k]?>" />&nbsp;
+						<input type="button" class="btn" value="上传" onclick="popupWindow('upload-img.php?upload_input=<?=$k?>',460,140);" />&nbsp;
+						<input type="button" class="btn" value="选择" onclick="popupWindow('attachment-list.php?upload_input=<?=$k?>',800,600);" />&nbsp;
+					</div>
+					<div class="view_pic_div" id="view_logo_div" <?php if($config[$k]==''){echo "style=\"display:none;\"";} ?> style="<?=isset($val['width'])?"width:$val[width]px;":''?><?=isset($val['height'])?"height:$val[height]px;":''?>" >
+                    <? $ext = explode('.',$config[$k]); 
+                       if($ext[sizeof($ext)-1] == 'swf'){
+                    ?>
+                    	<object  classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" <?=isset($val['width'])?"width='$val[width]px'":''?>  <?=isset($val['height'])?"height='$val[height]px'":''?>  "codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" >
+                          <param name="allowNetworking" value="internal" />
+                          <param name="movie" value="<?=$config[$k]?>" />
+                          <param name="wmode" value="transparent" />
+                          <param name="quality" value="high" />
+                          <embed   src="<?=$config[$k]?>" quality="high" wmode="transparent" allowNetworking="internal" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash"   <?=isset($val['width'])?"width='$val[width]px'":''?>  <?=isset($val['height'])?"height='$val[height]px'":''?>   ></embed>
+                        </object>
+                    <? }else{ ?>
+                    <a href="<?=$config[$k]?>" target="_blank"><img src="<?=$config[$k]?>"  <?=isset($val['width'])?"width='$val[width]px'":'width="100"'?>  <?=isset($val['height'])?"height='$val[height]px'":''?>  border="0" /></a>
+                    <? } ?>
+                    </div>
+                <? //自定义函数
+                   }else if($val['type']=='function'){ ?>
+                	<? $fun_name = $val['function_name']; ?>
+                    <?=$fun_name($k,$val,$config[$k]);?>
+                <? //下拉框
+                   }else if($val['type']=='select'){ ?>
+                	<select name='<?=$k?>'>
+                    <? if($val['options']){ ?>
+                    <? foreach($val['options'] as $opt_key => $opt_val){ 
+                    	$selected = '';
+                        if($opt_key==$config[$k]){ $selected = 'selected'; }
+                    ?>
+                    	<option value='<?=$opt_key?>' <?=$selected?> ><?=$opt_val?></option>
+                    <? } ?>
+                    <? } ?>
+                    </select>
+                <? } ?>
+				</td>
+			</tr>
+        <? }
+           } ?>
+			
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="edit" />
+					<input name="" type="submit" value="提交" class="btn action_edit" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<?php include_once("footer.html");?>

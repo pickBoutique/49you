@@ -1,0 +1,86 @@
+<?php $title='游戏服务器列表_49you九天仙梦官方网站'; 
+$keywords="九天仙梦服务器列表";
+$description="49you九天仙梦服务器列表"?>
+<?php include('header.html'); ?>
+<div class="main">
+  <div class="l">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--left_server start-->
+<? include('lefter_server.html'); ?> 
+<!--left_server end-->
+<!--left_server start-->
+<? include('lefter_dj.html'); ?> 
+<!--left_server end-->
+  </div>
+<script type="text/javascript">
+function memberServers(){
+	var url="<?=YOU_ROOT?>/ajax_server.html?act=mygame&gid="+gid+"&format=json&jsoncallback=?";
+	$.getJSON(url,
+	function(data){
+		var myrs=eval(data);
+		var shtml = "";
+		for(var i in myrs){
+			shtml +='<ul><li>';
+			shtml +='<label class="label1"></label>';
+
+			shtml +='<a href="<?=YOU_ROOT?>/game_add.html?gid='+myrs[i].mg_game_id+'&sid='+myrs[i].mg_server_id+'" target="_blank">'+myrs[i].mg_server_name+'<font color="deepskyblue">'+myrs[i].mg_last_time+'</font></a>';
+			shtml +='</li></ul>';
+		}
+		$("#lastgames").html(shtml);
+
+	});
+}
+</script>
+  <div class="r">
+    <div class="dh">
+      <label>服务器列表</label>
+      <div>您当前的位置：<a href="index.html" title="九天仙梦_49仙梦">九天仙梦</a> &gt; 服务器列表</div>
+    </div>
+    <div class="contend">
+<div style="margin-left:10px;">
+					<div class="Fwq1"></div>
+                    <div class="Fwq3_top">&nbsp;</div>
+						<div class="Fwq3_info">
+							<ul>
+                      <?if($rs_servertj){
+                        foreach($rs_servertj as $k=> $v){?>
+					<li><label class="label1"></label>
+					<a href="<?=YOU_ROOT?>/game_add.html?gid=<?=$v["server_gid"]?>&sid=<?=$v["server_id"]?>" target="_blank"><?=$v["server_name"]?> <font color="red">火爆新服</font></a><span class="new1"></span>
+                    </li>
+                    <?}
+                    }?>
+                    </ul>
+						</div>
+					<div class="Fwq2"></div>
+                    <div class="Fwq3_top">&nbsp;</div>
+						<div class="Fwq3_info" id="lastgames">
+						</div>
+                        <script language="javascript">memberServers();</script>
+					<div class="Fwq3"></div>
+						<div class="Fwq4">
+							<div class="Fwq3_top">&nbsp;</div>
+							<div class="Fwq3_mid">
+								<div class="Fwq3_info">
+									<ul>
+				<?if($rs_servers){
+                        foreach($rs_servers as $k=> $v){?>                   
+					<li><label class="label1"></label>
+					<a href="<?=YOU_ROOT?>/game_add.html?gid=<?=$v["server_gid"]?>&sid=<?=$v["server_id"]?>" target="_blank"><?=$v["server_name"]?> <font color="deepskyblue"><?= date('m/d',$v['server_start'])?></font></a></li>
+                    <?}
+                    }?>
+								  </ul>
+								</div>
+							</div>
+							<div class="Fwq3_bot"></div>
+						</div>
+
+    </div>
+    </div>
+    <div class="bg2"></div>
+    <div class="bg1">抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</div>
+  </div>
+  <div class="clear"></div>
+</div>
+<? include('footer.html'); ?>

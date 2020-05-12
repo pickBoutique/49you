@@ -1,0 +1,601 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台管理系统</title>
+<link href="<?=$web_root?>/style/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?=$web_root?>/js/ie6png.js"></script>
+<script type="text/javascript" src="<?=$web_root?>/js/function_common.js"></script>
+<script type="text/javascript" src="<?=$web_root?>/js/jquery.js"></script>
+<script type="text/javascript" src="<?=$web_root?>/js/jquery.contextmenu.r2.js"></script>
+<style>
+
+.main_bottom
+{
+	font:left;
+	height:100%;
+}
+.main_menu
+{
+	float:left;
+	width:180px;
+	height:100%;
+	
+}
+.main_content
+{
+	/*float:left;*/
+	height:100%;
+	
+	margin-left: 180px;
+}
+
+.main_top_tagbar
+{
+	float:left;
+	 height:29px;
+	 margin:14px auto auto 16px;
+	 background-color:#ffffff;
+	
+}
+
+.main_top_tag
+{
+	float:left;
+}
+.main_top_curtag
+{
+	float:left;
+}
+.main_top_tag .main_top_tag_left
+{
+	
+	width:11px; height:30px;
+	background:url(/images/main_top_tag_left.jpg) left top;
+	float:left;
+}
+.main_top_tag .main_top_tag_right
+{
+	width:11px; height:30px;
+	background:url(/images/main_top_tag_right.jpg) right top;
+	float:left;
+}
+.main_top_tag .main_top_tag_center
+{
+	background:url(/images/main_top_tag_center.jpg) repeat-x;
+	float:left;
+    font-size:12px;
+    height:17px;
+    vertical-align:middle;
+    padding-top:6px;
+	padding-bottom:6px;
+	padding-left:3px;
+	padding-right:8px;
+    cursor:pointer;
+	color:#FFC;
+}
+.main_top_tag .main_top_tag_close
+{
+	background:url(/images/main_top_tag_center.jpg) repeat-x;
+	float:left;
+    font-size:12px;
+    height:30px;
+    vertical-align:middle;
+    cursor:pointer;
+	color:#FFC;
+	
+}
+
+
+.main_top_tag .main_top_tag_close img {
+	margin-top:10px;
+}
+
+
+.main_top_curtag .main_top_tag_left
+{
+	
+	width:11px; height:30px;
+	background:url(/images/main_top_tag_left.jpg) left top;
+	float:left;
+}
+.main_top_curtag .main_top_tag_right
+{
+	width:11px; height:30px;
+	background:url(/images/main_top_tag_right.jpg) right top;
+	float:left;
+}
+.main_top_curtag .main_top_tag_center
+{
+	background:url(/images/main_top_tag_center.jpg) repeat-x;
+	float:left;
+    font-weight:bold;
+    font-size:12px;
+    height:17px;
+    vertical-align:middle;
+    padding-top:6px;
+	padding-bottom:6px;
+	padding-right:6px;
+    cursor:pointer;
+    color:#FF3;
+}
+.main_top_curtag .main_top_tag_close
+{
+	background:url(/images/main_top_tag_center.jpg) repeat-x;
+	float:left;
+    font-weight:bold;
+    font-size:12px;
+    height:30px;
+    vertical-align:middle;
+    cursor:pointer;
+    color:#FF3;
+}
+
+.main_top_curtag .main_top_tag_close img {
+	margin-top:10px;
+}
+
+.main_menu_list
+{
+	float:left;
+	margin:27px auto auto auto;
+}
+.main_menu_list .menu_list
+{
+   position:absolute;
+   margin-top:16px;
+   margin-left:-16px;
+   background-color:White;
+   border:solid 1px black;
+   display:none;
+}
+
+.main_menu_list .menu_list LI
+{
+   line-height:20px;
+   font-size:12px;
+   cursor:pointer;
+}
+
+.main_menu_list .menu_list .over
+{
+    background-color:Blue;
+    color:White;
+}
+</style>
+<script language="javascript">
+
+    //点击"我知道了"的事件
+    function msgclose() {
+        //this.id=消息号
+        //Ajax回调消息号修改消息状态为"已阅读"
+        ajaxSelected("setnotify", { id:this.id }, null, function(ret) {} );
+        return true;
+    }
+	//点击"消息通知内容链接"的事件
+    function msgcommand() {
+        window.showmenu(this.id, this.caption, this.action);
+    }
+	//获取未处理的消息通知
+    function checkinfo() {
+        
+        ajaxSelected("getnotify", null, null, function(ret) {
+            var obj = eval("(" + ret.responseText + ")");
+            
+            if (obj.root.length > 0) {
+                var MSG1 = new CLASS_MSN_MESSAGE(obj.root[0]["notify_id"], 200, 120, obj.root[0]["notify_caption"], obj.root[0]["notify_title"], obj.root[0]["notify_message"], obj.root[0]["notify_target"], obj.root[0]["notify_url"]);
+
+                // 显示提示框 
+                MSG1.rect(null, null, null, screen.height - 50);
+                MSG1.speed = 30;
+                MSG1.step = 120;
+                MSG1.onclose = msgclose;
+                MSG1.oncommand = msgcommand;
+                MSG1.show();
+            }
+            setTimeout("checkinfo()", 19000);
+        });
+
+    }
+</script> 
+<script language="javascript">
+	//标签对象
+    function Tag(aid, aname, aurl) {
+        this.id = aid;
+        this.name = aname;
+        this.url = aurl;
+    }
+
+    function removeElement(_element) {
+        if (_element) {
+            var _parentElement = _element.parentNode;
+            if (_parentElement) {
+                _parentElement.removeChild(_element);
+            }
+        }
+    }
+
+    //当前标签数量
+    var tagcount = 0;
+	//最大标签数量
+    var maxtagcount = 6;
+    var tagarray = new Array();
+
+	$(document).ready( function() {
+        //checkinfo();
+
+        //TODO:重置上次保存的窗口
+		
+        //enableTooltips(null, "img");
+
+		/*
+        //屏蔽右键屏出菜单
+        addEventHandler(document, "contextmenu", function(e) {
+            if (window.event) { window.event.returnValue = false; }
+            return false;
+        });
+        document.oncontextmenu = function(e) { return false; }
+		
+		*/
+		//单击菜单栏时 关闭右键弹出菜单
+		$(document.getElementById('menu')).bind("load",function(e){				
+			$(document.getElementById('menu').contentWindow.document).bind("click",function(e) {
+				menu_mgr.hide();
+			});
+		});
+		
+		//检查cookie
+		var curr_sys = get_system_key();
+		if(curr_sys != null){
+			on_change_system(document.getElementById('sys_'+curr_sys),curr_sys);
+		}
+    }
+    );
+	
+	function onMenuCloseOver(obj){
+		obj.childNodes[0].src = "<?=HTTP_ROOT . '/images/tag_close_over.gif'?>";
+	}
+	function onMenuCloseOut(obj){
+		obj.childNodes[0].src = "<?=HTTP_ROOT . '/images/tag_close.gif'?>";
+	}
+
+    //隐藏菜单
+    function onMenuClose(item) {
+		document.getElementById("main" + item.tagid).src = "";
+        removeElement(document.getElementById('tag' + item.tagid));
+        removeElement(document.getElementById("main" + item.tagid));
+
+        for (var i = 0; i < tagarray.length; i++) {
+            if (tagarray[i].id == item.tagid) {
+                tagarray.splice(i, 1);
+                break;
+            }
+        }
+        if (tagarray.length > 0) {
+            var tag = tagarray[tagarray.length - 1];
+            window.showmenu(tag.id, tag.name, tag.url);
+        }
+    }
+    //关闭其它窗口
+    function onMenuCloseOther(item) {
+
+        for (var i = 0; i < tagarray.length; i++) {
+        
+            if (tagarray[i].id == item.tagid) {
+                var tag = tagarray[i];
+                window.showmenu(tag.id, tag.name, tag.url);
+            } else {
+            	document.getElementById("main" + tagarray[i].id).src = "";
+                removeElement(document.getElementById('tag' + tagarray[i].id));
+                removeElement(document.getElementById("main" + tagarray[i].id));
+                tagarray.splice(i, 1);
+                i--;
+            }
+        }
+
+    }
+
+    window.showmenu = function(id, name, url) {
+	
+        var main_content = document.getElementById("main_content");
+
+        if (tag_contain(id) == false) {
+            tagarray.push(new Tag(id, name, url));
+        }
+
+        showtag(id, name);
+
+        showframe(id, url);
+
+        
+    }
+	
+	window.closedialog = function(id){
+		if(window.frames['main' + id] && window.frames['main' + id].JqueryDialog ){
+			window.frames['main' + id].JqueryDialog.Close();
+		}
+	}
+
+ 
+
+    function showtag(id, name) {
+        
+        //恢复所有标签正常样式
+        var main_top_tagbar = document.getElementById("main_top_tagbar");
+        for (i = 0; i < main_top_tagbar.childNodes.length; i++) {
+            main_top_tagbar.childNodes[i].className = "main_top_tag";
+        }
+
+       
+        if (document.getElementById("tag" + id) == null) {
+            var tagbar = document.getElementById("main_top_tagbar");
+            if (main_top_tagbar.childNodes.length >= maxtagcount) {
+                tagbar.removeChild(tagbar.childNodes[maxtagcount - 1]);
+            }
+            var html = "";
+            html += '<span id="tag' + id + '" class="main_top_curtag" tagid="' + id + '" >';
+            html += '<div class="main_top_tag_left"></div><div class="main_top_tag_center" onclick="showmenu(' + id + ',\'' + name + '\');" >';
+            html += name;
+            html += '</div><div class="main_top_tag_close" onclick="onMenuClose({\'tagid\':\'' + id + '\'});" onmouseover="onMenuCloseOver(this);" onmouseout="onMenuCloseOut(this);" ><img src="<?=HTTP_ROOT . "/images/tag_close.gif"?>" alt="关闭" valign="middle" /></div>';
+			html += '<div class="main_top_tag_right"></div>';
+            html += '</span>';
+            tagbar.innerHTML = html + tagbar.innerHTML;
+            tagcount++;
+        }
+        
+        document.getElementById("tag" + id).className = "main_top_curtag";
+		
+        $('.main_top_tagbar span').contextMenu('myMenu1', {
+			bindings: {
+				'close': function(t) {
+					var tagid = $(t).attr('tagid');
+					onMenuClose({tagid : tagid});
+				 },
+				 'closeother': function(t) {
+					var tagid = $(t).attr('tagid');
+					onMenuCloseOther({tagid : tagid});
+				 }
+			},
+			onShowMenu: function(e,m,t){
+				
+				this.eventPosX = $(t).offset().left;
+				this.eventPosY = $(t).offset().top + $(t).height();
+				m.css({'width':110});
+				return m;
+			}
+		});
+    }
+
+
+    //显示指定iframe内容
+    function showframe(id, url) {
+        //先隐藏所有iframe
+        var main_content = document.getElementById("main_content");
+        
+        for (var i = 0; i < main_content.childNodes.length; i++) {
+            if (main_content.childNodes[i].style != null) {
+                main_content.childNodes[i].style.display = "none";
+            }
+        }
+        
+        if (document.getElementById("main" + id)) {
+        } else {
+            var newFrame = document.createElement("iframe");
+            newFrame.id = 'main' + id;
+            newFrame.name = 'main' + id;
+            newFrame.src = url;
+            newFrame.frameBorder = "0";
+            newFrame.width = "100%";
+            //newFrame.scrolling = "yes";
+            newFrame.height = "100%";
+            newFrame.style.display = "none";
+
+            main_content.appendChild(newFrame);
+			
+			
+			//单击iframe内容时 关闭右键弹出菜单
+			$(newFrame).bind("load",function(e){
+				try{
+					$(newFrame.contentWindow.document).bind("click",function(e) {
+						menu_mgr.hide();
+					});
+				}catch(e){}
+			});
+        }
+        
+        if (document.getElementById("main" + id).src == "about:blank") {
+            document.getElementById("main" + id).src = url;
+        }
+        document.getElementById("main" + id).style.display = "block";
+        
+		var cur_sys = document.getElementById("main" + id).getAttribute('current_system');
+		if(cur_sys == null){
+			document.getElementById("main" + id).setAttribute('current_system',get_system_key());
+		}
+		if(cur_sys != get_system_key()){
+			refresh();
+		}
+    }
+
+    function tag_contain(id) {
+
+        for (var i = 0; i < tagarray.length; i++) {
+            if (tagarray[i].id == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    
+
+    function refresh() {
+        var main_content = document.getElementById("main_content");
+        for (var i = 0; i < main_content.childNodes.length; i++) {
+            if (main_content.childNodes[i].style != null) {
+                if (main_content.childNodes[i].style.display == "block") {
+                    main_content.childNodes[i].src = new QueryString(main_content.childNodes[i].src).set("rnd", Math.random()).toStr();
+					main_content.childNodes[i].setAttribute('current_system',get_system_key());
+                }
+            }
+        }
+    }
+
+    //显示下拉标签列表
+    function showmenulist() {
+        if (tagarray.length > 0) {
+			var html = "";
+            for (var i = 0; i < tagarray.length; i++) {
+                var id = tagarray[i].id;
+                var name = tagarray[i].name;
+                var url = tagarray[i].url;
+
+				html += '<li id="close" onclick="onListClick({tagid:\'' + id + '\',text:\'' + name + '\',tagurl:\'' + url + '\'});"> ' + name + '</li>';
+            }
+			$('#myMenu2 ul').html(html);
+			var ret = $('#main_menu_list').contextMenu('myMenu2', {
+				onShowMenu: function(e,m,t){
+					this.eventPosX = $(t).offset().left;
+					this.eventPosY = $(t).offset().top + $(t).height();
+					m.css({'width':130});
+					return m;
+				}
+			});
+			
+			
+			menu_mgr.show_last();
+        }
+    }
+	
+	
+
+    //标签列表单击事件
+    function onListClick(item) {
+        showmenu(item.tagid,item.text,item.tagurl);
+		menu_mgr.hide();
+    }
+	
+	function topwd(){
+		window.closedialog('-99');
+		window.showmenu('-99', '修改密码', 'admin-pwd.php'); 
+	}
+	
+	
+	function getsec(str){
+		var str1=str.substring(1,str.length)*1; 
+		var str2=str.substring(0,1); 
+		if (str2=="s"){
+		return str1*1000;
+		}else if (str2=="h"){
+		return str1*60*60*1000;
+		}else if (str2=="d"){
+		return str1*24*60*60*1000;
+		}
+	}
+	function setCookie(name,value,time){
+		var strsec = getsec(time);
+		var exp = new Date();
+		exp.setTime(exp.getTime() + strsec*1);
+		document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+	}
+	
+	function getCookie(name){
+		var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+		if(arr=document.cookie.match(reg)) return unescape(arr[2]);
+		else return null;
+	}
+	
+	function delCookie(name){
+		var exp = new Date();
+		exp.setTime(exp.getTime() - 1);
+		var cval=getCookie(name);
+		if(cval!=null) document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+	}
+	
+	
+	
+	function get_system_key(){
+		return getCookie('curren_system');
+	}
+	
+	function on_change_system(obj,key){
+		
+		setCookie('curren_system',key,'d99');
+		$('.top_system_curr').attr('class','top_system');
+		
+		$(obj).attr("class",'top_system_curr');
+		refresh();
+	}
+    
+</script>
+<style>
+body{
+    overflow-y : visible;
+}
+.contextMenu{
+	display:none;
+}
+.top_system{
+	 border:1px solid #166BCC; padding:2px; line-height:20px;
+}
+.top_system_curr{
+	 border:2px solid #166BCC; padding:2px; font-weight:bold; line-height:20px;
+}
+</style>
+</head>
+<body style="height:100%;" >
+<div>
+<table height="100%" cellSpacing="0" cellPadding="0" width="100%" border="0">
+  <tr>
+    <td style="height:68px;">
+        <div class="top">
+        	<div style="float:left;">
+            <a href="http://online8hy.com/" target="_blank"><img src="/images/logo2.jpg" style=" visibility:hidden;" class="logo" /></a>
+            </div>
+            <div class="user_info">
+            <? foreach($system as  $k => $v){ ?>
+            	<a href="javascript:void(0);" onClick="on_change_system(this,'<?=$k?>');" class="top_system" id='sys_<?=$k?>' ><?=$v['name']?></a>
+            <? } ?>
+            　┊　<a href="main.php" target="_blank"><strong>网站首页</strong></a>　┊　用户名：<?=$login_info[3]?>　<a href="javascript:topwd();" >[修改密码]</a>　<a href="logout.php" target="_top">[退出]</a>　</div>
+            <div class="main_top_tagbar" id="main_top_tagbar">
+            
+            </div>
+            <div class="main_menu_list" id="main_menu_list">
+                <a href="javascript:showmenulist();"><img src="/images/main_menu_list.gif" border="0" alt="列表"  /></a>
+                <div class="menu_list">
+                </div>
+             </div>
+            
+        </div>
+        
+        <div class="contextMenu" id="myMenu1">
+          <ul>
+            <li id="close"> 关闭</li>
+            <li id="closeother"> 关闭其它菜单</li>
+          </ul>
+        </div>
+        
+        <div class="contextMenu" id="myMenu2">
+          <ul>
+            
+          </ul>
+        </div>
+        
+  </td></tr>
+  <tr><td>
+  
+    <div class="main_bottom" >
+    <div class="main_menu" >
+        <iframe id="menu" name="menu" src="left.php"  frameBorder="0" width="100%" scrolling="yes"  height="100%"></iframe>
+    </div>
+    <div id="main_content" class="main_content" >
+        <!--<iframe id="main" name="main" src="about:blank"    frameBorder="0" width="100%" scrolling="yes"  height="100%"></iframe>-->
+    </div>
+    </div>
+
+</td>
+</tr>
+</table>
+</div>
+</body>
+</html>

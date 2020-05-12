@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>49you平台问卷调查</title>
+<link href="style/survey_style/survey.css" rel="stylesheet" type="text/css" />
+</head>
+<script language="javascript">
+	function answer_3(obj){
+		var answer4 =document.getElementById("answer4");
+		if(obj.value==5){
+			answer4.disabled="";
+			answer4.focus();
+		}else{
+			answer4.disabled="disabled";
+		}
+	}
+	function get_answer(answer_name){
+		var answer=document.getElementsByName(answer_name);
+		var strNew;
+		for(var i=0;i<answer.length;i++){
+			if(answer.item(i).checked){
+			strNew=answer.item(i).getAttribute("value");  
+			break;
+			}else{
+				continue;
+			}
+		}
+		if(strNew==null){
+			strNew=0;
+		}
+		return strNew;
+	}
+	function form_submit(){
+		if(get_answer("answer1")==0){
+			alert("请选择问题1答案！");
+			return;
+		}
+		if(get_answer("answer2")==0){
+			alert("请选择问题2答案！");
+			return;
+		}
+		if(get_answer("answer3")==0){
+			alert("请选择问题3答案！");
+			return;
+		}
+		if(get_answer("answer3")==5){
+			var answer4 = document.getElementById("answer4").value;
+			if(answer4==""){
+				alert("其他原因不能为空！");
+				answer4.focus();
+				return;
+			}
+		}
+		document.form1.submit();
+	}
+</script>
+<body>
+<form id="form1" name="form1" method="post" action="" onsubmit="form_submit();">
+<div id="layout">
+   <div id="top"></div>
+   <div id="main">
+      <div id="main1">
+	     <div id="m-top">
+		   <strong>您好！</strong><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先感谢您参与此次问卷调查活动!通过您的参与，我们能更深入地了解您的需求和喜好，从而提升您的游戏体验，并提供更多贴近您的服务！</span>		 </div>
+		 <div class="m-mai1">
+		    <div class="m-mai1-title">1、您在我们平台玩多长时间？</div>
+			<div class="m-mai1-content">
+			   <ul>
+			      <li class="list1"><input name="answer1" type="radio" value="1" />A、1个月以下</li>
+				  <li class="list1"><input name="answer1" type="radio" value="2" />B、1—3个月</li>
+				  <li class="list1"><input name="answer1" type="radio" value="3" />C、3个月以上</li>
+				  <div class="clear"></div>
+			   </ul>
+			</div>
+			<div class="clear"></div>
+		 </div>
+		 
+		 <div class="m-mai1">
+		    <div class="m-mai1-title">2、您对我们平台VIP系统感兴趣吗？</div>
+			<div class="m-mai1-content">
+			   <ul>
+			      <li class="list1"><input name="answer2" type="radio" value="1" />A、喜欢</li>
+				  <li class="list1"><input name="answer2" type="radio" value="2" />B、一般，没感觉</li>
+				  <li class="list1"><input name="answer2" type="radio" value="3" />C、不喜欢</li>
+				  <li class="list1"><input name="answer2" type="radio" value="4" />D、坑爹的</li>
+				  <div class="clear"></div>
+			   </ul>
+			</div>
+			<div class="clear"></div>
+		 </div>
+		 
+		 <div class="m-mai1">
+		    <div class="m-mai1-title">3、您喜欢我们平台最大的原因是什么？</div>
+			<div class="m-mai1-content">
+			   <ul>
+			      <li class="list1"><input name="answer3" type="radio" value="1" onclick="answer_3(this);" />A、平台漂亮</li>
+				  <li class="list1"><input name="answer3" type="radio" value="2" onclick="answer_3(this);" />B、VIP充值返利</li>
+				  <li class="list1"><input name="answer3" type="radio" value="3" onclick="answer_3(this);" />C、平台人气火爆</li>
+				  <li class="list1"><input name="answer3" type="radio" value="4" onclick="answer_3(this);" />D、平台活动众多</li>
+				  <li class="list2"><input name="answer3" type="radio" value="5" onclick="answer_3(this);" />E、其他原因<input name="answer4" id="answer4" type="text" disabled="disabled" class="list-input" maxlength="25" /></li>
+				  <div class="clear"></div>
+			   </ul>
+			</div>
+			<div class="clear"></div>
+		 </div>
+		 
+		 <div class="m-mai3">
+		    <div class="m-mai1-title">4、您对我们平台的建议：</div>
+			<div class="m-mai1-content"><textarea name="other" id="other" cols="" rows="" class="area"></textarea></div>
+			<div class="clear"></div>
+		 </div>
+		 
+		 <div class="m-mai2"><div class="m-buttom"><input name="" type="button" class="m-buttom2" value="提交" onclick="javascript:form_submit();"/>
+		 </div></div>
+		 <div class="clear"></div>
+	  </div>
+   </div>
+   <div id="footer"></div>
+   <div class="clea"></div>
+</div>
+<input type="hidden" name="act" id="act" value="survey"/>
+</form>
+</body>
+</html>

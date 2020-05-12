@@ -1,0 +1,239 @@
+<?php $title='会员中心_49you网页游戏平台'; ?>
+<?php $nav='member'; ?>
+<?php include('header.html'); ?>
+<style>
+a.btn_write {
+background:url("/style/img/btn-2.png") no-repeat scroll 0 0 transparent;
+color:#2C78A0;
+display:block;
+height:24px;
+line-height:24px;
+margin-bottom:6px;
+text-align:center;
+text-decoration:none;
+width:72px;
+}
+
+a.btn_blue {
+background:url("/style/img/btn-1.png") no-repeat scroll 0 0 transparent;
+color:#FFFFFF;
+display:block;
+height:24px;
+line-height:24px;
+margin-bottom:6px;
+text-align:center;
+text-decoration:none;
+width:72px;
+}
+.member_tg{
+	height:104px;
+}
+</style>
+
+<div class="text cl ">
+<div class="con clearfix">
+<!--left-->
+<div id="coleft">
+<!--login start-->
+<? $loginout_returl = '/index.html';?>
+<? include('login_info.html'); ?> 
+<!--login end-->
+  <div class="sharedspacer8"></div>  
+  
+  <!--server start-->
+  <? include('server_info.html'); ?> 
+  <!--server end-->
+
+  <!--service start-->
+  <? include('service_info.html'); ?> 
+  <!--service end-->           
+</div>
+<!--right-->
+<div id="coright">
+
+<? $order_arr = explode(',',$config['member_right_order']);
+foreach($order_arr as $okey=>$oval){ 
+?>
+<? if($oval=='1'){ ?>
+<div>
+    <div class="game_title"><span class="mark2">推 荐 游 戏</span ><p class="evaluatmore"><a href="game.html" target="_blank">进入游戏中心&gt;&gt;</a></p></div>
+    <div class="game_mid">
+    <div class="expgame">
+     <div class="dtimg2 fl"><a target="_blank" href="<?=$top_game['game_web']?>"><img src="game/<?=$top_game['game_id']?>_140_129.jpg" width="140" height="129" /></a></div>
+     <div style="float:left;  width:216px;">
+      <p class="haveLine2" style=" padding-bottom:6px; margin-bottom:10px; line-height:18px;  width:217px; height:70px;  overflow:hidden; "><?=sub_str($top_game['game_desc'],0,65)?>...</p>
+    <div class="fl cl">
+         <div class="login_5" >
+         <?/*<input type="button" name="button" id="button" onclick="window.location.href='<?=$top_game['game_bbs']?>';" value="论 坛" />*/?>
+         <a target="_blank" title="论 坛" href="<?=$top_game['game_bbs']?>" class="btn_write">论 坛</a>
+         </div>
+         <div class="login_5 ">
+         <?/*<input type="button" name="button" id="button" onclick="window.location.href='package.html';"  value="领取礼包" />*/?>
+         <a target="_blank" title="领取礼包" href="package.html" class="btn_write">领取礼包</a>
+         </div>
+         <div class="login_5" >
+         <?/*<input type="button" name="button2" id="button2" onclick="window.location.href='<?=$top_game['game_web']?>';"  value="进入官网" /> */?>
+         <a target="_blank" title="进入官网" href="<?=$top_game['game_web']?>" class="btn_write">进入官网</a>
+         </div>
+         <div class="login_4 ">
+         <?/* <input type="button" name="button" id="button" onclick="window.location.href='game.html?gid=<?=$top_game['game_id']?>';"  value="进入游戏" />*/?>
+         <a target="_blank" title="进入游戏" href="game.html?gid=<?=$top_game['game_id']?>" class="btn_blue">进入游戏</a>
+         </div>
+          
+          </div>
+    </div>
+    </div>
+    <div class="game_r" >
+    <? if($game_imgs){
+        foreach($game_imgs as $k=>$v){ ?>
+    <div class="dtimg3"><a target="_blank" href="news_info_<?=$v['info_id']?>.html"><img src="<?=$v['pic']?>" width="106" height="68" title="<?=$v['subtitle']?>" /></a></div>
+    <?  }
+       } ?>
+    </div>
+    
+    </div>
+    <div class="game_bom cl"></div>
+</div>
+<div class="sharedspacer12"></div>
+<?  } ?>
+
+
+<? if($oval=='2'){ ?>
+<div >
+<div class="game_title"><ul><li class="nah">我最近在玩的游戏</li></ul></div>
+<?if($rs_gamelist){?>
+<div class="game_mid">
+<?foreach($rs_gamelist as $k=> $v){?>
+<div class="game_exp">
+ <div class="game_img2 fl"><a href="game_add.html?gid=<?=$v['mg_game_id']?>&sid=<?=$v['mg_server_id']?>" target="_blank"><img src="/game/<?=$v['mg_game_id']?>_140_72.jpg"></a></div>
+ <div style="float: left; width:186px;">
+ <h3><?=$v['mg_game_name']?></h3>
+  <p style="margin-bottom: 10px; line-height: 28px;" class="haveLine2"><a href="game_add.html?gid=<?=$v['mg_game_id']?>&sid=<?=$v['mg_server_id']?>" target="_blank"><?=$v['mg_server_name']?></a></p>
+<div class="fl cl">
+  <div class="login_5">
+  <a target="_blank" title="进入游戏" href="game_add.html?gid=<?=$v['mg_game_id']?>&sid=<?=$v['mg_server_id']?>" class="btn_write">进入游戏</a>
+   </div>
+     <div class="login_4">
+     <a target="_blank" title="游戏充值" href="pay_type.html?gid=<?=$v['mg_game_id']?>&sid=<?=$v['mg_server_id']?>" class="btn_blue">游戏充值</a>
+     </div>
+      
+      </div>
+</div>
+</div>
+<?}?>
+</div>
+<?}else{?>
+<div class="game_mid">
+<div align="center">
+<a href="game.html">您目前还没添加游戏，去游戏中心逛逛</a>
+</div>
+</div>
+<?}?>
+<div class="game_bom cl"></div>
+</div>
+<div class="sharedspacer12"></div>
+<? } ?>
+
+<? if($oval=='3'){ ?>
+<div class="member_tg">
+<object height="104" width="705" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" style="position:absolute;z-index:0;">
+  <param value="internal" name="allowNetworking">
+  <param value="<?=$config_index['member_flash']?>" name="movie">
+  <param value="transparent" name="wmode">
+  <param value="high" name="quality">
+  <embed height="104" width="705" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" allownetworking="internal" wmode="transparent" quality="high" src="<?=$config_index['member_flash']?>" style="position:absolute;z-index:0;">
+</object>
+<div style="position: relative;z-index:9999;left:0pt;top:0pt;width:705px;height:104px;">
+<a target="_blank" href="<?=$config_index['member_flash_link']?>">
+<img height="104" border="0" width="705" src="images/1px.gif">
+</a>
+</div>
+</div>
+<div class="sharedspacer12"></div>
+<? } ?>
+
+<? if($oval=='4'){ ?>
+<div >
+  <div class="game_title"><ul><li class="nah">管理我的账号</li></ul></div>
+  <div class="game_mid">
+  <div class="q-info" >
+    <h3>为了您的账户安全，49you提醒您完善您的安全设置：
+  <?if($member_save["member_idvalid"]!=1){?><a href="bind_idcard.html" target="_blank" class="red">身份认证</a> <?}?><?if($member_save["is_setup"]!=1){?><a href="pwd_protect.html" target="_blank" class="red"> 密码保护</a> <?}?><?if($member_save["email_isvalid"]!=1){?><a href="bind_mail.html" target="_blank" class="red">邮箱绑定</a><?}?></h3>
+    <table width="100%">
+      <tr>
+        <td width="23%" height="29" align="center" class="zi1"><img src="images/ico-2.jpg" width="120" height="26" /></td>
+        <td width="77%">
+        <div class="btin_1" ><input type="button" onclick="window.location.href='pay_games.html';"  value="游戏充值" /></div>
+        <div class="btin_1" ><input type="button" onclick="window.location.href='trans_record.html';"  value="充值记录" /></div>
+        <!--<div class="btin_1" ><input type="button" onclick="window.location.href='pay.html';"  value="积分兑换" /></div>-->
+        </td>
+        </tr>
+      <tr>
+        <td height="34" align="center" class="zi1"><img src="images/ico-3.jpg" width="120" height="26" /></td>
+        <td width="77%">
+        <div class="btin_1" ><input type="button" onclick="window.location.href='pwd_modify.html';"  value="修改密码" /></div>
+        <div class="btin_1" ><input type="button" onclick="window.location.href='bind_idcard.html';"  value="身份认证" /></div>
+        <div class="btin_1" ><input type="button" onclick="window.location.href='pwd_protect.html';"  value="密码保护" /></div>
+        <div class="btin_1" ><input type="button" onclick="window.location.href='bind_mail.html';"  value="邮箱绑定" /></div>
+        </td>
+        </tr>
+      <tr>
+        <td align="center" class="zi1"><img src="images/ico-4.jpg" width="120" height="26" /></td>
+        <td width="77%">
+        <div class="btin_1" ><input type="button" onclick="window.location.href='member_info.html';"   value="资料完善" /></div>
+        <div class="btin_1" ><input type="button" onclick="window.location.href='bind_idcard.html';"   value="防沉迷设置" /></div>
+          <p>&nbsp;</p></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="game_bom cl"></div>
+</div>
+<div class="sharedspacer12"></div>
+<? } ?>
+
+<? if($oval=='5'){ ?>
+<div >
+<div class="game_title"><span class="mark2">常 见 问 题</span ></div>
+<div class="game_mid">
+<div id="question" class="BgColor LinePart">
+            <ul>
+            <?
+             if($rs_news_acount){
+             foreach($rs_news_acount as $k=> $v){?>
+            <li class="questionLi"><a href="news_info_<?=$v['info_id']?>.html" target="_blank"><?=$v['subtitle']?></a></li>    
+            <?
+             }
+            }?>     
+            </ul>
+          </div>
+
+
+<div id="question" class="BgColor LinePart">
+            <ul>
+            <?
+             if($rs_news_pay){
+             foreach($rs_news_pay as $k=> $v){?>
+            <li class="questionLi"><a href="news_info_<?=$v['info_id']?>.html" target="_blank"><?=$v['subtitle']?></a></li>    
+            <?
+             }
+            }?>
+            
+            </ul>
+          </div>
+</div>
+
+<div class="game_bom cl"></div>
+</div>
+<div class="sharedspacer12"></div>
+<? } ?>
+
+
+<? } ?>
+</div>
+</div>
+
+
+</div>
+
+<? include('footer.html'); ?>

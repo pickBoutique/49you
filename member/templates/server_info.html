@@ -1,0 +1,22 @@
+<div class="fwq_tj">
+<h3>最新开服</h3><div class="new_ser_mid" >
+<?    $server_info_count = '7';
+	  if(!empty($list_count)){
+      	$server_info_count=$list_count;
+      }
+      $server_start = strtotime("+2 day",strtotime(date('Y-m-d')));
+      $new_servers = $db->getAll("select * from ".DB_PREFIX."server inner join ".DB_PREFIX."game on server_gid = game_id where game_status='1'  and server_isnew='1' and server_start < $server_start order by server_start desc limit 0,$server_info_count ");?>
+
+<div class="new_serlist" ><?      for($i=0;$i<sizeof($new_servers);$i++){
+        $row = $new_servers[$i];
+      ?><div class="new_serlist_list"  >
+<div class="serlist_mc cur"><a href="<?=$row["game_web"]?>" target="_blank"><?=$row['game_name']?></a></div>
+<a href="<?=YOU_ROOT."/game_add.html?gid={$row[game_id]}&sid={$row[server_id]}"?>" target="_blank">
+<div class="serlist_kf cur"><?=$row['server_name']?></div>
+<div class="serlist_rq cur"><?=date( 'm-d',$row['server_start'])?></div></a>
+</div>
+<?}?>
+</div>
+
+</div><div class="new_bom"></div>
+</div>

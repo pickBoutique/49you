@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>游戏服务器列表_56uu龙将官方网站</title>
+<meta name="keywords" content="龙将服务器列表">
+<meta name="description" content="56uu龙将服务器列表"><link href="/style/style.css" rel="stylesheet" type="text/css" />
+<link href="/top/top.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/login.js"></script>
+<script type="text/javascript" src="/js/108j.js"></script>
+</head>
+<body>
+<!--------------------------------------------------------------------top bar--------------------------------------------------------------------------->
+<?php include('top.html'); ?>
+	
+	<!--content-->
+	<div id="content">
+	  <div id="main">
+	    <div id="main2">
+		  
+		   <div id="i-left">
+<?php include('leftn.html'); ?>
+           </div>
+		   
+		   <!--right -->
+		   <div id="n-right">
+		      <div id="n-right-title"><strong>服务器列表</strong><span>你现在的位置：<a href="/">服务器列表</a></span></div>
+			  <div id="n-right-content">
+              				 <!--fwqlist -->
+                          <?php
+                            $strUrl='http://www.56uu.com/?m=getgame&action=getgame&act=long';
+                            $ch = curl_init();
+                            $timeout = 60; 	
+                            curl_setopt($ch, CURLOPT_URL, $strUrl);
+                            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+                            $result = curl_exec($ch);
+                            curl_close($ch);
+                            $decodedArray = json_decode($result, true); 
+                    
+                            foreach($decodedArray as $k=>$v){
+                                $arrs[]=$v;
+                              }
+                        ?>
+
+			    <div id="ser-list">
+				  
+				  <div class="ser-list1">
+				    <strong>【推荐服务器】</strong>
+					<ul>
+                        <li class="ser-list-2"><a href="<?=YOU_ROOT?>/?m=game&game_id=12&district_id=<?PHP echo $arrs[0]['district_id']?>"><?PHP echo $arrs[0]['title']?></a><span><?PHP echo $arrs[0]['svr_date'];?></span><span><?PHP echo $arrs[0]['svr_time'];?></span><span>开启</span></li>
+					</ul>
+				  </div>
+				  
+				  <div class="ser-list1">
+				    <strong>【所有服务器】</strong>
+					<ul>
+                        <?PHP foreach((array)$decodedArray as $key=>$arr){?> 
+                            <li class="ser-list-2"><span style="color:#f60">火爆</span><a href="<?=YOU_ROOT?>/?m=game&game_id=12&district_id=<?PHP echo $arr['district_id']?>"><?PHP echo $arr['title']?></a></li>
+                        <?PHP };?>
+					</ul>
+				  </div>
+				  <div class="clear"></div>
+				</div>
+                </div>
+			  <div id="n-right-footer"><img src="/images/neiye-footer.gif" /></div>
+			  <div class="clear"></div>
+		   </div>
+		   <div class="clear"></div>
+		</div>
+	  </div>
+	  <div id="main-f"></div>
+	</div>
+	
+	<div class="clear"></div>
+  </div> 
+  <div class="clear"></div>
+</div>
+
+<!------------------------------------------------------------------------- footer -------------------------------------------------------------------->
+<?php include('footer.html'); ?>
+</body>
+</html>

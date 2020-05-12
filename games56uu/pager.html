@@ -1,0 +1,35 @@
+<?
+$pagedata= $_GET; 
+if($mypager['totalpage']>0){
+$pg=$pagedata["page"];
+$pagedata["page"]="1";
+?>
+<a href="<?="?".http_build_query($pagedata);?>">首页</a>
+<?
+$pagedata["page"]=$pg;
+}else{?>
+首页
+<?}?>
+<?if($mypager['page']>1){?>
+<a class=Black href="<?$pagedata['page']=$mypager['page']-1;echo "?".http_build_query($pagedata);?>">上一页</a>
+<?}else{?>
+上一页
+<?}?>
+<?for($i=1;$i<=10;$i++){
+	$pglist=intval($mypager['page']/10)*10;
+    if($pglist+$i>$mypager['totalpage']) break;
+	$pagedata['page']=$pglist+$i;
+?> 
+    <a class=Black href="<?="?".http_build_query($pagedata);?>"><?=$pglist+$i?></a>
+<?}?>
+<?if($mypager['page']<$mypager['totalpage']){?>
+<a class=Black href="<?$pagedata['page']=$mypager['page']+1;echo "?".http_build_query($pagedata);?>">下一页</a>
+<?}else{?>
+下一页
+<?}?>
+<?if($mypager['totalpage']>0){?>
+<a class=Black href="<?$pagedata[page]= $mypager['totalpage'];echo "?".http_build_query($pagedata);?>">尾页</a>
+<?="[".$mypager['page']."/".$mypager['totalpage']."]"?>
+<?}else{?>
+尾页
+<?}?>

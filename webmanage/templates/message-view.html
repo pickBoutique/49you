@@ -1,0 +1,39 @@
+<?php include_once("header.html");?>
+<div class="main">
+<form id="form1" name="form1" method="post" action="" onsubmit="return checkForm(this);">
+<table width="100%" border="1" cellpadding="2" cellspacing="1"  class="table_add">
+<!--	<tr>
+		<td><strong>问题编号</strong></td>
+		<td><?=$ask_id?></td>
+	</tr>-->
+    	<tr>
+		<td align="center">序号：</td>
+		<td><?=$message_id?></td>
+	</tr>
+	<tr>
+		<td align="center">用户邮箱：</td>
+		<td><?=$email?></td>
+	</tr>
+
+	<tr>
+		<td align="center">消息主题：</td>
+		<td><?=$title?></td>
+	</tr>
+	<tr>
+		<td align="center">消息内容：</td>
+		<td><?=$content?></td>
+	</tr>
+	<tr>
+		<td align="center">发送时间：</td>
+		<td><?php echo date("Y-m-d H:i:s",$add_time);?></td>
+	</tr>
+	<!--<tr>
+	<td colspan="2" height="50" align="center">
+	<input name="" type="button" onclick="javascript:history.go(-1)" value="返回" class="btn" />&nbsp;
+	</td>
+	</tr>-->
+    
+</table>
+</form>
+</div>
+<?php include_once("footer.html");?>

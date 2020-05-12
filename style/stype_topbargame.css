@@ -1,0 +1,57 @@
+@charset "utf-8";
+/* CSS Document */
+body{margin:0;}
+img{border:none;}
+
+#topbg{ position:relative; top:0; left:0;width:100%;background:url(img_topbargame/top_bg.gif) repeat-x 0 0; z-index:9990;text-align: center;}
+.top{width:980px; margin:0 auto;height:37px;background:url(img_topbargame/top_bg.gif) repeat-x center bottom; line-height:20px;} 
+.top a:link,.kl_top a:visited{color:#444;text-decoration: none;}
+.top a:hover{color:#06C;text-decoration: underline;}
+
+.top_left{float:left;width:630px;background:url(img_topbargame/top_3.gif) no-repeat right top;text-align:left; margin-top:3px;}
+#logo{background:url(img_topbargame/top_logo.gif) no-repeat 0 0; float:left;width:130px; padding-right:6px;height:30px;overflow:hidden;}
+#logo a{width:128px;height:28px; display:block;}
+
+.top_list{
+	float:left;
+	width:230px;
+	padding:7px 8px 0 0px;
+	height:23px;
+	font-family:"微软雅黑";
+	font-size:12px;
+	color:#444;
+	background:url(img_topbargame/top_3.gif) no-repeat right top;
+	width: 210px
+}
+.top_list a{text-align:center; line-height:20px; margin:0px 6px;}
+
+.gundong{float:left;  padding:0px 0px 0px 18px; height:20px;background:url(img_topbargame/icon_1.gif) no-repeat 0 bottom; margin-top:8px;line-height:18px; overflow:hidden; color:#9C9C9C; font-size:12px;}
+.gundong a:link,.gundong a:visited{color:#9C9C9C;}
+.gundong a:hover{color:#eae593;}
+
+.top_right{
+	float:right;
+	width:326px;
+	background:url(img_topbargame/top_3.gif) no-repeat right bottom;
+	margin-top:3px;
+	height:30px;
+	overflow:hidden;
+	text-align:left;
+	font-size:12px;
+}
+.top_right p{ float:left;  margin:7px 0 0 0; }
+
+.nav0{ background:url(img_topbargame/icon_2.gif) no-repeat left  }
+.nav1{ background:url(img_topbargame/icon_3.gif) no-repeat left }
+.nav2{ background:url(img_topbargame/icon_4.gif) no-repeat left}
+.nav3{ background:url(img_topbargame/icon_5.gif) no-repeat left }
+.nav4{ background:url(img_topbargame/icon_6.gif) no-repeat left }
+.nav0,.nav1,.nav2,.nav3,.nav4{padding: 0px 6px 0px 16px;}
+
+
+.kefu{
+	width:80px;
+	margin-right:0px;
+	margin-top:8px;
+	float:left;
+}

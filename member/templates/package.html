@@ -1,0 +1,40 @@
+<?php $title='礼包领取_49you网页游戏平台'; ?>
+<?php $nav='package'; ?>
+<?php include('header.html'); ?>
+
+<div class="text cl ">
+  <div class="con clearfix">
+  <div class="libao-bj">49you旗下每款游戏，都为您准备了不同的游戏礼包，这些礼包可以帮助您快速上手游戏，提高升级速度。 以下列表显示的是最新
+发放的礼包，数量非常有限，绝对不容错过。</div>
+  <div class="libao">
+<div class="libao_title">
+            	<ul><li class="nah">请你选择游戏</li></ul></div>
+    <div class="xsk_lq">
+       <ul class="clearfix">
+          <? if(!empty($list)){ 
+               foreach($list as $k=>$v){ 
+          ?>
+           <li><a href="package_list.html?gid=<?=$v['game_id']?>"><img src="game/<?=$v['game_id']?>_258_144.jpg" style="width:258px; height:144px;"  /></a>
+                  <ul>
+                      <li class="v01">
+                          所使用游戏:<strong><?=$v['game_name']?></strong>
+                      </li>
+                      <li class="v02">
+                          <a href="<?=$v['game_web']?>" target="_blank">官方网站</a>
+                      </li>
+                  </ul>
+                  <div>
+                      <a href="package_list.html?gid=<?=$v['game_id']?>" >点击领取</a>
+                  </div>
+            </li>
+          <?   }
+             } ?>
+                             
+        </ul>
+    </div>    
+  </div>
+  </div>
+  
+</div>
+
+<? include('footer.html'); ?>

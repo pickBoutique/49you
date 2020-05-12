@@ -1,0 +1,55 @@
+<?php $title="{$titleinfo}_49you九天仙梦官方网站"; 
+$keywords="九天仙梦新闻公告";
+$description="49you九天仙梦新闻公告"?>
+<?php $nav='member'; ?>
+<?php include('header.html'); ?>
+<div class="main">
+  <div class="l">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--left_server start-->
+<? include('lefter_server.html'); ?> 
+<!--left_server end-->
+<!--left_server start-->
+<? include('lefter_dj.html'); ?> 
+<!--left_server end-->
+  </div>
+  <div class="r">
+    <div class="dh">
+      <label>资讯中心</label>
+      <div>您的位置：<a href="index.html" title="九天仙梦_49仙梦">九天仙梦</a> >> <?=$titleinfo?></div>
+    </div>
+
+    <div class="contend">
+    <?/*
+    <h3>
+		<?if($list_infocate){
+         foreach($list_infocate as $k=> $v){
+        if($v["cate_id"]==$cid){?>
+      <a href="news.html?pid=<?=$pid?>&cid=<?=$v["cate_id"]?>" class="n1"><?=$v["cate_name"]?></a>
+      		  <?}else{?>
+            <a href="news.html?pid=<?=$pid?>&cid=<?=$v["cate_id"]?>" class="n2"><?=$v["cate_name"]?></a>
+            <?}
+         }
+       }?>
+    </h3>
+    */?>
+      <ul class="list2">
+        <?if($list_news){
+        	foreach($list_news as $k=> $v){?>
+               <li><span class="news_more"><?=date( 'y-m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["title"]?></a></li>
+		<?}
+        }?>
+      </ul>
+
+<div class="page">
+<? pager_bar($pager,WEB_ROOT."/games/pager.html"); ?>
+ </div>
+    </div>
+    <div class="bg2"></div>
+    <div class="bg1">抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</div>
+  </div>
+  <div class="clear"></div>
+</div>
+<? include('footer.html'); ?>

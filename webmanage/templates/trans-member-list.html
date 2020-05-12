@@ -1,0 +1,96 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+		  { 'header':'游戏' , 'dataIndex':'trans_gid' , 'subIndex':'trans_sid', 'url':'ajax-servers.php' , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("game","game_id","game_name",'1',true)?>} },
+          { 'header':'服务器' , 'dataIndex':'trans_sid' ,  'type':'select' , 'options':{ '全部':'' } },
+          { 'header':'充值方式' , 'dataIndex':'trans_type' , 'type':'select' , 'options':{ '全部':'',<?=cfg_to_opt($cfg_pay_type)?>}  },
+          { 'header':'来源渠道' , 'dataIndex':'trans_advid'  , 'type':'select' , 'options':{ '全部':'','自然用户':'0' , <?=getTableSelect("adv","adv_id","adv_name",'1',true)?>}},
+          { 'header':'会员名' , 'dataIndex':'trans_mname' , 'type':'text' },
+          { 'header':'注册时间' , 'dataIndex':'trans_register' , 'type':'datetime'},
+		  { 'header':'到帐时间' , 'dataIndex':'trans_intime' , 'type':'datetime' , 'defaultValue':'<?=date('Y-m-d')?>'  },
+          { 'header':'金额大于等于' , 'dataIndex':'trans_money' , 'type':'text'}
+          </div>
+        </div>
+	<div class="searcher">
+    <strong>操作 :</strong>
+    <input type="button" class="action_export" value="导出" class="btn" onclick="toexport(strexport);" />
+    </div>
+    
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		var strexport="";
+		$(document).ready(function(){
+			
+			function getoperator(rs) {
+				return  "<a href='###' class='' onclick=\"toview('" + rs["member_id"] + "')\">查看</a>";
+	
+			}
+
+			var cm = new ColumnModel
+			([
+			{header: '用户名', dataIndex: 'trans_mname'},
+			{header: '用户昵称', dataIndex: 'member_nickname'},
+			{header: '用户等级', dataIndex: 'member_lvname'},
+			{header: '充值次数', dataIndex: 'recount', sortable: true},
+			{header: '充值金额', dataIndex: 'resum', sortable: true},
+			{header: '注册时间', dataIndex: 'add_time',  format:'yyyy-MM-dd HH:mm'},
+			{header: '最后充值时间', dataIndex: 'trans_intime', sortable: true, format:'yyyy-MM-dd HH:mm'},
+			{header: '最后登陆时间', dataIndex: 'last_time',  format:'yyyy-MM-dd HH:mm'},
+			{header: '未登陆天数', dataIndex: 'diffdate'},
+			{header: '注册广告', dataIndex: 'adv_name'},
+			{header: '注册素材', dataIndex: 'material_name'},	
+			{header: '操作',  width: 140, renderer: getoperator }
+			]);
+
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget',filter: '[{"name":"trans_intime","oper":">=","value":"<?=strtotime(date('Y-m-d'))?>"}]'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) {strexport=filter; grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+			
+			
+		});
+		
+		
+		function toadd(){
+			show_editor({ title:'添加',src:'trans-add.php',  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function toedit(id){
+			show_editor({ title:'编辑',src:'trans-add.php?trans_id=' + id,  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function todel(){
+			ajax_action('trans-add.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+				grid.load(); 
+			});
+		}
+		function toview(id){
+			show_editor({ title:'查看',src:'member-view.php?member_id=' + id, onclose:function(){
+				grid.load();
+			}});
+		}
+		function toexport(strexp){
+			if(strexp!='')
+				show_editor({ title:'充值会员资料导出',src:'trans-member-list.php?act=dataget&export=1&rnd='+Math.random()+'&filter=' + strexp,  onclose:function(){
+					//grid.load();
+				}});
+			else
+				alert("请先查询！");
+		}
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

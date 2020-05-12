@@ -1,0 +1,301 @@
+<?php $title='49you会员注册'; ?>
+<?php $nav='member'; ?>
+<?php include('header.html'); ?>
+
+<!--开始script-->
+<script type="text/javascript">
+	var bValid_usr=false;
+ 	var bValid_pwd=false;
+ 	var bValid_pwdc=false;
+ 	var bValid_email=false;
+ 	var bValid_cc=false;
+ 	var bValid_rn=false;
+ 	var bValid_sfz=false;
+	function isIdCardNo(num)
+	{  
+			  num = num.toUpperCase(); 
+			 //身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X。  
+			  if (!(/(^\d{15}$)|(^\d{17}([0-9]|X)$)/.test(num)))  
+			  {
+				   //alert('输入的身份证号长度不对，或者号码不符合规定！\n15位号码应全为数字，18位号码末位可以为数字或X。');
+				  return false;
+			 }
+	//校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+	//下面分别分析出生日期和校验位
+	var len, re;
+	len = num.length;
+	if (len == 15)
+	{
+	re = new RegExp(/^(\d{6})(\d{2})(\d{2})(\d{2})(\d{3})$/);
+	var arrSplit = num.match(re);
+	
+	//检查生日日期是否正确
+	var dtmBirth = new Date('19' + arrSplit[2] + '/' + arrSplit[3] + '/' + arrSplit[4]);
+	var bGoodDay;
+	bGoodDay = (dtmBirth.getYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
+	if (!bGoodDay)
+	{
+			  //alert('输入的身份证号里出生日期不对！');  
+			   return false;
+	}
+	else
+	{
+	//将15位身份证转成18位
+	//校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+			  var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+			   var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+			   var nTemp = 0, i;  
+				num = num.substr(0, 6) + '19' + num.substr(6, num.length - 6);
+			   for(i = 0; i < 17; i ++)
+			  {
+					nTemp += num.substr(i, 1) * arrInt[i];
+			   }
+			   num += arrCh[nTemp % 11];  
+				return num;  
+	}  
+	}
+	if (len == 18)
+	{
+	re = new RegExp(/^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/);
+	var arrSplit = num.match(re);
+	
+	//检查生日日期是否正确
+	var dtmBirth = new Date(arrSplit[2] + "/" + arrSplit[3] + "/" + arrSplit[4]);
+	var bGoodDay;
+	bGoodDay = (dtmBirth.getFullYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
+	if (!bGoodDay)
+	{
+	//alert(dtmBirth.getYear());
+	//alert(arrSplit[2]);
+	//alert('输入的身份证号里出生日期不对！');
+	return false;
+	}
+	else
+	{
+	//检验18位身份证的校验码是否正确。
+	//校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+	var valnum;
+	var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+	var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+	var nTemp = 0, i;
+	for(i = 0; i < 17; i ++)
+	{
+	nTemp += num.substr(i, 1) * arrInt[i];
+	}
+	valnum = arrCh[nTemp % 11];
+	if (valnum != num.substr(17, 1))
+	{
+	//alert('18位身份证的校验码不正确！应该为：' + valnum);
+	return false;
+	}
+	return num;
+	}
+	}
+	return false;
+	}
+	function ChkUserName(){
+		var bValid_usr=false;
+		var username=$("#loginname").val();
+		if(username==""||username.length<6){
+			ShowMsg("msgloginname",0,"由6-16位字母和数字组成，不区分大小写!");
+			return; 
+		}
+		if(/.*[\u4e00-\u9fa5]+.*$/.test(username)){
+			ShowMsg("msgloginname",0,"对不起，帐号不能使用中文，请重新输入!");
+			return;
+		}
+		ajax_action('reg.html',{ act:"ajchkuser",loginname:$("#loginname").val() },null,function(data){
+			var obj = eval('(' + data + ')');
+			if(obj != 1){
+				ShowMsg("msgloginname",0,"该帐号已被注册，请重新输入!");
+				return;
+			}
+		});
+		//ShowMsg("unspan",0,"由6-16位字母和数字组成，不区分大小写");
+		ShowMsg("msgloginname",1,"此帐号可以注册!");
+		bValid_usr=true;
+	}
+	function ChkPasWd(){
+		if($("#psw").val()==""||$("#psw").val().length<6){
+			ShowMsg("msgpsw1",0,"密码必须由6-20位字符组成!");
+			bValid_pwd=false;
+			return;
+		}
+		ShowMsg("msgpsw1",1,"密码正确填写!");
+		bValid_pwd=true;
+		ChkPasWd2();
+	}
+	function ChkPasWd2(){
+		if($("#psw").val()!=$("#psw2").val()){
+			ShowMsg("msgpsw2",0,"确认密码未匹配!");
+			bValid_pwdc=false;
+			return;
+		}
+		ShowMsg("msgpsw2",1,"确认码正确填写!");
+		bValid_pwdc=true;
+	}
+	function ChkEmail(){
+		bValid_email=false;
+		var mail_str=$("#email").val();
+		if(mail_str==""){
+			bValid_email=true;
+			ShowMsg("msgemail",1,"");
+		}else if(mail_str.match(/^[-_.a-z0-9A-Z]+([-_.][a-zA-Z0-9]+)*@([a-zA-Z0-9]+([-_.][a-zA-Z0-9]+))+$/i)){
+			bValid_email=true;
+			ShowMsg("msgemail",1,"邮箱格式正确!");
+		}else{
+			ShowMsg("msgemail",0,"邮箱格式不正确!");
+		}
+	}
+
+	function chkname(){
+		bValid_rn=false;
+		var rn_str=$("#truename").val();
+		if(rn_str.match(/^[\u4e00-\u9fa5]{2,4}$/g)){
+			ShowMsg("msgname",1,"可用的真实姓名!");
+			bValid_rn=true;
+			return;
+		}
+		ShowMsg("msgname",0,"请检查姓名是否是2~4汉字! (例如：王五)");
+	}
+	function chkidcard(){
+		var str_NO=$("#idcard").val();
+		bValid_sfz=false;
+		if(isIdCardNo(str_NO)){
+			ShowMsg("msgsfz",1,"身份证可用!");
+			bValid_sfz=true;
+		}else{
+			ShowMsg("msgsfz",0,"身份证号码不符合规定! (例如：320812198011111110)");
+			bValid_sfz=false;
+		}
+	}
+	function ShowMsg(IdStr,ErrNum,ErrStr){
+		var ClrArr=new Array("#f00","#33f","#339900");
+		$("#"+IdStr).css({fontWeight:"bold",fontSize:"9pt",color:ClrArr[ErrNum]});
+		$("#"+IdStr).html(ErrStr);
+	}
+	function form_submit(){
+		chkidcard();if(!bValid_sfz){return false;}
+		chkname();if(!bValid_rn){return false;}
+		ChkPasWd();if(!bValid_pwd){return false;}
+		ChkEmail();if(!bValid_email){return false;}
+		
+		if(!$("#agree_protocol")[0].checked){alert("请先接受用户服务协议!");return false;}
+		document.form1.submit();
+	}
+	function setSeccode(){
+		var img_src = '/seccode.php?rand='+Math.random();
+		document.getElementById("seccode_img").src = img_src;
+	}
+
+</script>
+<!--结束script-->
+<div class="text cl ">
+<div class="con clearfix">
+
+ <div class="ptop"><h3>注册49you通行证</h3>
+ </div>  
+   <div class="pmid"> 
+    <p><img src="images/ptop-1.jpg" width="940" height="45" /></p>
+	<form id="form1" name="form1" method="post" action="">
+    <div class="pmid_bj1">
+    
+    <div class="pmid_bj2">
+ <div class="pmid_mo">
+        <div class="pbj1">
+        <h3 >基本资料：</h3><br />
+        <div class="entryitem">
+		<div class="entrylabel">用户名：</div>
+		<div class="entryfl"><input type="text" id="loginname" name="loginname" onblur="ChkUserName();" class="entrytext" tabindex="1"  value="<?=$_REQUEST['loginname']?>" /><span class="red">* 必填</span>
+          <p><label id="msgloginname">用户名长度为6-16个字符，可以使用数字、字母、下划线</label></p>
+        </div></div>
+
+        <div class="entryitem cl">
+		<div class="entrylabel">密码：</div>
+		<div class="entryfl"><input type="password" id="psw" name="psw" onblur="ChkPasWd();" class="entrytext"  tabindex="1"  value="" /><span class="red">* 必填</span>
+		<p><label id="msgpsw1">密码长度6-20个字符，字母区分大小写</label></p>
+        </div></div>
+
+        <div class="entryitem cl">
+		<div class="entrylabel">确认密码：</div>
+		<div class="entryfl"><input type="password" id="psw2" name="psw2" onblur="ChkPasWd2();" class="entrytext" tabindex="1"  value="" /><span class="red">* 必填</span>
+<p><label id="msgpsw2">密码长度6-20个字符，字母区分大小写</label></p>
+        </div></div> 
+        
+                       
+         </div>
+<div class="sharedspacer12"></div>         
+         <div class="pbj5">
+         
+        <div class="entryitem cl" style="display:none;">
+		<div class="entrylabel">电子邮件：</div>
+		<div class="entryfl"><input type="text" id="email" name="email" onblur="ChkEmail();"  class="entrytext" tabindex="1"  value="<?=$_REQUEST['email']?>" />
+        <p><label id="msgemail"></label></p>
+		</div></div> 
+        
+        <? if(empty($mid)){ ?>
+        <div class="entryitem cl" >
+		<div class="entrylabel">推荐人账号：</div>
+		<div class="entryfl"><input type="text" id="reomname" name="reomname"  class="entrytext" tabindex="1"  value="<?=$_REQUEST['reomname']?>" />
+		选填</div></div>
+        <? }else{ ?>
+        <div class="entryitem cl">
+		<div class="entrylabel">推荐人账号：</div>
+		<div class="entryfl"><?=$member_info['member_name']?>
+		</div></div>
+        <? } ?>
+     <!--<div class="entryitem cl">
+		<div class="entrylabel">验证码：</div>
+		<div class="entryfl"><input type="text" id="seccode" name="seccode"  class="entrytext entrytext-1" tabindex="1"  value="" /> 
+		  <img src="/seccode.php?rand=<?=time()?>" border="0" align="top" style="height:26px" id="seccode_img" /><a href="###" onClick="setSeccode()" class="flk13">&nbsp;看不清？换一张</a>
+
+        </div>
+     </div>-->
+        <h3 >网络游戏实名注册和防沉迷验证：</h3><br />
+     <div class="entryitem cl">&nbsp;&nbsp;&nbsp;&nbsp;根据2010年8月1日实施的《网络游戏管理暂行办法》，网络游戏用户需使用有效身份证件进行实名注册。为保证流畅游戏体验，享受健康游戏生活，请广大49you游戏平台的玩家尽快实名注册。
+        </div>
+        <div class="entryitem">
+		<div class="entrylabel">真实姓名：</div>
+		<div class="entryfl"><input name="truename" type="text" class="entrytext" id="truename" tabindex="1" onblur="chkname();"  value="<?=$_REQUEST['truename']?>" size="20" /><span class="red">* 必填</span>
+          <p><label id="msgname">例如：王五</label></p>
+        </div></div>
+
+        <div class="entryitem cl">
+		<div class="entrylabel">
+		  <p>身份证：</p>
+		</div>
+		<div class="entryfl"><input name="idcard" type="text"  class="entrytext" id="idcard" tabindex="1" onblur="chkidcard();"  value="<?=$_REQUEST['idcard']?>" size="20" /><span class="red">* 必填</span>
+		 
+		  <p><label id="msgsfz">例如：320812198011111110</label></p>
+        </div></div>
+         </div>
+
+
+    <div class="btn" ><a href="###" onclick="javascript:form_submit();" class="btn-link btn-n" >完成注册</a></div> 
+    <div class="r_4 cl"><p>
+  <input name="agree_protocol" type="checkbox" id="agree_protocol" checked="checked"> 
+	<input type="hidden" name="act" value="reg" />
+    <input type="hidden" name="returl" value="<?=$returl?>" />
+  我接受《<a href="news_info_219.html" target="_blank">49you平台通行证用户服务协议和相关的条款和条件</a>》
+</p>
+    
+     <div class="cl"></div>    
+ </div>
+ </div>
+     
+        
+    </div>
+    </div>
+    </form>
+     <p><img src="images/ptop-3.jpg" width="940" height="45" /></p>
+   </div> 
+  
+      <div class="pbom"> </div> 
+</div>
+
+
+</div>
+
+<div class="sharedspacer12"></div>
+
+<? include('footer.html'); ?>

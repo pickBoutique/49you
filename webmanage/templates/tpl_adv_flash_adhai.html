@@ -1,0 +1,268 @@
+<? 
+$left=!empty($mats[0]['material_left']) ? $mats[0]['material_left'] : '160' ;
+$top=!empty($mats[0]['material_top']) ? $mats[0]['material_top'] : '240' ;
+$swf_path = "/advs/material/{$row[adv_metrid]}";
+$flashValue = "act=".urlencode(YOU_ROOT."/reg_adv.html")."&mtrpath=".urlencode("{$swf_path}/"); ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/2399/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?=$row['adv_title']?></title>
+<style>
+*{ margin:0px; padding:0px;}
+body{ background:#000;}
+#warp{ width:1000px; height:600px; margin:0 auto;}
+</style>
+<style type="text/css">
+    body {
+        background-color: #000;
+        font-size: 12px;
+    }
+
+    td img {
+        display: block;
+    }
+
+    input {
+        width: 150px;
+        height: 16px;
+    }
+
+    #main {
+        width: 1024px;
+        margin: 0 auto;
+    }
+
+    #show {
+        position: relative;
+        top: <?=$top?>px;
+        left: <?=$left?>px;
+        width: 480px;
+        height: 400px;
+    }
+
+    #submitbtn {
+        margin-left: 100px;
+        width: 160px;
+        height: 50px;
+    }
+
+    .normal {
+        padding-left: 15px;
+        color: black;
+    }
+
+    .error {
+        padding-left: 15px;
+        color: red;
+    }
+</style>
+<script type="text/javascript">
+
+var _title = "<?=$row['adv_title']?>";
+var subtype = getParam("subtype");
+
+
+var step = 0;
+var space = '';
+for (var i = 0; i <= _title.length; i++)space += '　';
+
+function $(id) {
+    return document.getElementById(id);
+}
+
+function getParam(param) {
+    var uri = window.location.search;
+    var re = new RegExp("" + param + "=([^&?]*)", "ig");
+    return ((uri.match(re)) ? (decodeURIComponent(uri.match(re)[0].substr(param.length + 1))) : '');
+}
+
+function flash_title() {
+    step++;
+    if (step == 3) {
+        step = 1
+    }
+    if (step == 1) {
+        document.title = space
+    }
+    if (step == 2) {
+        document.title = _title
+    }
+    setTimeout("flash_title()", 500);
+}
+flash_title();
+
+function loadTrack() {
+    window.moveTo(0, 0);
+    window.resizeTo(screen.width, screen.height);
+}
+
+function openDiv() {
+    $('show').style.display = "block";
+}
+
+var CallBackHandler = {
+    tid: 0,
+    callbacks: {},
+    getTid: function() {
+        return ++this.tid;
+    },
+    registerCallBack: function(tid, func) {
+        this.callbacks[tid] = func;
+    },
+    handleCallBack: function(tid, data) {
+        var func = this.callbacks[tid];
+        if (func && (typeof func == 'function')) func(data);
+        var script = document.getElementById('jsonp_invoker_' + tid);
+        if (script) try {
+            script.parentNode.removeChild(script);
+        } catch(e) {
+        }
+    }
+};
+
+var Jsonp = function(url, callback) {
+    var tid = CallBackHandler.getTid();
+    var script = document.createElement('script');
+    with (script) {
+        id = 'jsonp_invoker_' + tid;
+        type = 'text/javascript';
+        src = url.indexOf('?') > 0 ? (url + '&tid=' + tid) : (url + '?tid=' + tid);
+    }
+    if (callback) CallBackHandler.registerCallBack(tid, callback);
+    var head = document.getElementsByTagName('head');
+    if (head[0]) {
+        head[0].appendChild(script);
+    } else {
+        document.body.appendChild(script);
+    }
+};
+
+function successInfo(id, message) {
+    $(id).className = 'normal';
+    $(id).innerHTML = message;
+    return true;
+}
+
+function errorInfo(id, message) {
+    $(id).className = 'error';
+    $(id).innerHTML = '* ' + message;
+    return false;
+}
+
+function checkLoginAccount(value) {
+    var result = /^[A-Za-z0-9_]{6,15}$/.test(value) ? successInfo('u_info', '<font style="color:#008000;">帐号填写正确！</font>') : errorInfo('u_info', '6-15个字母或数字组成');
+	if(result){
+		var url = '<?=YOU_ROOT."/reg_adv.html"?>' + "?" + '&act=reg_check' + "&username=" + encodeURIComponent(value);
+		Jsonp(url, function(data) {
+			if (data.success == 1) {
+				successInfo('u_info', '<font style="color:#008000;">帐号填写正确！</font>');
+			} else {
+				errorInfo('u_info', data.message);
+			}
+		});
+	}
+	return result;
+	
+}
+
+function checkPassword(value) {
+    return /^[\x01-\xfe]{6,20}$/.test(value) ? successInfo('w_info', '<font style="color:#008000;">密码填写正确！</font>') : errorInfo('w_info', '长度6-20个字符');
+}
+
+function checkPassword1(value) {
+    return (/^[\x01-\xfe]{6,20}$/.test(value)) ? (($('password').value == value) ? successInfo('p_info', '<font style="color:#008000;">两次填写的密码一致！</font>') : errorInfo('p_info', '两次填写的密码不一致！')) : errorInfo('p_info', '长度6-20个字符');
+}
+
+
+function checkSubmit(){
+	if (event.keyCode == 13) {
+		checkForm($("register_form"));
+	}
+}
+
+function checkForm(form) {
+
+    var loginAccount = form.login_account.value;
+    var password = form.password.value;
+
+    if (!checkLoginAccount(loginAccount)) return false;
+    if (!checkPassword(password)) return false;
+    if (!checkPassword1(form.password1.value)) return false;
+
+    $('submitbtn').disabled = true;
+    $('u_info').innerHTML = '请稍候...';
+
+	var url = '<?=YOU_ROOT."/reg_adv.html"?>' + "?" + '&act=reg_check' + "&username=" + encodeURIComponent(loginAccount);
+    
+	var regurl = '<?=YOU_ROOT."/reg_adv.html"?>' + "?" + '<?="&act=reg&gid={$row[adv_gid]}&sid={$row[adv_sid]}&at={$row[adv_type]}&ad={$row[adv_id]}&md={$row[adv_metrid]}"?>' + '&subtype=' + subtype +        	            "&username=" + encodeURIComponent(loginAccount) +  "&password=" + encodeURIComponent(password);
+    Jsonp(url, function(data) {
+        if (data.success == 1) {
+            window.location = regurl;
+        } else {
+            $('submitbtn').disabled = false;
+            $('u_info').className = 'error';
+            $('u_info').innerHTML = data.message;
+        }
+    });
+
+    return false;
+}
+</script>
+</head>
+<body onload="loadTrack();">
+
+<div id="warp">
+	
+	<div class="index-swf" style="position:absolute;" id="divswf">
+    <script language="javascript">
+		var params = '&sendparam=' + escape('<?="&act=reg&gid={$row[adv_gid]}&sid={$row[adv_sid]}&at={$row[adv_type]}&ad={$row[adv_id]}&md={$row[adv_metrid]}"?>' + '&subtype=' + subtype);
+		
+		var html = '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="1000" height="600" id="flash_contant" name="flash_contant">  <param name="movie" value="<?="{$swf_path}/index.swf"?>" /><param name="quality" value="high" /> <param name="wmode" value="transparent" /> <param name="wmode" value="opaque" />        <param name="menu" value="false" />       <param name="AllowScriptAccess" value="always" />        <param name="FlashVars" value="<?php echo $flashValue;?>' + params + '" />       <embed src="<?="{$swf_path}/index.swf"?>?<?php echo $flashValue;?>' + params + '" quality="high". pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="1000" height="600" wmode="transparent" name="flash_contant"></embed>      </object>';
+	  	document.write(html);
+	</script>
+  
+  </div>
+
+	<div id="show" style="display:none;">
+        <form id="register_form" style="margin:0" action="#" method="post" onsubmit="return checkForm(this);">
+            <table width="480" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="100" height="40" align="right"><label for="login_account">帐号：</label></td>
+                    <td width="149">
+                        <input type="text" class="text" id="login_account" name="login_account"
+                               onblur="checkLoginAccount(this.value);"/>
+                    </td>
+                    <td width="231" class="normal" id="u_info">4-15个字符,由字母或数字组成</td>
+                </tr>
+                <tr>
+                    <td height="40" align="right"><label for="password">密码：</label></td>
+                    <td><input id="password" type="password" name="password" class="text"
+                               onblur="checkPassword(this.value);"/></td>
+                    <td class="normal" id="w_info">长度6-20个字符</td>
+                </tr>
+                <tr>
+                    <td height="40" align="right"><label for="password1">重复：</label></td>
+                    <td><input id="password1" type="password" name="password1" class="text"
+                               onblur="checkPassword1(this.value);" onkeypress="checkSubmit();"/></td>
+                    <td class="normal" id="p_info">两次输入的密码请保持一致</td>
+                </tr>
+                <tr>
+                    <td height="10">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td height="60" colspan="3" align="left" class="btn">
+                        <input type="image" name="SubmitBtn" src="<?=$swf_path?>/btn.gif" id="submitbtn"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<script src="http://pic.adhai.com/js/track/49you363.js"></script>
+</body>
+</html>
+

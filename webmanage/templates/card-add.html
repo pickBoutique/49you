@@ -1,0 +1,49 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action=""  enctype="multipart/form-data">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>卡类型：</th>
+				<td>
+					<select name="card_type" id="card_type">
+						<?php
+							if($game_group_arr){
+								foreach($game_group_arr as $row){
+									$strSelected="";
+									if($row['cardtype_id'] == $rs['card_type']){
+										$strSelected="selected";
+									}
+						?>
+						<option value="<?=$row['cardtype_id']?>" <?=$strSelected?> ><?=$row['cardtype_name']?></option>
+						<?php
+								}
+							}
+						?>
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>上传文件：</th>
+				<td>
+					<div class="upload_input">
+						
+						<input type="text" name="cardtxt" id="cardtxt" class="input_w200" value="" />&nbsp;
+						<input type="button" class="btn" value="上传" onclick="popupWindow('upload-img.php?upload_input=cardtxt',460,140);" />
+					</div>
+				</td>
+			</tr>
+			
+            
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

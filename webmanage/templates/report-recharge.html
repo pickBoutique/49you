@@ -1,0 +1,40 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+		  { 'header':'游戏' , 'dataIndex':'trans_gid' , 'subIndex':'trans_sid', 'url':'ajax-servers.php' , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("game","game_id","game_name",'1',true)?>} },
+          { 'header':'服务器' , 'dataIndex':'trans_sid' ,  'type':'select' , 'options':{ '全部':'' } },
+		  { 'header':'充值时间' , 'dataIndex':'trans_intime' , 'type':'datetime', 'defaultValue':'<?=date("Y-m-d")?>' }
+          </div>
+        </div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			var cm = new ColumnModel
+			([
+			{header: '充值额度', dataIndex: 'edtitle', width: 200 },
+			{header: '充值次数', dataIndex: 'recount',   width: 200 },
+			{header: '充值人数', dataIndex: 'members',  width: 200 },
+			{header: '充值总额', dataIndex: 'resum',  width: 200 }
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget',filter:	'[{"name":"trans_intime","oper":">=","value":"<?=strtotime(date('Y-m-d'))?>"}]'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+			
+			
+		});
+	
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

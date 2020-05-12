@@ -1,0 +1,72 @@
+<?php $title='新手卡领取_49you盛世三国官方网站'; 
+$keywords="盛世三国新手卡";
+$description="49you盛世三国新手卡"?>
+<?php include('header.html'); ?>
+<style>.fontred{color:red;font-weight:bold}</style>
+<script language="javascript">
+function getcard(){
+	if($('#secode').val()!="49三国"){alert("请在\"第一步\"输入\"49三国\"");$('#secode').val("");return;}
+	if($('#country').val()==0){alert("请选择服务器！");return;}
+	window.open('<?=YOU_ROOT?>/get_package.html?ct='+$('#country').val());
+}
+</script>
+<div id="main">
+    <div id="content">
+      <div id="content_bg">
+        <div class="content_title">
+          <div class="content_left">礼品卡领取</div>
+        </div>
+        <div class="content_content">
+          <div class="type_title">申请49you《盛世三国》新手卡</div>
+          <div class="type_from"></div>
+          <div class="type_main">
+          
+<div class="news_so" ><p><strong>第一步：</strong>输入游戏名称</p>
+<input name="input" type="text" id="secode"/>  答案：<font color="#ff3300">49三国</font></div>
+<div class="news_so" ><p><strong>第二步：</strong>选择服务器</p>
+<select name="coid" id="country">
+<option value="0" selected="selected">请选择服务器</option>
+<? if(!empty($cardlist)){ 
+foreach($cardlist as $k=>$v){?>
+<option value="<?=$v["cardtype_id"]?>"><?=$v["cardtype_name"]?></option>
+<?}
+}?>
+</select>
+
+<input class="inp3" type="button" name="button" value="点击领取" onClick="getcard()" />
+</div>
+            <br />
+            <div id="ShowCard"></div>
+            <br />
+            <p><strong>具体奖励内容如下：&nbsp;</strong> <br />
+              绑银800两  初级任务令（白）5个 初级奇异珠5个   五禽系谱5个  虎符5个  生命之水1个 策略之源1个  初级星石5个 丝绸包1个</p>
+            <p>&nbsp;</p>
+            <p>新手卡领取流程：中立区 隐龙村&mdash;点击NPC&ldquo;礼官&rdquo;领取<br />
+              &nbsp;</p>
+            <p><img alt="" src="images/110715140708969146zvkegd0u9uim.jpg" /></p>
+            <p>&nbsp;</p>
+            <p>【注意】<br>
+              1、每个激活码只能使用一次，不能重复使用。<br>
+              2、该活动的所有解释权归49you网页游戏平台。</FONT></p>
+            <p align="center"><a href='#' onclick='history.back();'>返回</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="content_btm"></div>
+    </div>
+<div class="left">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--left_server start-->
+<? include('lefter_server.html'); ?> 
+<!--left_server end--> 
+<!--lefter_kf start-->
+<? include('lefter_kf.html'); ?> 
+<!--lefter_kf end--> 
+<!--lefter_mt start-->
+<? include('lefter_mt.html'); ?> 
+<!--lefter_mt end--> 
+    </div>
+ </div>
+<?php include('footer.html'); ?>

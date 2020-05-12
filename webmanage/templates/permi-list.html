@@ -1,0 +1,91 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'模块编号' , 'dataIndex':'permi_code' , 'type':'textbox' },
+          { 'header':'模块名称' , 'dataIndex':'permi_name' , 'type':'textbox' },
+          { 'header':'权限操作' , 'dataIndex':'permi_action' , 'type':'textbox' },
+          { 'header':'添加时间' , 'dataIndex':'permi_add' , 'type':'datetime' }</div>
+        </div>
+        
+     
+		<div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="button" value="删除" class="btn action_del" onclick="todel();" />
+			<input type="button" value="添加" class="btn action_add" onclick="toadd();" />
+		</div>
+        
+		<div class="searcher" id="permimag"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			
+			function getoperator(rs) {
+				return "<a href='###' class='action_edit' onclick=\"toedit('" + rs["permi_id"] + "')\">编辑</a>";
+	
+			}
+	
+			var actions = <?=$json->encode($actions)?>;
+			function getactions(rs){
+				var arr_ac = rs['permi_action'].split('\r\n');
+				var html = '';
+				
+				for(var k in arr_ac){
+
+					for(var i in actions){
+						if(arr_ac[k] == actions[i].permiaction_code){
+							html += '\r\n' + actions[i].permiaction_name;
+						}
+					}
+				}
+				return html;
+			}
+			
+			var cm = new ColumnModel
+			([
+			new CheckboxModel({dataIndex: 'permi_id'}),
+			{header: '模块id', dataIndex: 'permi_id', sortable: true, width: 70 },
+			{header: '模块编号', dataIndex: 'permi_code', sortable: true, width: 100 },
+			{header: '模块名称', dataIndex: 'permi_name',   width: 100 },
+			{header: '权限操作', dataIndex: 'permi_action', renderer: getactions },
+			{header: '添加日期', dataIndex: 'permi_add', sortable: true, format:'yyyy-MM-dd', width: 100 },
+			{header: '操作',  width: 40, renderer: getoperator }
+			]);
+	
+			grid = new GridView({ id: 'permimag', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+			
+			
+		});
+		
+		
+		function toadd(){
+			show_editor({ title:'添加',src:'permi-add.php',  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function toedit(id){
+			show_editor({ title:'编辑',src:'permi-add.php?permi_id=' + id,  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function todel(){
+			ajax_action('permi-add.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+				grid.load(); 
+			});
+		}
+		
+		</script>
+	</form>
+</div>
+<?php include_once("footer.html");?>

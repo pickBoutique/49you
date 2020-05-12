@@ -1,0 +1,51 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>广告：</th>
+				<td>
+					<select name="advcost_advid" id="advcost_advid">
+						<option value="">请选择</option>
+						<?php
+							if($advtype_group_arr){
+								foreach($advtype_group_arr as $row){
+									$strSelected="";
+									if($row['adv_id'] == $rs['advcost_advid']){
+										$strSelected="selected";
+									}
+						?>
+						<option value="<?=$row['adv_id']?>" <?=$strSelected?> ><?=$row['adv_name']?></option>
+						<?php
+								}
+							}
+						?>
+					</select>
+				</td>
+			</tr>
+            
+			<tr>
+				<th>日期：</th>
+				<td>
+					<input type="text" name="advcost_time" id="advcost_time" value="<?= empty($rs['advcost_time']) ? date('Y-m-d',time()) : date('Y-m-d',$rs['advcost_time']) ?>" class="input_w200"  />
+				</td>
+			</tr>
+            
+			<tr>
+				<th>成本：</th>
+				<td>
+					<input type="text" name="advcost_cost" id="advcost_cost" value="<?=$rs['advcost_cost']?>" class="input_w200"  />
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<?php include_once("footer.html");?>

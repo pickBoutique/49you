@@ -1,0 +1,76 @@
+<?php $title="{$row_news[title]}_{$row_news[cate_name]}_49you逍遥剑官方网站"; 
+
+if(empty($row_news["pic"])){
+    $keywords=$row_news["source"];
+    $description=$row_news["summary"];
+}
+?>
+<?php include('header.html'); ?>
+
+<div class="main">
+<div class="l">
+  <!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--left_server start-->
+<? include('lefter_server.html'); ?> 
+<!--left_server end-->  
+<!--left_info start-->
+<? include('lefter_info.html'); ?> 
+<!--left_info end-->   
+<div class="sharedspacer"></div> 
+<!--lefter_mt start-->
+<? include('lefter_mt.html'); ?> 
+<!--lefter_mt end-->   
+ </div>
+ 
+<div class="r">
+      <div class="dh">
+      <div class="dhh3">资讯中心</div> 
+      <div class="dhdiv">您的位置：<a href="index.html">逍遥剑</a> >>
+    <strong>
+<?if($row_news['reurl']!=''){?>
+<a href='<?=$row_news['reurl']?>'><?=$row_news['cate_name']?></a>
+<?}else{?>
+<?=$row_news['cate_name']?>
+<?}?>
+</strong></div>
+    </div>
+<div class="sharedspacer"></div>
+<div class="contend">
+	<div class="tih1">
+   <h1><?=$row_news['title']?></h1>
+   <div align="center">时间 ：<?= date('Y-m-d H:i:s',$row_news['add_time'])?></div>
+   </div>
+   <div class="txt">
+   <?=$row_news['content']?><br/>
+    <!--info_tg start-->
+    <?if(!PUBLIC_INFOTAG || in_array($game_id,$game_infotag)){?>
+    <? include('info_tg.html'); ?> 
+    <?}else{
+        require(WEB_ROOT.'/games/info_tg.html');
+    }?>
+    <!--info_tg end-->
+
+      </div>
+    <div class="page_inf"> 
+<ul>  
+<?if($row_move){
+	foreach($row_move as $k=>$v){
+    	if($v["ty"]==1){?>
+<li><a href="<?=get_newslink($v["info_id"])?>">上一篇：<?=$v["subtitle"]?></a></li>
+	<?}else if($v["ty"]==2){?>
+<li><a href="<?=get_newslink($v["info_id"])?>">下一篇：<?=$v["subtitle"]?></a></li>
+<?		}
+	}
+}?>
+</ul>
+</div>       
+      
+	</div>
+  <div class="mandi">	</div> 
+</div> 
+
+</div>
+</div>
+<? include('footer.html'); ?> 

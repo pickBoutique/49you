@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?=$title?></title>
+<?
+if(empty($keywords))$keywords=$config['keyword'];
+if(empty($description))$description=$config['description'];
+?>
+<?if($keywords!="null"){?>
+<meta name="keywords" content="<?=$keywords?>">
+<?}?>
+<?if($description!="null"){?>
+<meta name="description" content="<?=$description?>">
+<?}?>
+<link href="style/sty.css" type="text/css" rel="stylesheet" />
+<link href="style/list.css" type="text/css" rel="stylesheet" />
+<link href="style/pay.css" type="text/css" rel="stylesheet" />
+<link href="style/login.css" type="text/css" rel="stylesheet" />
+<script language="javascript" src="js/jquery.js"></script>
+<!--<script language="javascript" src="js/TroJs.js"></script>-->
+<script language="javascript" src="js/basic.js"></script>
+
+</head>
+
+<body>
+
+<?php include('top_bar.html'); ?>
+
+<div class="top_1">
+<? /*<div class="logo"><a href="/"><img height="86" width="172" src="images/logo.jpg" /></a></div>*/ ?>
+
+<div class="logo"><object  style="position:absolute;z-index:0;" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="172" height="86">
+  <param name="allowNetworking" value="internal" />
+  <param name="movie" value="<?=$config_index['header_logo_flash']?>" />
+  <param name="wmode" value="transparent" />
+  <param name="quality" value="high" />
+  <embed  style="position:absolute;z-index:0;"  src="<?=$config_index['header_logo_flash']?>" quality="high" wmode="transparent" allowNetworking="internal" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="172" height="86" ></embed>
+</object>
+<div style="position: relative;z-index:9999;left:0pt;top:0pt;width:172px;height:86px;">
+<a href="<?=$config_index['header_logo_link']?>" target="_blank">
+<img   src="images/1px.gif"   width="172"   height="86"   border="0">
+</a>
+</div>
+</div>
+
+
+<? if($config_index['enabled_header_flash']=='1'){ ?>
+<div class="top_swf" >
+<object style="position:absolute;z-index:0;" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="788" height="86">
+  <param name="allowNetworking" value="internal" />
+  <param name="movie" value="<?=$config_index['header_flash']?>" />
+  <param name="wmode" value="transparent" />
+  <param name="quality" value="high" />
+  <embed  style="position:absolute;z-index:0;" src="<?=$config_index['header_flash']?>" quality="high" wmode="transparent" allowNetworking="internal" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="788" height="86" ></embed>
+</object>
+<div style="position: relative;z-index:9999;left:0pt;top:0pt;width:788px;height:86px;">
+<a href="<?=$config_index['header_flash_link']?>" target="_blank">
+<img   src="images/1px.gif"   width="788"   height="86"   border="0">
+</a>
+</div>
+</div>
+<? } ?>
+
+<!--nav-->
+<div class="nav">
+<ul>
+
+<? if(!empty($nav)){ $nav_class=array("$nav"=>'n_bg'); } ?>
+<li class=<?=$nav_class['index']?> ><a href="index.html">首  页</a> </li>
+<li class=<?=$nav_class['member']?> ><a href="member.html">会员中心</a></li>
+<li class=<?=$nav_class['game']?> ><a href="game.html">游戏中心</a></li>
+<li class=<?=$nav_class['pay']?> ><a href="pay_games.html">充值中心</a></li>
+<li class=<?=$nav_class['news']?> ><a href="news.html">游戏动态</a></li>
+<li class=<?=$nav_class['service']?> ><a href="service.html">客服中心</a></li>
+<li class=<?=$nav_class['return']?> ><a href="return.html">推广返利</a></li>
+<li class=<?=$nav_class['package']?> ><a href="package.html">礼包领取</a></li>
+<li class=<?=$nav_class['bbs']?> ><!--<a href="<?=BBS_ROOT?>" target="_blank" >火爆论坛</a>--></li>
+</ul>
+</div>
+</div>

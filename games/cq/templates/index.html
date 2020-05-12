@@ -1,0 +1,286 @@
+<?php $title='传奇国度官网_49you传奇国度_49传奇|攻略|翅膀|加点|辅助';
+$keywords="传奇国度,传奇国度官网,49you传奇国度,49传奇,传奇国度新手卡,传奇国度礼品卡,传奇国度攻略,传奇国度新服,传奇国度翅膀,传奇国度加点";
+$description="传奇国度官方网站欢迎您！49传奇官方资料站。传奇国度攻略、最新活动、新手礼品卡领取、职业加点、翅膀强化、装备元素强化、杀BOSS技巧、常见问题等最全最新资讯尽在49you传奇国度。"?>
+<?php include('header.html'); ?>
+<script type="text/javascript" src="js/js_list.js"></script>
+<script type="text/javascript">
+function newschange(id){
+	for(i=1;i<=3;i++){
+		$("#newsli"+i)[0].className='n2';
+		$("#newlist"+i).css("display","none");
+	}
+	$("#newsli"+id)[0].className='n1';
+	$("#newlist"+id).css("display","");
+}
+function picchange(id){
+	if(id==1){
+		$("#picli1")[0].className='n1';
+		$("#piclist1").css("display","");
+		
+		$("#picli2")[0].className='n02';
+		$("#piclist2").css("display","none");
+	}else{
+		$("#picli1")[0].className='n01';
+		$("#piclist1").css("display","none");
+		
+		$("#picli2")[0].className='n2';
+		$("#piclist2").css("display","");
+	}
+	
+}
+function quchange(id){
+	if(id==1){
+		$("#quli1")[0].className='n1';
+		$("#qulist1").css("display","");
+		
+		$("#quli2")[0].className='n02';
+		$("#qulist2").css("display","none");
+	}else{
+		$("#quli1")[0].className='n01';
+		$("#qulist1").css("display","none");
+		
+		$("#quli2")[0].className='n2';
+		$("#qulist2").css("display","");
+	}
+	
+}
+if (top.location != self.location)top.location=self.location;
+</script>
+<div class="main">
+  <div class="l">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--left_server start-->
+<? include('lefter_server.html'); ?> 
+<!--left_server end-->
+<!--lefter_dj start-->
+<? include('lefter_dj.html'); ?> 
+<!--lefter_dj end-->
+<!--lefter_kf start-->
+<? include('lefter_kf.html'); ?> 
+<!--lefter_kf end-->
+<!--lefter_yx start-->
+<? include('lefter_yx.html'); ?> 
+<!--lefter_yx end-->
+<!--lefter_mt start-->
+<? include('lefter_mt.html'); ?> 
+<!--lefter_mt end-->
+  </div>
+  <div class="r">
+    <div class="p1">
+      <div class="news">
+        <h3><a href="news.html?pid=96&cid=97" onmouseover="newschange(1);" id="newsli1" title="新闻热点" class="n1">热点</a><a href="news.html?pid=96&cid=98" onmouseover="newschange(2);" id="newsli2" title="新闻公告" class="n2">公告</a><a href="news.html?pid=96&cid=99" onmouseover="newschange(3);" id="newsli3" title="新闻活动" class="n2">活动</a></h3>
+        <ul id="newlist1">
+          <?if($rs_news){
+            foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="97"){?>
+		<li><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+		  <?}
+            }
+          }?>
+          <a href="news.html?pid=96&cid=97" title="传奇国度_新闻热点_更多" target="_blank"  class="more">更多>></a>
+        </ul>
+        <ul id="newlist2" style="display:none;">
+          <?if($rs_news){
+            foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="98"){?>
+		<li><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+		  <?}
+            }
+          }?>
+          <a href="news.html?pid=96&cid=98" title="传奇国度_公告"  target="_blank" class="more">更多>></a>
+        </ul>
+        <ul id="newlist3" style="display:none;">
+          <?if($rs_news){
+            foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="99"){?>
+		<li><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+		  <?}
+            }
+          }?>
+          <a href="news.html?pid=96&cid=99" title="传奇国度_活动" target="_blank" class="more">更多>></a>
+        </ul>
+      </div>
+      <div class="ind_2">
+        <div class="ind_3">
+          <h2>游戏区选择：
+            <select name="sidc" id="sidc" onchange="javascript:serverchange(this.value)">
+          <?if($rs_server){
+            foreach($rs_server as $k=> $v){?>
+              <option value="<?=$v["server_id"]?>"><?=$v["server_name"]?></option>
+              <?}
+              }?>
+            </select>
+          </h2>
+          <ul id="rankTab">
+            <li id="li_1" class="on"><a href="javascript:void(0);" onclick="tabchange(1);"><strong>等 级</strong></a></li>
+            <li id="li_2" ><a href="javascript:void(0);" onclick="tabchange(2);">装 备</a></li>
+            <li id="li_3" ><a href="javascript:void(0);" onclick="tabchange(3);">战 场</a></li>
+          </ul>
+          <div id="divtop">
+          <table width="407" border="0" cellspacing="0" class="rankTable" id="rankTable0">
+            <tr>
+              <th width="50" height="19" align="center" id="tl_0">名次</th>
+              <th width="131" align="left" id="tl_1">角色名称</th>
+              <th width="76" align="left" id="tl_2">等级</th>
+              <th width="83" align="left" id="tl_3">职业</th>
+            </tr>
+            <tr id="tr1">
+              <td class="num" id="field0">1</td>
+              <td height="21" id="field1">&nbsp;</td>
+              <td id="field2">&nbsp;</td>
+              <td id="field3">&nbsp;</td>
+            </tr>
+            <tr id="tr2">
+              <td class="num" id="field0">2</td>
+              <td height="22" id="field1">&nbsp;</td>
+              <td id="field2">&nbsp;</td>
+              <td id="field3">&nbsp;</td>
+            </tr>
+            <tr id="tr3">
+              <td height="21" class="num" id="field0">3</td>
+              <td id="field1">&nbsp;</td>
+              <td id="field2">&nbsp;</td>
+              <td id="field3">&nbsp;</td>
+            </tr>
+            <tr id="tr4">
+              <td height="21" class="num" id="field0">4</td>
+              <td id="field1">&nbsp;</td>
+              <td id="field2">&nbsp;</td>
+              <td id="field3">&nbsp;</td>
+            </tr>
+            <tr id="tr5">
+              <td class="num" id="field0">5</td>
+              <td id="field1">&nbsp;</td>
+              <td id="field2">&nbsp;</td>
+              <td id="field3">&nbsp;</td>
+            </tr>
+            <tr id="tr6">
+              <td height="24" class="num" id="field0">6</td>
+              <td id="field1">&nbsp;</td>
+              <td id="field2">&nbsp;</td>
+              <td id="field3">&nbsp;</td>
+            </tr>
+            <tr id="tr7">
+              <td height="21" class="num" id="field0">7</td>
+              <td id="field1">&nbsp;</td>
+              <td id="field2">&nbsp;</td>
+              <td id="field3">&nbsp;</td>
+            </tr>
+            <tr id="tr8"  style="border-bottom:none;">
+              <td class="num" id="field0">8</td>
+              <td id="field1">&nbsp;</td>
+              <td id="field2">&nbsp;</td>
+              <td id="field3">&nbsp;</td>
+            </tr>
+          </table>
+          </div>
+          <script language="javascript">tabchange(1);</script>
+          <div class="cl"></div>
+        </div>
+      </div>
+    </div>
+    <div class="faq">
+      <ul>
+        <li><a href="cardlist.html"><img src="images/bannerbig1.jpg" width="170" height="85" /></a></li>
+        <li><a href="<?=get_newslink(752)?>"><img src="images/bannerbig2.jpg" width="170" height="85" /></a></li>
+        <li><a href="<?=get_newslink(791)?>"><img src="images/bannerbig3.jpg" width="170" height="85" /></a></li>
+        <li><a href="<?=get_newslink(795)?>"><img src="images/bannerbig4.jpg" width="170" height="85" /></a></li>
+      </ul>
+    </div>
+     <div class="sharedspacer"></div>
+    <div class="hd">
+    <h1>新手秘籍</h1>
+      <ul class="list">
+          <?if($rs_gamexs){
+            foreach($rs_gamexs as $k=> $v){?>
+			<li><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+            <?}
+          }?>
+      </ul>
+      <a class="more" href="news.html?pid=102&cid=112" title="传奇国度_新手秘籍">更多&gt;&gt;</a> </div>
+    <div class="hd">
+      <h2>高手进阶</h2>
+      <ul class="list">
+          <?if($rs_gamegs){
+            foreach($rs_gamegs as $k=> $v){?>
+			<li><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>"  title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+            <?}
+          }?>
+      </ul>
+      <a class="more" href="news.html?pid=102&cid=113" title="传奇国度_高手宝典">更多&gt;&gt;</a></div>
+ <div class="sharedspacer"></div>      
+      
+      <div class="yxzl">
+      <h3>游戏资料</h3>
+      <ul>
+        <li><strong>【新手学堂】</strong><a target="_blank" href="<?=get_newslink(722)?>">职业介绍</a>|<a target="_blank" href="<?=get_newslink(754)?>">怪物资料</a>|<a target="_blank" href="<?=get_newslink(753)?>">游戏内挂</a>|<a target="_blank" href="<?=get_newslink(750)?>">主线任务</a><br/><a target="_blank" href="<?=get_newslink(755)?>">日常任务</a>|<a target="_blank" href="<?=get_newslink(756)?>">游戏分线</a>|<a target="_blank" href="<?=get_newslink(751)?>">游戏地图</a>
+        </li>
+        <li><strong>【特色系统】</strong><a target="_blank" href="<?=get_newslink(719)?>">结婚系统</a>|<a target="_blank" href="<?=get_newslink(721)?>">熔炉系统</a>|<a target="_blank" href="<?=get_newslink(720)?>">奖章系统</a>|<a target="_blank" href="<?=get_newslink(757)?>">成就称号</a><br/><a target="_blank" href="<?=get_newslink(769)?>">寄售系统</a>|<a target="_blank" href="<?=get_newslink(717)?>">公会系统</a>|<a target="_blank" href="<?=get_newslink(795)?>">VIP系统</a></li>
+        <li><strong>【装备大全】</strong><a target="_blank" href="<?=get_newslink(726)?>">武器</a>|<a target="_blank" href="<?=get_newslink(734)?>">头部</a>|<a target="_blank" href="<?=get_newslink(735)?>">衣服</a>|<a target="_blank" href="<?=get_newslink(736)?>">手腕</a>|<a target="_blank" href="<?=get_newslink(737)?>">鞋子</a>|<a target="_blank" href="<?=get_newslink(738)?>">戒指</a><br/><a target="_blank" href="<?=get_newslink(746)?>">神装</a>|<a target="_blank" href="<?=get_newslink(748)?>">套装</a>|<a target="_blank" href="<?=get_newslink(770)?>">稀世装备</a>         
+        </li>
+        <li><strong>【进阶玩法】</strong><a target="_blank" href="<?=get_newslink(771)?>">人物加点</a>|<a target="_blank" href="<?=get_newslink(772)?>">万事通任务</a>|<a target="_blank" href="<?=get_newslink(773)?>">暗影禁地</a><br/><a target="_blank" href="<?=get_newslink(718)?>">诺提雅魔刃</a>|<a target="_blank" href="<?=get_newslink(716)?>">祈寒城攻城战</a> 
+        </li>
+      </ul> 
+      <a href="gamedata.html" class="more">更多>></a>
+<div class="ad">
+          <div><a href="<?=get_newslink(796)?>"><img src="images/bannerlit1.jpg" border="0" /></a></div>
+          <div><a href="<?=get_newslink(792)?>"><img src="images/bannerlit2.jpg" border="0" /></a></div>
+      </div>         
+
+    </div>
+    
+ <div class="sharedspacer"></div>
+  <div class="hd">
+      <h3>传奇之路</h3>
+      <ul class="list">
+          <?if($rs_gamehd){
+            foreach($rs_gamehd as $k=> $v){?>
+			<li><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["subtitle"]?></a></li>
+            <?}
+          }?>
+      </ul>
+      <a class="more" href="news.html?pid=102&cid=106" title="传奇国度_传奇之路">更多&gt;&gt;</a></div>
+
+      
+      
+      <div class="hd">
+      <h4><a href="javascript:void(0);" class="n1" id="quli1" onmouseover="quchange(1);">常见问题</a><a href="javascript:void(0);" class="n02" id="quli2" onmouseover="quchange(2);">叶子猪攻略</a></h4>
+      <ul class="list" id="qulist1">
+          <?if($rs_gamequ){
+            foreach($rs_gamequ as $k=> $v){?>
+			<li><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["subtitle"]?></a></li>
+            <?}
+          }?>
+      </ul>
+	<ul class="list" id="qulist2" style="display:none;">
+    <iframe scrolling="no" height="180" frameborder="no" width="100%" border="0" allowtransparency="allowtransparency" id="ifram" marginheight="0" marginwidth="0" name="ifram" src="http://webgame.yzz.cn/96pk/cqgdqt/"></iframe>
+      </ul>
+      <a class="more" href="news.html?pid=100&cid=107" title="传奇国度_常见问题">更多&gt;&gt;</a> </div>
+ <div class="sharedspacer"></div> 
+ 
+     <div class="pic">
+      <h3><a href="javascript:void(0);" onmouseover="picchange(1);" id="picli1" class="n1" title="传奇国度_游戏图鉴">游戏图鉴</a><a href="javascript:void(0);" onmouseover="picchange(2);" id="picli2" class="n02" title="传奇国度_玩家截图">玩家截图</a></h3>
+      <div id="piclist1"><ul>
+          <?if($rs_gamepic){
+            foreach($rs_gamepic as $k=> $v){?>
+             <li><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><img src="<?=$v['pic']?>" width="122" height="100" alt="<?=$v["summary"]?>"/></a></li>
+            <?}
+            }?>
+      </ul> <a class="more" href="news.html?pid=101&cid=103" title="传奇国度_游戏图鉴">更多&gt;&gt;</a></div>
+      <div id="piclist2" style="display:none;">
+    <ul>
+          <?if($rs_memberpic){
+            foreach($rs_memberpic as $k=> $v){?>
+             <li><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><img src="<?=$v['pic']?>" width="122" height="100" alt="<?=$v["summary"]?>"/></a></li>
+            <?}
+            }?>
+      </ul> <a class="more" href="news.html?pid=101&cid=104" title="传奇国度_玩家截图">更多&gt;&gt;</a></div>
+    </div>
+ <div class="bg1">抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</div>   
+       
+  </div>
+</div>
+</div>
+<? include('footer.html'); ?> 

@@ -1,0 +1,111 @@
+if ($request_method ~ "^(TRACE|TRACK)"){
+	set $rule_0 1$rule_0;
+}
+if ($rule_0 = "1"){
+	return 403;
+	break;
+}
+if ($host ~* ^d8pk\.com) {
+	rewrite /(.*) http://www.d8pk.com/$1 permanent;
+	break;
+}
+if ($host ~* ^web\.d8pk\.com) {
+	rewrite ^/([0-9a-zA-Z_-]+)/([0-9]+)\.html$ /advs/ad/$2\.html last;
+	break;
+}
+if ($host ~* ^web\.d8pk\.com) {
+	rewrite ^/advs/material/([0-9]+)/([0-9a-zA-Z_-]+)\.(gif|jpg|css|png|bmp|js|swf|flv|rar|mid|midi|mp3)$ /advs/material/$1/$2\.$3 last;
+	break;
+}
+
+
+if ($host ~* d8pk\.com) {
+#ignored: condition 0
+#ignored: condition 1
+	rewrite ^/favicon\.ico$ /;
+}
+#ignored: condition 0
+#ignored: condition 1
+#ignored: condition 2
+#ignored: condition 3
+#ignored: condition 4
+	return 403;
+	break;
+#ignored: condition 0
+#ignored: condition 1
+#ignored: condition 2
+#ignored: condition 3
+#ignored: condition 4
+	rewrite ^/news_([0-9]+)\.html$ /$http_host/news_info\.php?id=$1;
+	rewrite ^/([a-z0-9\-]+)\.d8pk\.com/(.*)$ /games/$1/$2 last;
+#ignored: condition 0
+#ignored: condition 1
+#ignored: condition 2
+#ignored: condition 3
+#ignored: condition 4
+	rewrite ^/(.*)\.html$ /$http_host/$1.php;
+	rewrite ^/([a-z0-9\-]+)\.d8pk\.com/(.*)$ /games/$1/$2 last;
+#ignored: condition 0
+#ignored: condition 1
+#ignored: condition 2
+#ignored: condition 3
+#ignored: condition 4
+	rewrite ^/([0-9a-zA-Z_-]+)/(.*)$ /$http_host/$1/$2;
+	rewrite ^/([a-z0-9\-]+)\.d8pk\.com/(.*)$ /games/$1/$2 last;
+#ignored: condition 0
+#ignored: condition 1
+	rewrite ^/([0-9a-zA-Z_-]+)\.([0-9a-zA-Z_-]+)$ /error.html last;
+#ignored: condition 0
+#ignored: condition 1
+	rewrite ^/service(.*)$ /"http://www.d8pk.com/service_online.html" permanent;
+	break;
+#ignored: condition 0
+#ignored: condition 1
+	rewrite ^/guide(.*)$ /$http_host/guide$1;
+	rewrite ^/([a-z0-9\-]+)\.d8pk\.com/guide(.*)$ /"http://$1.d8pk.com/news_info.html?id=230" permanent;
+	break;
+	rewrite ^/jianhu/([0-9a-zA-Z_-]+)\.html$ /;
+	rewrite ^/jianhu/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)\.(gif|jpg|css|png|bmp|js|swf|flv|rar)$ /;
+if ($request_uri ~ "/webmanage/"){
+		  set $rule_19 1$rule_19;
+	  }
+	  if ($query_string !~ "gowepldvoregmpp534pporth646"){
+		  set $rule_19 2$rule_19;
+	  }
+	  if ($rule_19 ~ "21"){
+		  rewrite (.*)\.(php|html) /error.php last;
+	  }
+	  if ($query_string !~ "gowepldvoregmpp534pporth646"){
+		  set $rule_20 1$rule_20;
+	  }
+	  if ($rule_20 = "1"){
+		  rewrite ^/wodehoutaishishenmo/(.*) /webmanage/$1?$query_string&gowepldvoregmpp534pporth646 last;
+	  }
+	  
+	  if ($request_uri ~ "/fckeditor/"){
+		  set $rule_21 1$rule_21;
+	  }
+	  if ($query_string !~ "gowepldvoregmpp534pporth646"){
+		  set $rule_21 2$rule_21;
+	  }
+	  if ($rule_21 = "21"){
+		  rewrite ^/(.*)\.(php|html) /error.php last;
+	  }
+	  if ($query_string !~ "gowepldvoregmpp534pporth646"){
+		  set $rule_22 1$rule_22;
+	  }
+	  if ($rule_22 = "1"){
+		  rewrite ^/lilizizi_michael_editor/(.*) /fckeditor/$1?$query_string&gowepldvoregmpp534pporth646 last;
+	  }
+	rewrite ^/download_([0-9a-zA-Z_-]+)\.html$ /;
+	rewrite ^/login_([0-9]+)_([0-9]+)\.html /;
+	rewrite ^/pay_([0-9]+)_([0-9]+)\.html /;
+	rewrite ^/reg_([0-9]+)_([0-9]+)\.html /;
+	rewrite ^/news_info_([0-9]+)\.html /;
+	rewrite ^/([0-9a-zA-Z_-]+)\.html$ /;
+	rewrite ^/(.*)\.inc\.php /;
+	rewrite ^/(.*)\.class\.php /;
+	rewrite /(.*)\.htaccess /;
+	rewrite ^/game/([0-9]+)_([0-9]+)_([0-9]+)\.jpg /;
+#ignored: condition 0
+	rewrite ^/member/([0-9a-zA-Z_-]+)\.php$ /;

@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="zh-CN">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="google-site-verification" content="oXoQGOudW09T7XT3MHgQbRkCw0wDB7jBMl07ZHYhGmc" />
+	<title>神仙道官方网站</title>
+	<meta name="keywords" content="神仙道,神仙道官网,网页游戏,WebGame" />
+	<meta name="description" content="神仙道,神仙道官网,游戏打破了旧有RPG游戏繁琐的打怪升级模式，采用了全新的设计理念，极度简化玩家的操作方式。游戏中始终贯穿着大气磅礴的剧情主线，其中的命格系统更是让玩家耳目一新。" /> 	
+	<link type="text/css" rel="stylesheet" href="reset.css" />
+	<link type="text/css" rel="stylesheet" href="zlp_page.css?253333666442233" />
+	
+</head>
+<?
+$id="";
+if(isset($_GET['id'])) $id=$_GET['id'];
+?>
+<body>
+	<div class="content">
+		<div class="head">
+			<a id="xdh" <? if(empty($id)||$id=="xdh"){?>class="active"<?}?> href="index.html?id=xdh"></a>
+			<a id="jxgz" <? if($id=="jxgz"){?>class="active"<?}?> href="index.html?id=jxgz"></a>
+			<a id="dj" <? if($id=="dj"){?>class="active"<?}?> href="index.html?id=dj"></a>		
+			<a class="gw" href="http://sxd.49you.com/"></a>
+		</div>
+		
+		<div class="line">
+			<div  class="xdh_head"></div>
+			<div class="line_inner">
+	<?php 
+	if($id=='xdh'){
+	  include('page-xdh.html');
+	}else if($id=='jxgz'){
+	  include('page-jxgz.html');
+	}else{
+	  include('page-dj.html');
+	}
+	?>
+			</div>
+		</div>
+		
+		<div class="foot"></div>
+	</div>
+ 
+</body>
+</html>

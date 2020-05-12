@@ -1,0 +1,90 @@
+<?php include_once("header.html");?>
+<script language="javascript" src="/js/basic.js"></script>
+<script type="text/javascript">
+	function delmaterialfile(id,_filename){
+		if(!confirm("确定要删除("+_filename+")吗？")) return;
+		var params = {};
+		params['act'] = "delfile";
+		params['filename'] = _filename;
+		params['mat_id'] = "<?=$rs['material_id']?>";
+		ajax_action('material-add.php',params,null,function(data){
+			if(data=="1"){
+				$('#f'+id).html("");
+			}else{
+				alert(data);
+			}
+		});
+	}
+</script>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>素材名称：</th>
+				<td>
+					<input type="text" name="material_name" id="material_name" value="<?=$rs['material_name']?>" class="input_w200"  />
+				</td>
+			</tr>
+			
+            <tr>
+				<th>左边距：</th>
+				<td>
+					<input type="text" name="material_left" id="material_left" value="<?=empty($rs['material_left']) ? '200' : $rs['material_left'] ?>" class="input_w200"  />
+				</td>
+			</tr>
+            <tr>
+				<th>顶边距：</th>
+				<td>
+					<input type="text" name="material_top" id="material_top" value="<?=empty($rs['material_top']) ? '200' : $rs['material_top'] ?>" class="input_w200"  />
+				</td>
+			</tr>
+             <?if($act == 'edit'){?>
+			<tr>
+				<th>文件列表：</th>
+				<td><?
+                    $dir=opendir($directory);
+                    $i=1;
+                    while($filename=readdir($dir)){
+                    	if(substr($filename,0,1)!="."){
+                        ?>
+	                    	<div id="f<?=$i?>"><div style="float:left;width:150px;"><?=$filename?></div><div><a href="javascript:void(0);" onclick="javascript:delmaterialfile(<?=$i?>,'<?=$filename?>');">删除</a></div></div>
+                            <?
+                            $i+=1;
+                        }
+                        
+                    }
+                    closedir($dir);
+
+                    ?>
+				</td>
+			</tr>
+			<tr>
+				<th>上传文件：</th>
+				<td>
+					<div class="upload_input" id="uploadfile">
+						<input type="file" name="user_upload_file[]" class="input_w200" value="" /><br />
+						<input type="file" name="user_upload_file[]" class="input_w200" value="" /><br />
+                        <input type="file" name="user_upload_file[]" class="input_w200" value="" /><br />
+                        <input type="file" name="user_upload_file[]" class="input_w200" value="" /><br />
+                        <input type="file" name="user_upload_file[]" class="input_w200" value="" /><br />
+                        <input type="file" name="user_upload_file[]" class="input_w200" value="" /><br />
+                        <input type="file" name="user_upload_file[]" class="input_w200" value="" /><br />
+                        <input type="file" name="user_upload_file[]" class="input_w200" value="" /><br />
+                        <input type="file" name="user_upload_file[]" class="input_w200" value="" /><br />
+                        <input type="file" name="user_upload_file[]" class="input_w200" value="" />
+					</div>
+				</td>
+			</tr>
+            <?}?>
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

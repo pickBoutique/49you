@@ -1,0 +1,17 @@
+﻿var Marquee2 = document.getElementById("s02"); //滚动对象
+var iLineHeight2 = 57; //单行高度，像素
+var iLineCount2 = 6; //实际行数
+var xx = 1; //每次滚动高度，像素
+function runmcc() {
+Marquee2.scrollTop += xx;
+if ( Marquee2.scrollTop == iLineCount2 * iLineHeight2 )
+Marquee2.scrollTop = 0;
+if ( Marquee2.scrollTop % iLineHeight2 == 0 ) {
+window.setTimeout( "runmcc()", 3000 );
+} else {
+window.setTimeout( "runmcc()", 30 );
+}
+}
+Marquee2.innerHTML += Marquee2.innerHTML;
+window.setTimeout( "runmcc()", 100 );
+

@@ -1,0 +1,35 @@
+<?php include_once("header.html");?>
+<script type="text/javascript" src="/js/swfobject.js"></script>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+           { 'header':'统计日期' , 'dataIndex':'date' , 'type':'date_1', 'defaultValue':'<?=date("Y-m-d")?>' },
+           { 'header':'视图' , 'dataIndex':'mode' , 'type':'select' , 'options':{ '比率':'h','访问量':'m'} }
+          </div>
+        </div>
+
+		<div class="searcher" id="OpenFlashChartControl1"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { 
+				var urla=escape('?act=dataget&rnd='+Math.random()+'&filter='+filter);
+		
+				swfobject.embedSWF("/flash/open-flash-chart.swf", "OpenFlashChartControl1", "100%", "500","9.0.0", "expressInstall.swf",{"data-file":urla});
+			});
+			$('#searchbar').show();
+		});
+	
+		</script>
+	</form>
+</div>
+<script type="text/javascript">
+swfobject.embedSWF("/flash/open-flash-chart.swf", "OpenFlashChartControl1", "100%", "500","9.0.0", "expressInstall.swf",{"data-file":"<?=urlencode("?act=dataget&rnd=".time())?>"});
+</script>
+<?php include_once("footer.html");?>

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?=$title?></title>
+<?if(!empty($keywords)){?>
+<meta name="keywords" content="<?=$keywords?>">
+<?}?>
+<?if(!empty($description)){?>
+<meta name="description" content="<?=$description?>">
+<?}?>
+<link type="text/css" rel="stylesheet" href="style/style.css">
+<link href="style/top.css" rel="stylesheet" type="text/css" />
+<script language="javascript" src="js/jquery.js"></script>
+</head>
+
+<body>
+<script src="<?=YOU_ROOT?>/api/js/1.js" language="JavaScript" charset="utf-8" ></script>
+<!--top -->
+<?
+$gwname='49游戏平台英雄王座';
+require(WEB_ROOT.'/games/top_bar.html');
+?> 
+
+<!--top end -->
+<!--main -->
+<div id="main">
+<!--nav -->
+ <div class="nav">
+    <div class="nav1">
+	   <ul>
+	      <li class="nav1-1"><a href="/" title="侠客世界"></a></li>
+		  <li class="nav1-1"><a href="news.html"></a></li>
+		  <li class="nav1-1"><a href="gamedata.html"></a></li>
+		  <li class="nav1-1"><a href="<?=get_newslink(4277)?>"></a></li>
+		  <li class="nav1-1"><a href="<?=YOU_ROOT?>/member.html"></a></li>
+		  <li class="nav1-1"><a href="<?=YOU_ROOT?>/pay_type.html?gid=<?=$game_id?>" target="_blank"></a></li>
+		  <li class="nav1-1"><a href="<?=YOU_ROOT?>/service.html" target="_blank"></a></li>
+		  <li class="nav1-2"><a href="<?=BBS_ROOT?>/forumdisplay.php?fid=<?=$ids['bbs']?>" target="_blank"></a></li>
+          
+	   </ul>
+	</div>
+ </div><!--nav end -->

@@ -1,0 +1,15 @@
+<?$list = $db->getAll("select  server_id,server_name,server_gid,server_num,server_status,server_isnew,server_ishot,server_time,server_start FROM " .DB_PREFIX."server WHERE server_gid='$game_id' and (server_status=1 or server_ishot=1) order by server_start desc limit 5");?>
+    <div class="fwq">
+      <div class="fwqdiv">推荐服务器</div>
+      <ul style="height:167px">
+          <?if($list){
+            foreach($list as $k=> $v){?>
+        <li><a target="_blank" href="<?=YOU_ROOT?>/game_add.html?gid=<?=$v["server_gid"]?>&sid=<?=$v["server_id"]?>"><?=$v["server_name"]?>&nbsp;&nbsp;<?= date('m/d',$v['server_start'])?> 开启</a></li>
+        	<?}
+          }?>
+      </ul>
+      <ul>
+      <li class="more" ><a href="server_list.html">更多服务器>></a></li>
+      </ul>
+      
+    </div>

@@ -1,0 +1,80 @@
+<?php $title='龙将|龙将官网|49you龙将新手卡|职业|跑商|宠物|攻略';
+$keywords="龙将,龙将官网,49you龙将,龙将新手卡,龙将职业,龙将宠物,龙将攻略";
+$description="龙将,龙将官网,49you龙将是一款三国题材的大型横版RPG游戏。49you龙将官网提供龙将新手卡、激活码礼包领取、三大职业、丰富武将系统和独特将星玩法等攻略及最新开服、活动等资讯。"?>
+<?php include('header.html'); ?>
+<script language="javascript">
+function getcard(){
+	if($('#secode').val()!="49you龙将"){alert("请在\"第一步\"输入\"49you龙将\"");$('#secode').val("");return;}
+	if($('#country').val()==0){alert("请选择服务器！");return;}
+	window.open('<?=YOU_ROOT?>/get_package.html?ct='+$('#country').val());
+}
+</script>
+ <!--content -->
+ <div class="content">
+
+    <div class="left">
+<?php include('lefter_login.html'); ?>
+<?php include('lefter_server.html'); ?>	  
+<?php include('lefter_info.html'); ?>
+<?php include('lefter_kf.html'); ?>
+
+	 <div class="clear"></div>
+     </div>
+	 
+	 <!--right -->
+	 <div id="n-right">
+	    <div class="hdp"><? include('lefter_gg.html'); ?></div>
+	   
+	    <div id="n-right-t"><h1>新手卡</h1><span>您现在的位置：<a href="/">首页</a> > <a href="cardlist.html">新手卡</a></span></div>
+		
+		<div id="n-right-c">
+		   <div id="n-right-c1">
+		   
+		      <div class="xsk1"><h1>第一步：输入游戏名称</h1>
+			    <div class="xsk1-1"><input name="input" type="text" id="secode"	 class="xsk1-input"/><span style="color:red;">答案：49you龙将</span></div>
+			  </div>
+			  
+			  <div class="xsk1"><h1>第二步：选择服务器</h1>
+			    <div class="xsk1-1"><select name="coid" id="country" class="xsk1-input2">
+                   <option value="0" selected="selected">请选择服务器</option>
+            <? if(!empty($cardlist)){ 
+                    foreach($cardlist as $k=>$v){?>
+                    <option value="<?=$v["cardtype_id"]?>"><?=$v["cardtype_name"]?></option>
+            <?}
+            }?>
+                </select>&nbsp;&nbsp;<input class="inp3" type="button" name="button" value="点击领取" onClick="getcard()" /></div>
+			  </div>
+		      
+			  <div class="game-zl-1">
+			     <div class="game-zl-1-t"><h1>道具奖励</h1></div>
+				 <div class="game-zl-1-c">
+                   <p>《龙将》尊贵礼包</p>
+                   <p>礼包内容：</p>
+                   <p>礼券20，1级游戏币卡*10,蓝色武魂*10，神马鞭*3</p>
+                 </div>
+			  </div>
+			  
+			  <div class="game-zl-1">
+			     <div class="game-zl-1-t"><h1>尊贵礼包领取</h1></div>
+                 <div class="game-zl-1-c">
+				 <p>进入游戏中点击右上方"礼包"按钮，打开礼包界面；在礼包界面下方"输入礼包序列号"处填入领取到的礼包序列号，点击"领取"。</p>
+                 </div>
+			  </div>
+			  
+			  <div class="game-zl-1">
+			     <div class="game-zl-1-t"><h1>注意事项</h1></div>
+				 <div class="game-zl-1-c">1、每个激活码只能使用一次，不能重复使用。<p>2、该活动的所有解释权归49you网页游戏平台。</p></div>
+			  </div>
+
+			  <div class="clear"></div>
+		   </div>
+		</div>
+     <div><img src="../images/neiye_03_2.gif" width="720" height="29"></div>
+		<div class="clear"></div>
+	 </div>
+	 <!--right end -->
+	 
+	 <div class="clear"></div>
+ </div><!--content end -->
+<?php include('footer.html'); ?>
+

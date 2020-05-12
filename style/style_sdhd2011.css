@@ -1,0 +1,29 @@
+body{background:#ccc;padding:0px;margin:0px;font-family:宋体;font-size:12px;}
+a{text-decoration:none;color:#F00;}
+a:hover{text-decoration:none;color:#F90;}
+.top{width:960px;height:74px;margin:0 auto;background:url(../images/sdhd2011/xmas_01.jpg) no-repeat;}
+.top .logo{float:left;padding-left:145px;padding-top:3px;}
+.top .lin{float:right;padding-top:15px;padding-right:120px;}
+.top .lin span{padding-right:20px;}
+.top1{width:960px;height:304px;margin:0 auto;background:url(../images/sdhd2011/xmas_02.jpg) no-repeat;}
+.top2{width:960px;height:83px;margin:0 auto;background:url(../images/sdhd2011/xmas_03.jpg) no-repeat;}
+.top3{width:960px;height:96px;margin:0 auto;background:url(../images/sdhd2011/xmas_04.jpg) no-repeat;}
+.top4{width:960px;height:290px;margin:0 auto;background:url(../images/sdhd2011/xmas_05.jpg) repeat-y;}
+.top5{width:960px;height:33px;margin:0 auto;background:url(../images/sdhd2011/xmas_06.jpg) no-repeat;}
+.top6{width:960px;height:96px;margin:0 auto;background:url(../images/sdhd2011/xmas_07.jpg) no-repeat;}
+.top7{width:960px;height:96px;margin:0 auto;background:url(../images/sdhd2011/xmas_09.jpg) no-repeat;}
+.top8{width:960px;height:1421px;margin:0 auto;background:url(../images/sdhd2011/xmas_05.jpg) repeat-y;}
+.top9{width:960px;height:177px;margin:0 auto;background:url(../images/sdhd2011/xmas_11.jpg) no-repeat;}
+.top10{width:960px;height:217px;margin:0 auto;background:url(../images/sdhd2011/xmas_12.jpg) no-repeat;}
+
+.top4 .iphone{margin:0 auto;width:800px;*width:700px;height:290px;}
+.top4 ul{margin:0 auto;list-style-type:none;font-size:14px;color:#ebc552;width:800px;padding-top:5px;float:left;}
+.top4 ul li{ padding-top:1px;width:800px;height:28px;float:left;}
+.top4 .id{width:200px; float:left;}
+
+.top8 .iphone{margin:0 auto;width:500px;*width:400px;height:290px;}
+.top8 ul{margin:0 auto;list-style-type:none;font-size:14px;color:#ebc552;width:500px;padding-top:5px;_margin-left:90px;}
+.top8 ul li{ margin:0 auto;padding-top:1px;width:500px;height:28px;}
+.top8 .id{width:220px;float:left;}
+
+

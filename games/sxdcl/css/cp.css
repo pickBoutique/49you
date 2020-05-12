@@ -1,0 +1,103 @@
+@charset "utf-8";
+/* CSS Document */
+body{margin:0;}
+img{border:none;}
+div,span,ul,li,p,h1,h2,h3,h4,h5,h6,img,p,dl,dd,dt{margin:0px;padding:0px;}
+ul,li,dl,dt,dd,form,img,p,li span{margin:0; padding:0; border:none; list-style-type:none; }
+ul{ list-style-type: none; }
+
+body{font-size:12px;color:#333;font-family:"宋体";}
+a{color:#333;text-decoration:none;}
+a:hover{text-decoration:underline;color:#F90;}
+
+#topbg{top:0; left:0;width:540px; background-color:#f5eace;  margin:0 auto; background:url(../images/bg-1.jpg); height:auto;}
+.top{width:540px;height:132px;background:url(../images/top-1.jpg) center bottom;  position:relative; }
+
+.suo{
+	height:23px;
+	width:219px;
+	position:absolute;
+	left: 27px;
+	top: 87px;
+	font-weight:bold;
+	color:#FFF;
+}
+.sosuo{
+	height:23px;
+	width:383px;
+	position:absolute;
+	left: 107px;
+	top: 75px;
+}
+.top .texta {
+	background:none repeat scroll 0 0 transparent;
+	border:medium none;
+	font-size:12px;
+	height:22px;
+	left:32px;
+	line-height:22px;
+	position:absolute;
+	width: 300px;
+	top: 0px;
+}
+.top .butt {
+	background:url(img/bott.gif) no-repeat scroll 0 0 transparent;
+	border:medium none;
+	color:#FFFFFF;
+	cursor:pointer;
+	float:left;
+	font-size:12px;
+	font-weight:bold;
+	height:23px;
+	left:334px;
+	position:absolute;
+	top:-1px;
+	width:48px;
+}
+.remen{
+	position:absolute;
+	height:18px;
+	line-height:18px;
+	width:383px;
+	left: 107px;
+	top: 103px;
+
+}
+
+table{ border-collapse:collapse; }
+#datadata td{ border:#666666 solid 1px; line-height:15px;padding-left:5px; }
+#datadata div{float:left;height:15px;margin-left:5px;white-space:nowrap;}
+#datadata td a{ color:#00F; text-decoration:underline;}
+.tdbg{ background:url(../images/ben-bg.jpg) top;}
+.main{background:url(../images/top-2.jpg) left top no-repeat;  padding:0px 12px; height:auto;}
+.bom{ background:url(../images/bom-1.jpg) left top;  height:20px; width:540px;  clear:both; margin:0 auto;}
+
+.page {
+	color: #6d5425;
+	line-height: 20px;
+	padding: 10px 0;
+	text-align: center;
+}
+.page a {background: #666666;  border: 1px solid #000000;  color: #FFFFFF; margin-right: 6px;  padding: 0 6px;}
+.page strong{background: #f3d192;  border: 1px solid #6d5425;  color: #6d5425; margin-right: 6px;padding: 0 6px;}
+.dip{ height:58px;}
+
+.anniu{
+	width:296px;
+	height:58px;
+	float:right;
+	overflow:hidden;
+}
+.anniu a{ font-weight:bold; text-align:center; width:89px; height:25px; line-height:25px; float:left; margin-left:6px; margin-bottom:5px;  background:url(../images/beb-bj.gif) left top; color:#fff; }
+.anniu a:hover{color:#ffc;}
+
+
+.sharedspacer5 {  height:5px; *height:5px; _height:5px; line-height:5px; clear:both; }
+
+#hotkey a{color:#00F; margin-left:5px; text-decoration:underline;}
+
+.ban{height:25px; float:left; padding-top:24px;width:480px; line-height:25px; }
+.banns{font-weight:bold;text-align:center; width:89px; height:25px; line-height:25px; float:left; margin-left:6px; margin-bottom:5px;  background:url(../images/beb-bj.gif) left top; color:#fff; }
+.bans{font-weight:bold; text-align:center; width:89px; height:25px; line-height:25px; float:left; margin-left:6px; margin-bottom:5px;  background:url(../images/beb-bj.gif) left top; color:#ff0; }
+
+

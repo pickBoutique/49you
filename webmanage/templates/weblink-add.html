@@ -1,0 +1,104 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>游戏名称：</th>
+				<td>
+                	<select name="wl_gid" id="wl_gid">
+						<?php
+							if($game_group_arr){
+								foreach($game_group_arr as $row){
+									$strSelected="";
+									if($row['fg_id'] == $rs['wl_gid']){
+										$strSelected="selected";
+									}
+						?>
+						<option value="<?=$row['fg_id']?>" <?=$strSelected?> ><?=$row['fg_gname']?></option>
+						<?php
+								}
+							}
+						?>
+					</select>
+                </td>
+			</tr> 
+			<tr>
+				<th>服务器名称：</th>
+				<td>
+					<input type="text" name="wl_sname" id="wl_sname" value="<?=$rs['wl_sname']?>" class="input_w200"  />
+				</td>
+			</tr>
+			
+			
+			<tr>
+				<th>运营商：</th>
+				<td>
+                	<select name="wl_operators" id="wl_operators">
+						<?php
+							if($operators_group_arr){
+								foreach($operators_group_arr as $row){
+									$strSelected="";
+									if($row['fb_name'] == $rs['wl_operators']){
+										$strSelected="selected";
+									}
+						?>
+						<option value="<?=$row['fb_name']?>" <?=$strSelected?> ><?=$row['fb_name']?></option>
+						<?php
+								}
+							}
+						?>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>网站链接：</th>
+				<td>
+					<input type="text" name="wl_weblink" id="wl_weblink" value="<?=$rs['wl_weblink']?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th>游戏链接：</th>
+				<td>
+					<input type="text" name="wl_gamelink" id="wl_gamelink" value="<?=$rs['wl_gamelink']?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th>是否新服务器：</th>
+				<td>
+                    <input name="wl_isnew" value="1" <?=$rs['wl_isnew']=='1' ? 'checked' : '' ?> type="radio">是
+                    <input name="wl_isnew" value="0" <?=$rs['wl_isnew']!='1' ? 'checked' : '' ?> type="radio">否
+				</td>
+			</tr>
+			<tr>
+				<th>是否火爆服务器：</th>
+				<td>
+                    <input name="wl_ishot" value="1" <?=$rs['wl_ishot']=='1' ? 'checked' : '' ?> type="radio">是
+                    <input name="wl_ishot" value="0" <?=$rs['wl_ishot']!='1' ? 'checked' : '' ?> type="radio">否
+				</td>
+			</tr>
+             <tr>
+				<th>开服时间：</th>
+				<td>
+                	<input type="text" name="wl_startdate" id="wl_startdate" value="<?= empty($rs['wl_startdate']) ? date('Y-m-d H:i:s',time()) : date('Y-m-d H:i:s',$rs['wl_startdate']) ?>" class="input_w200"  />
+				</td>
+			</tr>           
+			<tr>
+				<th>服务器状态：</th>
+				<td>
+                    <input name="wl_status" value="1" <?=$rs['wl_status']=='1' ? 'checked' : '' ?> type="radio">
+                    上架
+                    <input name="wl_status" value="0" <?=$rs['wl_status']!='1' ? 'checked' : '' ?> type="radio">
+                    下架
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<?php include_once("footer.html");?>

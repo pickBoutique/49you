@@ -1,0 +1,61 @@
+<?php $title="{$titleinfo}_49you传奇国度官方网站"; 
+$keywords="传奇国度新闻公告";
+$description="49you传奇国度新闻公告"?>
+<?php include('header.html'); ?>
+<div class="main">
+<div class="l">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--left_server start-->
+<? include('lefter_server.html'); ?> 
+<!--left_server end-->
+<!--lefter_dj start-->
+<? include('lefter_dj.html'); ?> 
+<!--lefter_dj end-->
+<!--lefter_kf start-->
+<? include('lefter_kf.html'); ?> 
+<!--lefter_kf end-->
+<!--lefter_mt start-->
+<? include('lefter_mt.html'); ?> 
+<!--lefter_mt end-->
+  </div>
+  <div class="ra"  id="content">
+      <div class="dh">
+      <label>资讯中心</label>
+      <div>您的位置：<a href="index.html" title="传奇国度_49传奇">传奇国度</a> >> <?=$titleinfo?></div>
+    </div>
+<div class="contend">
+<?/*
+    <div class="pic2"><h3>
+		<?if($list_infocate){
+         foreach($list_infocate as $k=> $v){
+        if($v["cate_id"]==$cid){?>
+      <a href="news.html?pid=<?=$pid?>&cid=<?=$v["cate_id"]?>" class="n1"><?=$v["cate_name"]?></a>
+      		  <?}else{?>
+            <a href="news.html?pid=<?=$pid?>&cid=<?=$v["cate_id"]?>" class="n2"><?=$v["cate_name"]?></a>
+            <?}
+         }
+       }?>
+    </h3>
+    </div>
+    */?>
+      <ul class="list2">
+        <?if($list_news){
+        	foreach($list_news as $k=> $v){?>
+               <li><span class="news_more"><?=date( 'y-m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["title"]?></a></li>
+		<?}
+        }?>
+      </ul>
+
+<div class="page">
+<? pager_bar($pager,WEB_ROOT."/games/pager.html"); ?>
+ </div>
+    </div>
+    
+  <div class="bgdi">抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</div>      
+  </div>
+</div>
+</div>
+
+<? include('footer.html'); ?> 

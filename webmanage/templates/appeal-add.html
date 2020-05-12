@@ -1,0 +1,139 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>游戏账号：</th>
+				<td>
+					<?=$rs['appeal_guser']?>
+				</td>
+			</tr>
+			<tr>
+				<th>身份证号：</th>
+				<td>
+					<?=$rs['appeal_idcard']?>
+				</td>
+			</tr>
+			<tr>
+				<th>游戏名称：</th>
+				<td>
+                	<?=$rs['appeal_game']?>
+				</td>
+			</tr>
+            <tr>
+				<th>服务器名称：</th>
+				<td>
+                	<?=$rs['appeal_server']?>
+				</td>
+			</tr>
+            <tr>
+				<th>游戏角色名称：</th>
+				<td>
+                	<?=$rs['appeal_gnickname']?>
+				</td>
+			</tr>
+            <tr>
+				<th>角色等级：</th>
+				<td>
+                	<?=$rs['appeal_glevel']?>
+				</td>
+			</tr>
+            <tr>
+				<th>箱邮地址：</th>
+				<td>
+                	<?=$rs['appeal_email']?>
+				</td>
+			</tr>
+            <tr>
+				<th>手机号：</th>
+				<td>
+                	<?=$rs['appeal_mobile']?>
+				</td>
+			</tr>
+			<tr>
+				<th>QQ：</th>
+				<td>
+					<?=$rs['appeal_qq']?>
+				</td>
+			</tr>
+			<tr>
+				<th>发生问题的时间：</th>
+				<td>
+					<?=$rs["appeal_qtime"]?>
+				</td>
+			</tr>
+			<tr>
+				<th>注册时间：</th>
+				<td>
+					<?=$rs["appeal_rtime"]?>
+				</td>
+			</tr>
+			<tr>
+				<th>最后登陆时间：</th>
+				<td>
+					<?=$rs["appeal_ltime"]?>
+				</td>
+			</tr>
+			<tr>
+				<th>账号注册城市：</th>
+				<td>
+					<?=$rs["appeal_regcity"]?>
+				</td>
+			</tr>
+			<tr>
+				<th>充值金额：</th>
+				<td>
+					<?=$rs["appeal_tarmoney"]?>
+				</td>
+			</tr>
+			<tr>
+				<th>充值方式：</th>
+				<td>
+					<?=$rs["appeal_tartype"]?>
+				</td>
+			</tr>
+			<tr>
+				<th>最后充值时间：</th>
+				<td>
+					<?=$rs["appeal_tartime"]?>
+				</td>
+			</tr>
+			<tr>
+				<th>充值截图：</th>
+				<td>
+					<img src="<?=$rs["appeal_tarimg"]?>" />
+				</td>
+			</tr>
+
+			<tr>
+				<th>申诉注备：</th>
+				<td>
+                    <?=htmlspecialchars($rs['appeal_desc'])?>
+				</td>
+			</tr>
+            
+			<tr>
+				<th>处理状态：</th>
+				<td>
+                    <input name="appeal_status" value="1" <?=$rs['appeal_status']=='1' ? 'checked' : '' ?> type="radio">已处理
+                    <input name="appeal_status" value="0" <?=$rs['appeal_status']!='1' ? 'checked' : '' ?> type="radio">未处理
+				</td>
+			</tr>
+			<tr>
+				<th>申诉结果：</th>
+				<td>
+                    <textarea name="appeal_results" rows="6" class="input_w400" style="width:600px;" ><?=htmlspecialchars($rs['appeal_results'])?></textarea>
+				</td>
+			</tr>
+            
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<?php include_once("footer.html");?>

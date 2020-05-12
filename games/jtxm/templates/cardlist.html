@@ -1,0 +1,106 @@
+<?php $title='新手卡领取_49you九天仙梦官方网站'; 
+$keywords="九天仙梦新手卡";
+$description="49you九天仙梦新手卡"?>
+<?php include('header.html'); ?>
+<style>.fontred{color:red;font-weight:bold}</style>
+<script language="javascript">
+function getcard(){
+	if($('#secode').val()!="49仙梦"){alert("请在“第一步”输入“49仙梦”");$('#secode').val("");return;}
+	if($('#country').val()==0){alert("请选择服务器！");return;}
+	window.open('<?=YOU_ROOT?>/get_package.html?ct='+$('#country').val());
+}
+</script>
+<div class="main">
+  <div class="l">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--left_server start-->
+<? include('lefter_server.html'); ?> 
+<!--left_server end-->
+<!--lefter_info start-->
+<? include('lefter_info.html'); ?> 
+<!--lefter_info end-->
+  </div>
+  <div class="r">
+    <div class="dh">
+      <label>礼品卡领取</label>
+      <div>您当前的位置：<a href="index.html" title="九天仙梦_49仙梦">九天仙梦</a> &gt;&gt; 礼品卡领取</div>
+    </div>
+    <div class="contend">
+    <div class="Fwq_info">
+    <div class="news_so" >
+    <p>第一步 请输入游戏名称</p>
+    <br />
+&nbsp;&nbsp;<input type="text" id="secode" style="width:75px"/> 答案：<span class="fontred">49仙梦</span>
+<br /><br />
+  </div>
+    </div>
+    <div class="news_so" >
+    <p>第二步 选择服务器</p>
+	<br />
+      <select name="coid" id="country">
+       <option value="0" selected="selected">请选择服务器</option>
+<? if(!empty($cardlist)){ 
+    	foreach($cardlist as $k=>$v){?>
+        <option value="<?=$v["cardtype_id"]?>"><?=$v["cardtype_name"]?></option>
+<?}
+}?>
+      </select>
+    &nbsp;&nbsp;&nbsp;<input class="inp3" type="button" name="button" value="点击领取" onClick="getcard()" />  
+     </div>
+     
+     
+    <div class="txt">
+      <div>
+        <div>
+          <p>【新手卡奖励道具】</p>
+        </div>
+      </div>
+      <div>
+        <div>
+          <p>      【聚魂丹（小）】x1、【聚灵丹（小）】x1、【经验卡】x2、</p>
+          <p>      【一级元神加速符】x2、【奇异果】x1、【铜券】+8000、【礼券】+88</p>
+          <p> </p>
+        </div>
+      </div>
+      <div>
+        <div>
+          <p>【领取流程】</p>
+          <p>      登陆游戏，点击游戏界面右上角『奖』-&gt;『新手卡』，输入新手卡号码领取礼包。</p>
+          <p> </p>
+          <div>
+            <div>
+              <p> </p>
+              <p>如图所示：</p>
+            </div>
+          </div>
+          <div>
+            <div> <img src="images/u58_original.jpg"></div>
+            <div>
+              <div id="u59_rtf"> </div>
+            </div>
+          </div>
+          <div id="u60">
+            <div>
+              <p>【注意】</p>
+              <p>      1、玩家需要登录账号后才能领取，如未有账号，请进行注册。</p>
+              <p>      2、每个账号只能在一个服务器内兑换一次。</p>
+              <p>      3、每个新手卡码只能使用一次，不能重复使用。</p>
+              <p>      4、该活动的所有解释权归49you网页游戏平台。</p>
+            </div>
+          </div>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+      <p><br>
+</p>
+<p></p>
+      </div>
+    </div>
+    <div class="bg2"></div>
+    <div class="bg1">抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</div>
+  </div>
+  <div class="clear"></div>
+</div>
+<? include('footer.html'); ?>

@@ -1,0 +1,163 @@
+<?php
+//新手指南
+$sqlstr="select cate_id,info_id,subtitle,add_time,attachment from ".DB_PREFIX."info where info_start<=".time()." and cate_id = 332 order by sort_num desc,add_time desc limit 0,5";
+$rs_xszn = $db->getAll($sqlstr);
+//新手指南
+$sqlstr="select cate_id,info_id,subtitle,add_time,attachment from ".DB_PREFIX."info where info_start<=".time()." and cate_id = 332 order by sort_num desc,add_time desc limit 6,10";
+$rs_xszn1 = $db->getAll($sqlstr);
+//特色系统
+$sqlstr="select cate_id,info_id,subtitle,add_time,attachment from ".DB_PREFIX."info where info_start<=".time()." and cate_id = 333 order by sort_num desc,add_time desc limit 0,5";
+$rs_xtjs = $db->getAll($sqlstr);
+//特色系统
+$sqlstr="select cate_id,info_id,subtitle,add_time,attachment from ".DB_PREFIX."info where info_start<=".time()." and cate_id = 333 order by sort_num desc,add_time desc limit 6,10";
+$rs_xtjs1 = $db->getAll($sqlstr);
+//玩法介绍
+$sqlstr="select cate_id,info_id,subtitle,add_time,attachment from ".DB_PREFIX."info where info_start<=".time()." and cate_id = 334 order by sort_num desc,add_time desc limit 0,5";
+$rs_tswf = $db->getAll($sqlstr);
+//玩法介绍
+$sqlstr="select cate_id,info_id,subtitle,add_time,attachment from ".DB_PREFIX."info where info_start<=".time()." and cate_id = 334 order by sort_num desc,add_time desc limit 6,10";
+$rs_tswf1 = $db->getAll($sqlstr);
+?>
+		       <!--game -->
+                 <div id="game">
+                    <div id="game2">
+                      <ul>
+                        <li>名字：龙将</li>
+                        <li>类型：角色扮演</li>
+                        <li>星级：★★★★★</li>
+                        <li>在线人数：</li>
+                        <li class="data"></li>
+                      </ul>
+                   </div>
+                 </div>
+				 
+			   <!--fwqlist -->
+                  <div id="fwqlist">
+                     <div id="fwqlist-title">服务器列表</div>
+                       <div id="fwqlist-content">
+					      <div id="fwqlist-content2">
+                             <?php
+                                    $strUrl='http://www.56uu.com/?m=getgame&action=getgame&act=long';
+                                    $ch = curl_init();
+                                    $timeout = 60; 	
+                                    curl_setopt($ch, CURLOPT_URL, $strUrl);
+                                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                                    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+                                    $result = curl_exec($ch);
+                                    curl_close($ch);
+                                    $decodedArray = json_decode($result, true);       
+                             ?>
+						    <ul>
+                               <?PHP 
+                                 $i=0;
+                                 foreach((array)$decodedArray as $key=>$arr){?>   
+                                <?php if($i<5){
+                        
+                                  echo "<li><a href='";
+                                  echo $arr['gameurl'];
+                                  echo "' target='_blank'><span class='c1'>[双线";
+                                  echo  substr($arr['servernum'],1);
+                                  echo "服]</span><span style=\"display:inline-block;width:60px;\">";
+                                   echo $arr['title']; 
+                                   echo "</span>";
+                                   echo "<span style=\"color:yellow;padding-left:30px;\">".$arr['statusname']."</span>";
+                                   echo "</a></li>";
+                                  }
+                                  ?>
+                                <?PHP 
+                                  $i++;
+                                 }; 
+                              ?>
+							 <div class="clear"></div>
+                            </ul>
+						  </div>
+					     <div id="fwqlist-more"><a href="server_list.html">所有服务器</a></div>
+					     <div class="clear"></div>
+					   </div>
+                   <div id="fwqlist-footer"><img src="/images/left-footer.gif" /></div>
+                 </div>	 
+
+			<!--game-infor -->	 
+			   <div id="game-infor">
+			      <div id="game-infor-title">游戏资料</div>
+				  <div id="game-infor-content">
+				     <div class="game-infor-content-1">
+					   <p>【新手指引】</p>
+					   <ul>
+                      <?if($rs_xszn){
+                        foreach($rs_xszn as $k=> $v){
+                        ?>
+                        <li><a href="news_<?=$v['info_id']?>.html"><?=$v['subtitle']?></a></li>
+                        <?php }} ?>
+					   </ul>
+					   <ul>
+                      <?if($rs_xszn1){
+                        foreach($rs_xtjs1 as $k=> $v){
+                        ?>
+                        <li><a href="news_<?=$v['info_id']?>.html"><?=$v['subtitle']?></a></li>
+                        <?php }} ?>
+					   </ul>					 
+                       <div class="clear"></div>
+                       </div>
+					 
+					 <div class="game-infor-content-1">
+					   <p>【特色玩法】</p>
+					   <ul>
+                      <?if($rs_tswf){
+                        foreach($rs_tswf as $k=> $v){
+                        ?>
+                        <li><a href="news_<?=$v['info_id']?>.html"><?=$v['subtitle']?></a></li>
+                        <?php }} ?>
+					   </ul>
+					   <ul>
+                      <?if($rs_tswf1){
+                        foreach($rs_tswf1 as $k=> $v){
+                        ?>
+                        <li><a href="news_<?=$v['info_id']?>.html"><?=$v['subtitle']?></a></li>
+                        <?php }} ?>
+					   </ul>		
+                       <div class="clear"></div>
+					 </div>
+					 
+					 <div class="game-infor-content-1">
+					   <p>【系统要点】</p>
+					   <ul>
+                      <?if($rs_xtjs){
+                        foreach($rs_xtjs as $k=> $v){
+                        ?>
+                        <li><a href="news_<?=$v['info_id']?>.html"><?=$v['subtitle']?></a></li>
+                        <?php }} ?>
+					   </ul>
+					   <ul>
+                      <?if($rs_xtjs1){
+                        foreach($rs_xtjs1 as $k=> $v){
+                        ?>
+                        <li><a href="news_<?=$v['info_id']?>.html"><?=$v['subtitle']?></a></li>
+                        <?php }} ?>
+					   </ul>							 
+                       <div class="clear"></div>
+                       </div>
+					 
+				  </div>
+				  <div id="game-infor-footer"><img src="/images/left-footer.gif" /></div>
+                  <div class="clear"></div>
+			   </div>	 
+				 
+			<!--service -->
+               <div id="service">
+                 <div id="service-title">客服中心</div>
+                 <div id="service-content">
+				    <div id="service-click"><a href="<?=YOU_ROOT?>/?m=servip" target="_blank"><img src="/images/ser-click.gif" border="0" /></a></div>
+					<div id="service-infor">
+					  <ul>
+					     <li>客服电话：020-87090820</li>
+						 <li>客服邮箱：kefu@56uu.com</li>
+						 <li>非上班时间请向<a href="<?=YOU_ROOT?>/?m=servip">【客服中心】</a>提交</li>
+					  </ul>
+					</div>
+				 </div>
+                 <div id="service-footer"><img src="/images/left-footer.gif" /></div>
+                 <div class="clear"></div>
+               </div>
+
+		      

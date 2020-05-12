@@ -1,0 +1,155 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'广告ID' , 'dataIndex':'adv_id' , 'type':'textbox' },
+          { 'header':'广告名称' , 'dataIndex':'adv_name' , 'type':'textbox' },
+          { 'header':'广告分类' , 'dataIndex':'adv_groupid'  , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("advgroup","advgroup_id","advgroup_name",'1',true)?>}},
+          { 'header':'素材名称' , 'dataIndex':'material_name' , 'type':'textbox' },
+          { 'header':'平台' , 'dataIndex':'adv_pid' , 'subIndex':'adv_gid', 'url':'ajax-games.php' , 'type':'select' , 'options':{ '全部':'' , <?=get_system_select(true)?>} },
+          { 'header':'游戏' , 'dataIndex':'adv_gid' , 'subIndex':'adv_sid', 'parentIndex':'adv_pid', 'url':'ajax-servers.php' , 'type':'select' , 'options':{ '全部':'' } },
+          { 'header':'服务器' , 'dataIndex':'adv_sid' ,  'type':'select' , 'options':{ '全部':'' } }
+          </div>
+        </div>
+
+		<div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="button" value="删除" class="btn action_del" onclick="todel();" />
+			<input type="button" value="添加" class="btn action_add" onclick="toadd();" />
+            <input type="button" value="生成" class="btn action_edit" onclick="toregen();" />
+            <input type="button" value="切换模板" class="btn_80 action_edit"  onclick="tochangetpl();" />
+            <input type="button" value="切换游戏" class="btn_80 action_edit"  onclick="tochangegame();" />
+		</div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			
+			function getlink(rs) {
+				return "<a href='" + rs["adv_url"] + "'  target='_blank' >" + rs["adv_url"] + "</a>" ;
+	
+			}
+			
+			function getoperator(rs) {
+				return "<a href='adv-add.php?act=preview&id=" + rs["adv_id"] + "' class='action_preview' target='_blank' >预览</a>" + "|<a href='###' class='action_edit' onclick=\"toedit('" + rs["adv_id"] + "')\" >编辑</a>"  + "|<a href='###' onclick=\"toupdate('" + rs["adv_id"] + "')\"   class='action_edit' >重新生成</a>" +  "|<a href='###' onclick=\"tocls('" + rs["adv_id"] + "')\"  class=''>分类</a>" + "|<a href='###' onclick=\"todelone('" + rs["adv_id"] + "')\"  class='action_del'>删除</a>"   ;
+	
+			}
+	
+			
+			var cm = new ColumnModel
+			([
+			new CheckboxModel({dataIndex: 'adv_id'}),
+			new TextboxModel({header: '排序', dataIndex: 'adv_sort', priIndex: 'adv_id', url: 'adv-add.php', sortable: true, width: 35}), 
+			{header: 'id', dataIndex: 'adv_id', sortable: false},
+			{header: '广告名称', dataIndex: 'adv_name', sortable: false},
+			{header: '广告分类', dataIndex: 'advgroup_name', sortable: false},
+			new TextboxModel({header: '标题1', dataIndex: 'adv_title', priIndex: 'adv_id', url: 'adv-add.php'}), 
+			new TextboxModel({header: '标题2', dataIndex: 'adv_title1', priIndex: 'adv_id', url: 'adv-add.php'}), 
+			new TextboxModel({header: '标题3', dataIndex: 'adv_title2', priIndex: 'adv_id', url: 'adv-add.php'}), 
+			{header: '链接地址', dataIndex: 'adv_url', sortable: false,  renderer: getlink},
+			//{header: '渠道名称', dataIndex: 'advtype_name', sortable: false},
+			{header: '素材', dataIndex: 'material_name', sortable: false},
+			{header: '平台', dataIndex: 'platform_name', sortable: false},
+			{header: '游戏', dataIndex: 'game_name', sortable: false},
+			{header: '服务器', dataIndex: 'server_name', sortable: false},
+			new TextboxModel({header: '素材1', dataIndex: 'adv_metrid', priIndex: 'adv_id', url: 'adv-add.php', sortable: true, width: 32}), 
+			new TextboxModel({header: '素材2', dataIndex: 'adv_metrid1', priIndex: 'adv_id', url: 'adv-add.php', sortable: true, width: 32}), 
+			new TextboxModel({header: '素材3', dataIndex: 'adv_metrid2', priIndex: 'adv_id', url: 'adv-add.php', sortable: true, width: 32}), 
+			{header: '操作', renderer: getoperator}
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 20,sort:'adv_sort',dir:'desc', params: { 'act': 'dataget'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 20, filter: filter} }); });
+			$('#searchbar').show();
+			
+			
+		});
+		
+		
+		function toadd(){
+			show_editor({ title:'添加',src:'adv-add.php',  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function toedit(id){
+			show_editor({ title:'编辑',src:'adv-add.php?adv_id=' + id,  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function toupdate(id){
+			ajax_action('adv-add.php',{ act:'update' , id:id } , '您确定要更新吗？' , function(){ 
+				grid.load();
+			});
+		}
+		
+		function toregen(){
+			ajax_action('adv-add.php',{ act:'regen'  } , '您确定要全部更新吗？' , function(){ 
+				grid.load();
+			});
+		}
+		
+		function todel(){
+			ajax_action('adv-add.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+				grid.load(); 
+			});
+		}
+		
+		function todelone(id){
+			ajax_action('adv-add.php',{ act:'del' , ids:id } , '您确定要删除吗？' , function(){ 
+				grid.load();
+			});
+		}
+		
+		function tocls(id){
+			show_editor({ title:'分类',src:'adv-cls.php?adv_id=' + id,  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function tochangegame(){
+			if(grid.get_selected_ids() == ''){
+				alert('请先选择要切换的广告位');
+				return;
+			}
+			show_editor({ title:'切换游戏',src:'adv-add.php?ids=' + escape(grid.get_selected_ids()) + '&change_game=t',  onclose:function(){
+				grid.load();
+			}});
+			
+			/*
+			var pid=$("select[name=adv_pid]").val();
+			var gid=$("select[name=adv_gid]").val();
+			var sid=$("select[name=adv_sid]").val();
+			if(pid=="" || gid=="" || sid==""){
+				alert("请先选择游戏和服务器，再进行批量切换！");
+				return;
+			}
+			ajax_action('adv-add.php',{ act:'set_gsid',pid:pid,gid:gid,sid:sid  } , '您确定要全部切换吗？' , function(){ 
+				grid.load();
+			});
+			*/
+		}
+		
+		function tochangetpl(){
+			if(grid.get_selected_ids() == ''){
+				alert('请先选择要切换的广告位');
+				return;
+			}
+			show_editor({ title:'切换模板',src:'adv-add.php?ids=' + escape(grid.get_selected_ids()) + '&change_tpl=t',  onclose:function(){
+				grid.load();
+			}});
+		}
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

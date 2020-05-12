@@ -1,0 +1,84 @@
+<?php $title='个人资料_会员中心_49you网页游戏平台'; ?>
+<?php $nav='member'; ?>
+<?php $ltv='member_info'; ?>
+<?php include('header.html'); ?>
+
+<div class="text cl ">
+<div class="con clearfix">
+<?php include('member_modify_info.html'); ?>
+   <div class="pmid"> 
+    <p><img src="images/ptop-1.jpg" width="940" height="45" /></p>
+    <div class="pmid_bj1">
+    <div class="pmid_bj2">
+ <div class="pmid_mo">
+ 	<form id="form1" name="form1" method="post" action="">
+        <div class="pbj1">
+        <h3 >基本资料：</h3>
+        <div class="entryitem2">
+		<div class="entrylabe2">昵 称：</div>
+		<div class="entryf2"><input type="text" id="nickname" name="nickname"  class="entrytexta" tabindex="1"  value="<?=$row['member_nickname']?>" />
+        </div></div>
+          <div class="entryitem2">
+		<div class="entrylabe2">性 别：</div>
+		<div class="entryf2">          
+                	<select name='sex' >
+                    	<option value="0">请选择</option>
+                    	<?=cfg_to_opt($cfg_sex,false,$row['sex'])?>
+                    </select>
+        </div></div> 
+        
+        <div class="entryitem2">
+		<div class="entrylabe2">生 日：</div>
+		<div class="entryf2"><input type="text" id="birth" name="birth"  class="entrytexta" tabindex="1"  value="<?=$row['birth']?>" />
+        </div></div>
+        
+          <div class="entryitem2">
+		<div class="entrylabe2">教育情况 ：</div>
+		<div class="entryf2">
+                	<select name='education' >
+                    	<option value="0">请选择</option>
+                    	<?=cfg_to_opt($cfg_edu,false,$row['education'])?>
+                    </select>
+        </div></div> 
+        
+         <div class="entryitem2">
+		<div class="entrylabe2">职 业：</div>
+		<div class="entryf2"><input type="text" id="job" name="job"  class="entrytext" tabindex="1"  value="<?=$row['job']?>" />
+        </div></div>
+        
+ <div class="cl"></div><br />
+
+        <h3 >联系方式：</h3><br />
+
+        <div class="entryitem">
+		<div class="entrylabel">手 机：</div>
+		<div class="entryfl"><input type="text" id="mobile" name="mobile"  class="entrytext" tabindex="1"  value="<?=$row['mobile']?>" />
+        </div></div>
+
+        <div class="entryitem">
+		<div class="entrylabel">详细地址：</div>
+		<div class="entryfl">
+		  <input type="text" id="address_cn" name="address_cn"  class="entrytext" tabindex="1"  value="<?=$row['address_cn']?>" />提示：手机联系方式和详细地址方便我们将活动奖品邮寄到您手上！请填写详细有效的内容！
+        </div></div>
+        </div>
+    <div class="btn cl" ><a href="javascript:document.form1.submit()" class="btn-link btn-n" >完  成</a></div>     
+     <div class="cl"></div>    
+ </div>
+     </div>
+    </div>
+    <p><img src="images/ptop-3.jpg" width="940" height="45" /></p>
+   </div> 
+   		<input type="hidden" name="act" value="edit" />
+       </form>
+   <div class="cl"></div>
+      <div class="pbom"> 
+    
+   </div> 
+</div>
+
+
+</div>
+
+<div class="sharedspacer12"></div>
+<!--bom-->
+<? include('footer.html'); ?>

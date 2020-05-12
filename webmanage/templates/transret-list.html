@@ -1,0 +1,89 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+		  { 'header':'返还类型' , 'dataIndex':'transret_type' , 'type':'select' , 'options':{ '全部':'',<?=cfg_to_opt($cfg_transret_type)?>}  },
+          { 'header':'会员帐号' , 'dataIndex':'transret_mname' , 'type':'textbox' },
+          { 'header':'交易单号' , 'dataIndex':'transret_code' , 'type':'textbox' },
+		  { 'header':'返还时间' , 'dataIndex':'transret_time' , 'type':'datetime', 'defaultValue':'<?=date("Y-m-d")?>' }
+		  
+          </div>
+        </div>
+<div class="searchoptions">
+<input type="button" value="导出" class="btn" onclick="toexport(strexport);" />
+</div> 
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		var strexport="";
+		$(document).ready(function(){
+			
+			function getoperator(rs) {
+				return "";
+	
+			}
+	
+			
+			var cm = new ColumnModel
+			([
+			{header: '关联充值单号', dataIndex: 'transret_code',  width: 100 },
+			{header: '返还的会员帐号', dataIndex: 'transret_mname',  width: 100 },
+			{header: '返还时间', dataIndex: 'transret_time', sortable: true, format:'yyyy-MM-dd HH:mm', width: 100 },
+			{header: '返还率', dataIndex: 'transret_rate',  width: 50 },
+			{header: '返还的平台币', dataIndex: 'transret_currency',  width: 100 },
+			{header: '返还类型', dataIndex: 'transret_type',  width: 100, renderer: '<?=$json->encode($cfg_transret_type);?>' }
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 10, params: {'act': 'dataget', filter: '[{"name":"transret_time","oper":">=","value":"<?=strtotime(date('Y-m-d'))?>"}]'}});
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { strexport=filter; grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+			
+			
+		});
+		
+		
+		function toadd(){
+			show_editor({ title:'添加',src:'transretret-add.php',  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function toedit(id){
+			show_editor({ title:'编辑',src:'transretret-add.php?transretret_id=' + id,  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function todel(){
+			ajax_action('transretret-add.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+				grid.load(); 
+			});
+		}
+		
+		function todelone(id){
+			ajax_action('transretret-add.php',{ act:'del' , ids:id } , '您确定要删除吗？' , function(){ 
+				grid.load();
+			});
+		}
+		
+		function toexport(strexp){
+			if(strexp!='')
+				show_editor({ title:'返利资料导出',src:'transret-list.php?act=dataget&export=1&rnd='+Math.random()+'&filter=' + strexp,  onclose:function(){
+					//grid.load();
+				}});
+			else
+				alert("请先查询！");
+		}
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

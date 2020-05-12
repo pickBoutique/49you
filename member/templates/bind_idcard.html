@@ -1,0 +1,185 @@
+<?php $title='防沉迷认证_会员中心_49you网页游戏平台'; ?>
+<?php $nav='member'; ?>
+<?php $ltv='bind_idcard'; ?>
+<?php include('header.html'); ?>
+
+<script>
+	var bValid_sfz=false;
+	var bValid_rn=false;
+	function isIdCardNo(num)
+	{  
+			  num = num.toUpperCase(); 
+			 //身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X。  
+			  if (!(/(^\d{15}$)|(^\d{17}([0-9]|X)$)/.test(num)))  
+			  {
+				   //alert('输入的身份证号长度不对，或者号码不符合规定！\n15位号码应全为数字，18位号码末位可以为数字或X。');
+				  return false;
+			 }
+	//校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+	//下面分别分析出生日期和校验位
+	var len, re;
+	len = num.length;
+	if (len == 15)
+	{
+	re = new RegExp(/^(\d{6})(\d{2})(\d{2})(\d{2})(\d{3})$/);
+	var arrSplit = num.match(re);
+	
+	//检查生日日期是否正确
+	var dtmBirth = new Date('19' + arrSplit[2] + '/' + arrSplit[3] + '/' + arrSplit[4]);
+	var bGoodDay;
+	bGoodDay = (dtmBirth.getYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
+	if (!bGoodDay)
+	{
+			  //alert('输入的身份证号里出生日期不对！');  
+			   return false;
+	}
+	else
+	{
+	//将15位身份证转成18位
+	//校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+			  var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+			   var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+			   var nTemp = 0, i;  
+				num = num.substr(0, 6) + '19' + num.substr(6, num.length - 6);
+			   for(i = 0; i < 17; i ++)
+			  {
+					nTemp += num.substr(i, 1) * arrInt[i];
+			   }
+			   num += arrCh[nTemp % 11];  
+				return num;  
+	}  
+	}
+	if (len == 18)
+	{
+	re = new RegExp(/^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/);
+	var arrSplit = num.match(re);
+	
+	//检查生日日期是否正确
+	var dtmBirth = new Date(arrSplit[2] + "/" + arrSplit[3] + "/" + arrSplit[4]);
+	var bGoodDay;
+	bGoodDay = (dtmBirth.getFullYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
+	if (!bGoodDay)
+	{
+	//alert(dtmBirth.getYear());
+	//alert(arrSplit[2]);
+	//alert('输入的身份证号里出生日期不对！');
+	return false;
+	}
+	else
+	{
+	//检验18位身份证的校验码是否正确。
+	//校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+	var valnum;
+	var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+	var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+	var nTemp = 0, i;
+	for(i = 0; i < 17; i ++)
+	{
+	nTemp += num.substr(i, 1) * arrInt[i];
+	}
+	valnum = arrCh[nTemp % 11];
+	if (valnum != num.substr(17, 1))
+	{
+	//alert('18位身份证的校验码不正确！应该为：' + valnum);
+	return false;
+	}
+	return num;
+	}
+	}
+	return false;
+	}
+	function chkname(){
+		bValid_rn=false;
+		var rn_str=$("#truename").val();
+		if(rn_str.match(/^[\u4e00-\u9fa5]{2,4}$/g)){
+			ShowMsg("msgname",1,"可用的真实姓名!");
+			bValid_rn=true;
+			return;
+		}
+		ShowMsg("msgname",0,"请检查姓名是否是2~4汉字!");
+	}
+	function chkidcard(){
+		var str_NO=$("#sfznum").val();
+		bValid_sfz=false;
+		if(isIdCardNo(str_NO)){
+			ShowMsg("msgsfz",1,"身份证可用!");
+			bValid_sfz=true;
+		}else{
+			ShowMsg("msgsfz",0,"身份证号码不符合规定!");
+			bValid_sfz=false;
+		}
+	}
+	function ShowMsg(IdStr,ErrNum,ErrStr){
+		var ClrArr=new Array("#f00","#33f","#339900");
+		$("#"+IdStr).css({fontWeight:"bold",fontSize:"9pt",color:ClrArr[ErrNum]});
+		$("#"+IdStr).html(ErrStr);
+	}
+	function form_submit(){
+		chkidcard();if(!bValid_sfz){return false;}
+		chkname();if(!bValid_rn){return false;}
+		document.form1.submit();
+	}
+</script>
+
+<form id="form1" name="form1" method="post" onsubmit="return form_submit();" action="">
+<div class="text cl ">
+<div class="con clearfix">
+<?php include('member_modify_info.html'); ?>
+   <div class="pmid"> 
+    <p><img src="images/ptop-1.jpg" width="940" height="45" /></p>
+    <div class="pmid_bj1">
+    <div class="pmid_bj2">
+ <div class="pmid_mo">
+        <div class="pbj1">
+        <?if($usr_info["member_idvalid"]!=1){?>
+        <div class="entryitem">
+		<div class="entrylabel">请输入您的真实姓名：</div>
+		<div class="entryfl"><input name="truename" type="text" class="entrytext" id="truename" tabindex="1" onblur="chkname();"  value="" size="20" />
+        <label id="msgname"></label>
+		 <P>真实姓名为2至4个汉字 请输入您的姓名，如：王五</P>
+        </div></div>
+
+
+        <div class="entryitem">
+		<div class="entrylabel">请输入您的身份证：</div>
+		<div class="entryfl"><input name="sfznum" type="text"  class="entrytext" id="sfznum" tabindex="1" onblur="chkidcard();"  value="" size="20" />
+		 <label id="msgsfz"></label>
+        </div></div>
+<div class="entryitem">        </div>
+        
+         
+    <div class="btn" ><a href="#" onclick="javascript:form_submit();" class="btn-link btn-n" >完  成</a> </div>
+    <input type="hidden" name="act" value="edit" />
+</form>
+    <?}else{?>
+
+            <div class="entryitem">
+		<div class="entrylabel">真实姓名：</div>
+    	<div class="entryfl"><?=substr($usr_info["member_truename"],0,3)?>******</div>
+        </div>
+            <div class="entryitem">
+		<div class="entrylabel">身份证号码：</div>
+    	<div class="entryfl"><?=substr($usr_info["member_idcard"],0,5)?>*************</div>
+        </div>
+            <div class="entryitem">
+		<div class="entrylabel">小提示：</div>
+    	<div class="entryfl">您已经填写防沉迷信息.如果您需要修改,请联系客服</div>
+        </div>
+    <?}?>
+    </div>
+     <div class="cl"></div>
+ </div>
+     </div>
+    </div>
+    <p><img src="images/ptop-3.jpg" width="940" height="45" /></p>
+   </div> 
+   
+      <div class="pbom"> 
+    
+   </div> 
+</div>
+</div>
+
+<div class="sharedspacer12"></div>
+<!--bom-->
+<? include('footer.html'); ?>

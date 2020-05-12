@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0032)http://sg.xd.com/game/index.html -->
+<HTML><HEAD><TITLE>盛世三国</TITLE>
+<META charset=UTF-8><LINK rel=stylesheet type=text/css href="client/style.css">
+<SCRIPT type=text/javascript src="client/jquery.js"></SCRIPT>
+<SCRIPT type=text/javascript src="client/sg_4.js"></SCRIPT>
+<SCRIPT type=text/javascript>
+window.onerror=function(){
+	return true;
+}
+var you_root = '<?=YOU_ROOT?>';
+var gid='<?=$gid?>';
+</SCRIPT>
+
+<META name=GENERATOR content="MSHTML 8.00.6001.18702"></HEAD>
+<BODY>
+<DIV id=warpper class="clearfix">
+<DIV class=content>
+
+
+<DIV style="DISPLAY: none" id=reg-box>
+<div style=" height:30px; line-height:30px;">　</div>
+<FORM id=UserRegisterForm method=post name=reg-form action=/users/register>
+<UL>
+  <LI style="TEXT-INDENT: -9999px" id=login_title>游戏帐号注册</LI>
+  <LI><SPAN class=value><LABEL for="username"></LABEL></SPAN><SPAN 
+  class=ipt-box><INPUT id="username"  type=text name="username" 
+  autocomplete="off"></SPAN> <SPAN id=username_info class=info>6-18个英文数字</SPAN> 
+  </LI>
+  <LI><SPAN class=value><LABEL for=password></LABEL></SPAN><SPAN 
+  class=ipt-box><INPUT id=password type=password 
+  name="password"></SPAN> <SPAN id=password_info 
+  class=info>最短6位</SPAN> </LI>
+  <LI><SPAN class=value><LABEL for=password_confirm></LABEL></SPAN><SPAN 
+  class=ipt-box><INPUT id=password_confirm type=password 
+  name="password_confirm"></SPAN> <SPAN id=password_confirm_info 
+  class=info></SPAN></LI><!--li>
+                                <span class="value"><label for="realname">真实姓名</label></span>
+                                <span class="ipt-box"><input id="realname" type="text" name="data[User][realname]" /></span>
+                                <span id="realname_info" class="info info_ok">请输入真实姓名</span>
+                            </li>
+                            <li>
+                                <span class="value"><label for="realid">身份证</label></span>
+                                <span class="ipt-box"><input id="realid" type="text" name="data[User][realid]" /></span>
+                                <span id="realid_info" class="info info_ok">请输入有效身份证</span>
+                            </li-->
+   
+</UL>
+<div style="float:left;COLOR:red; padding:0 0 0 129px; width:300px;" id="register_error_div"></div>
+<DIV class="reg-sub-btn"> 
+<A id="reg_submit_btn" class=btn-link title=""  href="http://sg.xd.com/game/index.html#">立即注册</A> 
+<div class=reg_log_click><A id="goto_log_btn" class="not_btn_olduser"  title="" href="javascript:void(0);">老用户登录</A> </div>
+
+ <INPUT value=xd type=hidden name="data[User][site]"> <INPUT style="WIDTH: 1px; HEIGHT: 1px" id=reg-submit value="提交查询内容" type="submit" name="reg-submit">
+</DIV>
+</FORM>
+</DIV>
+
+
+<DIV id="log-box">
+<H1 class="login_title1"></H1>
+<FORM id="UserLoginForm" method=post name="log-form" action="/users/login">
+<UL>
+  <LI><SPAN class=value><LABEL id=label_username 
+  for="usname"></LABEL></SPAN><SPAN class=ipt-box><INPUT id=usname 
+   type=text name='usname'></SPAN> </LI>
+  <LI><SPAN class=value><LABEL for=login_password></LABEL></SPAN><SPAN 
+  class=ipt-box><INPUT id=uspsd  type=password 
+  name='uspsd'></SPAN> </LI>
+  <LI style="DISPLAY: none" id=login_authkey_div>
+  	<SPAN style="FLOAT: left"  class=value><LABEL for=login_verify>验证码：</LABEL></SPAN> 
+  	<DIV style="PADDING-LEFT: 4px; FLOAT: left">
+    	<SPAN style="FLOAT: left" class="ipt-box ipt-box2"><INPUT id=login_verify type=text></SPAN>
+    </DIV>
+  </LI>
+  <LI>
+  	<SPAN class=value></SPAN>
+  	<SPAN><INPUT style="VERTICAL-ALIGN: middle" id='save_id' CHECKED type=checkbox name='save_id'><LABEL  style="COLOR: white" for=save_cookie>记住帐号</LABEL></SPAN> 
+    <A class="forget_psw" href="<?=YOU_ROOT?>/pwd_find.html" target="_blank">忘记密码</A> 
+    <div  style="PADDING-LEFT: 15px; COLOR: red; text-align:center;" id="login_error_div"></div>
+  </LI>
+</UL>
+<DIV class="log-sub-btn">
+	<A id="login_submit_btn" class="btn-link" title=""  href="###">登　　录</A> 
+    <SPAN class=reg_log_click2>
+	<A id="goto_reg_btn" class="btn-link" title="" href="javascript:void(0);">新帐号注册</A> 
+	</SPAN>
+    <INPUT value="http://sg.xd.com/game/start.html" type="hidden" name="continue"> <INPUT style="WIDTH: 1px; HEIGHT: 1px" id="log-submit" value="提交查询内容" type="submit" name="log-submit"> 
+</DIV>
+</FORM>
+</DIV>
+</DIV>
+
+
+<? include('client_right.html'); ?> 
+
+</DIV>
+</BODY></HTML>

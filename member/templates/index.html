@@ -1,0 +1,322 @@
+<?php $title='49you网页游戏平台_提供2011最新的好玩的网页游戏'; ?>
+<?php $nav='index'; ?>
+<?php include('header.html'); ?>
+<script language="javascript">
+	function shownews(tshow,thide){
+		$("#"+tshow).css("display","");
+		$("#a"+tshow)[0].className='n1';
+		$("#"+thide).css("display","none");
+		$("#a"+thide)[0].className='n2';
+	}
+</script>
+<div class="sharedspacer8"></div>
+<div class="con clearfix">
+<div style="float:left;">
+<!--login start-->
+<? include('login_info.html'); ?> 
+<!--login end-->
+</div>
+<!--banner-->
+    <div id="banner" class="fr">
+        <div class="margin" id="imgShow">
+            <div class="banner_t">
+                <ul>
+   	                <li><a href="<?=$config_index['slide_bigimg_link']?>" target="_blank"><img src="<?=$config_index['slide_bigimg']?>"/></a></li>
+                    <? if(!empty($config_index['slide2_server_name'])){ ?>
+                    <li><a href="<?=$config_index['slide2_bigimg_link']?>" target="_blank"><img src="<?=$config_index['slide2_bigimg']?>"/></a></li>
+                    <? }else{ ?>
+	                <li><a href="/news_info_224.html" target="_blank"><img src="images/banner2_big.jpg" /></a></li>
+                    <? } ?>
+                    <li><a href="/vip.html" target="_blank"><img src="images/banner3_big.jpg" /></a></li>
+                </ul>
+            </div>
+            <div class="banner_b">
+              <ul class="clearfix">
+                  <li class="on" onclick="showImg(0);">
+                    <a href="javascript:void(0)" onclick="return false; " onfocus="this.blur()">
+                      <img src="<?=$config_index['slide_smallimg']?>" />
+                    </a>
+                    <div>
+                      <strong><?=$config_index['slide_server_name']?></strong>
+                      <a href="<?=$config_index['slide_server_list']?>" target="_blank"><span>进入游戏</span></a>
+                      <a href="<?=$config_index['slide_game_web']?>" target="_blank">官网</a>
+                      <a href="<?=$config_index['slide_game_bbs']?>" target="_blank">论坛</a>
+                    </div>
+                 </li>
+                 <li onclick="showImg(1);">
+                 	<? if(!empty($config_index['slide2_server_name'])){ ?>
+                    <a href="javascript:void(0)" onclick="return false; " onfocus="this.blur()">
+                      <img src="<?=$config_index['slide2_smallimg']?>" />
+                    </a>
+                    <div>
+                      <strong><?=$config_index['slide2_server_name']?></strong>
+                      <a href="<?=$config_index['slide2_server_list']?>" target="_blank"><span>进入游戏</span></a>
+                      <a href="<?=$config_index['slide2_game_web']?>" target="_blank">官网</a>
+                      <a href="<?=$config_index['slide2_game_bbs']?>" target="_blank">论坛</a>
+                    </div>
+                    <? }else{ ?>
+                    <a href="javascript:void(0)"  onclick="return false; " onfocus="this.blur()">
+                      <img src="images/banner2_small.jpg" />
+                    </a>
+                    <div>
+                      <strong>推荐好友返利轻松拿</strong>
+                      <a href="/news_info_224.html" target="_blank"><span>详情</span></a>
+                      <a href="/login.html?returl=/return.html" target="_blank">马上邀请好友加入</a>
+                    </div>
+                    <? } ?>
+                 </li>
+
+                 <li onclick="showImg(2);">
+                    <a href="javascript:void(0)"  onclick="return false; " onfocus="this.blur()">
+                      <img src="images/banner3_small.jpg" />
+                    </a>
+                    <div>
+                      <strong>最实惠游戏平台</strong>
+                      <a target="_blank" href="/vip.html"><span>推广返利</span></a>
+                      <a target="_blank" href="/vip.html">VIP会员礼遇</a>
+                     
+                    </div>
+                 </li>
+              </ul>
+            </div>
+          </div>
+        <script type="text/javascript">
+            var imgShow = document.getElementById('imgShow');
+            var ul = imgShow.getElementsByTagName('ul');
+            var imgWidth = 699;
+            ul[0].scrollLeft = 0;
+            var imgNow = 0;
+            var imgLength = ul[0].getElementsByTagName('li').length;
+            var step = 100;
+            var seed = 50;
+            var btnLi = ul[1].getElementsByTagName('li');
+            var timer = null;
+
+            function showImg(num)
+            {
+                num = num % imgLength;
+                if(num == imgNow) return;
+                var from = ul[0].scrollLeft;
+                var to = num * imgWidth;
+                for(var i=0; i< btnLi.length;i++)
+                {
+                    btnLi[i].className = "";
+                }
+                btnLi[num].className="on";
+                if(timer) clearTimeout(timer);
+                if(from < to)
+                    moveImg(from,to,'r',num);
+                else
+                    moveImg(from,to,'l',num);
+            }
+
+            function moveImg(from, to,t,n)
+            {
+                if(t == "r")
+                {
+                    from += step;
+                    if(from >= to)
+                    {
+                        ul[0].scrollLeft = to;
+                        imgNow = n;
+                        timer = window.setTimeout("showImg(imgNow + 1);",3000)
+                    }
+                    else
+                    {
+                        ul[0].scrollLeft = from;
+                        timer = window.setTimeout("moveImg(" + from + ',' + to + ",'" + t + "'," +  n+ ')',50)
+                    }
+                }
+                else
+                {
+                    from -= step;
+                    if(from <= to)
+                    {
+                        ul[0].scrollLeft = to;
+                        imgNow = n;
+                        timer = window.setTimeout("showImg(imgNow + 1);",3000)
+                    }
+                    else
+                    {
+                        ul[0].scrollLeft = from;
+                        timer = window.setTimeout("moveImg(" + from + ',' + to + ",'" + t + "'," +  n+ ')',50)
+                    }
+                }
+            }
+
+             timer = window.setTimeout("showImg(imgNow + 1);",3000)
+        </script>
+    </div>
+    
+</div>
+
+<div class="sharedspacer8"></div>
+<!--mid-->
+<!--中间开始-->
+<div class="con clearfix" style="zoom:1;">
+<div class="col1 fl">
+        <!--server start-->
+		<? include('server_info.html'); ?> 
+		<!--server end-->
+  <div><a href="<?=$config_index['left_img1_link']?>" target="_blank"><img src="<?=$config_index['left_img1']?>" width="244" height="84" /></a></div>
+ <div class="sharedspacer8"></div>
+<div><a href="<?=$config_index['left_img2_link']?>" target="_blank"><img src="<?=$config_index['left_img2']?>" width="244" height="84" /></a></div>
+  <div class="sharedspacer8"></div>      
+ <div class="box cjwt">
+  <h4><span>常见问题</span><a target="_blank" href="service.html" class="pl-more"><img src="images/moer.gif" /></a></h4>
+  <div id="MediaNews2" class="BgColor LinePart">
+  <ul>
+            <?
+            if($rs_news){
+            foreach($rs_news as $k=> $v){?>
+            <li class="MediaNewsLi"><a href="news_info_<?=$v['info_id']?>.html" target="_blank"><?=$v['subtitle']?></a></li>    
+            <?}
+            }?>
+       </ul>
+          </div>
+</div>
+ 
+ <div class="box cs">
+    <div class="margin">
+    <h4>客服中心 <a class="pl-more" href="service.html"><img height="15" width="46" src="images/moer.gif"></a></h4>
+        <div class="cs_div">
+            
+<p>客服热线：<?=$config['service_tel1']?> </p>
+              <p>客服邮箱：<a target="_blank" title="邮箱联系" href="mailto:CS_49you@163.com">CS_49you@163.com</a></p>
+       <div style="padding-left: 10px; padding-top: 4px;">
+               <div class="c1"> <a target="_blank" title="帐号申诉" href="account_appeal.html">帐号申诉</a></div>
+                 <div class="c2"><a target="_blank" title="在线客服" href="service_online.html">在线客服</a></div>
+            </div>
+        </div>
+    </div>
+</div>    
+</div>
+
+<!--new games-->
+<div class="box yxtj2 fl">
+<div class="cnt cl">
+<div class="evaluationben"><span class="mark2">游戏推荐</span><p class="evaluatmore"><a href="game.html" target="_blank">进入游戏中心&gt;&gt;</a></p></div>
+
+<? // 游戏列表游戏个数
+$gamelc=5;
+?>
+<div class="yxcnt cl">
+<!--gamelist start-->
+   <?
+   
+   if($top_games){
+   foreach($top_games as $k=> $v){
+   if($k>$gamelc-1) break;
+   ?>
+<div class="sharedspacer16"></div>
+<div class="gameList">
+
+   <div class="youxijs fl">
+     <div class="gameimg"><a target="_blank" href="<?=$v['game_web']?>"><img src="game/<?=$v['game_id']?>_140_129.jpg" width="140" height="129" /></a></div>
+     <div class="oext">
+       <span class="gameName"><i>人气：<h2><?=$v['server_register']?></h2>
+         </i><em><a target="_blank" href="<?=$v['game_web']?>"><?=$v['game_name']?></a></em> <?=$cfg_game_type[$v['game_class']]?></span><span class="gameDce">&nbsp;&nbsp;<?=sub_str($v['game_desc'],0,65)?>...</span><span class="gameBtn"><i><a target="_blank" href="game.html?gid=<?=$v['game_id']?>"><img src="images/go.jpg" width="90" height="24" /></a></i><em><a href="<?=$v['game_guidenew']?>" target="_blank">新手指南</a> | <a target="_blank" href="package_list.html?gid=<?=$v['game_id']?>">新手卡领取</a>| <a target="_blank" href="<?=$v['game_web']?>">官 网</a></em></span>
+       </div>
+     </div>
+   <?
+   
+	//GET新闻的父ID
+    $sqlstr="select cate_id from ".DB_PREFIX."infocate where pic='news{$v['game_code']}'";
+	$rs_getid = $db->getAll($sqlstr,100);
+
+	$ids = "-1";
+      if($rs_getid){
+          foreach($rs_getid as $i=> $g){
+          $ids .= "," . $g["cate_id"];
+          }
+      }
+	$where = " and cate_id IN ($ids) ";
+	$sqlstr="select info_id,subtitle from ".DB_PREFIX."info where info_start<=".time()." $where order by add_time desc limit 0,4";
+	$rs_gnews = $db->getAll($sqlstr);
+    
+	//GET攻略的父ID
+    $sqlstr="select cate_id from ".DB_PREFIX."infocate where pic='gl{$v['game_code']}'";
+	$rs_getid = $db->getRow($sqlstr);
+    
+	$ids = get_cateids_by_parent($rs_getid["cate_id"]);
+	$where = " and cate_id IN ($ids) ";
+	$sqlstr="select info_id,subtitle from ".DB_PREFIX."info where info_start<=".time()." $where order by add_time desc limit 0,4";
+	$rs_glnews = $db->getAll($sqlstr);
+    
+   ?>
+   <div class="youxinew fr">
+     <h3><a href="javascript:shownews('news<?=$v["game_code"]?>','gl<?=$v["game_code"]?>')" class="n1" id="anews<?=$v["game_code"]?>">新闻公告</a><a href="javascript:shownews('gl<?=$v["game_code"]?>','news<?=$v["game_code"]?>')" class="n2" id="agl<?=$v["game_code"]?>">攻略宝典</a></h3>
+     
+     <div id="news<?=$v["game_code"]?>" class="MediaNews-3">
+       <ul>
+          <?if($rs_gnews){
+		   foreach($rs_gnews as $i=> $g){?>
+         <li class="MediaNewsLi-3"><div><a href="news_info_<?=$g['info_id']?>.html" target="_blank" title="<?=$g['subtitle']?>"><?=$g['subtitle']?></a></div></li>
+         <?}
+         }?>
+         </ul>
+       </div>
+       
+     <div id="gl<?=$v["game_code"]?>" class="MediaNews-3" style="display:none">
+       <ul>
+          <?if($rs_glnews){
+		   foreach($rs_glnews as $i=> $g){?>
+         <li class="MediaNewsLi-3"><div><a href="news_info_<?=$g['info_id']?>.html" target="_blank" title="<?=$g['subtitle']?>"><?=$g['subtitle']?></a></div></li>
+         <?}
+         }?>
+         </ul>
+       </div>
+
+</div>
+     
+</div>
+<?}
+}
+
+?>
+<!--gamelist over-->
+<!--gamelistmore start-->
+
+<div class="more_game">
+<div class="more_game_btn"><a target="_blank" href="game.html"><img height="24" width="105" alt="" src="/images/moregamebtn.jpg"></a></div>
+<div class="more_game_list"><ul><li><span>更多游戏：</span></li>
+<? if($top_games){
+   foreach($top_games as $k=> $v){
+   if($k<$gamelc) continue;
+   ?>
+<li style="background-image: url(/game/<?=$v['game_id']?>_16_16.jpg);"><a target="_blank" href="<?=$v['game_web']?>"><?=$v['game_name']?></a></li>
+	<?}
+}
+?>
+    </ul>
+    </div>
+</div>
+<!--gamelistmore over-->
+</div>
+
+<div class="youxi-bom"></div>
+</div>
+
+</div>
+
+<!--right-->
+</div>
+<!--中间结束-->
+</div>
+
+<div class="sharedspacer12"></div>
+<div class="con">
+<div class="hezuo">
+<h2>合作网站</h2>
+</div>
+<div class="hezuoline">
+<?foreach($rs_link as $k=> $v){?>
+<div><a href="<?echo($v['link_url']);?>" target="_blank"><?echo($v['link_name']);?></a></div>
+<?}?>
+</div>
+<div><img src="images/bom-bom.jpg" width="960" height="10" /></div>
+</div>
+<!--bom-->
+<div class="con clearfix" >
+ 
+<? include('footer.html'); ?>

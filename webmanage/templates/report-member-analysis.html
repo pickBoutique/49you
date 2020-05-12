@@ -1,0 +1,48 @@
+<?php include_once("header.html");?>
+
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'推广渠道' , 'dataIndex':'w1_member_advtype' , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("advtype","advtype_id","advtype_name",'1',true)?>}},
+          { 'header':'广告' , 'dataIndex':'w1_member_advid' , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("adv","adv_id","adv_name",'1 order by adv_name',true)?>}},
+          { 'header':'素材ID' , 'dataIndex':'w1_member_metrid' , 'type':'text' } ,
+		  { 'header':'注册时间' , 'dataIndex':'w1_add_time' , 'type':'datetime', 'defaultValue':'<?=date("Y-m-d")?>' } ,
+		  { 'header':'在线时间' , 'dataIndex':'w2_ml_startime' , 'type':'datetime' }
+          </div>
+        </div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			var cm = new ColumnModel
+			([
+			{header: '注册数量', dataIndex: 'members',sortable: true},
+			{header: '登陆数量', dataIndex: 'onlogin', sortable: true},
+			{header: '5分钟内', dataIndex: '0min', sortable: true},
+			{header: '5-10分钟', dataIndex: '5min', sortable: true},
+			{header: '10-15分钟', dataIndex: '10min', sortable: true},
+			{header: '15-20分钟', dataIndex: '15min', sortable: true},
+			{header: '20-25分钟', dataIndex: '20min', sortable: true},
+			{header: '25-30分钟', dataIndex: '25min', sortable: true},
+			{header: '30分钟以上', dataIndex: '30min', sortable: true}
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 100, params: { 'act': 'dataget',filter:	'[{"name":"w1_add_time","oper":">=","value":"<?=strtotime(date('Y-m-d'))?>"}]'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 100, filter: filter} }); });
+			$('#searchbar').show();
+			
+			
+		});
+	
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

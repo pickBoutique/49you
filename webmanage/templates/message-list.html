@@ -1,0 +1,107 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+		<!--	<div class="searcher">
+			<strong>搜索：</strong>
+			标题 <input type="text" name="title" id="title" value="<?=$title?>" />&nbsp;&nbsp;
+		
+			类别 
+			<select name="cate_id" id="cate_id">
+				<option value="">全部</option>
+				<?php
+				if($info_cate_arr)
+				{
+					foreach($info_cate_arr as $v)
+					{
+				?>
+				<option value="<?=$v['cate_id']?>" <?=$v['cate_id']==$cate_id?'selected':''?> ><?=$v['cate_name']?></option>
+				<?php
+					}
+				}
+				?>
+			</select>
+			&nbsp;&nbsp;
+			时间从 <input type="text" class="Wdate" id="start_time" name="start_time" value="<?=$start_time?>" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'end_time\',{d:-1});}'})"/> 到 <input type="text" class="Wdate" id="end_time" name="end_time" value="<?=$end_time?>" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'start_time\',{d:1});}'})"/>
+			<input type="hidden" name="cate_parent_id" id="cate_parent_id" value="<?=$cate_parent_id?>" />
+			<input type="submit" value="搜索" class="btn" />
+		</div>
+		<div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="radio" name="op_column" id="op_column0" onclick="changeOperate('update')" value="" checked="checked" />更新
+			<input type="hidden" name="act" id="act" value="update" />
+			<input type="hidden" name="request" value="<?=$request?>" />
+			<input type="button" value="提交" class="btn" onclick="OperateSubmit(this.form,'checkbox_cate_id[]','message-action.php')" />&nbsp;&nbsp;
+			<input type="button" value="添加信息" class="btn_80" onclick="location.href='message-add.php?parent_id=<?=$cate_id?>'" />
+		</div>
+		<?=$list_html?>
+		<div class="page_html"><?=$page_html?></div>-->
+         <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'标题' , 'dataIndex':'title' , 'type':'textbox' },
+          { 'header':'用户邮箱' , 'dataIndex':'email' , 'type':'textbox' },
+          { 'header':'时间从' , 'dataIndex':'add_time' , 'type':'datetime' }</div>
+        </div>
+        
+       <div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="button" value="删除" class="btn action_del" onclick="todel();" />
+			<!--<input type="button" value="添加" class="btn action_add" onclick="toadd();" />-->
+		</div>
+        
+		<div class="searcher" id="permimag"></div>
+        
+        
+		<script>
+		var grid;
+		$(document).ready(function(){
+			
+			function getoperator(rs) {
+				return "<a href='###' class='action_edit' onclick=\"toedit('" + rs["message_id"] + "')\">查看</a>";
+			}
+	
+			var cm = new ColumnModel
+			([
+			new CheckboxModel({dataIndex: 'message_id'}),
+			{header: '序号', dataIndex: 'message_id', sortable: false, width: 100},
+			{header: '用户邮箱', dataIndex: 'email', sortable: false, width: 100},
+			{header: '标题', dataIndex: 'title', sortable: false},
+            <!--{header: '内容', dataIndex: 'content', sortable: false, width: 100},-->
+			{header: '添加时间', dataIndex: 'add_time' , format:'yyyy-MM-dd', sortable: true, width: 100 },
+			{ header: '操作',  width: 40, renderer: getoperator }
+			]);
+	
+			grid = new GridView({ id: 'permimag', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+		});
+		
+		
+		function toadd(){
+			show_editor({ title:'添加',src:'message-action.php', onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function toedit(id){
+			show_editor({ title:'查看',src:'message-view.php?message_id=' + id, onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function todel(){
+			if(grid.get_selected_ids() == ''){
+				alert("请选择要删除的行");
+				return;
+			}
+			ajax_action('message-action.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+				grid.load(); 
+			});
+		}
+		
+		</script>
+	</form>
+</div>
+<?php include_once("footer.html");?>

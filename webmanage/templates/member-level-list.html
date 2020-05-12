@@ -1,0 +1,88 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="member-level-list.php">
+		<!--<div class="searcher">
+			<strong>搜索：</strong>
+			等级名称 <input type="text" name="level_name" id="level_name" value="<?=$level_name?>" />&nbsp;&nbsp;
+			时间从 <input type="text" class="Wdate" id="start_time" name="start_time" value="<?=$start_time?>" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'end_time\',{d:-1});}'})"/> 到 <input type="text" class="Wdate" id="end_time" name="end_time" value="<?=$end_time?>" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'start_time\',{d:1});}'})"/>
+			<input type="submit" value="搜索" class="btn" />
+		</div>
+		<div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="radio" name="op_column" id="op_column1" onclick="changeOperate('del')" checked="checked" />删除
+			<input type="hidden" name="act" id="act" value="del" />
+			<input type="hidden" name="request" value="<?=$request?>" />
+			<input type="button" value="保存" class="btn" onclick="OperateSubmit(this.form,'checkbox_level_id[]','member-level-action.php')" />
+			<input type="button" value="添加等级" class="btn_80" onclick="location.href='member-level-add.php?member_id=<?=$member_id?>'" />
+		</div>
+		<?=$list_html?>
+		<div class="page_html"><?=$page_html?></div>-->
+         <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'等级名称' , 'dataIndex':'level_name' , 'type':'textbox' },
+          { 'header':'时间从' , 'dataIndex':'add_time' , 'type':'datetime' }</div>
+        </div>
+        
+       <div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="button" value="删除" class="btn action_del" onclick="todel();" />
+			<input type="button" value="添加" class="btn action_add" onclick="toadd();" />
+		</div>
+        
+		<div class="searcher" id="permimag"></div>
+        
+        
+		<script>
+		var grid;
+		$(document).ready(function(){
+			
+			function getoperator(rs) {
+				return "<a href='###' class='action_edit' onclick=\"toedit('" + rs["level_id"] + "')\">编辑</a>";
+			}
+	
+			var cm = new ColumnModel
+			([
+			new CheckboxModel({dataIndex: 'level_id'}),
+			{header: '等级名称', dataIndex: 'level_name', sortable: false},
+			{header: '积分上限', dataIndex: 'points_up', sortable: true, width: 100},
+			{header: '积分下限', dataIndex: 'points_down', sortable: true, width: 100},
+			{header: '返还率', dataIndex: 'ret_rate', sortable: true, width: 100},
+			{header: '添加时间', dataIndex: 'add_time' , format:'yyyy-MM-dd', sortable: true, width: 100 },
+			{ header: '操作',  width: 40, renderer: getoperator }
+			]);
+	
+			grid = new GridView({ id: 'permimag', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+		});
+		
+		
+		function toadd(){
+			show_editor({ title:'添加',src:'member-level-add.php', onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function toedit(id){
+			show_editor({ title:'修改',src:'member-level-add.php?level_id=' + id, onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function todel(){
+			if(grid.get_selected_ids() == ''){
+				alert("请选择要删除的行");
+				return;
+			}
+			ajax_action('member-level-add.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+				grid.load(); 
+			});
+		}
+		
+		</script>
+	</form>
+</div>
+<?php include_once("footer.html");?>

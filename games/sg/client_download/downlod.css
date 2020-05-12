@@ -1,0 +1,111 @@
+BODY {
+	BACKGROUND: url(sg_bg.jpg) #130c09 no-repeat center top; FONT: 12px/1.6 tahoma,arial,ËÎÌו,sans-serif; min-width: 1060px
+}
+.sg_dl6_content {
+	BACKGROUND: url(sg_dl_content.jpg) no-repeat -148px top; HEIGHT: 550px
+}
+.wrapper {
+	MARGIN: -35px auto 0px; WIDTH: 1038px
+}
+.headUl {
+	HEIGHT: 343px
+}
+.head_nav {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 140px; PADDING-BOTTOM: 0px; PADDING-TOP: 60px
+}
+.headtext {
+	BACKGROUND: url(head_nav.jpg); FLOAT: left; MARGIN: 0px 2px; WIDTH: 88px; TEXT-INDENT: -9999px; HEIGHT: 23px
+}
+.HeadTextA {
+	BACKGROUND-POSITION: 0px 0px
+}
+.HeadTextB {
+	BACKGROUND-POSITION: 0px -21px
+}
+.HeadTextC {
+	BACKGROUND-POSITION: 0px -42px
+}
+.HeadTextD {
+	BACKGROUND-POSITION: 0px -63px; MARGIN-LEFT: 235px
+}
+.HeadTextE {
+	BACKGROUND-POSITION: 0px -84px
+}
+.HeadTextF {
+	BACKGROUND-POSITION: 0px -105px
+}
+.HeadTextA:hover {
+	BACKGROUND-POSITION: -89px 0px
+}
+.HeadTextB:hover {
+	BACKGROUND-POSITION: -89px -21px
+}
+.HeadTextC:hover {
+	BACKGROUND-POSITION: -89px -42px
+}
+.HeadTextD:hover {
+	BACKGROUND-POSITION: -89px -63px
+}
+.HeadTextE:hover {
+	BACKGROUND-POSITION: -89px -84px
+}
+.HeadTextF:hover {
+	BACKGROUND-POSITION: -89px -105px
+}
+.sg_dl_left {
+	PADDING-RIGHT: 20px; PADDING-LEFT: 95px; FONT-SIZE: 12px; FLOAT: left; PADDING-BOTTOM: 0px; WIDTH: 135px; COLOR: #7e4a2d; PADDING-TOP: 165px
+}
+.sg_dl_left P {
+	WIDTH: 118px; LINE-HEIGHT: 20px
+}
+.sg_dl_middle {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 55px; FLOAT: left; PADDING-BOTTOM: 0px; WIDTH: 515px; PADDING-TOP: 130px
+}
+.sg_dl_middle P {
+	FONT-SIZE: 12px; COLOR: #a5804a; LINE-HEIGHT: 20px
+}
+.item2 {
+	CLEAR: both; OVERFLOW: hidden; PADDING-TOP: 38px
+}
+.item1 {
+	OVERFLOW: hidden; HEIGHT: 105px
+}
+.sg_dl_right {
+	FLOAT: left; WIDTH: 150px; PADDING-TOP: 100px
+}
+.dl_button {
+	DISPLAY: block; BACKGROUND: url(dl6_button.jpg) 0px 102px; FLOAT: left; MARGIN-LEFT: 40px; WIDTH: 226px; CURSOR: pointer; HEIGHT: 102px
+}
+.dl_button:hover {
+	BACKGROUND-POSITION: 0px 0px
+}
+.item2 .dl_button {
+	BACKGROUND-POSITION: 223px 102px; MARGIN-LEFT: 70px; WIDTH: 222px
+}
+.item2 .dl_button:hover {
+	BACKGROUND-POSITION: 223px 0px
+}
+.footer A {
+	COLOR: #4e3227; TEXT-DECORATION: none
+}
+.company {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 280px; FLOAT: left; PADDING-BOTTOM: 0px; WIDTH: 190px; PADDING-TOP: 30px
+}
+.footerList {
+	FLOAT: left; WIDTH: 370px; LINE-HEIGHT: 20px
+}
+.footerList LI {
+	PADDING-RIGHT: 10px; FLOAT: left; MARGIN: 10px 0px 0px
+}
+.footer A {
+	COLOR: #805b34; TEXT-DECORATION: none
+}
+.footer A:hover {
+	COLOR: #a27028
+}
+A {
+	CURSOR: pointer; COLOR: #805b34; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #a27028; TEXT-DECORATION: underline
+}

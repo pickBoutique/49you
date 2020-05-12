@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="/style/table.css" rel="stylesheet" type="text/css" />
+<link href="/style/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/function_common.js"></script>
+<script type="text/javascript" src="/js/check_feedback.js"></script>
+<script type="text/javascript" src="/js/My97DatePicker/WdatePicker.js"></script>
+</head>
+
+<body>
+<div class="options">
+	<span class="fr"><!--<a href="javascript:window.close();">关闭</a>--></span>
+	<span class="position">当前位置：<span>查看资料</span></span>
+</div>
+<div class="main">
+	<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+		<tr>
+        <td align="center" width="20%">第	<select name="pages" id="pages" onchange="location='<?=$request?>&amp;page='+this.options[this.selectedIndex].value;">
+						<?php
+						for($i=1;$i<=$page_count;$i++)
+						{
+						?>
+						<option value="<?=$i?>" <?=$i==$page?"selected":""?>><?=$i?></option>
+						<?php
+						}
+						?>
+					</select>	页
+			</td>
+			<td align="center">
+				<input type="button" onClick="ImgZoom('mypic','zoomin',0.2);"  value="放大" />
+				<input type="button" onClick="ImgZoom('mypic','zoomout',0.2);" value="缩小" />
+				<input type="button" onClick="ImgZoom('mypic','zoomoff',0.2);" value="原始" />
+				<input type="button" onClick="ImgRotation('mypic','right');" value="顺时针旋转" />
+				<input type="button" onClick="ImgRotation('mypic','left');" value="逆时针旋转" />
+               <!--  <input type="button" value="保存" onClick="window.location.href='<?=$rs2[0]['attachment_url']?>'" />
+                <input type="button" value="保存" onclick="save();" />-->
+                <input type="button" value="保存" onClick="window.open( '<?=$rs2[0]['attachment_url']?>', '_blank ')" />
+			</td>
+		<tr>
+		<tr>
+        <td align="center" valign='top'>
+				<?php 
+					if($rs2){
+						foreach($rs2 as $v){
+				?>
+				<div><img src='../include/pic.php?imagename=<?=$v['attachment_url']?>&imagewidth=150&imageheight=200&cuteit=0' border="1" style="cursor:pointer;" onclick="changeImage('<?=$v['attachment_url']?>')" /><br /><?=$v['source_name']?><br /></div>
+				<?php
+						}
+					}
+				?>
+			</td>
+			<td align="left" valign="top">
+				<div id="picshow0" name="picshow0">
+					<img name="mypic" id="mypic" src="<?=$rs2[0]['attachment_url']?>"  onMouseWheel="ImgZoom('mypic','zoomwheel',0.1);"  style="zoom"  onload="img_init(this);" />
+				</div>
+			</td>
+		</tr>
+	</table>
+	<div style="height:100px;"></div>
+</div>
+<?php include_once("footer.html");?>
+
+<script language="javascript" type="text/javascript">
+
+jQuery.fn.rotate = function(angle,whence) {
+	var p = this.get(0);
+
+	// we store the angle inside the image tag for persistence
+	if (!whence) {
+		p.angle = ((p.angle==undefined?0:p.angle) + angle) % 360;
+	} else {
+		p.angle = angle;
+	}
+
+	if (p.angle >= 0) {
+		var rotation = Math.PI * p.angle / 180;
+	} else {
+		var rotation = Math.PI * (360+p.angle) / 180;
+	}
+	var costheta = Math.round(Math.cos(rotation) * 1000) / 1000;
+	var sintheta = Math.round(Math.sin(rotation) * 1000) / 1000;
+	//alert(costheta+","+sintheta);
+ 
+	if (document.all && !window.opera) {
+		var canvas = document.createElement('img');
+
+		canvas.src = p.src;
+		canvas.height = p.height;
+		canvas.width = p.width;
+
+		canvas.style.filter = "progid:DXImageTransform.Microsoft.Matrix(M11="+costheta+",M12="+(-sintheta)+",M21="+sintheta+",M22="+costheta+",SizingMethod='auto expand')";
+	} else {
+		var canvas = document.createElement('canvas');
+		if (!p.oImage) {
+			canvas.oImage = new Image();
+			canvas.oImage.src = p.src;
+		} else {
+			canvas.oImage = p.oImage;
+		}
+
+		canvas.style.width = canvas.width = Math.abs(costheta*canvas.oImage.width) + Math.abs(sintheta*canvas.oImage.height);
+		canvas.style.height = canvas.height = Math.abs(costheta*canvas.oImage.height) + Math.abs(sintheta*canvas.oImage.width);
+
+		var context = canvas.getContext('2d');
+		context.save();
+		if (rotation <= Math.PI/2) {
+			context.translate(sintheta*canvas.oImage.height,0);
+		} else if (rotation <= Math.PI) {
+			context.translate(canvas.width,-costheta*canvas.oImage.height);
+		} else if (rotation <= 1.5*Math.PI) {
+			context.translate(-costheta*canvas.oImage.width,canvas.height);
+		} else {
+			context.translate(0,-sintheta*canvas.oImage.width);
+		}
+		context.rotate(rotation);
+		context.drawImage(canvas.oImage, 0, 0, canvas.oImage.width, canvas.oImage.height);
+		context.restore();
+	}
+	canvas.id = p.id;
+	canvas.angle = p.angle;
+	p.parentNode.replaceChild(canvas, p);
+}
+
+jQuery.fn.rotateRight = function(angle) {
+	this.rotate(angle==undefined?90:angle);
+}
+
+jQuery.fn.rotateLeft = function(angle) {
+	this.rotate(angle==undefined?-90:-angle);
+}
+
+</script>
+<script language="javascript" type="text/javascript">
+var flag=false;
+var zoom=1;
+var roNum=0;
+var oriWidth = 0;
+var oriHeight = 0;
+function img_init(obj){
+	oriWidth = obj.width;
+	oriHeight = obj.height;
+	zoom = 1;
+}
+//图像缩放
+function ImgZoom(id,f,num){
+	var zoomNow=zoom;
+	
+	if(zoomNow==""){
+		zoomNow=1;
+	}
+	
+	
+	var zoomNum; //目标比例
+	if(f=="zoomout"){
+		zoomNum=Number(zoomNow)-Number(num);
+	}else if(f=="zoomoff"){
+		zoomNum=1;
+	}else if(f=="zoomin"){
+		zoomNum=Number(zoom) + Number(num);
+	}else if(f=="zoomwheel"){
+		mywheel=event.wheelDelta;
+		if(mywheel>0){
+			zoomNum=Number(zoomNow)+ Number(num);
+		}else if(mywheel<0){
+			zoomNum=Number(zoomNow)- Number(num);
+		}
+	}
+	
+	//最小比例 0.1
+	if(zoomNum<=0.1){
+		zoomNum=0.1;
+	}
+	
+	zoom = zoomNum;
+	
+	
+	document.getElementById(id).style.width = parseInt(oriWidth * zoomNum) + 'px';
+	document.getElementById(id).style.height = parseInt(oriHeight * zoomNum) + 'px';
+	//document.getElementById(id).style.zoom=zoomNum;
+	//document.getElementById('myzoom').value=Math.round(zoomNum*100)+"%";
+}
+
+var curr_rotate = 0;
+//图像旋转
+function ImgRotation(Rid,direction){
+	
+	
+	
+	if(direction=="right"){
+		$('#'+Rid).rotateRight(90);
+		curr_rotate += 90;
+	}else if(direction=="left"){
+		$('#'+Rid).rotateLeft(90);
+		curr_rotate -= 90;
+	}
+	
+}
+
+//更换图像
+function changeImage(src)
+{
+	document.getElementById('picshow0').innerHTML='<img name="mypic" id="mypic" src="' + src + '"  onMouseWheel="ImgZoom(\'mypic\',\'zoomwheel\',0.1);"  style="zoom"  onload="img_init(this);" />';
+}
+
+</script>
+
+
+
+

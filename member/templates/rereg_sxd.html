@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>欢迎登录49you《<?=$game['game_name']?>》</title>
+<script language="javascript" src="js/jquery.js"></script>
+<script language="javascript" src="js/TroJs.js"></script>
+<script language="javascript" src="js/basic.js"></script>
+<style>
+ul,li,a,div,body,dl,dt{margin:0;padding:0;}
+ul,li{list-style-type:none;}
+body{margin:0;padding:0;background:#f4e9cd;color:#000;font-family:"Verdana","宋体","sans-serif";font-size:14px;}
+a,a:link,a:visited{text-decoration:none;}
+a:hover{text-decoration:underline;}
+img{border:none;}
+
+#body{width:980px;height:600px;overflow:hidden;margin:auto;background:url(/images/reg_sxd_bg.jpg) no-repeat center top;}
+.row{
+	width:580px;
+	margin:164px auto 0;
+	overflow:hidden;
+}
+.login{
+	width:457px;
+	height:168px;
+	position:relative;
+	float:left;
+	overflow:hidden;
+	margin-top:48px;
+}
+.usr,.psw{width:206px;height:30px;position:absolute;left:51px;}
+.usr{top:0;}
+.psw{top:40px;}
+.psw2{
+	top:83px;
+	width:206px;
+	height:30px;
+	position:absolute;
+	left:51px;
+}
+
+
+.zi1{
+	width:163px;
+	height:30px;line-height:30px;
+	position:absolute;margin-bottom:10px; font-size:12px;
+	left:262px; color:#F00;
+	top: 0px;
+}
+.zi2{
+	width:163px;
+	height:30px;line-height:30px;
+	position:absolute;margin-bottom:10px; font-size:12px;
+	left:262px; color:#F00;
+	top: 40px;
+}
+
+.zi3{
+	width:163px;
+	height:30px;line-height:30px;
+	position:absolute;margin-bottom:10px; font-size:12px;
+	left:262px; color:#F00;
+	top: 84px;
+}
+
+
+#userlogin,.l_reg{
+	width:142px;
+	height:34px;
+	position:absolute;
+	top:132px;
+	cursor:pointer;
+}
+#userlogin{left:0;}
+.l_reg{
+	left:118px;
+}
+.in{width:202px;height:28px;padding:1px 2px;line-height:28px;border:0;background:none;color:#000;font-size:14px;}
+.menu{width:150px;height:220px;position: relative;float:left;overflow:hidden;padding-right:80px;}
+.btn1,.btn2,.btn3,.btn4{width:150px;height:40px;position:absolute;left:0;cursor:pointer;}
+.btn1{top:0;}
+.btn2{top:59px;}
+.btn3{top:120px;}
+.btn4{top:180px;}
+td img {display: block;}
+
+</style>
+<script language="javascript">
+var bValid_usr=false;
+var bValid_pwd=false;
+var bValid_pwdc=false;
+function ChkUserName(){
+	bValid_usr=false;
+	var username=$("#loginname").val();
+	if(username==""||username.length<6){
+		ShowMsg("msgloginname",0,"长度需为6-16位!");
+		return; 
+	}
+	if(/.*[\u4e00-\u9fa5]+.*$/.test(username)){
+		ShowMsg("msgloginname",0,"帐号不能使用中文!");
+		return;
+	}
+	ajax_action('reg.html',{ act:"ajchkuser",loginname:$("#loginname").val(),async:false },null,function(data){
+		var obj = eval('(' + data + ')');
+		if(obj != 1){
+			ShowMsg("msgloginname",0,"该帐号已被注册!");
+			return;
+		}
+	});
+
+	//ShowMsg("unspan",0,"由6-16位字母和数字组成，不区分大小写");
+	ShowMsg("msgloginname",1,"此帐号可以注册!");
+	bValid_usr=true;
+}
+function ChkPasWd(){
+	if($("#psw").val()==""||$("#psw").val().length<6){
+		ShowMsg("msgpsw1",0,"长度需为6-20位字符!");
+		bValid_pwd=false;
+		return;
+	}
+	ShowMsg("msgpsw1",1,"密码正确填写!");
+	bValid_pwd=true;
+	ChkPasWd2();
+}
+function ChkPasWd2(){
+	if($("#psw").val()!=$("#psw2").val()){
+		ShowMsg("msgpsw2",0,"确认密码未匹配!");
+		bValid_pwdc=false;
+		return;
+	}
+	ShowMsg("msgpsw2",1,"确认码正确填写!");
+	bValid_pwdc=true;
+}
+function ShowMsg(IdStr,ErrNum,ErrStr){
+	var ClrArr=new Array("#f00","#33f","#339900");
+	$("#"+IdStr).css({fontWeight:"bold",fontSize:"9pt",color:ClrArr[ErrNum]});
+	$("#"+IdStr).html(ErrStr);
+}
+function form_submit(){
+	
+	ChkUserName();if(!bValid_usr){return false;}
+
+	ChkPasWd();if(!bValid_pwd){return false;}
+
+	ChkPasWd2();if(!bValid_pwdc){return false;}
+
+	document.forms[0].submit();
+	//document.form1.submit();
+}
+</script>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+<div id="body">
+<div class="row">
+  <div class="login">
+    <div class="usr">
+      <input type="text" class="in" name="loginname" id="loginname" onblur="ChkUserName();"/>
+    </div>
+    <div class="psw">
+      <input type="password" class="in" name="psw" id="psw"  onblur="ChkPasWd();"/>
+    </div>
+    <div class="psw2">
+      <input type="password" class="in" name="psw2" id="psw2"  onblur="ChkPasWd2();"/>
+    </div>    
+    <input type="hidden" name="act" value="reg" />
+    <input type="hidden" name="returl" value="<?=$returl?>" />
+    <a href="###" onclick="javascript:form_submit();"><div class="l_reg"></div></a>
+    
+    <div class="zi1"> 
+    * <label id="msgloginname">帐号长度为6-16个字符</label>
+    </div>
+       <div class="zi2"> 
+    * <label id="msgpsw1">密码长度6-20个字符</label>
+    </div>
+    
+        <div class="zi3"> 
+    * <label id="msgpsw2">请再次输入密码</label>
+    </div> 
+    
+    </div>
+</div>
+</div>
+
+<div style="margin:40px auto 0;width:1002px;height:40px;overflow:hidden;line-height:40px;text-align:center;">24小时客服电话：<?=$config['service_tel1']?></div>
+    </form>
+</body>
+
+</html>

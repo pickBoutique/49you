@@ -1,0 +1,67 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'会员账号' , 'dataIndex':'login_log_mname' , 'type':'text' },
+          { 'header':'IP地址' , 'dataIndex':'login_log_ip' , 'type':'text' },
+          { 'header':'登陆时间' , 'dataIndex':'login_log_time' , 'type':'datetime' },
+          { 'header':'登陆状态' , 'dataIndex':'login_log_status' , 'type':'select' , 'options':{ '全部':'','登录成功':'1','密码错误':'-1','帐号未激活':'-2','帐号已存在':'-3','帐号不存在':'-4'}}
+          </div>
+        </div>
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			
+			var cm = new ColumnModel
+			([
+			{header: '会员账号', dataIndex: 'login_log_mname'},
+			{header: 'IP地址', dataIndex: 'login_log_ip'},
+			{header: '登陆状态', dataIndex: 'login_log_status',renderer: '<?=$json->encode($cfg_log_status);?>'},
+			{header: '登陆时间', dataIndex: 'login_log_time', format:'yyyy-MM-dd HH:mm:ss'}
+			]);
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+			
+			
+		});
+		
+		
+		function toadd(){
+			show_editor({ title:'添加',src:'login_log-add.php',  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function toedit(id){
+			show_editor({ title:'编辑',src:'login_log-add.php?login_log_id=' + id,  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function todel(){
+			ajax_action('login_log-add.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+				grid.load(); 
+			});
+		}
+		
+		function todelone(id){
+			ajax_action('login_log-add.php',{ act:'del' , ids:id } , '您确定要删除吗？' , function(){ 
+				grid.load();
+			});
+		}
+		
+	
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

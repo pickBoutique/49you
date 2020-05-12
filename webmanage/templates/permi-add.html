@@ -1,0 +1,55 @@
+<?php include_once("header.html");?>
+<script language="javascript">
+function add_to_list(code){
+	if($('#permi_action').val() ==''){
+		$('#permi_action').val(code);
+	}else{
+		$('#permi_action').val($('#permi_action').val() + '\r\n' + code);
+	}
+}
+</script>
+<div class="main">
+	<form id="form1" name="form1" method="post" >
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+        	<tr>
+				<th>模块编号：</th>
+				<td>
+					<input type="text" name="permi_code" id="permi_code" value="<?=$rs['permi_code']?>" class="input_w200" />　
+				</td>
+			</tr>
+			<tr>
+				<th>模块名称：</th>
+				<td>
+					<input type="text" name="permi_name" id="permi_name" value="<?=$rs['permi_name']?>" class="input_w200" />　
+				</td>
+			</tr>
+			<tr>
+				<th>权限操作：</th>
+				<td>
+                <table width="100%" border="0" cellpadding="0" cellspacing="0"  >
+                	<tr>
+                    <td width="100">
+                	<textarea name="permi_action" id="permi_action"  cols="9" rows="8"><?=$rs['permi_action']?></textarea>
+                    </td>
+                    <td valign="top">
+                    <? foreach($actions as $k => $v){ ?>
+                    <div style="width:200px; height:35px; float:left;"><a href="###" onclick="add_to_list('<?=$v['permiaction_code']?>');"><?=$v['permiaction_code'].'('.$v['permiaction_name'].')'?></a></div>
+                    <? } ?>
+                    </td>
+                    </tr>
+                </table>
+				</td>
+			</tr>
+			
+			
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act"  value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn action_add action_edit" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<?php include_once("footer.html");?>

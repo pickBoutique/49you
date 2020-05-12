@@ -1,0 +1,31 @@
+<? echo ('<?xml version="1.0" encoding="utf-8"?>')?>
+
+<ServerInfo>
+<? if(!empty($gamelist)){ 
+foreach($gamelist as $k=>$v){ ?>
+<GameServerInfo>
+    <Server_ID><?=$v["game_id"]?></Server_ID>                
+    <Server_Name><?=$v["game_name"]?></Server_Name>
+</GameServerInfo>
+<?   }
+} ?>
+<? if(!empty($gamelist)){ 
+foreach($gamelist as $k=>$v){ ?>
+<GameRateInfo>
+    <Server_ID><?=$v["game_id"]?></Server_ID>
+    <Rate_Value><?=rmb_to_currency(1,"junnet")*$v["game_rate"]?></Rate_Value>
+    <Rate_Name><?= empty($v["game_currency"]) ? "元宝" : $v["game_currency"] ?></Rate_Name>
+</GameRateInfo>
+<?   }
+} ?>
+<? if(!empty($serverlist)){ 
+foreach($serverlist as $k=>$v){ ?>
+<GameAreaInfo>
+    <Area_ID><?=$v["server_id"]?></Area_ID>
+    <Server_ID><?=$v["server_gid"]?></Server_ID>
+    <Area><?=$v["server_name"]?></Area>
+</GameAreaInfo>
+<?   }
+} ?>
+
+</ServerInfo>

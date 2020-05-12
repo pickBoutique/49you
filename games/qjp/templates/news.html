@@ -1,0 +1,75 @@
+<?php if($cid==60){
+	$title='游戏资料_49you千军破官方网站'; 
+}else if($cid==64){
+	$title='游戏攻略_49you千军破官方网站'; 
+}else if($cid==65){
+	$title='常见问题_49you千军破官方网站'; 
+}else if($cid==73){
+	$title='游戏截图_49you千军破官方网站'; 
+}else if($cid==74){
+	$title='玩家照片_49you千军破官方网站'; 
+}else if($cid==71){
+	$title='新手指南_49you千军破官方网站'; 
+}else{
+	$title='新闻公告_49you千军破官方网站'; 
+}
+?>
+<?php $nav='member'; ?>
+<?php include('header.html'); ?>
+
+
+<div class="mid">
+<div class="ind_left">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--lefter_server start-->
+<? include('lefter_server.html'); ?> 
+<!--lefter_server end-->
+</div>
+  <div class="ind_rig">
+   
+    
+  <div class="news_1ist">
+   <h2><span>您的位置：<a href="index.html">首页</a>><?=$imginfo?></span><img height="30" width="118" src="../images/<?=$imgico?>"></h2>
+   <div class="sharedspacer"></div>
+   <? /*   
+   if(in_array($pid,array(56,72))){?>
+   <div class="news_ui">
+    <ul >
+      <?if($list_infocate ){
+         foreach($list_infocate as $k=> $v){
+        if($v["cate_id"]==$cid){?>
+      	<li class="ibg"><a href="news.html?pid=<?=$pid?>&cid=<?=$v["cate_id"]?>"><?=$v["cate_name"]?></a></li>
+      		  <?}else{?>
+            <li><a href="news.html?pid=<?=$pid?>&cid=<?=$v["cate_id"]?>"><?=$v["cate_name"]?></a></li>
+            <?}
+         }
+       }?>
+          </ul></div>
+ <?}
+ */?>
+     <div class="page_bg">
+    	<ul>
+        <?if($list_news){
+        	foreach($list_news as $k=> $v){?>
+               <li><span class="news_more"><?=date( 'y-m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>"><?=$v["title"]?></a></li>
+		<?}
+        }?>
+            </ul>
+                    
+      
+      </div>
+<div class="pages">
+<? pager_bar($pager,WEB_ROOT."/games/pager.html"); ?>
+ </div>
+      <div class="sharedspacer"></div>
+          
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+<? include('footer.html'); ?>

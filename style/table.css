@@ -1,0 +1,11 @@
+@charset "utf-8";
+.left_menu{font-size:14px; font-weight:bold; color:#C00; padding-top:7px; list-style:none; list-style-type:none; margin:0px;}
+.left_menu li{font-size:12px;font-weight:normal;color:#999;margin-top:4px; padding-left:10px;}
+.table_list{border:1px solid #D9EDFF; border-right:0px; border-bottom:0px;}
+.table_list th{height:30px; padding:0px 5px 0px 5px; background-color:#F2FAFD; text-align:left; font-weight:bold; font-size:12px; color:#666; border:1px solid #D9EDFF; border-left:0px; border-top:0px;}
+.table_list td{height:25px; padding:0px 5px 0px 5px; font-size:12px; border:1px solid #D9EDFF; border-left:0px; border-top:0px; word-wrap:break-word; word-break:break-all;}
+.table_list .tr_over{background-color:#F7FCFD;}
+.table_list .tr_out{background-color:;}
+.searcher{padding:0px 10px 10px 10px; margin-bottom:10px;}
+.clear{clear:both; height:10px;}
+.page_html{text-align:center; padding:10px; font-size:12px; color:#333;}

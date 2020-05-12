@@ -1,0 +1,63 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'平台' , 'dataIndex':'ss_platform' , 'type':'select' , 'options':{'全部':'',<?=get_system_select(true)?>} },
+          { 'header':'统计时间' , 'dataIndex':'ss_sumtime' , 'type':'datetime' , 'defaultValue':'<?=date("Y-m-d",strtotime(date("Y-m-d"))-3600*24*7)?>'}
+          </div>
+        </div>
+
+		<div class="searcher action_rerun">
+<div class="searchoptions"><strong>重算数据：</strong>
+<div class="search_datetime">
+<input type="text" size="10" class="searCom Wdate" id="reset_start" value="<?=date("Y-m-d");?>"></div> &mdash; 
+<div class="search_datetime">
+<input type="text" size="10" class="searCom Wdate" id="reset_end"></div>
+</div>
+
+            <input type="button" value="重算" class="btn" onclick="toreset();" />
+<script type="text/javascript" src="/js/sum_data_reset.js"></script>
+<script type="text/javascript">
+		function toreset(){
+			var redt_star=$('#reset_start').val();
+			var redt_end=$('#reset_end').val();
+			var system_id=$("select[name='ss_platform']").val();
+			sum_resetdatas("server","d",redt_star,redt_end,'<?=$db->get_cache_md5();?>',system_id);
+		}
+</script>
+		</div> 
+		<div class="searcher" id="grid_contaniner" style=" width:<?=$server_num * 40 + 150 ?>px;"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			var cm = new ColumnModel
+			([
+			{header: '-', dataIndex: 'ss_sumtime'},
+			{header: '-', dataIndex: 'ss_trantotal'},
+			<? for($i=0;$i<$server_num-1;$i++){ ?>
+			{header: '-', dataIndex: 's<?=$i?>'},
+			<? } ?>
+			{header: '-', dataIndex: 's<?=$server_num?>'}
+			]);
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) {
+				grid.load({ params: { start: 0, limit: 1000, filter: filter} }); });
+			$('#searchbar').show();
+			$("select[name='ss_platform']").change();
+
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 1000, params: { 'act': 'dataget'
+			,filter:'[{"name":"ss_platform","oper":"=","value":"'+$("select[name='ss_platform']").val()+'"}]'}});
+			grid.load();
+			
+		});
+	
+
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

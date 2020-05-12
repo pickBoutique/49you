@@ -1,0 +1,39 @@
+<?
+//合作媒体130
+$sqlstr="select source,summary,pic from ".DB_PREFIX."info where info_start<=".time()." and cate_id = 192 order by sort_num desc";
+$rs_link = $db->getAll($sqlstr);
+?>
+ 
+    <div class="left_frame media">
+    <div class="top"></div>
+    <div class="con">
+    <ul id="s02" onmouseover="xx=0" onmouseout="xx=1">
+      <?
+      if($rs_link){
+    foreach($rs_link as $k=> $v){?>
+        <li><a href="<?=$v["source"]?>" target="_blank"><img src="<?=$v["pic"]?>" alt="<?=$v["summary"]?>"></a></li>
+		<?}
+	}
+    ?>
+    </ul>
+    <script type="text/javascript">
+    var Marquee2 = document.getElementById("s02"); //滚动对象
+    var iLineHeight2 = 58; //单行高度，像素
+    var iLineCount2 = <?=sizeof($rs_link)?>; //实际行数
+    var xx = 1; //每次滚动高度，像素
+    function runmcc() {
+    Marquee2.scrollTop += xx;
+    if ( Marquee2.scrollTop >= iLineCount2 * iLineHeight2 )
+    Marquee2.scrollTop = 0;
+    if ( Marquee2.scrollTop % iLineHeight2 == 0 ) {
+    window.setTimeout( "runmcc()", 3000 );
+    } else {
+    window.setTimeout( "runmcc()", 30 );
+    }
+    }
+    Marquee2.innerHTML += Marquee2.innerHTML;
+    window.setTimeout( "runmcc()", 100 );
+    </script>
+    </div>
+    <div class="btm"></div>
+    </div>

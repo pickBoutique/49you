@@ -1,0 +1,116 @@
+@import url("default.css");
+
+/*登陆*/
+.webmanage_login{width:380px; font-family:"微软雅黑"; border:1px solid #D2E6F0; padding:10px 30px 30px 10px; background-color:#F9FCFD;}
+.webmanage_login .title{text-align:left; font-size:20px; font-weight:bold; font-family:"华文楷体"; padding:0px 0px 10px 0px;}
+.webmanage_login .login_form{text-align:left; padding-left:40px;}
+.webmanage_login .login_form p{height:20px; line-height:20px; padding:6px 0px 6px 0px;}
+.webmanage_login .login_form p span{float:left; padding:0px 5px 0px 5px;}
+.webmanage_login .login_form .align_center{text-align:center; padding-top:10px;}
+
+/*框架顶部*/
+.top {background-image:url(/images/admin_icon.png); background-position:0px -350px; height:68px;}
+.top .logo {float:left; height:62px; width:165px; margin-left:10px; margin-top:1px; border:0px;}
+.top .user_info { width:100%; height:24px; line-height:24px; font-size:12px; font-family:Verdana; color:#555555; text-align:right;}
+.top .user_info a {color:#166BCC; text-decoration:none;}
+/*框架左部*/
+.left {background-image:url(/images/left_bg_1.jpg);}
+.left .sysmenutitle{font-size:12px; color:#166BCC; height:25px; padding-left:10px; padding-top:10px;}
+.left .icon{padding-right:10px; display:block; float:left;}
+.left .title{line-height:normal; padding-top:3px; display:block; float:left;}
+.left .sysmenu{margin:10px;}
+.left .sysmenu ul{list-style:none; padding-left:20px; margin-bottom:10px; color:#000;}
+.left .sysmenu div a{text-decoration:none; color:#333;}
+.left .sysmenu div a img{border:0px;}
+
+/*框架主页面*/
+.options {background:url(/images/admin_icon.png) 0px -151px;height:27px;line-height:27px;padding-right:10px;}
+.position {margin-left:10px;}
+.position span{color:#777;}
+.searcher{padding:5px; border:1px solid #D9EDFF; margin-bottom:5px; margin-top:5px;}
+.cate{margin-bottom:10px; color:#555; font-size:12px; font-weight:normal; font-family:Verdana, Geneva, sans-serif; width:99%; height:20px; line-height:20px; padding:5px; background-color:#F2F8FF; border:1px solid #E8EEF4; display:inherit;}
+.form_add{background-color:#F8FDFF;}
+.input_w50{width:50px; color:#666; border:#7F9DB9 1px solid;}
+.input_w100{width:100px; color:#666; border:#7F9DB9 1px solid;}
+.input_w200{width:200px; color:#666; border:#7F9DB9 1px solid;}
+.input_w400{width:400px; color:#666; border:#7F9DB9 1px solid;}
+.color_F00{color:#F00;}
+.height_20{height:20px;}
+.btn{height:22px; line-height:22px; width:50px; background-image:url(/images/btn_bg.gif); border:0px;}
+.btn_80{height:22px; line-height:22px; width:80px; background-image:url(/images/btn_bg_80.gif); border:0px;}
+.table_add{border:1px solid #D9EDFF; border-right:0px; border-bottom:0px;}
+.table_add th{width:120px; font-weight:normal; padding:5px; background-color:#F8FDFF; text-align:left; border:1px solid #D9EDFF; border-left:0px; border-top:0px;}
+.table_add td{padding:5px; border:1px solid #D9EDFF; border-left:0px; border-top:0px;}
+.module_list{border:1px solid #EFEFEF; border-bottom:0px;}
+.module_list1{font-size:12px; font-weight:bold; padding:5px;}
+.module_list2{font-size:12px; font-weight:normal; padding-left:40px;  border-bottom:1px solid #EFEFEF;}
+.module_sub_list label{padding:5px;}
+.view_pic_div{float:left; border:1px solid #E4E4E4; padding:10px; width:100px;}
+.view_ico_div{float:left; border:1px solid #E4E4E4; padding:10px; width:32px; height:32px;}
+.upload_input{float:left; padding:0px 20px 0px 0px;}
+.vote_item{height:25px; line-height:25px;}
+.copyright{text-align:center; font-size:14px; height:50px; line-height:48px; margin:0px 10px 0px 10px;}
+.adv_tr{display:none;}
+.float_r{float:right;}
+.float_l{float:left;}
+.hide{display:none;}
+.show{display:none;}
+
+.btn_ref{display:block;padding:5px 10px 0px 0px;height:18px;width:33px;}
+.btn_ref a{display:block;height:18px;width:33px;background:url(/images/admin_icon.png) no-repeat;}
+.btn_ref a:link,.btn_ref a:visited{background-position:0px -248px;}
+.btn_ref a:hover{background-position:-33px -248px;text-decoration:none;}
+
+.btn_fs_yes{display:block;padding:5px 10px 0px 0px;height:18px;width:48px;}
+.btn_fs_yes a{display:block;height:18px;width:48px;background:url(/images/admin_icon.png) no-repeat;}
+.btn_fs_yes a:link,.btn_fs_yes a:visited{background-position:0px -230px;}
+.btn_fs_yes a:hover{background-position:-48px -230px;text-decoration:none;}
+
+.btn_fs_no{display:block;padding:5px 10px 0px 0px;height:18px;width:72px;}
+.btn_fs_no a{display:block;height:18px;width:72px;background:url(/images/admin_icon.png) no-repeat;}
+.btn_fs_no a:link,.btn_fs_no a:visited{background-position:-96px -230px;}
+.btn_fs_no a:hover{background-position:-168px -230px;text-decoration:none;}
+
+.main{margin:10px;}
+
+
+/* 会员中心表格样式 */
+.border{
+	BORDER-RIGHT: #CCCCCC 1px solid; BORDER-TOP: #CCCCCC 1px solid; BORDER-LEFT: #CCCCCC 1px solid;  BORDER-BOTTOM: #CCCCCC 1px solid;border-collapse:collapse;padding:3px 0px 3px 10px;
+}
+.border td{border:1px solid #CCCCCC}
+
+
+.searchoptions
+{
+	float:left;
+	margin:3px;
+	white-space:nowrap;
+	height:25px;
+}
+.search_datetime
+{
+	display:inline-block;
+	*display:inline;
+	width:115;
+}
+.search_button
+{
+	float:left;
+	text-align:center;
+	margin:5px;
+	white-space:nowrap;
+	background-image:url(/images/btn_bg.gif);
+	height:22px;
+	line-height:22px;
+	width:50px;
+}
+
+.tb_title{
+	text-align:left;
+	font-weight:bold !important;
+	font-size:14px;
+	font-family:"微软雅黑";
+	background-color:#F8FDFF !important;
+	
+}

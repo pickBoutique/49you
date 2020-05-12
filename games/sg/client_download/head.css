@@ -1,0 +1,57 @@
+.thzz {
+	MARGIN: 0px auto
+}
+.th {
+	WIDTH: 1000px; HEIGHT: 37px; TEXT-ALIGN: center
+}
+.th1 {
+	PADDING-LEFT: 10px; WIDTH: 100px; LINE-HEIGHT: 37px; HEIGHT: 37px
+}
+.th2 {
+	WIDTH: 280px; LINE-HEIGHT: 37px; HEIGHT: 37px
+}
+.th3 {
+	LINE-HEIGHT: 37px; HEIGHT: 37px
+}
+.th3 A {
+	MARGIN: 0px 5px
+}
+.th4_1 {
+	BACKGROUND-IMAGE: url(3.gif); MARGIN: 7px 0px 0px 10px; WIDTH: 62px; LINE-HEIGHT: 21px; HEIGHT: 21px
+}
+.thcl {
+	CLEAR: both
+}
+.fl {
+	FLOAT: left
+}
+.fr {
+	FLOAT: right
+}
+.th100 {
+	FONT-SIZE: 12px; BACKGROUND-IMAGE: url(bg-gw.gif); WIDTH: 100%; HEIGHT: 37px
+}
+.th200 {
+	BACKGROUND-IMAGE: url(bg-gw.gif)
+}
+.thred {
+	COLOR: #ff0000
+}
+.thrff6600 {
+	COLOR: #ff6600
+}
+UL.gd {
+	PADDING-RIGHT: 7px; PADDING-LEFT: 7px; FONT-SIZE: 12px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; OVERFLOW: hidden; LINE-HEIGHT: 22px; PADDING-TOP: 6px; HEIGHT: 22px
+}
+UL.gd LI {
+	LIST-STYLE-TYPE: none
+}
+.gamelist {
+	MARGIN-TOP: 7px; FLOAT: left; COLOR: #ff0000
+}
+#footer {
+	BACKGROUND: url(foot_bg.jpg) no-repeat; MARGIN: 40px auto 0px; OVERFLOW: hidden; WIDTH: 100%; HEIGHT: 210px; TEXT-ALIGN: center
+}
+#copyright {
+	MARGIN: 30px auto 0px; WIDTH: 972px; COLOR: #707070; LINE-HEIGHT: 21px; FONT-FAMILY: Arial,Helvetica,sans-serif; TEXT-ALIGN: center
+}

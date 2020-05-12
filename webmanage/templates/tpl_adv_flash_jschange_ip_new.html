@@ -1,0 +1,322 @@
+<? 
+$left=!empty($mats[0]['material_left']) ? $mats[0]['material_left'] : '160' ;
+$top=!empty($mats[0]['material_top']) ? $mats[0]['material_top'] : '240' ;
+$swf_path = "/advs/material/";
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/2399/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?=$row['adv_title']?></title>
+<style>
+*{ margin:0px; padding:0px;}
+body{ background:#000;}
+#warp{ width:1000px; height:600px; margin:0 auto;}
+</style>
+<style type="text/css">
+    body {
+        background-color: #000;
+        font-size: 12px;
+    }
+
+    td img {
+        display: block;
+    }
+
+    input {
+        width: 150px;
+        height: 16px;
+    }
+
+    #main {
+        width: 1024px;
+        margin: 0 auto;
+    }
+
+    #show {
+        position: relative;
+        top: <?=$top?>px;
+        left: <?=$left?>px;
+        width: 480px;
+        height: 400px;
+    }
+
+    #submitbtn {
+        margin-left: 95px;
+        width: 160px;
+        height: 50px;
+    }
+
+    .normal {
+        padding-left: 15px;
+        color: black;
+    }
+
+    .error {
+        padding-left: 15px;
+        color: red;
+    }
+</style>
+<script type="text/javascript">
+
+var _title = "<?=$row['adv_title']?>";
+var subtype = getParam("subtype");
+
+
+var step = 0;
+var space = '';
+for (var i = 0; i <= _title.length; i++)space += '　';
+
+function $(id) {
+    return document.getElementById(id);
+}
+
+function getParam(param) {
+    var uri = window.location.search;
+    var re = new RegExp("" + param + "=([^&?]*)", "ig");
+    return ((uri.match(re)) ? (decodeURIComponent(uri.match(re)[0].substr(param.length + 1))) : '');
+}
+
+function flash_title() {
+    step++;
+    if (step == 3) {
+        step = 1
+    }
+    if (step == 1) {
+        document.title = space
+    }
+    if (step == 2) {
+        document.title = _title
+    }
+    setTimeout("flash_title()", 500);
+}
+flash_title();
+
+function loadTrack() {
+	new Image().src="<?=STA_ROOT?>/addoths.php?type=winstart&uid=<?=$system[$system_key]['id']?>&game_id=<?=$row['adv_gid']?>&district_id=<?=$row['adv_sid']?>&pid=<?=$row['adv_type']?>&wid=<?=$row['adv_id']?>&md=" + metrid + "&tguser=" + subtype;
+    window.moveTo(0, 0);
+    window.resizeTo(screen.width, screen.height);
+}
+
+function showDiv(){
+	new Image().src="<?=STA_ROOT?>/addoths.php?type=winok&uid=<?=$system[$system_key]['id']?>"+'<?="&game_id={$row[adv_gid]}&district_id={$row[adv_sid]}&pid={$row[adv_type]}&wid={$row[adv_id]}&md="?>' + metrid + '&tguser=' + subtype;
+}
+var show_left = '<?=$left?>';
+var show_top = '<?=$top?>';
+function openDiv(x,y) {
+	$('show').style.left = show_left + "px";
+	$('show').style.top = show_top + "px";
+    $('show').style.display = "block";
+	var x=parseInt(x),y=parseInt(y);	
+	new Image().src="<?=STA_ROOT?>/addoths.php?type=click&uid=<?=$system[$system_key]['id']?>"+'<?="&game_id={$row[adv_gid]}&district_id={$row[adv_sid]}&pid={$row[adv_type]}&wid={$row[adv_id]}&md="?>' + metrid + '&tguser=' + subtype+"&x="+x+"&y="+y;
+}
+
+var CallBackHandler = {
+    tid: 0,
+    callbacks: {},
+    getTid: function() {
+        return ++this.tid;
+    },
+    registerCallBack: function(tid, func) {
+        this.callbacks[tid] = func;
+    },
+    handleCallBack: function(tid, data) {
+        var func = this.callbacks[tid];
+        if (func && (typeof func == 'function')) func(data);
+        var script = document.getElementById('jsonp_invoker_' + tid);
+        if (script) try {
+            script.parentNode.removeChild(script);
+        } catch(e) {
+        }
+    }
+};
+
+var Jsonp = function(url, callback) {
+    var tid = CallBackHandler.getTid();
+    var script = document.createElement('script');
+    with (script) {
+        id = 'jsonp_invoker_' + tid;
+        type = 'text/javascript';
+        src = url.indexOf('?') > 0 ? (url + '&tid=' + tid) : (url + '?tid=' + tid);
+    }
+    if (callback) CallBackHandler.registerCallBack(tid, callback);
+    var head = document.getElementsByTagName('head');
+    if (head[0]) {
+        head[0].appendChild(script);
+    } else {
+        document.body.appendChild(script);
+    }
+};
+
+function successInfo(id, message) {
+    $(id).className = 'normal';
+    $(id).innerHTML = message;
+    return true;
+}
+
+function errorInfo(id, message) {
+    $(id).className = 'error';
+    $(id).innerHTML = '* ' + message;
+    return false;
+}
+
+function checkLoginAccount(value) {
+    var result = /^[A-Za-z0-9_]{6,15}$/.test(value) ? successInfo('u_info', '<font style="color:#008000;">帐号填写正确！</font>') : errorInfo('u_info', '6-15个字母或数字组成');
+	if(result){
+		var url = '<?=$system[$system_key]["CHE_HTTP"]?>' + "?" + '&act=reg_check' + "&username=" + encodeURIComponent(value);
+		Jsonp(url, function(data) {
+			if (data.success == 1) {
+				successInfo('u_info', '<font style="color:#008000;">帐号填写正确！</font>');
+			} else {
+				errorInfo('u_info', data.message);
+			}
+		});
+	}
+	return result;
+	
+}
+
+function checkPassword(value) {
+    return /^[\x01-\xfe]{6,20}$/.test(value) ? successInfo('w_info', '<font style="color:#008000;">密码填写正确！</font>') : errorInfo('w_info', '长度6-20个字符');
+}
+
+function checkPassword1(value) {
+    return (/^[\x01-\xfe]{6,20}$/.test(value)) ? (($('password').value == value) ? successInfo('p_info', '<font style="color:#008000;">两次填写的密码一致！</font>') : errorInfo('p_info', '两次填写的密码不一致！')) : errorInfo('p_info', '长度6-20个字符');
+}
+
+
+function checkSubmit(){
+	if (event.keyCode == 13) {
+		checkForm($("register_form"));
+	}
+}
+var metrid = "<?=$row['adv_metrid']?>";
+function checkForm(form) {
+
+    var loginAccount = form.login_account.value;
+    var password = form.password.value;
+
+    if (!checkLoginAccount(loginAccount)) return false;
+    if (!checkPassword(password)) return false;
+    if (!checkPassword1(form.password1.value)) return false;
+
+    $('submitbtn').disabled = true;
+    $('u_info').innerHTML = '请稍候...';
+
+	var url = '<?=$system[$system_key]["CHE_HTTP"]?>' + "?" + '&act=reg_check' + "&username=" + encodeURIComponent(loginAccount);
+    
+	var regurl = '<?=$system[$system_key]["REG_HTTP"]?>' + "?" + '<?="&act=reg&gid={$row[adv_gid]}&sid={$row[adv_sid]}&at={$row[adv_type]}&ad={$row[adv_id]}&md="?>' + metrid + '&subtype=' + subtype +        	            "&username=" + encodeURIComponent(loginAccount) +  "&password=" + encodeURIComponent(password);
+    Jsonp(url, function(data) {
+        if (data.success == 1) {
+            window.location = regurl;
+        } else {
+            $('submitbtn').disabled = false;
+            $('u_info').className = 'error';
+            $('u_info').innerHTML = data.message;
+        }
+    });
+
+    return false;
+}
+</script>
+</head>
+<body >
+<div id="warp">
+<div class="index-swf" id="divswf" style="position:absolute;">
+<script type="text/javascript">
+function setCookie(name,value,time){var strsec = time;var exp = new Date();exp.setTime(exp.getTime() + strsec*1);document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();}
+function getCookie(name){var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");if(arr=document.cookie.match(reg)) return unescape(arr[2]);else return null;}
+var swf_metrid=new Array();
+var swf_title=new Array();
+var mat_left=new Array();
+var mat_top=new Array();
+swf_title[0]="<?=$row['adv_title']?>";
+swf_metrid[0]= "<?=$row['adv_metrid']?>";
+mat_left[0]="<?=$left?>";
+mat_top[0]="<?=$top?>";
+<?if($row["adv_metrid1"]>0){?>
+swf_title[swf_title.length]="<?=$row['adv_title1']?>";
+swf_metrid[swf_metrid.length]= "<?=$row["adv_metrid1"]?>";
+mat_left[mat_left.length]="<?=$mats[1]['material_left']?>";
+mat_top[mat_top.length]="<?=$mats[1]['material_top']?>";
+<?}?>
+<?if($row["adv_metrid2"]>0){?>
+swf_title[swf_title.length]="<?=$row['adv_title2']?>";
+swf_metrid[swf_metrid.length]= "<?=$row["adv_metrid2"]?>";
+mat_left[mat_left.length]="<?=$mats[2]['material_left']?>";
+mat_top[mat_top.length]="<?=$mats[2]['material_top']?>";
+<?}?>
+var metindex=0;var ckmet;var cooktime=30*24*60*60*1000;
+for(i=0;i<swf_metrid.length;i++){
+	ckmet=getCookie("adv_metr"+swf_metrid[i]);
+	if(ckmet==null)ckmet=0;
+	if(ckmet<2){
+		ckmet++;
+		metindex=i;
+		_title=swf_title[i];
+		setCookie("adv_metr"+swf_metrid[i],ckmet,cooktime);
+		break;
+	}
+	if(i==swf_metrid.length-1){
+		_title=swf_title[0];
+		setCookie("adv_metr"+swf_metrid[0],1,cooktime);
+		metindex=0;
+		for(j=1;j<swf_metrid.length;j++){setCookie("adv_metr"+swf_metrid[j],0,cooktime);}
+	}
+}
+metrid = swf_metrid[metindex];
+show_left = mat_left[metindex];
+show_top = mat_top[metindex];
+loadTrack();
+var swf_path ="<?=$swf_path?>" + metrid + "/index.swf";
+var flashValue;
+flashValue= "<? echo "act=".urlencode(YOU_ROOT."/reg_adv.html")."&mtrpath="?>" + encodeURIComponent("<?=$swf_path?>"+swf_metrid[metindex]+"\/") + "&sendparam=" +  encodeURIComponent("&act=reg&subtype=");
+var stradv="<object classid=\"clsid:d27cdb6e-ae6d-11cf-96b8-444553540000\" codebase=\"http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0\" width=\"1000\" height=\"600\" id=\"flash_contant\" name=\"flash_contant\"><param name=\"movie\" value=\""+swf_path+"\" /><param name=\"quality\" value=\"high\" /><param name=\"wmode\" value=\"transparent\" /><param name=\"AllowScriptAccess\" value=\"always\" /><param name=\"FlashVars\" value=\""+flashValue+"\" /><embed src=\""+swf_path+"?"+flashValue+"\" quality=\"high\" pluginspage=\"http://www.macromedia.com/go/getflashplayer\" type=\"application/x-shockwave-flash\" width=\"1000\" height=\"600\" wmode=\"transparent\" name=\"flash_contant\"></embed></object>";
+document.getElementById("divswf").innerHTML=stradv;
+</script>
+</div>
+
+	<div id="show" style="display:none;">
+        <form id="register_form" style="margin:0" action="#" method="post" onsubmit="return checkForm(this);">
+            <table width="480" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="100" height="35" align="right"><label for="login_account">用户名：</label></td>
+                    <td width="149">
+                        <input type="text" class="text" id="login_account" name="login_account"
+                               onblur="checkLoginAccount(this.value);"/>
+                    </td>
+                    <td width="231" class="normal" id="u_info">4-15个字符,由字母或数字组成</td>
+                </tr>
+                <tr>
+                    <td height="35" align="right"><label for="password">登陆密码：</label></td>
+                    <td><input id="password" type="password" name="password" class="text"
+                               onblur="checkPassword(this.value);"/></td>
+                    <td class="normal" id="w_info">长度6-20个字符</td>
+                </tr>
+                <tr>
+                    <td height="35" align="right"><label for="password1">重复密码：</label></td>
+                    <td><input id="password1" type="password" name="password1" class="text"
+                               onblur="checkPassword1(this.value);" onkeypress="checkSubmit();"/></td>
+                    <td class="normal" id="p_info">两次输入的密码请保持一致</td>
+                </tr>
+                <tr>
+                    <td height="10" style="font-size:0px;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td height="45" colspan="3" align="left" class="btn"><input type="image" name="SubmitBtn"  src="<?=$swf_path.$row['adv_metrid']?>/btn.gif" id="submitbtn"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<script language="javascript">
+var btn_url = "<?=$swf_path?>" + metrid + "/btn.gif";
+document.getElementById('submitbtn').src = btn_url;
+</script>
+<?=$row['adv_pagecode']?>
+</body>
+</html>

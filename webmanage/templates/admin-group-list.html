@@ -1,0 +1,76 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post">
+		<div class="searcher" id="searchbar" style="display:none">
+			{ 'header':'分组名称' , 'dataIndex':'g.group_name' , 'type':'textbox' },
+            { 'header':'上级名称' , 'dataIndex':'g2.group_name' , 'type':'textbox' },
+			{ 'header':'添加时间' , 'dataIndex':'g.add_time' , 'type':'datetime' }
+        </div>
+		<div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="button" value="添加" class="btn action_add" onclick="toadd();" />
+			<input type="button" value="删除" class="btn action_del" onclick="todel();" />
+		</div>
+		<div class="searcher" id="adminmag"></div>
+	</form>
+</div>
+<?php include_once("footer.html");?>
+<script language="javascript">
+	
+	var grid;
+	
+	$(document).ready(function(){
+		
+		function getoperator(rs) {
+			return "<a href='###' class='action_edit' onclick=\"toedit('" + rs["group_id"] + "')\">编辑</a>"  + "  <a href='###' onclick=\"toconfigpermi('" + rs["group_id"] + "')\">配置权限</a>" + "  <a href='###' onclick=\"todelone('" + rs["group_id"] + "')\">删除</a>";
+		}
+	
+		var cm = new ColumnModel
+		([
+			new CheckboxModel({dataIndex: 'group_id'}),
+			{header: '分组名称', dataIndex: 'group_name'},
+			{header: '上级分组', dataIndex: 'last_group_name'},
+			{header: '添加时间', dataIndex: 'add_time', sortable: true, format:'yyyy-MM-dd', width: 80 },
+			{ header: '操作',  width: 130, renderer: getoperator }
+		]);
+	
+		grid = new GridView({ id: 'adminmag', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget'} });
+		grid.load();
+		
+		//搜索栏初始化
+		renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); }); 
+		$('#searchbar').show();
+			
+	}); 
+		
+
+	function toadd(){
+		show_editor({ title:'添加',src:'admin-group-add.php',  onclose:function(){
+			grid.load();
+		}});
+	}
+		
+	function toedit(id){
+		show_editor({ title:'编辑',src:'admin-group-add.php?group_id=' + id,  onclose:function(){
+			grid.load();
+		}});
+	}
+	
+	function todel(){
+		ajax_action('admin-group-add.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+			grid.load(); 
+		});
+	}
+	
+	function todelone(id){
+		ajax_action('admin-group-add.php',{act:'del' , ids:id} , '您确定要删除吗？' , function(){ 
+			grid.load(); 
+		});
+	}
+	
+	function toconfigpermi(id){
+		show_editor({ title:'配置权限',src:'permi-config.php?gid=' + id,  onclose:function(){
+			grid.load();
+		}});
+	}
+</script>

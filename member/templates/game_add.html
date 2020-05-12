@@ -1,0 +1,113 @@
+<html>
+<head>
+<?$title = "$server[server_name]_49you$game[game_name]_www.49you.com" ?>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?=$title?></title>
+<meta name="keywords" content="<?=$config['keyword']?>">
+<meta name="description" content="<?=$config['description']?>">
+
+<link href="style/sty.css" type="text/css" rel="stylesheet" />
+<link href="style/list.css" type="text/css" rel="stylesheet" />
+<link href="style/pay.css" type="text/css" rel="stylesheet" />
+<link href="style/login.css" type="text/css" rel="stylesheet" />
+<script language="javascript" src="js/basic.js"></script>
+
+<?
+
+
+$left_url = YOU_ROOT.'/left_bar_game.html?gid='.$game_id.'&sid='.$server_id;
+if(!empty($game['game_leftbar'])){
+	$arr = explode('.',YOU_ROOT);
+	array_shift($arr);
+	$domain = implode('.',$arr);
+	$left_url = 'http://'.$game['game_code'] .'.' . $domain . '/' . $game['game_leftbar'] . '?gid='.$game_id.'&sid='.$server_id;	
+}
+
+$left_width = '80';
+if(!empty($game['game_leftwidth'])){
+	$left_width = intval($game['game_leftwidth']);
+}
+
+$showleftbar=false;
+$showtopbar=false;
+$framecols="*";
+$framerows="*";
+if($game["game_isleftbar"]==1){$showleftbar=true;}
+if($game["game_istopbar"]==1){$showtopbar=true;}
+if((time() - $mygame['mg_time']) < 600){ $showleftbar=false;$showtopbar=false; }
+if($showleftbar){$framecols= $left_width . ", 10, *";}
+$topbar_rows = '30,*';
+if($showtopbar==false){ $topbar_rows = '0,*'; }
+$showscrolling='no';
+if( $game["game_id"]=='16' && strpos($_SERVER["HTTP_USER_AGENT"],'Firefox')!==false ){$showscrolling='yes';}
+?>
+<script language="javascript" type="text/javascript">
+	function hide_topbar(){
+		frmtopbar = document.getElementById('game_bar');
+		frmtopbar.rows="0,*";
+	}
+	function show_leftbar(){
+		try{
+		frmBody = document.getElementById('frame_body');
+		frmBody.cols="<?=$framecols?>";
+		
+		imgArrow = document.getElementById('leftctrl').contentWindow.document.getElementById('img');
+		imgArrow.src = "images/nav_left.jpg";
+		}catch(e){
+		}
+	}
+	function hide_leftbar(){
+		try{
+		frmBody = document.getElementById('frame_body');
+		frmBody.cols="0, 10, *";
+		
+		imgArrow = document.getElementById('leftctrl').contentWindow.document.getElementById('img');
+		imgArrow.src = "images/nav_right.jpg";
+		}catch(e){
+		}
+	}
+	window.onload = function(){
+		<?if($showleftbar && $game["game_autohideleft"]==1){?>
+		var winw=document.body.offsetWidth;
+		if(winw>=1050+80+10) show_leftbar();
+		else hide_leftbar();
+		<?}?>
+		<?if($game["game_autohidetop"]==1){?>
+		var winh=document.body.offsetHeight;
+		if(winh<630+30)hide_topbar();
+		<?}?>
+		
+		<?if($showtopbar==false){?>
+		hide_topbar();
+		<?}?>
+	}
+
+	if (top.location != self.location)top.location=self.location;
+	var isloaded = false;
+	function frame_load(){
+		if(isloaded==false){
+			isloaded=true;
+			if(document.getElementById('leftinfo')){
+				document.getElementById('leftinfo').src="<?=$left_url?>";
+			}
+			if(document.getElementById('topFrame')){
+				document.getElementById('topFrame').src="<?=YOU_ROOT?>/top_bar_game.html?gid=<?=$game_id?>&sid=<?=$server_id?>&fromadv=<?=$_REQUEST['fromadv']?>";
+			}
+		}
+	}
+
+</script>
+</head>
+
+<frameset name="f2" rows="<?=$topbar_rows?>" frameborder="no" border="0" framespacing="0" id="game_bar">
+    <frame  name="topFrame"  id="topFrame" scrolling="no" style="height:35px;">
+    <frameset id="frame_body" name="f3" rows="*" cols="<?=$framecols?>" frameborder="no" border="0" framespacing="0" >
+        <?if($showleftbar){?>
+        <frame  name="leftFrame" scrolling="no" id="leftinfo">
+        <frame src="<?=YOU_ROOT?>/left_bar_game.html?act=scroler" name="leftFrame" scrolling="no" id="leftctrl">
+        <?}?>
+        <frame src="<?=$returl?>" name="mainFrame" scrolling="<?=$showscrolling?>" onload="frame_load();">
+    </frameset>
+</frameset>
+<noframes></noframes>
+</html>

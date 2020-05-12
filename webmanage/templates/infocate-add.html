@@ -1,0 +1,66 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>上级分类：</th>
+				<td>
+				<!--	类别 -->
+					<select name="parent_id" id="parent_id">
+                    <option value="0">顶级分类</option>
+						<?=$info_cate_html?>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>分类名称：</th>
+				<td>
+					<input type="text" name="cate_name" id="cate_name" value="<?=$cate_name?>" class="input_w400" /> *
+				</td>
+			</tr>
+			<tr>
+				<th>排序号：</th>
+				<td>
+					<input type="text" name="sort_num" id="sort_num" value="<?=$sort_num==''?'0':$sort_num?>" class="input_w100" maxlength="10" />&nbsp;(越小越靠前)
+				</td>
+			</tr>
+            <tr>
+				<th>图片：</th>
+				<td>
+					<div class="upload_input">
+						<input type="text" name="pic" id="pic" class="input_w200" value="<?=$pic?>" />&nbsp;
+						<input type="button" name="upload_btn" id="upload_btn" class="btn" value="上传" onclick="popupWindow('upload-img.php?upload_input=pic',460,140);" />&nbsp;
+						<input type="button" name="choose_btn" id="choose_btn" class="btn" value="选择" onclick="popupWindow('attachment-list.php?upload_input=pic',800,600);" />
+						&nbsp;
+					(首页游戏推荐 新闻：news+游戏code(jtxm) 攻略：gl+游戏code 客服中心 常见问题：qjwt+游戏code)</div>
+					<div class="view_pic_div" id="view_pic_div" <?php if($pic==''){echo "style=\"display:none;\"";} ?> ><?php if($pic){ ?><img src="<?=$pic?>" width="100" border="0" /><?php } ?></div>
+				</td>
+			</tr>
+			<tr>
+				<th>描述：</th>
+				<td>
+					<?php
+					//建立fckeditor对象
+					$oFCKeditor = new FCKeditor('content');
+					$oFCKeditor->BasePath = EDITOR_ROOT;
+					$oFCKeditor->ToolbarSet = '';
+					$oFCKeditor->Width = '100%' ;
+					$oFCKeditor->Height = '400' ;
+					$oFCKeditor->Value = $content;
+					$oFCKeditor->Create() ;
+					?>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input type="hidden" name="cate_id" id="cate_id" value="<?=$cate_id?>" />
+                    <input type="hidden" name="top_id" id="top_id" value="<?=$top_id?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<?php include_once("footer.html");?>

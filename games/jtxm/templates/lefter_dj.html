@@ -1,0 +1,38 @@
+<?//游戏道具87
+$sqlstr="select cate_id,info_id,subtitle,source,summary,pic from ".DB_PREFIX."info where info_start<=".time()." and cate_id = 87 and info_gid=2 order by sort_num desc,add_time desc limit 0,10";
+$rs_gametools = $db->getAll($sqlstr);?>
+
+<div class="djdiv">推荐道具</div>
+<div class="dj" pause="5" step="1" speed="30" direction="up">
+<ul>
+<?if($rs_gametools){
+foreach($rs_gametools as $k=> $v){?>
+<li>
+<span style="float:left;"><a href="<?=get_newslink($v["info_id"])?>" target="_blank" title="<?=$v["summary"]?>"><img src="<?=$v["pic"]?>" alt="<?=$v["summary"]?>"/></a></span>
+<span style="float:left;"><b><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["subtitle"]?></a></b><?=$v["source"]?></span>
+</li>
+<?}
+}?>
+</ul>
+</div>
+<script language="javascript">
+$(".dj").each(function() {
+		$(this).marquee();
+	});
+</script>
+
+    <div class="kf">
+      <div class="kfdiv">客服中心</div>
+      <a href="<?=YOU_ROOT?>/service_online.html" target="_blank"><img src="images/kf.jpg"></a>
+      <ul>
+        <li>客服热线：<?=$config['service_tel1']?> </li>
+        <li>联系客服：<a target="_blank" href="<?=YOU_ROOT?>/service.html" class="e">点击进入</a></li>
+        <li>游戏论坛：<a target="_blank" href="<?=BBS_ROOT?>" class="e">点击进入</a></li>
+        <li>玩家交流群：160726225</li>
+        <li style="font-size: 14px; font-weight: bold; color: rgb(255, 255, 0);"></li>
+      </ul>
+    </div>
+     <div class="youxi">
+      <div class="youxidiv">游戏介绍</div>
+     <p style="padding:10px 18px 0px 28px; line-height:16px;" >&nbsp;&nbsp;49you九天仙梦是游戏史上最"萌"的一款即时PK网页游戏巨作。以悦耳的背景音乐、绚丽神奇的装备、刺激的动态副本、可爱的宠物培养等各种给力特色带给您前所未有的魅力体验！</p></div>
+	<div class="mt"><?=$mtinfo?></div>

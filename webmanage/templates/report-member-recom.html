@@ -1,0 +1,42 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+		  { 'header':'用户ID' , 'dataIndex':'member_recom' , 'type':'text' },
+		  { 'header':'用户名' , 'dataIndex':'member_reomname' , 'type':'text' },
+		  { 'header':'统计时间' , 'dataIndex':'add_time' , 'type':'datetime', 'defaultValue':'<?=date("Y-m-d")?>' }
+          </div>
+        </div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			var cm = new ColumnModel
+			([
+			{header: '用户ID', dataIndex: 'member_recom', sortable: true},
+			{header: '用户名', dataIndex: 'member_reomname'},
+			{header: '推广人数', dataIndex: 'member_total',  sortable: true},
+			{header: '隔天活跃人数', dataIndex: 'level2'},
+			{header: '3活跃人数', dataIndex: 'level3'},
+			{header: '5活跃人数', dataIndex: 'level5'},
+			{header: '充值总额', dataIndex: 'money',  sortable: true},
+			{header: '返回金额', dataIndex: 'remoney',  sortable: true }
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 100, params: { 'act': 'dataget',filter:	'[{"name":"add_time","oper":">=","value":"<?=strtotime(date('Y-m-d'))?>"}]'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 100, filter: filter} }); });
+			$('#searchbar').show();
+		});
+	
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

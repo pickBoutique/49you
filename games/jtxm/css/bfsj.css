@@ -1,0 +1,67 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}
+#divman { font-family:ËÎÌå; font-size: 12px; color: #472300; margin:0px; padding:0px; background: url(../imagesbfsj/bfsj_bg.jpg) no-repeat scroll top center #c3f6ff; line-height:24px; width:100%;height:100%}
+ul{ list-style-type: none; }
+a{ color:#fffcad; text-decoration:none;}
+a:hover{ color:#ff0000; text-decoration:underline;}
+img{ border:0px;}
+form{ margin:0px; padding:0px;}
+input {vertical-align:middle; font-size:12px; padding:0 1px;border:none; margin:0}
+.red{ color:#ff0000}
+.green{ color:#339900;}
+.orange{ color:#ddf700;}
+.blue{ color:#0171ee;}
+.black{ color:#000;}
+.bold{ font-weight:bold;}
+li{ list-style-type:none;}
+.fl{ float:left;}
+.fr{ float:right;}
+.cl{ clear:both;}
+.tc{ text-align:center;}
+.td_u{ text-decoration:underline;}
+.tr{ text-align:right;}
+/********************************************¾ÅÌìÏÉÃÎçÍ·×Êî¼Ù¿ñ»¶½Ú************************************************************/
+.bfsj_warp{ width:1000px; margin:0 auto; color:#844700;}
+.bfsj_top{ width:1000px; height:259px; background:transparent url(../imagesbfsj/bfsj_top01.jpg) no-repeat;}
+.bfsj_topnav{ width:300px; margin-left:275px; color:#FFFFFF;}
+.bfsj_topnav a{ padding:0 10px; color:#FFFFFF;}
+.bfsj_topnav a:hover{ padding:0 10px; color:#00FF00;}
+
+.bfsj_con{ width:1000px;}
+.bfsj_nav{ width:188px; height:1301px; background: transparent url(../imagesbfsj/bfsj_nav.jpg) no-repeat;}
+
+.bfsj_n01{ width:188px; height:97px; display:block; text-indent:-9999px; overflow:hidden; background: url(../imagesbfsj/bfsj_nav.jpg) left top no-repeat;}
+a.bfsj_n01:hover{width:188px; height:97px; display:block; text-indent:-9999px; overflow:hidden; background:url(../imagesbfsj/bfsj_navhov.jpg) left top no-repeat;}
+
+.bfsj_n02{ width:188px; height:108px; display:block; text-indent:-9999px; overflow:hidden; background:url(../imagesbfsj/bfsj_nav.jpg) left -97px no-repeat;}
+a.bfsj_n02:hover{width:188px; height:108px; display:block; text-indent:-9999px; overflow:hidden; background:url(../imagesbfsj/bfsj_navhov.jpg) left -97px no-repeat;}
+
+.bfsj_n03{ width:188px; height:114px; display:block; text-indent:-9999px; overflow:hidden; background:url(../imagesbfsj/bfsj_nav.jpg) left -205px no-repeat;}
+a.bfsj_n03:hover{width:188px; height:114px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../imagesbfsj/bfsj_navhov.jpg) left -205px no-repeat;}
+
+.bfsj_n04{ width:188px; height:117px; display:block; text-indent:-9999px; overflow:hidden; background:url(../imagesbfsj/bfsj_nav.jpg) left -319px no-repeat;}
+a.bfsj_n04:hover{width:188px; height:117px; display:block; text-indent:-9999px; overflow:hidden; background:url(../imagesbfsj/bfsj_navhov.jpg) left -319px no-repeat;}
+
+.bfsj_n05{ width:188px; height:98px; display:block; text-indent:-9999px; overflow:hidden; background:url(../imagesbfsj/bfsj_nav.jpg) left -438px no-repeat;}
+a.bfsj_n05:hover{width:188px; height:98px; display:block; text-indent:-9999px; overflow:hidden; background:url(../imagesbfsj/bfsj_navhov.jpg) left -438px no-repeat;}
+
+.bfsj_text{ width:812px;height:1301px; background:transparent url(../imagesbfsj/bfsj_textbg.jpg) no-repeat;}
+
+.bfsj_text p{ width:550px;}
+.bfsj_hdname{ padding-top:50px;}
+.bfsj_text img{ padding:5px;}
+
+
+.footer{ height:256px; clear:both;background: url(../imagesbfsj/footer.jpg) no-repeat scroll top center #c3f6ff;}
+.bfsj_nav2{ width:188px; height:958px; background: transparent url(../imagesbfsj/bfsj_nav.jpg) no-repeat;}
+.bfsj_text2{ width:812px;height:auto; background:transparent url(../imagesbfsj/bfsj_textbg.jpg) no-repeat;}
+.bfsj_nav3{ width:188px; height:758px; background: transparent url(../imagesbfsj/bfsj_nav.jpg) no-repeat;}
+.bfsj_text3{ width:812px;height:758px; background:transparent url(../imagesbfsj/bfsj_textbg.jpg) no-repeat;}
+.bfsj_text3 p{ width:550px;}
+.bfsj_nav4{ width:188px; height:1007px; background: transparent url(../imagesbfsj/bfsj_nav.jpg) no-repeat;}
+.bfsj_text5{ width:812px;height:758px; background:transparent url(../imagesbfsj/bfsj_textbg.jpg) no-repeat;}
+.bfsj_text5 p{ width:550px;}
+.bfsj_text2 p{ width:550px;}
+
+
+
+

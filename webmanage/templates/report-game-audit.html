@@ -1,0 +1,62 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'平台' , 'dataIndex':'sd_platform' , 'type':'select' ,'subIndex':'trans_gid', 'url':'ajax-games.php' , 'options':{<?=get_system_select(true)?>} },
+          { 'header':'游戏' , 'dataIndex':'trans_gid' , 'subIndex':'trans_sid', 'parentIndex':'sd_platform', 'url':'ajax-servers.php' , 'type':'select' , 'options':{'请选择':''} },
+          { 'header':'服务器' , 'dataIndex':'trans_sid' ,  'type':'select' , 'options':{'请选择':''} },
+		  { 'header':'游戏到账时间' , 'dataIndex':'trans_outtime' , 'type':'datetime', 'defaultValue':'<?=date("Y-m-d")?>' }
+          </div>
+        </div>
+<div class="searchoptions">
+<input type="button" value="导出" class="btn" onclick="toexport(strexport);" />
+</div> 
+	<div class="searcher" id="grid_contaniner"></div>
+
+        <script>
+		
+		var grid;
+		var strexport="";
+		$(document).ready(function(){
+			var cm = new ColumnModel
+			([
+			{header: '游戏到账时间', dataIndex: 'trans_outtime',sortable: true,format:'yyyy-MM-dd HH:mm:ss',width:150},
+			{header: '账单号', dataIndex: 'trans_code'},
+			{header: '会员账号', dataIndex: 'trans_mname'},
+			{header: '游戏名称', dataIndex: 'game_name'},
+			{header: '服务器', dataIndex: 'server_name'},
+			{header: '充值类型', dataIndex: 'trans_typename'},
+			{header: '对账金额', dataIndex: 'trans_gmoney'},
+			{header: '游戏币', dataIndex: 'trans_currency'},
+			{header: 'IP地址', dataIndex: 'trans_ip'}
+			]);
+
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 20,sort:'trans_outtime',dir:'', params: {'act': 'dataget', filter: '[{"name":"trans_outtime","oper":">=","value":"<?=strtotime(date('Y-m-d'))?>"}]'}});
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) {strexport=filter; grid.load({ params: { start: 0, limit: 20, filter: filter }}); });
+			$('#searchbar').show();
+			
+			
+			
+		});
+	
+		function toexport(strexp){
+			if(strexp!='')
+				show_editor({ title:'游戏对账资料导出',src:'report-game-audit.php?act=dataget&export=1&rnd='+Math.random()+'&filter=' + strexp,  onclose:function(){
+					//grid.load();
+				}});
+			else
+				alert("请先查询！");
+		}
+	
+
+
+
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

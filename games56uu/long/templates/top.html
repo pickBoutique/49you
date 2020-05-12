@@ -1,0 +1,99 @@
+<?php
+        //头部flash
+        $sqlstr="select cate_id,pic,source,add_time from ".DB_PREFIX."info where info_start<=".time()." and cate_id = 328 order by sort_num desc,add_time desc limit 1";
+        $rs_gamefla = $db->getAll($sqlstr);
+        
+?>	 
+
+<div id="t-top">
+  <div id="t-top2">
+    <div id="logo"><a href="http://www.56uu.com/" target="_blank"><img src="/top/logo.gif" border="0" /></a></div>
+    <div id="t-top3">56UU推荐游戏：<a href="<?=HTTP_ROOT?>">龙
+    将</a>|<a href="http://yqdx.56uu.com/">一骑当先</a>|<a href="http://sxd.56uu.com/">神仙道</a>|<a href="http://sg.56uu.com/">盛世三国</a></div>
+    <div id="t-top4"><a onclick="this.style.behavior='url(#default#homepage)';this.setHomePage('<?=HTTP_ROOT?>');" href="#;">设为首页</a><a href="javascript:window.external.addFavorite('<?=HTTP_ROOT?>','龙将');"><span>加入收藏</span></a> </div>
+  </div>
+</div>
+
+<!---------------------------------------------------------------------content ------------------------------------------------------------------------>
+<div id="layout">
+  <div id="layout2">
+    <!--main-top-->
+	   <div id="login">
+	      <div id="l-logo"></div>
+		  
+		  <div id="l-zhuce">
+          <div id="_userboxform" style="display:block;">
+		     <form action="http://www.56uu.com/?m=user&amp;action=loginform" method="post" onsubmit="return check_log();"  name="loginfrm" id="loginfrm">
+             <input name="act" type="hidden" id="act" value="1" />
+			    <div id="l-zhuce-l">
+			     <ul>
+			       <li class="login-list1"><input id="login_user" name="username" onclick="this.value=''"  type="text" class="login-input"/></li>
+				   <li class="login-list2"><input type="password" tabindex=2 id="login_pass" onclick="this.value=''" name="password"  class="login-input" />
+				   </li>
+			     </ul>
+				</div>
+				<div id="l-zhuce-r"><input id="login_button" type="image" src="/images/login2.gif"></div>
+				<div id="l-zhuce-z"><input name="" type="radio" value=""  class="login-radio"/><span><a href="#">自动登陆</a>|<a href="<?=YOU_ROOT?>/?m=user&action=getprotections">找回密码</a></span></div>
+			 </form>
+             </div>
+             <div id="puserboxform" style="display:none;color:#000;">
+                 <form id="regLogTab1" action="" method="get">
+                    <div id="l-zhuce-h">
+                     <ul>
+                       <li><span class="space1">帐号：</span><strong id="pusername" style="color:red"></strong></li>
+                       <li><span class="space1">上次登陆服务器：</span><span id="oldgame" name="oldname"><a href="#"></a></span></li>
+                       <li><span class="space1">推荐服务器：</span><span id="oldgame" name="oldname"><a href="#"></a></span></li>
+                     </ul>
+                    </div>
+                    <div id="l-zhuce-4"><span><a href="<?=YOU_ROOT?>/?m=user&action=resetpass">修改密码</a>|<a href="<?=YOU_ROOT?>/?m=user">帐号管理</a>|<a href="http://www.56uu.com/?m=user&action=logout">安全退出</a></span></div>
+                 </form>
+
+             </div>
+		  </div>
+<script type="text/javascript">
+
+loadContent('http://www.56uu.com/?m=lgame&action=lgame&game_id=37','sendData_callback',0);
+
+</script>
+		  <div id="l-pay">
+		     <div id="l-pay1"><a href="<?=YOU_ROOT?>/?m=user&action=register#" target="_parent"></a></div>
+			 <div id="l-pay2"><a href="<?=YOU_ROOT?>/?m=pay" target="_parent"></a></div>
+		  </div>
+		  
+		  <div id="l-enter"><a href="server_list.html" target="_blank"><img src="/images/enter.png" border="0" /></a></div>
+		  <div class="clear"></div>
+	   </div>
+	   <div id="flash">
+                      <?php
+                        foreach($rs_gamefla as $k=> $v){
+                        ?>
+       <a href="<?=$v['source']?>"><img src="http://www.49you.com<?=$v['pic']?>" border="0" /></a>
+                    <?php } ?>
+         <!--object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="502" height="239">
+             <param name="movie" value="/images/502_239.swf" />
+             <param name="quality" value="high" />
+             <param name="wmode" value="transparent" />
+             <param name="swfversion" value="9.0.45.0" />
+             <object type="application/x-shockwave-flash" data="/images/502_239.swf" width="502" height="239">
+               <param name="quality" value="high" />
+               <param name="wmode" value="transparent" />
+               <param name="swfversion" value="9.0.45.0" />
+             </object>
+         </object-->
+</div>
+	   
+	   <div id="nav">
+	     <div id="menu">
+		    <ul>
+			  <li class="nav1"><a href="/" target="_blank"></a></li>
+			  <li class="nav1"><a href="news.html" target="_blank"></a></li>
+			  <li class="nav1"><a href="news.html?cid=331" target="_blank"></a></li>
+			  <li class="nav1"><a href="news.html?cid=335" target="_blank"></a></li>
+			  <li class="nav1"><a href="<?=YOU_ROOT?>/?m=pay" target="_blank"></a></li>
+			  <li class="nav2"><a href="<?=YOU_ROOT?>/?m=gamexsk" target="_blank"></a></li>
+			  <li class="nav1"><a href="<?=YOU_ROOT?>/?m=kf" target="_blank"></a></li>
+			  <li class="nav3"><a href="http://bbs.56uu.com/forumdisplay.php?fid=201" target="_blank"></a></li>
+			</ul>
+		 </div>
+	   </div>
+	   <div class="clear"></div>

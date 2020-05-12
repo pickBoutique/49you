@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="网页游戏,网页小游戏,最新网页游戏,傲视天地,仙侠风云,2011年最新网页游戏,最新网页游戏开服表">
+<meta name="description" content="49网页游戏平台为大家提供最新最热门的网页游戏。包括傲视天地、仙侠风云、千军破、十年一剑、魔塔世界等多款最好玩的网页游戏。">
+<title>49you</title>
+<link href="style/Log.css" type="text/css" rel="stylesheet" />
+<script language="javascript" src="<?=HTTP_ROOT?>/js/basic.js"></script>
+</head>
+
+<body>
+<br><br>
+	<div class="pop_mo">
+	<div class="pop_1">成功提示  <a  href="javascript:url_return();" class="pl-x"><img src="style/img/x.jpg" /></a></div>
+	<div class="pop_3">
+    
+<div class="p_bj1">    
+	<div class="p_3">
+	<h2>请确认你的充值信息</h2>
+<p>充值方式：<?=$pay_type?></p>
+
+<p>充值账号：<?=$acount?></p>
+
+<p>充值游戏：<?=$game_name?></p>
+
+<p>充值服务器：<?=$server_name?></p>
+
+<p>充值金额：<?=$money?>元</p>
+
+<? if( !empty($addition) ){ ?>
+<p><span>您的等级为<?=$level_name?>，本次充值可额外获得<?=$addition?>平台币</span></p>
+<? } ?>
+
+<p>可获得游戏币：<?=$game_cur?></p>
+
+<p>可获得积分：<span><?=$integral?>积分</span></p>
+	</div>
+</div>
+
+<div style="height:24px; width:300px; float: right; margin:10px 0px;"><a href="###" onclick="document.forms[0].submit();" class="btn-link btn-p1" >确认提交</a>
+          <a href="javascript:url_return();" class="btn-link btn-p2" >返回修改</a>
+          </div>
+	<div class="cl"></div>
+	
+	</div>
+	</div>
+    
+<?=$html?>   
+  
+</body>
+</html>

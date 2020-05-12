@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>网站管理平台</title>
+<link href="/style/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript">
+function toggleMenu(n)
+{
+	$("#left_menu_"+n).slideToggle();
+	var left_img = $("#left_img_"+n).attr('src');
+	if(left_img == '/images/LeftExpand.gif')
+	{
+		$("#left_img_"+n).attr('src','/images/LeftUnExpand.gif');
+	}
+	else
+	{
+		$("#left_img_"+n).attr('src','/images/LeftExpand.gif');
+	}
+}
+
+function selsubitem(obj, id, name, url) {
+	/*
+   var subitems = document.getElementsByClassName("menu_sub_curitem");
+   for (var i = 0; i < subitems.length; i++) {
+   	   subitems[i].className = "menu_sub_item";
+   }
+   obj.className = "menu_sub_curitem";
+   */
+   parent.window.closedialog(id);
+   parent.window.showmenu(id, name, url);
+} 
+</script>
+</head>
+
+<body class="left">
+	<div class="sysmenutitle"><span class="icon"><img src="/images/left_icon_8.jpg" /></span><span class="title">网站功能设置</span></div>
+	<div class="sysmenu">
+		<?=$module_html?>
+	</div>
+	<div class="height_20"></div>
+</body>
+</html>

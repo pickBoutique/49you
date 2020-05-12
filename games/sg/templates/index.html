@@ -1,0 +1,179 @@
+<?php $title='盛世三国|盛世三国官网|49you盛世三国|新手卡|下载|职业|BOSS|攻略';
+$keywords="盛世三国,盛世三国官网,49you盛世三国,盛世三国新手卡,盛世三国下载,盛世三国什么职业好,盛世三国BOSS坐标,盛世三国攻略";
+$description="盛世三国,盛世三国官网,49you盛世三国是一款可用三种客户端登录的以三国游戏为背景的网络游戏。49you盛世三国官网提供盛世三国下载、新手卡、职业、boss等攻略。"?>
+
+<?php include('header.html'); ?>
+<script type="text/javascript">
+function newschange(id){
+	var morelinks = Array();
+	morelinks[1]="news.html?pid=179&cid=180";
+	morelinks[2]="news.html?pid=179&cid=182";
+	for(i=1;i<=2;i++){
+		$("#newsli"+i)[0].className='';
+		$("#newlist"+i).hide();
+	}
+	$("#newsli"+id)[0].className='on';
+	$("#newlist"+id).show();
+	$("#more").html("<a href='"+morelinks[id]+"' target='_blank'>更多>></a>");
+}
+if (top.location != self.location)top.location=self.location;
+</script>
+  <div id="main">
+    <div id="content">
+      <div class="news_row">
+        <div id="img_row">
+          <div><a href="cardlist.html" target="_blank"><img src="images/49sg_newer.jpg" alt="新手卡"/></a></div>
+          <div><a href="<?=get_newslink(3259)?>" target="_blank"><img src="images/49sg_sjzq.jpg" alt="快速升级与赚钱"/></a></div>
+          <div><a href="<?=get_newslink(3173)?>" target="_blank"><img src="images/49sg_faq.jpg" alt="新手常见问题"/></a></div>
+        </div>
+        <div class="news">
+          <div class="news_top">
+            <ul class="news_title">
+              <li id="newsli1" onmouseover="newschange(1);" class="on">新闻公告</li>
+              <li id="newsli2" onmouseover="newschange(2);" >boss坐标</li>
+              <li id="more"><a href="news.html?pid=179&cid=180" target="_blank">更多>></a></li>
+            </ul>
+          </div>
+          <div id="news_list">
+            <ul class="list_list" id="newlist1">
+		<?if($rs_news){
+            foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="180"){
+            $cls = $v["attachment"]=="red" ? 'list_list_red' : '';
+            ?>
+		<li class="<?=$cls?>" ><span class=""><?=date('m-d',$v["add_time"])?></span>
+       <a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+		  <?}
+            }
+          }?>
+
+            </ul>
+            
+            
+            <ul class="list_list" id="newlist2" style="display:none;">
+		<?if($rs_news){
+            foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="182"){
+            $cls = $v["attachment"]=="red" ? 'list_list_red' : '';
+            ?>
+		<li class="<?=$cls?>" ><span class=""><?=date('m-d',$v["add_time"])?></span>
+       <a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+		  <?}
+            }
+          }?>
+			</ul>
+
+          </div>
+        </div>
+      </div>
+      <div id="center">
+      <div class="t1_bg">
+      <div class="t-1"><a href="<?=get_newslink(3260)?>" target="_blank"><img src="images/49sg_cz10.jpg" alt="充值返银10%"/></a></div>
+      <div class="t-1"><a href="<?=get_newslink(3258)?>" target="_blank"><img src="images/49sg_vip.jpg" alt="VIP隐藏功能"/></a></div>
+      <div class="t-1"><a href="<?=get_newslink(3226)?>" target="_blank"><img src="images/49sg_zy.jpg" alt="四大职业详解"/></a></div>
+      <div class="t-1"><a href="<?=get_newslink(3224)?>" target="_blank"><img src="images/49sg_cwzq.jpg" alt="宠物坐骑"/></a></div>
+      </div>
+      </div>
+      <div id="center">
+        <div id="game_info">
+          <div class="con">
+            <ul>
+              <li class="til"><a href="news.html?pid=179&cid=183" target="_blank">更多>></a></li>
+              <li class="ti2">
+<a href="<?=get_newslink(3173)?>" target="_blank">常见问题</a>
+<a href="<?=get_newslink(3226)?>" target="_blank">职业介绍</a>
+<a href="<?=get_newslink(3232)?>" target="_blank">装备合成</a>
+<a href="<?=get_newslink(3234)?>" target="_blank">装备强化</a>
+<a href="<?=get_newslink(3230)?>" target="_blank">装备升星</a>
+              </li>
+              <li class="ti2">
+<a href="<?=get_newslink(3227)?>" target="_blank">人物属性</a> 
+<a href="<?=get_newslink(3180)?>" target="_blank">秘籍修炼</a>
+<a href="<?=get_newslink(3185)?>" target="_blank">欢乐派对</a>
+<a href="<?=get_newslink(3186)?>" target="_blank">墓穴探险</a>
+<a href="<?=get_newslink(3183)?>" target="_blank">五禽戏</a>
+              </li>
+                            <li class="ti2">
+<a href="<?=get_newslink(3224)?>" target="_blank">宠物坐骑</a>
+<a href="<?=get_newslink(3216)?>" target="_blank">国家系统</a>
+<a href="<?=get_newslink(3181)?>" target="_blank">套装系统</a>
+<a href="<?=get_newslink(3184)?>" target="_blank">狩猎系统</a>
+<a href="<?=get_newslink(3191)?>" target="_blank">家族系统</a>
+              </li>
+                            <li class="ti2">
+<a href="<?=get_newslink(3203)?>" target="_blank">国王争夺战</a>
+<a href="<?=get_newslink(3200)?>" target="_blank">献帝保卫战</a>
+<a href="<?=get_newslink(3198)?>" target="_blank">砍旗截粮</a>
+<a href="<?=get_newslink(3199)?>" target="_blank">功勋系统</a>
+<a href="<?=get_newslink(3202)?>" target="_blank">三国战场</a>
+
+              </li>
+                            <li class="ti2">
+<a href="<?=get_newslink(3206)?>" target="_blank">愤怒的猛将</a>
+<a href="<?=get_newslink(3214)?>" target="_blank">营救士兵</a>
+<a href="<?=get_newslink(3210)?>" target="_blank">冷宫地图</a>
+<a href="<?=get_newslink(3212)?>" target="_blank">宝石镶嵌</a>
+<a href="<?=get_newslink(3209)?>" target="_blank">摇钱树</a>
+              </li>
+            </ul>
+          </div>
+          <div class="rright">
+          <ul>
+          <li><a href="<?=get_newslink(3282)?>" target="_blank"><img src="images/1-15.jpg" width="180" height="42" border="0" alt="新手入门" /></a></li>
+          <li><a href="<?=get_newslink(3319)?>" target="_blank"><img src="images/15-40.jpg" width="180" height="42" border="0" alt="小试牛刀" /></a></li>
+          <li><a href="<?=get_newslink(3320)?>" target="_blank"><img src="images/40-60.jpg" width="180" height="42" border="0" alt="初露锋芒" /></a></li>
+          <li><a href="<?=get_newslink(3321)?>" target="_blank"><img src="images/60.jpg" width="180" height="42" border="0" alt="略有所成" /></a></li>    
+          </ul>
+          </div>
+        </div>
+        <div class="list_row">
+          <div class="center_frame mood">
+            <div class="top"><a href="news.html?pid=179&cid=190" target="_blank">更多>></a>常见问题</div>
+            <div class="con">
+              <ul>
+          <?if($rs_gamequ){
+            foreach($rs_gamequ as $k=> $v){
+            $cls = $v["attachment"]=="red" ? 'list_list_red' : '';
+            ?>
+		<li class="<?=$cls?>" ><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["subtitle"]?></a></li>
+            <?}
+          }?>
+
+              </ul>
+            </div>
+          </div>
+          <div class="center_frame strategy">
+            <div class="top"><a href="news.html?pid=179&cid=189" target="_blank">更多>></a>游戏攻略</div>
+            <div class="con">
+              <ul>
+          <?if($rs_gamegs){
+            foreach($rs_gamegs as $k=> $v){
+            $cls = $v["attachment"]=="red" ? 'list_list_red' : '';
+            ?>
+		<li class="<?=$cls?>" ><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["subtitle"]?></a></li>
+            <?}
+          }?>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+<div class="left">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--left_server start-->
+<? include('lefter_server.html'); ?> 
+<!--left_server end--> 
+<!--lefter_kf start-->
+<? include('lefter_kf.html'); ?> 
+<!--lefter_kf end--> 
+<!--lefter_mt start-->
+<? include('lefter_mt.html'); ?> 
+<!--lefter_mt end--> 
+    </div>
+  </div>
+<?php include('footer.html'); ?>

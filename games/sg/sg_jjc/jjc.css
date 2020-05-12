@@ -1,0 +1,118 @@
+body{
+	background:url(jjc/bg.jpg) no-repeat center top #000;
+	font:12px/1.5 'Tahoma','simsun';
+}
+.wrapper{
+	background:url(jjc/bg2.jpg) no-repeat center top;
+	margin:0 auto;
+	width:1032px;
+	height:696px;
+}
+.line1{
+	text-align:right;
+	padding-right:120px;
+	overflow:hidden;
+}
+.line1 .reg{
+	background:url(jjc/top_btn.jpg) no-repeat 0 0;
+	height:25px;
+	width:88px;
+	float:right;
+}
+.line1 .reg:hover{
+	background-position:-88px 0;
+}
+.line1 .back{
+	background:url(jjc/top_btn.jpg) no-repeat 0 -25px;
+	height:25px;
+	width:88px;
+	float:right;
+}
+.line1 .back:hover{
+	background-position:-88px -25px;
+}
+.line2{
+	padding:310px 253px 0 276px;
+	overflow:hidden;
+	clear:both;
+	display:inline-block;
+}
+.line2 .tab{
+	float:left;
+	width:150px;
+}
+.line2 .content{
+	float:right;
+	width:350px;
+	display:none;
+	
+}
+.line2 .content img{
+	padding-top:10px;
+	margin:0 auto;
+	width:300px;
+	display:block;
+}
+.line2 .content p{
+	color:#9f7625;
+	padding:0 15px;
+	line-height:0 15px;
+}
+
+.line2 .tab li{
+	height:47px;
+	line-height:47px;
+	text-align:center;
+	background:url(jjc/tab.jpg) no-repeat;
+	color:#281e15;
+	cursor:pointer;
+	font-weight:bold;
+}
+.line2 .tab li.active{
+	color:#9f7625;
+	background-position:-154px 0;
+}
+
+
+.pics{
+	overflow:hidden;
+	clear:both;
+	padding:160px 0 0 150px;
+}
+.pics a{
+	background:url(jjc/pic.jpg);
+	height:122px;
+	width:235px;
+	margin:0 6px;
+	float:left;
+	
+}
+.pics a#pic2{
+	background-position:0 -244px;
+}
+.pics a#pic3{
+	background-position:0 -122px;
+}
+.pics a#pic1:hover{
+	background-position:-235px 0px;
+}
+.pics a#pic2:hover{
+	background-position:-235px -244px;
+}
+.pics a#pic3:hover{
+	background-position:-235px -122px;
+}
+
+.line3{
+	overflow:hidden;
+	padding-top:25px;
+	text-align:right;
+	padding-right:130px;
+	padding-bottom:80px;
+	clear:both;
+}
+.line3 a{
+	text-decoration:underline;
+	color:#9f7625;
+	font-size:14px;
+}

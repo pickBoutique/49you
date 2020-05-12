@@ -1,0 +1,62 @@
+<table width="904" cellspacing="1" cellpadding="4" border="0" align="center" >
+<tbody><tr>
+<td width="904" align="center"><b>开服榜（kaifubang.com）-网页游戏开服资讯</b></td>
+</tr>
+</tbody></table>
+<table width="904" cellspacing="1" cellpadding="4" border="0" align="center" >
+<tbody><tr bgcolor="#ffffff">
+<td>
+中国最好的网页游戏开服发布网——开服榜资讯平台（kaifubang.com），免费为各位玩家提供最新网页游戏开服信息。
+</td>
+</tr>
+</tbody></table>
+<br />
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="904">
+  <tbody><tr>
+    <td background="images/au_top_bgl.jpg" width="3"><img src="images/au_top_bgl.jpg" width="3" height="1"></td>
+    <td bgcolor="#e4f1fa" width="898"><table align="center" background="images/title_bg.jpg" border="0" cellpadding="0" cellspacing="0" width="872">
+      <tbody><tr>
+        <td width="143" background="images/title_l02.gif">　近十五天最新开区</td>
+        <td align="right">&nbsp;</td>
+        <td width="21"><img src="images/title_r01.jpg" width="21" height="31"></td>
+      </tr>
+    </tbody></table>
+       <table align="center" bgcolor="#a4bcca" border="0" cellpadding="5" cellspacing="1" width="870">
+        <tbody><tr align="center" bgcolor="#f4f4f4" height="20">
+        <?
+        for($i=-2;$i<=15;$i++){?>
+        <td bgcolor="#f4f4f4"><a target="_blank" href="server.html?date=<?=date('Y-m-d',strtotime("-$i day"));?>"><?=date('m-d',strtotime("-$i day"));?></a></td>
+        <?}?>
+          </tr>
+      </tbody></table></td>
+    <td background="images/au_top_bgr.jpg" width="3"><img src="images/au_top_bgr.jpg" width="3" height="1"></td>
+  </tr>
+</tbody></table>
+<br />
+
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="904">
+  <tbody><tr>
+    <td background="images/au_top_bgl.jpg" width="3"><img src="images/au_top_bgl.jpg" width="3" height="1"></td>
+    <td bgcolor="#e4f1fa" width="898"><table align="center" background="images/title_bg.jpg" border="0" cellpadding="0" cellspacing="0" width="872">
+      <tbody><tr>
+        <td width="143" background="images/title_l02.gif">　热门游戏开服表</td>
+        <td align="right">&nbsp;</td>
+        <td width="21"><img src="images/title_r01.jpg" width="21" height="31"></td>
+      </tr>
+    </tbody></table>
+       <table align="center" bgcolor="#a4bcca" border="0" cellpadding="5" cellspacing="1" width="870">
+        <tbody><tr align="center" bgcolor="#f4f4f4" height="20">
+        <?
+        $sqlstr="select * from ".DB_PREFIX."kfbgame where fg_status=1 order by fg_sort desc";
+        $rs_game = $db->getAll($sqlstr);
+        ?>
+        <?if($rs_game){
+        foreach($rs_game as $k=> $v){?>
+        <td bgcolor="#f4f4f4"><a target="_blank" href="server.html?act=slist&gid=<?=$v["fg_id"];?>"><?=$v["fg_gname"];?></a></td>
+        <?}
+        }?>
+          </tr>
+      </tbody></table></td>
+    <td background="images/au_top_bgr.jpg" width="3"><img src="images/au_top_bgr.jpg" width="3" height="1"></td>
+  </tr>
+</tbody></table>

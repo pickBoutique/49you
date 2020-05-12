@@ -1,0 +1,97 @@
+@charset "utf-8";
+/* CSS Document */
+body{margin:0;}
+img{border:none;}
+
+#topbg{ position:relative; top:0; left:0;width:100%;background:url(top_bar_cq/top_bg.gif) repeat-x 0 0; z-index:9990;text-align: center;}
+.top{width:980px; margin:0 auto;height:32px;background:url(top_bar_cq/top_bg2.gif) repeat-x center bottom; line-height:20px;} 
+.top a:link,.kl_top a:visited{color:#0066CC;text-decoration: underline;}
+.top a:hover{color:#06C;text-decoration: underline;}
+
+.top_left{float:left;width:400px;text-align:left; margin-top:0px;}
+.logo{
+	float:left;
+	width:270px;
+	padding:3px 12px 0px 12px;
+	height:27px;
+	line-height:27px;
+	overflow:hidden;
+	font-family:"微软雅黑";
+	font-size:12px;
+	background:url(top_bar_cq/top_3.gif) no-repeat right top;
+}
+.logo p{float:left; margin:0px 0 0 0;}
+
+.top_list{
+	float:left;
+	padding:3px 8px 0 0px;
+	height:27px;
+	font-family:"微软雅黑";
+	font-size:12px;
+	color:#444;
+	line-height: 27px;
+}
+.top_list p{
+	float:left;
+	margin:0px 0 0 0;
+}
+
+
+.gundong{ color:#F00; font-size:12px;}
+.gundong a:link,.gundong a:visited{color:#F00;}
+.gundong a:hover{
+	color:#06C;
+}
+
+.top_fuwuqi{
+	font-family:"微软雅黑";
+	float:left;
+	width:184px;
+	margin-top:3px;
+	height:27px;
+	text-align:left;
+	font-size:12px;
+	line-height:27px;
+	padding-left: 16px;
+}
+.top_fuwuqi strong{ color:#06F;}
+.top_right{
+	font-family:"微软雅黑";
+	float:left;
+	margin-top:3px;
+	height:27px;
+	text-align:left;
+	font-size:12px;
+	line-height:27px;
+}
+.top_right p{ float:left; margin:0px 0px 0px 0px; }
+.top_right p a{margin:0px 9px;color:#06F; }
+.top_right p a:hover{color:#FF3;}
+
+.top_anniut{ padding-top:8px; padding-right:12px; text-align:right;line-height:14px;height:14px; float: right;}
+
+.nav0{ background:url(top_bar_cq/icon_2.gif) no-repeat left  }
+.nav1{ background:url(top_bar_cq/icon_3.gif) no-repeat left }
+.nav2{ background:url(top_bar_cq/icon_4.gif) no-repeat left}
+.nav3{ background:url(top_bar_cq/icon_5.gif) no-repeat left }
+.nav4{ background:url(top_bar_cq/icon_6.gif) no-repeat left }
+.nav0,.nav1,.nav2,.nav3,.nav4{padding: 0px 10px 0px 16px;}
+
+.kefu{
+	background: transparent url("top_bar_cq/s-1.jpg") no-repeat 0px 0px;
+	width:80px;
+	height:24px;
+	cursor:pointer;
+}
+.top_logo{
+	background: transparent url("top_bar_cq/top_logo.gif") no-repeat 0px 0px;
+	width:74px;
+	height:24px;
+	cursor:pointer;
+}
+.closeimg{
+	background: transparent url("top_bar_cq/close.gif") no-repeat 0px 0px;
+	width:14px;
+	height:14px;
+	cursor:pointer;
+}

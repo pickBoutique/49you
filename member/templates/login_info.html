@@ -1,0 +1,66 @@
+<?
+if($login_status != SUC_LOGIN){
+?>
+<div id="leftcol" >
+<div><a href="reg.html"><img src="images/zc-3.jpg" width="244" height="45" /></a></div>  
+<div class="login_b">
+<h3 class="hid"></h3>
+<form  method="POST" action="login.html">
+      <div class="i clearfix">
+        <label for="email" class="fl">用 户：</label>
+          <p class="fl">
+            <input name="username" id="username" type="text"  />
+          </p>
+      </div>
+        <div class="i clearfix">
+            <label for="password" class="fl">密&nbsp;码：</label>
+            <p class="fl"><input name="password" id="password" type="password"   /></p>
+        </div>
+
+        <div class="b cl">
+        
+              <input name="chkRememberUsername" type="checkbox" value="1" id="chkRememberUsername" checked="checked" />
+              <label for="rem">记住登录帐号</label> 
+              <a href="pwd_find.html" title="找回密码">找回密码</a>
+        
+        </div>
+		<div class="b3 cl">
+          <input type="hidden" name="act" value="login"  />
+          <input type="hidden" name="returl" value="member.html"  />
+          <input type="submit" value="" name="input" class="hid cur">
+        </div>
+        
+</form>
+</div>
+
+</div>  
+<?
+}else{
+
+if(empty($loginout_returl)){
+	$loginout_returl = $_SERVER['REQUEST_URI'];
+}
+$usr_info = $obj_user->get_user_by_id($login_info[2]);
+$level_info = $db->getRow("select * from ".DB_PREFIX."member_level where level_id='{$usr_info[member_level]}' ");
+?>
+<div class="login_a">
+    <h3 class="hid">用户登录</h3>
+    <div class="info">
+        <img src="tu/avata.jpg" alt="avata" />
+        <dl>
+            <dt><strong>欢迎登录49you平台！</strong></dt>
+          <dd class="u_name" >
+          <strong><?=$usr_info['member_name']?> </strong></dd>
+                            <dd>VIP等级：<em><strong><a title="VIP等级介绍"  href="/news_info_215.html#vip_list"><?=$level_info['level_name']?></a></strong>  </em> </dd><dd>积分：<em><strong><?=$usr_info['points']?></strong></em> <a class="red" href="/news_info_215.html#jifen_01">详情</a></dd>
+                            <dd>平台币：<em><strong><?=$usr_info['money']?></strong></em> <a class="red" href="exchange.html">兑换</a></dd>
+        </dl>
+    </div>
+    <div class="b t_c">
+        <a href="bind_mail.html" title="密保设置" style="color:#f00;">密保设置</a>
+        <a href="pay_games.html" title="账户充值">账户充值</a>
+        <a href="return.html" title="推广返利" >推广返利</a>
+        <a href="loginout.html?returl=<?=$loginout_returl?>" title="安全退出" >安全退出</a>
+    </div>
+
+</div>
+<? } ?>

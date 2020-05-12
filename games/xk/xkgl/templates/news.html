@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link href="style/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+  <div id="content">
+     <div id="content1"><label>49you侠客世界新服火爆开启</label><span><a href="http://xk.49you.com/cardlist.html" target="_blank">点击进入</a></span></div>
+     <div id="content2">
+	   <ul>
+                          <?if($list_news){
+        	foreach($list_news as $k=> $v){?>
+	      <li><img src="images/img.gif" /><span><a href="javascript:parent.info_show(<?=$v["info_id"]?>)"><?=$v["title"]?></a></span></li>
+                      		<?}}?>
+	   </ul>
+	 </div>
+	 <div id="content3">
+	     <div class="page1">
+		<? pager_bar($pager,WEB_ROOT."/games/xk/xkgl/templates/pager.html"); ?>
+        </div>
+	 </div>
+  </div>
+
+</body>
+</html>

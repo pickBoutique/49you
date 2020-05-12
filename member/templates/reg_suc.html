@@ -1,0 +1,79 @@
+<?php $nav='member'; ?>
+<?php include('header.html'); ?>
+
+<div class="text cl ">
+<div class="con clearfix">
+ <div class="ptop"><h3>注册成功</h3>
+ </div>  
+   <div class="pmid"> 
+    <p><img src="images/ptop-1.jpg" width="940" height="45" /></p>
+    <div class="pmid_bj1">
+    
+    <div class="pmid_bj2">
+ <div class="pmid_mo">
+        <div class="pbj5">
+        <h3 >恭喜您，注册成功！您的49you通行证为：<span class="red"><?=$userinfo['member_name']?></span><span style="margin-left:40px;"><input type="button" class="btin_lb" onclick="javascript:document.location.href='member.html'" value="进入用户中心"  /></span></h3>
+        </div>
+        
+
+    
+<div class="cl"></div>    
+<h1>这几个游戏最近非常火爆找个游戏开始玩吧！
+</h1>
+
+
+<div id="reg_suc_list">
+<?
+if(!empty($top_game)){
+	foreach($top_game as $v){?>
+<?/*
+ <div class="dtimg2 fl entnewimg" ><a target="_blank" href="<?=$v['game_web']?>"><img src="game/<?=$v['game_id']?>_140_129.jpg" style="width:140px;" /></a>
+<div class="login_5" >  <input type="button" name="button" id="button" onclick="window.location.href='<?=$v['game_bbs']?>';" value="论 坛" /></div>
+     <div class="login_5 "> <input type="button" name="button" id="button" onclick="window.location.href='package.html';"  value="领取礼包" /></div>
+      <div class="login_5" ><input type="button" name="button2" id="button2" onclick="window.location.href='<?=$v['game_web']?>';"  value="进入官网" /></div>
+     <div class="login_4 "><input type="button" name="button" id="button" onclick="window.location.href='game.html?gid=<?=$v['game_id']?>';"  value="进入游戏" /></div>
+ </div>
+*/?>
+<div class="reg_suc_list_1">
+     <div class="reg_suc_list_1_img"><a target="_blank" href="<?=$v['game_web']?>"><img border="0" src="game/<?=$v['game_id']?>_140_129.jpg" style="width:140px;" alt="<?=$v['game_name']?>"></a></div>
+	 <div class="reg_suc_list_1_buttom">
+	    <ul>
+		   <li class="reg_suc_list_0_buttom">最新开服：</li>
+           <?
+           	$top_server = $db->getAll("select server_gid,server_id,server_name,server_start from ".DB_PREFIX."server where server_gid=".$v['game_id']." order by server_start desc limit 0,2");
+            if(!empty($top_server)){
+            	foreach($top_server as $sv){
+           ?>
+		   <li class="reg_suc_list_2_buttom"><a target="_blank" href="/game_add.html?gid=<?=$sv['server_gid']?>&sid=<?=$sv['server_id']?>"><div class="reg_suc_list_2_buttomd_div"><?=$sv['server_name']?></div><?=date("m-d H:i",$sv['server_start'])?></a></li>
+           <?}
+           }?>
+		</ul>
+	 </div>
+	 <div class="reg_suc_list_1_more"><a target="_blank" href="<?=$v['game_web']?>/server_list.html">更多服务器</a></div>
+  </div> 
+
+  
+  
+
+ 
+	 <?}
+}?> 
+<div class="clear"></div>
+</div>
+
+     </div>
+     
+        
+    </div>
+    
+   </div> 
+<p><img src="images/ptop-3.jpg" width="940" height="45" /></p>   
+      
+</div>
+
+
+</div>
+<div class="pbom cl"> </div> 
+<div class="sharedspacer12"></div>
+<!--bom-->
+<? include('footer.html'); ?>

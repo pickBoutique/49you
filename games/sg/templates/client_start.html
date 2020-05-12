@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0032)http://sg.xd.com/game/start.html -->
+<HTML><HEAD><TITLE>盛世三国</TITLE>
+<META charset=UTF-8><LINK rel=stylesheet type=text/css 
+href="client/style.css">
+<SCRIPT type=text/javascript>
+	window.onerror=function(){
+		return true;
+	}
+	var you_root = '<?=YOU_ROOT?>';
+	var gid='<?=$gid?>';
+</SCRIPT>
+
+<SCRIPT type=text/javascript src="client/jquery.js"></SCRIPT>
+
+
+
+<META name=GENERATOR content="MSHTML 8.00.6001.18702"></HEAD>
+<BODY style="HEIGHT: 261px; OVERFLOW: hidden">
+<DIV id=warpper class=clearfix>
+<DIV style="DISPLAY: none" id=step2 class=content-4><A class=close_s 
+href="javascript:void(0)"></A>
+<DIV class=popup_inner>
+<DIV id=played_list>
+  <DIV class=popup_title1></DIV>
+    <DIV class=just>
+    </DIV>
+  </DIV>
+<DIV class=popup_title2></DIV>
+<DIV id=all_list class=popup_block>
+<DIV class=just>
+<? 
+   if(!empty($rs_servers)){
+   foreach($rs_servers as $k => $v){ ?>
+<A id="sid_<?=$v['server_id']?>" class="s_list" href="javascript:void(0)"><SPAN class="not_zhan"></SPAN><?=$v["server_name"]?> <? if($k=='0'){ ?><SPAN style="COLOR: #009b80">(新)</SPAN><? } ?></A>
+<? }
+   } ?>
+ 
+</DIV></DIV></DIV></DIV>
+<DIV style="HEIGHT: 261px; OVERFLOW: hidden" id="step1"
+class="content-5 clearfix">
+<DIV class=left-main>
+<DIV class=main-title>游戏指引 </DIV>
+<DIV class=main-note>
+<div class="btn_left_da"><A href="news_3561.html" target="_blank" ></A></div>
+<div class="btn_left_data"><A href="news_3568.html" target="_blank"></A></div>
+<div class="btn_left_bbs"><A href="news_3198.html" target="_blank"></A></div>
+<div class="btn_left_pro"><A href="news_3199.html" target="_blank"></A></div>
+<div class="btn_left_pay"><A href="news_3595.html" target="_blank"></A></div>
+<div >客服热线:400-0949-049<br />
+	  在线客服:<a href="<?=YOU_ROOT?>/service_online.html" style="text-decoration:underline;" target="_blank">点击咨询</a>
+</div>
+</DIV>
+</DIV>
+<DIV class=right-main>
+<DIV class=main-text>
+<DIV class=s_username></DIV>
+
+
+<DIV class=s_name></DIV>
+
+
+<DIV class=choose_s></DIV>
+<DIV class=latest_tag></DIV>
+<DIV>
+<FORM id=startForm method=get action=/games/play>
+<DIV class="enter_button" style="margin-left:20px;"><INPUT value=sssg type=hidden name=app> <INPUT 
+id="serverSelect" type=hidden name=server>
+
+ <INPUT id=client value=pc type=hidden name=client> <A style="FLOAT: left" 
+id="start_game" class="btn-link btn_white" 
+href="#">进入游戏</A> <A href="<?=YOU_ROOT?>/loginout.html?returl=<?=urlencode(HTTP_ROOT.'/client_login.html')?>"  style="FLOAT: left; PADDING-TOP: 10px" id=logout>重新登录</A> 
+</DIV></FORM></DIV></DIV></DIV></DIV>
+
+<? include('client_right.html'); ?> 
+
+
+</DIV>
+
+
+<SCRIPT type=text/javascript src="client/sg_4.js"></SCRIPT>
+
+
+
+
+<NOSCRIPT>
+<DIV style="DISPLAY: inline"> </DIV></NOSCRIPT><!--互动通-->
+<DIV style="DISPLAY: none" id=hdt_track></DIV>
+
+</BODY></HTML>

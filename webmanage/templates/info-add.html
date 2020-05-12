@@ -1,0 +1,163 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" >
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>标题：</th>
+				<td>
+					<input type="text" name="title" id="title" value="<?=$title?>" class="input_w400" />　(*)
+				</td>
+			</tr>
+			<tr>
+				<th>副标题：</th>
+				<td>
+					<input type="text" name="subtitle" id="subtitle" value="<?=$subtitle?>" class="input_w200" />
+				</td>
+			</tr>
+			<tr <?=$display_none?> >
+				<th>分类：</th>
+				<td>
+					<select name="cate_id" id="cate_id">
+						<?=$info_cate_html?>
+					</select>
+                    同时复制到=>
+                    <select name="copy_cate_id" id="copy_cate_id">
+                    	<option value=""></option>
+						<?=$info_copy_cate_html?>
+					</select>
+				</td>
+			</tr>
+           
+			<tr>
+				<th>置顶图片：</th>
+				<td>
+					<div class="upload_input">
+						<input type="text" name="pic" id="pic" class="input_w200" value="<?=$pic?>" />&nbsp;
+						<input type="button" name="upload_btn" id="upload_btn" class="btn" value="上传" onclick="popupWindow('upload-img.php?upload_input=pic&&is_pic=1&thumb=1&thumb_w=140&thumb_h=110',460,240);" />&nbsp;
+						<input type="button" name="choose_btn" id="choose_btn" class="btn" value="选择" onclick="popupWindow('attachment-list.php?upload_input=pic',800,600);" />&nbsp;
+					</div>
+					<div class="view_pic_div" id="view_pic_div" <?php if($pic==''){echo "style=\"display:none;\"";} ?> ><?php if($pic){ ?><img src="<?=$pic?>" width="100" border="0" /><?php } ?></div> 开服新闻图片建议大小：186x138  游戏截图建议大小：126x76
+				</td>
+			</tr>
+			<tr>
+				<th>附件：</th>
+				<td>
+					<div class="upload_input">
+						<input type="text" name="attachment" id="attachment" class="input_w200" value="<?=$attachment?>" />&nbsp;
+						<input type="button" name="upload_btn" id="upload_btn" class="btn" value="上传" onclick="popupWindow('upload-img.php?upload_input=attachment',460,140);" />&nbsp;
+						<input type="button" name="choose_btn" id="choose_btn" class="btn" value="选择" onclick="popupWindow('attachment-list.php',800,600);" />
+						&nbsp;
+					游戏导行：填写 “red” 字体颜色为红色</div>
+				</td>
+			</tr>
+			<!--<tr>
+				<th>作者：</th>
+				<td>
+					<input type="text" name="author" id="author" value="<?=$author?>" class="input_w400" />
+				</td>
+			</tr>-->
+            <tr>
+				<th>相关游戏：</th>
+				<td>
+                	<select name="info_gid" id="info_gid">
+                    
+                    </select>
+					<input type="hidden" name="info_gid_default" id="info_gid_default" value="<?=$rs['info_gid']?>" class="input_w200"  />
+                    <input type="hidden" name="info_gname" id="info_gname" value="<?=$rs['info_gname']?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th>相关服务器：</th>
+				<td>
+                	<select name="info_sid" id="info_sid">
+                    
+                    </select>
+					<input type="hidden" name="info_sid_default" id="info_sid_default" value="<?=$rs['info_sid']?>" class="input_w200"  />
+                    <input type="hidden" name="info_sname" id="info_sname" value="<?=$rs['info_sname']?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th>来源：</th>
+				<td>
+					<input type="text" name="source" id="source" value="<?=$source?>" class="input_w400" /> 
+					注意：
+				用于文章信息将作为 keywords 使用，图片信息将作为描述使用</td>
+			</tr>
+			<tr>
+				<th>排序号：</th>
+				<td>
+					<input type="text" name="sort_num" id="sort_num" value="<?=$sort_num==''?'0':$sort_num?>" class="input_w100" maxlength="10" />&nbsp;(越大越靠前)
+				</td>
+			</tr>
+            <tr>
+				<th>是否为热点新闻：</th>
+				<td>
+                    <input name="info_ishot" value="1" <?=$rs['info_ishot']=='1' ? 'checked' : '' ?> type="radio">是
+                    <input name="info_ishot" value="0" <?=$rs['info_ishot']!='1' ? 'checked' : '' ?> type="radio">否
+				</td>
+			</tr>
+            <tr>
+				<th>显示时间：</th>
+				<td>
+					<input type="text" name="info_start" id="info_start" value="<?= empty($rs['info_start']) ? '0' : date('Y-m-d H:i:s',$rs['info_start']) ?>" class="input_w200"  /> 指定一个时间限制该资讯只能在这个时间后才能展示 0为不限制 格式： 2011-01-01 12:00:00
+				</td>
+			</tr>
+            <tr>
+				<th>摘要：</th>
+				<td>
+					<textarea  name="summary" id="summary" class="input_w100"   style=" width:300px;" rows="5" ><?=$rs['summary']?></textarea>
+注意： 用于文章信息将作为 description 使用，图片信息将作为 alt 使用</td>
+			</tr>
+			<tr>
+				<th>内容：</th>
+				<td>
+					<?php
+					//建立fckeditor对象
+					$oFCKeditor = new FCKeditor('content');
+					$oFCKeditor->BasePath =  EDITOR_ROOT;
+					$oFCKeditor->ToolbarSet = '';
+					$oFCKeditor->Width = '100%' ;
+					$oFCKeditor->Height = '400' ;
+					$oFCKeditor->Value = $content;
+					$oFCKeditor->Create() ;
+					?>
+				</td>
+			</tr>
+			<!--<tr>
+				<th>摘要：</th>
+				<td>
+					<textarea  rows="8" name="summary" id="summary" class="input_w400" /><?=$summary?></textarea>
+				</td>
+			</tr>-->
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input type="hidden" name="info_id" id="info_id" value="<?=$info_id?>" />
+					<input type="hidden" name="top_id" id="top_id" value="<?=$top_id?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script language="javascript">
+function on_server_change(){
+	var obj_game = document.getElementById('info_gid');
+	var obj_server = document.getElementById('info_sid');
+	$('#info_gname').val(obj_game.options[obj_game.selectedIndex].text);
+	$('#info_sname').val(obj_server.options[obj_server.selectedIndex].text);
+}
+function on_game_load(domid,game_id,obj){
+	$("<option value='0'>没有</option>").prependTo('#' + domid);
+}
+function on_server_load(domid,game_id,obj){
+	$("<option value='0'>没有</option>").prependTo('#' + domid);
+}
+$(document).ready(function(){
+	
+	get_games('info_gid','info_sid');
+	
+});
+</script>
+<?php include_once("footer.html");?>

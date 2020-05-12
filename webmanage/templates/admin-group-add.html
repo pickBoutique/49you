@@ -1,0 +1,31 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>上级分组：</th>
+				<td>
+                	<select name="group_pid">
+                    	<option value="0">顶级</option>
+                    	<?=$obj_user->get_group_select('0',$rs['group_pid']);?>
+                    </select>
+					
+				</td>
+			</tr>
+            <tr>
+				<th>分组名称：</th>
+				<td>
+					<input type="text" name="group_name" id="group_name" value="<?=$rs['group_name']?>" class="input_w200" maxlength="20" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn action_add action_edit" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<?php include_once("footer.html");?>

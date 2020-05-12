@@ -1,0 +1,77 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="infocate-list.php">
+        	 <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'分类名称' , 'dataIndex':'i1.cate_name' , 'type':'textbox' },
+          { 'header':'类别' , 'dataIndex':'i1.cate_id' , 'type':'select' , 'options':{ '全部':'' , <?= getCateSelect(0,$cate_id,true)?>} },
+          { 'header':'时间从' , 'dataIndex':'i1.add_time' , 'type':'datetime' }</div>
+        </div>
+		 <div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="button" value="删除" class="btn action_del" onclick="todel();" />
+			<input type="button" value="添加" class="btn action_add" onclick="toadd();" />
+		</div>
+        
+		<div class="searcher" id="permimag"></div>
+        
+        
+		<script>
+		var grid;
+		$(document).ready(function(){
+			
+			function getoperator(rs) {
+				return "<a href='###' class='action_edit' onclick=\"toedit('" + rs["cate_id"] + "')\">编辑</a>";<!--+" <a href='###' class='action_list' onclick=\"tolist('" + rs["cate_id"] + "')\">查看</a>"-->
+			}
+	
+			var cm = new ColumnModel
+			([
+			new CheckboxModel({dataIndex: 'cate_id'}),
+			{header: '分类id', dataIndex: 'cate_id', sortable: true, width: 80},
+			{header: '分类名称', dataIndex: 'cate_name', sortable: false},
+			{header: '上级分类', dataIndex: 'parent_name', sortable: false, width: 100},
+			new TextboxModel({header: '排序号', dataIndex: 'sort_num', priIndex: 'cate_id', url: 'infocate-add.php', sortable: true, width: 60 }),
+			{header: '添加时间', dataIndex: 'add_time' , format:'yyyy-MM-dd', sortable: true, width: 100 },
+			{ header: '操作',  width: 40, renderer: getoperator }
+			]);
+	
+			grid = new GridView({ id: 'permimag', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+		});
+		
+		
+		function toadd(){
+			show_editor({ title:'添加',src:'infocate-add.php', onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function toedit(id){
+			show_editor({ title:'编辑',src:'infocate-add.php?cate_id=' + id, onclose:function(){
+				grid.load();
+			}});
+		}
+			function tolist(id){
+			show_editor({ title:'查看',src:'infocate-view.php?cate_id=' + id, onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function todel(){
+			if(grid.get_selected_ids() == ''){
+				alert("请选择要删除的行");
+				return;
+			}
+			ajax_action('infocate-add.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+				grid.load(); 
+			});
+		}
+		
+		</script>
+	</form>
+</div>
+<?php include_once("footer.html");?>

@@ -1,0 +1,53 @@
+<?php $nav='member'; ?>
+<?php include('header.html'); ?>
+<form id="form1" name="form1" method="post" action="">
+<div class="text cl ">
+<div class="con clearfix">
+
+ <div class="ptop"><h3>49you安全中心</h3>
+ </div>  
+   <div class="pmid"> 
+    <p><img src="images/ptop-1.jpg" width="940" height="45" /></p>
+    <div class="pmid_bj1">
+    
+    <div class="pmid_bj2">
+ <div class="pmid_mo">
+        <div class="pbj1">
+        <h3 >请您输入您的新密码：</h3>
+        <br />
+        <div class="entryitem cl">
+          <div class="entrylabel">密码：</div>
+		<div class="entryfl"><input type="password" id="new_pwd" name="new_pwd"  class="entrytext" tabindex="1"  value="" />
+		<span class="red"> 必填</span>
+		<p>  密码长度6-20个字符，字母区分大小写</p>
+        </div></div>
+
+        <div class="entryitem cl">
+		<div class="entrylabel">确认密码：</div>
+		<div class="entryfl"><input type="password" id="re_new_pwd" name="re_new_pwd"  class="entrytext" tabindex="1"  value="" />
+		  <span class="red">必填</span>
+
+        </div></div>
+        </div>
+        <div class="btn cl" ><a href="javascript:$('#form1').submit();" class="btn-link btn-n" >确定修改</a> </div> 
+
+     <div class="cl"></div>    
+ 
+ 
+
+     </div>
+     
+        
+    </div>
+    
+   </div> 
+<p><img src="images/ptop-3.jpg" width="940" height="45" /></p>   
+      
+</div>
+
+
+</div>
+<div class="pbom cl"> </div> 
+<input type="hidden"  name="act"   value="set_pwd" />
+</form>
+<? include('footer.html'); ?>

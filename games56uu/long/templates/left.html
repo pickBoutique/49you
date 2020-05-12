@@ -1,0 +1,101 @@
+		       <!--game -->
+                 <div id="game">
+                    <div id="game2">
+                      <ul>
+                        <li>名字：龙将</li>
+                        <li>类型：角色扮演</li>
+                        <li>星级：★★★★★</li>
+                        <li>在线人数：</li>
+                        <li class="data"></li>
+                      </ul>
+                   </div>
+                 </div>
+				 
+			   <!--fwqlist -->
+                  <div id="fwqlist">
+                     <div id="fwqlist-title">服务器列表</div>
+                       <div id="fwqlist-content">
+					      <div id="fwqlist-content2">
+                             <?php
+                                    $strUrl='http://www.56uu.com/?m=getgame&action=getgame&act=long';
+                                    $ch = curl_init();
+                                    $timeout = 60; 	
+                                    curl_setopt($ch, CURLOPT_URL, $strUrl);
+                                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                                    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+                                    $result = curl_exec($ch);
+                                    curl_close($ch);
+                                    $decodedArray = json_decode($result, true);       
+                             ?>
+						    <ul>
+                               <?PHP 
+                                 $i=0;
+                                 foreach((array)$decodedArray as $key=>$arr){?>   
+                                <?php if($i<5){
+                        
+                                  echo "<li><a href='";
+                                  echo $arr['gameurl'];
+                                  echo "' target='_blank'><span class='c1'>[双线";
+                                  echo  substr($arr['servernum'],1);
+                                  echo "服]</span><span style=\"display:inline-block;width:60px;\">";
+                                   echo $arr['title']; 
+                                   echo "</span>";
+                                   echo "<span style=\"color:yellow;padding-left:30px;\">".$arr['statusname']."</span>";
+                                   echo "</a></li>";
+                                  }
+                                  ?>
+                                <?PHP 
+                                  $i++;
+                                 }; 
+                              ?>
+							 <div class="clear"></div>
+                            </ul>
+						  </div>
+					     <div id="fwqlist-more"><a href="server_list.html">所有服务器</a></div>
+					     <div class="clear"></div>
+					   </div>
+                   <div id="fwqlist-footer"><img src="/images/left-footer.gif" /></div>
+                 </div>	 
+				 
+				 
+			<!--service -->
+               <div id="service">
+                 <div id="service-title">客服中心</div>
+                 <div id="service-content">
+				    <div id="service-click"><a href="<?=YOU_ROOT?>/?m=servip" target="_blank"><img src="/images/ser-click.gif" border="0" /></a></div>
+					<div id="service-infor">
+					  <ul>
+					     <li>客服电话：4000-656-056</li>
+						 <li>客服邮箱：kefu@56uu.com</li>
+						 <li>非上班时间请向<a href="<?=YOU_ROOT?>/?m=servip">【客服中心】</a>提交</li>
+					  </ul>
+					</div>
+				 </div>
+                 <div id="service-footer"><img src="/images/left-footer.gif" /></div>
+                 <div class="clear"></div>
+               </div>
+
+		      
+			   <div id="media">
+			      <div id="media-title">合作媒体</div>
+				  <div id="media-content">
+<div class="service-content-3-1">
+			       <ul onmouseout="xx=1" onmouseover="xx=0" id="s02">
+                       <li><a target="_blank" href="http://www.6dan.com/game/longjiang/"><img src="/images/m1.jpg"></a></li>
+                       <li><a target="_blank" href="http://www.9u8u.com/game/longjiang/"><img src="/images/m2.jpg"></a></li>
+                       <li><a target="_blank" href="http://webgame.86wan.com/jsby/longjiang.html"><img src="/images/m3.jpg"></a></li>
+                       <li><a target="_blank" href="http://www.07073.com/longjiang/"><img src="/images/m4.jpg"></a></li>
+                       <li><a target="_blank" href="http://www.8090yx.com/game/longjiang/"><img src="/images/m5.jpg"></a></li>
+                       <li><a target="_blank" href="http://web.17173.com/game/longjiang.html"><img src="/images/m6.jpg"></a></li>
+					   <li><a target="_blank" href="http://www.40407.com/lj/"><img src="/images/m7.jpg"></a></li>
+					   <li><a target="_blank" href="http://www.guan5.com/webgame/longj/"><img src="/images/m8.jpg"></a></li>
+                       <li><a target="_blank" href="http://www.juxia.com/webgame/longjiang/"><img src="/images/m9.jpg"></a></li>
+                       <li><a target="_blank" href="http://webgame.reyoo.net/lj"><img src="/images/m10.jpg"></a></li>
+                       <li><a target="_blank" href="http://www.969g.com/webgame/lj/"><img src="/images/m11.jpg"></a></li>
+                       <li><a target="_blank" href="http://web.yoxiwo.com/webgame/longjiang/"><img src="/images/m12.jpg"></a></li>
+                     </ul>
+			  </div>                   <script type="text/javascript" src="/js/img.js"></script>
+                  </div>
+				  <div id="media-footer"><img src="/images/left-footer.gif" /></div>
+                  <div class="clear"></div>
+			   </div>

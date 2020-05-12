@@ -1,0 +1,52 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<?php if(!empty($parent_name)){?><tr><?php } else{echo "<tr style=\"display:none;\">";}?>
+				<th>上级分类：</th>
+				<td>
+						<?=$parent_name?>
+				</td>
+			</tr>
+			<tr>
+				<th>分类名称：</th>
+				<td>
+				<?=$cate_name?>
+				</td>
+			</tr>
+			<tr>
+				<th>排序号：</th>
+				<td>
+				<?=$sort_num==''?'0':$sort_num?>
+				</td>
+			</tr>
+            <tr>
+				<th>图片：</th>
+				<td>
+				<!--	<div class="upload_input">
+						<input type="text" name="pic" id="pic" class="input_w200" value="<?=$pic?>" />&nbsp;
+						<input type="button" name="upload_btn" id="upload_btn" class="btn" value="上传" onclick="popupWindow('upload-img.php?upload_input=pic',460,140);" />&nbsp;
+						<input type="button" name="choose_btn" id="choose_btn" class="btn" value="选择" onclick="popupWindow('attachment-list.php?upload_input=pic',800,600);" />&nbsp;
+					</div>-->
+					<div class="view_pic_div" id="view_pic_div" <?php if($pic==''){echo "style=\"display:none;\"";} ?> ><?php if($pic){ ?><img src="<?=$pic?>" width="100" border="0" /><?php } ?></div>
+				</td>
+			</tr>
+			<tr>
+				<th>描述：</th>
+				<td>
+					<?=$content?>
+				</td>
+			</tr>
+			<!--<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input type="hidden" name="cate_id" id="cate_id" value="<?=$cate_id?>" />
+                    <input type="hidden" name="top_id" id="top_id" value="<?=$top_id?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>-->
+		</table>
+	</form>
+</div>
+<?php include_once("footer.html");?>

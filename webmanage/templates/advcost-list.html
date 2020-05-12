@@ -1,0 +1,114 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'平台' , 'dataIndex':'adv_system' , 'type':'select' , 'options':{'全部':'',<?=get_system_select(true)?>} },
+          { 'header':'推广渠道' , 'dataIndex':'adv_advtype' , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("advtype","advtype_id","advtype_name",'1',true)?>}},
+          { 'header':'广告' , 'dataIndex':'adv_advid' , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("adv","adv_id","adv_name",'1',true)?>}},
+          { 'header':'日期' , 'dataIndex':'adv_date' , 'type':'date_1', 'defaultValue':'<?=date("Y-m-d",strtotime("-1 days"))?>' }
+          
+          </div>
+        </div>
+
+		<div class="searcher">
+			<strong>当前编辑日期：</strong><label id="eddate"><?=date("Y-m-d",strtotime("-1 days"))?></label>
+            <input type="hidden" id="advcostdate" value="<?=strtotime(date("Y-m-d",strtotime("-1 days")))?>" />
+		</div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			
+			function getoperator(rs) {
+				return "<a href='###' class='action_edit' onclick=\"toedit('" + rs["advcost_id"] + "')\">编辑</a>"  + "  <a href='###' onclick=\"todelone('" + rs["advcost_id"] + "')\">删除</a>";
+	
+			}
+	
+			var cm = new ColumnModel
+			([
+			{header: '广告排序', dataIndex: 'adv_sort',  width: 50 , sortable: true},
+			{header: '日期', dataIndex: 'advcost_start', format:'yyyy-MM-dd', width: 100 },
+			{header: '广告ID', dataIndex: 'adv_id',  width: 50 , sortable: true},
+			{header: '广告', dataIndex: 'adv_name',  width: 100 },
+			new TextboxModel({header: '成本金额', dataIndex: 'advcost_startcost', priIndex: 'adv_id', url: 'advcost-add.php', func:set_data, width: 100 })
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, sort:'adv_sort',dir:'desc',cm: cm, size: 10, params: { 'act': 'dataget'  ,filter:'[{"name":"adv_date","oper":"=","value":"<?=strtotime(date("Y-m-d",strtotime("-1 days")))?>"}]' } });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) {if(chk_ser(filter)){ grid.load({ params: { start: 0, limit: 10, filter: filter} }); }} );
+			$('#searchbar').show();
+			
+			
+		});
+		function chk_ser(filter){
+			var myser = eval(filter);
+			var edtime="";
+			var edpostime="";
+			for (var i=0;i<myser.length;i+=1){
+				if(myser[i]["name"]=="adv_date"){
+					edpostime=myser[i]["value"];
+					edtime=$("#adv_date").val();
+					
+				}
+			}
+			if(edtime==""){
+				alert("日期不能为空!");
+				return false;
+			}else {
+				$("#eddate").html(edtime);
+				$("#advcostdate").val(edpostime);
+				return true;
+			}
+		}
+		
+		function toadd(){
+			show_editor({ title:'添加',src:'advcost-add.php',  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function toedit(id){
+			show_editor({ title:'编辑',src:'advcost-add.php?advcost_id=' + id,  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function todel(){
+			ajax_action('advcost-add.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+				grid.load(); 
+			});
+		}
+		
+		function todelone(id){
+			ajax_action('advcost-add.php',{ act:'del' , ids:id } , '您确定要删除吗？' , function(){ 
+				grid.load();
+			});
+		}
+		function set_data(obj,act_url,act,name,id){
+			var params = {};
+			params['act'] = act;
+			params['edtime'] = $("#advcostdate").val();
+			params['advid'] = id;
+			params['advcost'] = obj.value;
+
+			if(obj.value != obj.defaultValue){
+				ajax_action(act_url, params, null, function(data){
+					if(data!='1'){
+						obj.value = obj.defaultValue;
+					}
+				});
+			}
+		}
+	
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

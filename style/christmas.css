@@ -1,0 +1,33 @@
+body{background:#ccc;padding:0px;margin:0px;font-family:宋体;font-size:12px;}
+a{text-decoration:none;color:#F00;}
+a:hover{text-decoration:none;color:#F90;}
+.top{width:960px;height:74px;margin:0 auto;background:url(../images/christmas/xmas_01.jpg) no-repeat;}
+.top .logo{float:left;padding-left:145px;padding-top:3px;}
+.top .lin{float:right;padding-top:15px;padding-right:120px;}
+.top .lin span{padding-right:20px;}
+.top1{width:960px;height:79px;margin:0 auto;background:url(../images/christmas/xmas_02.jpg) no-repeat;}
+.top2{width:960px;height:114px;margin:0 auto;background:url(../images/christmas/xmas_03.jpg) no-repeat;}
+.top3{width:960px;height:83px;margin:0 auto;background:url(../images/christmas/xmas_04.jpg) no-repeat;}
+.top4{width:960px;height:137px;margin:0 auto;background:url(../images/christmas/xmas_05.jpg) no-repeat;}
+.login{width:960px;height:195px;margin:0 auto;background:url(../images/christmas/xmas_06.jpg) no-repeat;}
+.login input{width:200px;border:1px solid #6c0000;}
+.login ul{margin:0 auto;list-style-type:none;width:480px;padding-top:15px;font-size:14px;color:#fff;}
+.login li{padding-top:10px;}
+.login span{font-size:12px;color:#ffcc00;padding-left:5px;}
+.login .confon{margin:0 auto;list-style-type:none;width:250px;padding-top:15px;}
+.login .confon input{border:none;width:120px;height:36px;padding-left:18px;}
+.login .confon span{font-size:12px;color:#fff;}
+.login .confon span a{color:#fff;}
+.login .confon span a:hover{color:#F90;}
+.main7{width:960px;height:246px;margin:0 auto;background:url(../images/christmas/xmas_07.jpg) no-repeat;}
+.main7 a{color:#ebc552;}
+.main7 a:hover{color:#fff;}
+.main7 .content{margin:0 auto;width:688px;height:200px;padding-top:33px;}
+.main7 ul{margin:0 auto;list-style-type:none;font-size:14px;color:#ebc552;width:688px;padding-top:10px;padding-left:105px;_padding-left:205px;}
+.main7 span{padding-right:150px;}
+.main7 ul li{ padding-top:26px;}
+.main8{width:960px;height:207px;margin:0 auto;background:url(../images/christmas/xmas_08.jpg) no-repeat;}
+.main9{width:960px;height:186px;margin:0 auto;background:url(../images/christmas/xmas_09.jpg) no-repeat;}
+.main10{width:960px;height:122px;margin:0 auto;background:url(../images/christmas/xmas_10.jpg) no-repeat;}
+.main11{width:960px;height:103px;margin:0 auto;background:url(../images/christmas/xmas_11.jpg) no-repeat;}
+.main12{width:960px;height:178px;margin:0 auto;background:url(../images/christmas/xmas_12.jpg) no-repeat;}

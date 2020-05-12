@@ -1,0 +1,20 @@
+<?$list = $db->getAll("select  server_id,server_name,server_gid,server_num,server_status,server_isnew,server_ishot,server_time,server_start FROM " .DB_PREFIX."server WHERE server_gid='$game_id' and (server_status=1 or server_isnew=1 or server_ishot=1) order by server_start desc limit 5");?>
+
+	   <div class="server">
+	     <div class="server-header">最新服务器列表</div>
+		 <div class="server-content">
+		   <ul>
+		     
+
+          <?if($list){
+            foreach($list as $k=> $v){?>
+        <li><a target="_blank" href="<?=YOU_ROOT?>/game_add.html?gid=<?=$v["server_gid"]?>&sid=<?=$v["server_id"]?>"><?=$v["server_name"]?></a>
+        <span><?= date('m/d',$v['server_start'])?> 开启</span></li>
+        	<?}
+          }?>
+
+			 <li style="border:0; padding-top:5px;"><a href="server_list.html" style=" padding-right: 0pt; margin-left: 90px; color:#786848;">查看更多服务器</a></li>
+		   </ul>
+		 </div>
+		 <div class="server-footer"><img src="images/index2_71.png"></div>
+	   </div>

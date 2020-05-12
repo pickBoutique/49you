@@ -1,0 +1,116 @@
+body{
+	color:#000;
+	font-family:'宋体',Arial, Helvetica, sans-serif;
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-color:#9d0802;
+	background-image:url(../images/bg.jpg);
+	background-repeat: no-repeat;
+	background-position: top;
+
+}
+
+div,p,ul,li,dl,dt,dd,h1,h2,h3,h4,h5,form,a,object,table,td,tr{ margin:0; padding:0; word-wrap:break-word; outline:none; list-style:none;}
+
+/*
+ * 将具有默认margin和padding的标记置零
+ * @overlay *
+ * @desc	所有标记的margin、padding都在使用时具体定义
+ */
+*{
+	margin:0;
+	padding:0;
+	font-size:12px;
+}
+strong{font-size:14px;}
+
+.main{ width:1004px; margin: 0 auto;}
+
+.wipper1{ width:1004px; height:41px;  margin:0 auto; }
+.wipper2{width:1004px; height:348px; background-image:url(../images/index_04.jpg); margin:0 auto;}
+.wipper3{ width:1004px; height:18px; background-image:url(../images/cc.jpg); margin:0 auto;}
+
+.wipper4{width:1004px; margin:0 auto; overflow:hidden;}
+
+
+.nav{width:275px; height:627px;background-image:url(../images/index_06.jpg); float:left; }
+
+.content{width:729px; float:left;}
+
+.c1{ width:729px; height:54px;background-image:url(../images/c_01.jpg);}
+
+.c2{ width:729px;  background-image:url(../images/c_02.gif); overflow:hidden;}
+
+.c3{width:1004px; height:115px; background-image:url(../images/c_03.jpg); margin:0 auto;}
+
+.c2 h1{ font-size:24px;  color:#9a0202; font-weight:bold; width:500px; margin-bottom:20px; margin-left:30px;}
+
+
+.nr{ padding:15px 145px 0 38px; line-height:28px; color:#000; font-size:14px; overflow:hidden;}
+
+
+
+.but_01{ display:block; width:275px; height:78px; text-indent:-9999px; overflow:hidden; background:url(../images/icon.jpg) left top no-repeat; margin:0px;}
+.but_c1{ display:block; width:275px; height:78px; text-indent:-9999px; overflow:hidden; background:url(../images/icon.jpg) -275px 0 no-repeat; margin:0px;}
+
+.but_02{display:block; width:275px; height:78px; text-indent:-9999px; overflow:hidden;   background:url(../images/icon.jpg) 0px 78px no-repeat; margin:0px;}
+.but_c2{display:block; width:275px; height:78px; text-indent:-9999px; overflow:hidden;   background:url(../images/icon.jpg) -275px -78px no-repeat; margin:0px;*background:url(../images/icon.jpg) -275px -81px  no-repeat;}
+
+.but_03{ display:block; width:275px; height:78px; text-indent:-9999px; overflow:hidden;  background:url(../images/icon.jpg) 0px 156px no-repeat; margin:0px;}
+.but_c3{ display:block; width:275px; height:78px; text-indent:-9999px; overflow:hidden;  background:url(../images/icon.jpg) -275px -156px no-repeat; margin:0px;*background:url(../images/icon.jpg) -275px -162px  no-repeat;}
+
+.but_04{ display:block; width:275px; height:78px; text-indent:-9999px; overflow:hidden;  background:url(../images/icon.jpg) 0px 234px no-repeat; margin:0px;}
+.but_c4{ display:block; width:275px; height:78px; text-indent:-9999px; overflow:hidden;  background:url(../images/icon.jpg) -275px -234px no-repeat; margin:0px;*background:url(../images/icon.jpg) -275px -324px  no-repeat;}
+
+.but_05{ display:block; width:275px; height:78px; text-indent:-9999px; overflow:hidden;  background:url(../images/icon.jpg) 0px 312px no-repeat; margin:0px;}
+.but_c5{ display:block; width:275px; height:78px; text-indent:-9999px; overflow:hidden;  background:url(../images/icon.jpg)  -275px -312px no-repeat; margin:0px;}
+
+.but_06{ display:block; width:275px; height:78px; *height:73px; text-indent:-9999px; overflow:hidden;  background:url(../images/icon.jpg) 0px 390px no-repeat; margin:0px;}
+.but_c6{ display:block; width:275px; height:78px; *height:73px; text-indent:-9999px; overflow:hidden;  background:url(../images/icon.jpg) -275px -390px no-repeat; margin:0px;*background:url(../images/icon.jpg) -275px -405px  no-repeat;}
+
+.but_07{ display:block; width:275px; height:78px; text-indent:-9999px; overflow:hidden;  background:url(../images/icon.jpg) 0px 468px no-repeat; margin:0px;}
+.but_c7{ display:block; width:275px; height:78px; text-indent:-9999px; overflow:hidden;  background:url(../images/icon.jpg) -275px -468px no-repeat; margin:0px;*background:url(../images/icon.jpg) -275px -481px  no-repeat;}
+
+.but_08{ display:block; width:275px; height:55px;*height:62px; text-indent:-9999px; overflow:hidden;  background:url(../images/icon.jpg) 0px 546px no-repeat; margin:0px;}
+.but_c8{ display:block; width:275px; height:55px;*height:62px; text-indent:-9999px; overflow:hidden;  background:url(../images/icon.jpg) -275px -546px no-repeat; margin:0px;*background:url(../images/icon.jpg) -275px -562px  no-repeat;}
+
+
+a.but_01:hover{background:url(../images/icon.jpg) -275px 0 no-repeat; }
+
+a.but_02:hover{ background:url(../images/icon.jpg) -275px -78px  no-repeat; *background:url(../images/icon.jpg) -275px -81px  no-repeat;}
+
+a.but_03:hover{ background:url(../images/icon.jpg) -275px -156px no-repeat; *background:url(../images/icon.jpg) -275px -162px  no-repeat;}
+
+a.but_04:hover{ background:url(../images/icon.jpg) -275px -234px no-repeat; *background:url(../images/icon.jpg) -275px -243px  no-repeat;}
+
+a.but_05:hover{ background:url(../images/icon.jpg) -275px -312px no-repeat; *background:url(../images/icon.jpg) -275px -324px  no-repeat;}
+
+a.but_06:hover{ background:url(../images/icon.jpg) -275px -390px no-repeat; *background:url(../images/icon.jpg) -275px -405px  no-repeat;}
+
+a.but_07:hover{ background:url(../images/icon.jpg) -275px -468px no-repeat; *background:url(../images/icon.jpg) -275px -481px  no-repeat;}
+
+a.but_08:hover{ background:url(../images/icon.jpg) -275px -546px no-repeat; *background:url(../images/icon.jpg) -275px -562px  no-repeat;}
+
+
+
+.f14{ font-size:14px;}
+
+.red1{
+	color:#FF0033;
+	font-size:14px;
+}
+
+.foot{
+	width:1004px;
+	height:95px;
+	line-height:24px;
+	background-image:url(../images/foot.jpg);
+	background-repeat: no-repeat;
+	margin:0 auto;
+}
+
+.foot p { padding-top:20px; color:#f0a350; text-align:center;}
+
+
+
+/*  |xGv00|32671b2a9bb7545c3590fc36888638eb */

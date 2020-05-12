@@ -1,0 +1,72 @@
+<?php $title="{$row_news[title]}_传奇国度_{$row_news[cate_name]}"; 
+
+if(empty($row_news["pic"])){
+    $keywords=$row_news["source"];
+    $description=$row_news["summary"];
+}
+?>
+<?php $nav='member'; ?>
+<?php include('header.html'); ?>
+<div class="main">
+  <div class="l">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--left_server start-->
+<? include('lefter_server.html'); ?> 
+<!--left_server end-->
+<!--lefter_kf start-->
+<? include('lefter_kf.html'); ?> 
+<!--lefter_kf end-->
+<!--lefter_mt start-->
+<? include('lefter_mt.html'); ?> 
+<!--lefter_mt end-->
+  </div>
+  <div class="ra">
+    <div class="dh"><label>资讯中心</label><div>您的位置：<a href="index.html">传奇国度</a> >>
+    <strong>
+<?if($row_news['reurl']!=''){?>
+<a href='<?=$row_news['reurl']?>'><?=$row_news['cate_name']?></a>
+<?}else{?>
+<?=$row_news['cate_name']?>
+<?}?>
+</strong></div>
+    
+    </div>
+	<div class="contend" id="content">
+	<div class="tih1">
+   <h1><?=$row_news['title']?></h1>
+   <div align="center">时间 ：<?= date('Y-m-d H:i:s',$row_news['add_time'])?></div>
+   </div>
+   <div class="txt">
+   <?=$row_news['content']?>
+   <!--info_tg start-->
+<?if(!PUBLIC_INFOTAG || in_array($game_id,$game_infotag)){?>
+<? include('info_tg.html'); ?> 
+<?}else{
+	require(WEB_ROOT.'/games/info_tg.html');
+}?>
+<!--info_tg end-->
+
+      </div>
+      </li></ul>
+<div class="page_inf"> 
+<ul>  
+<?if($row_move){
+	foreach($row_move as $k=>$v){
+    	if($v["ty"]==1){?>
+<li><a href="<?=get_newslink($v["info_id"])?>">上一篇：<?=$v["subtitle"]?></a></li>
+	<?}else if($v["ty"]==2){?>
+<li><a href="<?=get_newslink($v["info_id"])?>">下一篇：<?=$v["subtitle"]?></a></li>
+<?		}
+	}
+}?>
+</ul>
+</div>
+	</div>
+    <div class="bgdi">抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</div>
+  </div>
+</div>
+</div>
+
+<? include('footer.html'); ?> 

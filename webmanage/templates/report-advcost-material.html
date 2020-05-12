@@ -1,0 +1,49 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'广告ID' , 'dataIndex':'advcost_advid'  , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("adv","adv_id","adv_name",'1 order by adv_name',true)?>}},
+          { 'header':'素材ID' , 'dataIndex':'member_metrid' , 'type':'textbox' },
+          { 'header':'开始时间' , 'dataIndex':'advcost_start' , 'type':'datetime', 'defaultValue':'<?=date("Y-m-d")?>' },
+          { 'header':'结束时间' , 'dataIndex':'advcost_end' , 'type':'datetime' }
+
+          </div>
+        </div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			var cm = new ColumnModel
+			([
+			{header: '广告ID', dataIndex: 'advcost_advid',  width: 50 },
+			{header: '广告名称', dataIndex: 'adv_name'},
+			{header: '素材ID', dataIndex: 'member_metrid',sortable: true},
+			{header: '素材名称', dataIndex: 'material_name'},
+			{header: '使用金额', dataIndex: 'advcost_cost',sortable: true},
+			{header: '注册数', dataIndex: 'members',sortable: true},
+			{header: '注册成本', dataIndex: 'advcost_rgrecom'},
+			{header: '隔天活跃', dataIndex: 'level2',sortable: true},
+			{header: '活跃成本', dataIndex: 'advcost_active'},
+			
+			
+			{header: '开始时间', dataIndex: 'advcost_start',sortable: true},
+			{header: '结束时间', dataIndex: 'advcost_end',sortable: true}
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget',filter:	'[{"name":"advcost_start","oper":">=","value":"<?=strtotime(date('Y-m-d'))?>"}]'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+		});
+	
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

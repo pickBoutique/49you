@@ -1,0 +1,32 @@
+<?php include('header.html'); ?>
+<script type="text/javascript" src="js/js_list.js"></script>
+<div class="main">
+<div style="background-color: rgb(80, 80, 80);">
+      <div>
+      <div class="dhh3">新闻中心</div> 
+      <div class="dhdiv"></div>
+    </div>
+<div class="sharedspacer"></div>
+<div class="contend">
+<div class="pic2"></div>
+<ul class="list2">
+        <?if($list_news){
+        	foreach($list_news as $k=> $v){?>
+               <li>标　题：<span class="news_more"><?=date( 'y-m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["title"]?></a> <br />
+               关键字：<?=$v["source"]?> <br />
+               描　述：<?=$v["summary"]?>
+</li>
+		<?}
+        }?>
+      </ul>
+   <div class="page">
+    <? pager_bar($pager,WEB_ROOT."/games/pager.html"); ?>
+     </div>    
+</div>
+
+</div> 
+
+</div>
+</div>
+
+<? include('footer.html'); ?> 

@@ -1,0 +1,67 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          	功能说明： 根据cls参数的值展示对应的素材
+          </div>
+        </div>
+
+		<div class="searcher">
+        	<input type="button" value="生成" class="btn action_edit" onclick="toregen();" />
+		</div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			
+			function getoperator(rs) {
+				return "<a href='" + rs["url"] + "' class='action_preview' target='_blank' >" + rs["url"] + "</a>";
+				//return "<a href='###' class='action_edit' onclick=\"toedit('" + rs["advcost_id"] + "')\">编辑</a>"  + "  <a href='###' onclick=\"todelone('" + rs["advcost_id"] + "')\">删除</a>";
+			}
+	
+			var cm = new ColumnModel
+			([
+			{header: '类别ID', dataIndex: 'id',  width: 50 , sortable: true},
+			{header: '类别名称', dataIndex: 'name',  width: 100 },
+			new TextboxModel({header: '标题', dataIndex: 'title', priIndex: 'id', url: 'adv-cls.php', width: 100, func:set_data }),
+			new TextboxModel({header: '素材ID', dataIndex: 'value', priIndex: 'id', url: 'adv-cls.php', width: 100, func:set_data }),
+			{header: '预览', dataIndex: 'url',  width: 100, renderer: getoperator }
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 99,params: { 'act': 'dataget'}});
+			grid.load();
+			
+			
+		});
+		function set_data(obj,act_url,act,name,id){
+			var params = {};
+			params['act'] = act;
+			params['name'] = name;
+			params['advid'] = '<?=$adv_id?>';
+			params['id'] = id;
+			params['value'] = obj.value;
+
+			if(obj.value != obj.defaultValue){
+				ajax_action(act_url, params, null, function(data){
+					if(data!='1'){
+						obj.value = obj.defaultValue;
+					}
+				});
+			}
+		}
+		function toregen(){
+			var id = '<?=$adv_id?>';
+			ajax_action('adv-add.php',{ act:'update' , id:id } , '您确定要更新吗？' , function(){ 
+				grid.load();
+			});
+		}
+		</script>
+	</form>
+</div>
+<?php include_once("footer.html");?>
+

@@ -1,0 +1,39 @@
+</div><!--main end -->
+</div>
+
+<!--foot-->
+<div class="foot">
+ <?foreach($cfg_oflink as $k=>$v){?>
+<a target="_blank" href="<?=$v["link"]?>"><?=$v["name"]?></a> | 
+<?}?><a href="<?=YOU_ROOT?>/news_info_207.html" target="_blank">关于我们</a> | <a href="<?=YOU_ROOT?>/jianhu/gc.html" target="_blank" >家长监护服务</a> | <a href="<?=YOU_ROOT?>/service.html" target="_blank">客服中心</a> | <a href="<?=YOU_ROOT?>/news_info_206.html" target="_blank">商务合作</a>
+<?=$config['footer']?>
+</div>
+<div style="display:none;">
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fbc23807ad7ca433661305788e42b4862' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script src="http://s23.cnzz.com/stat.php?id=3672191&web_id=3672191&show=pic" language="JavaScript"></script>
+</div>
+
+
+</div>
+</div>
+</div>
+<? if($config_index['enabled_floor_flash']=='1'){ ?>
+<!-- flash -->
+<script type="text/javascript">
+var isleft = false;
+var absolute_flash_url = "<?=$config_index['header_floor']?>";
+var absolute_flash_root = "<?=YOU_ROOT?>";
+var absolute_flash_link = "<?=$config_index['header_floor_link']?>";
+var absolute_flash_width = "<?=$config_index['header_floor_width']?>";
+var absolute_flash_height = "<?=$config_index['header_floor_height']?>";
+</script>
+<script src="<?=YOU_ROOT?>/js/absolute_flash.js" language="JavaScript"></script>
+<!-- flash -->
+<? } ?>
+<? include('../public_footer.html');?>
+<!--foot end -->
+</body>
+</html>

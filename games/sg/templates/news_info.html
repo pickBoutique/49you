@@ -1,0 +1,71 @@
+<?php $title="{$row_news[title]}_{$row_news[cate_name]}_49you盛世三国官方网站"; 
+
+if(empty($row_news["pic"])){
+    $keywords=$row_news["source"];
+    $description=$row_news["summary"];
+}
+?>
+<?php include('header.html'); ?>
+  <div id="main" style="overflow:visible;">
+    <div id="content">
+      <div id="content_bg">
+        <div class="content_title">
+          <div class="content_left">资讯中心</div>
+          您当前的位置：<a href="index.html">盛世三国</a> >>
+<?if($row_news['reurl']!=''){?>
+<a href='<?=$row_news['reurl']?>'><?=$row_news['cate_name']?></a>
+<?}else{?>
+<?=$row_news['cate_name']?>
+<?}?>
+</div>
+        <div class="content_content">
+          <div class="type_title"><h1 style="font-size:16px;" ><?=$row_news['title']?></h1></div>
+          <div class="type_from">时间 ：<?= date('Y-m-d H:i:s',$row_news['add_time'])?></div>
+          <div class="type_main">
+
+	<div class="txt">
+   <?=$row_news['content']?>
+      </div>
+<!--info_tg start-->
+<?if(!PUBLIC_INFOTAG || in_array($game_id,$game_infotag)){?>
+<? include('info_tg.html'); ?> 
+<?}else{
+	require(WEB_ROOT.'/games/info_tg.html');
+}?>
+<!--info_tg end-->
+    <div class="page_inf"> 
+<ul>  
+<?if($row_move){
+	foreach($row_move as $k=>$v){
+    	if($v["ty"]==1){?>
+<li><a href="<?=get_newslink($v["info_id"])?>">上一篇：<?=$v["subtitle"]?></a></li>
+	<?}else if($v["ty"]==2){?>
+<li><a href="<?=get_newslink($v["info_id"])?>">下一篇：<?=$v["subtitle"]?></a></li>
+<?		}
+	}
+}?>
+</ul>
+</div>   
+
+
+          </div>
+        </div>
+      </div>
+      <div class="content_btm"></div>
+    </div>
+<div class="left">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--left_server start-->
+<? include('lefter_server.html'); ?> 
+<!--left_server end--> 
+<!--lefter_kf start-->
+<? include('lefter_kf.html'); ?> 
+<!--lefter_kf end--> 
+<!--lefter_mt start-->
+<? include('lefter_mt.html'); ?> 
+<!--lefter_mt end--> 
+    </div>
+  </div>
+<?php include('footer.html'); ?>

@@ -1,0 +1,70 @@
+@charset "gb2312";
+body { font-family:宋体; font-size: 12px; color: #000; padding:0px; margin:0px; background: url(../images/wx_bg.jpg) no-repeat scroll top center #ceefb8; line-height:24px;}
+div,span,ul,li,p,h1,h2,h3,h4,h5,h6,img,p,dl,dd,dt{ margin:0px; padding:0px;}
+ul{ list-style-type: none; }
+a{text-decoration:none;}
+a:hover{text-decoration:none;}
+img{ border:0px;}
+form{ margin:0px; padding:0px;}
+input {vertical-align:middle; font-size:12px; padding:0 1px;border:none; margin:0}
+.red{ color:#c10000;}
+.green{ color:#339900;}
+.orange{ color:#057a05;}
+.blue{ color:#0171ee;}
+.black{ color:#000;}
+.bold{ font-weight:bold;}
+li{ list-style-type:none;}
+.fl{ float:left;}
+.fr{ float:right;}
+.cl{ clear:both;}
+.tc{ text-align:center;}
+.td_u{ text-decoration:underline;}
+.tr{ text-align:right;}
+/********************************************江湖令宠物保卫战专题************************************************************/
+.wx_wrap{ width:984px; margin:0 auto; padding:0;}
+.wx_01{ width:984px; height:30px; line-height:30px; height:100px; background:transparent url(../images/wx_01.jpg) no-repeat;}
+.wx_topnav{ float:right; padding-right:250px; text-align:center; color:#fff;}
+.wx_topnav a{ padding:0 10px; color:#fff;}
+.wx_topnav a:hover{ padding:0 10px; color:#00FF00;}
+.wx_02{ width:984px; height:160px; background:transparent url(../images/wx_02.jpg) no-repeat;}
+.wx_03{ width:984px; height:447px;}
+
+.wx_con{ width:984px; background:transparent url(../images/wx_033.jpg) center top no-repeat;}
+.wx_con2{ width:984px; padding-top:100px;}
+.wx_left{ width:203px; float:left;}
+
+
+.wx_con2 li{ float:left;}
+.wxhd_01{ width:203px; height:60px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/wx_lefta.jpg) top left no-repeat;}
+a.wxhd_01:hover{width:203px; height:60px; display:block; text-indent:-9999px; overflow:hidden; background:url(../images/wx_lefthov.jpg) top left no-repeat;}
+
+.wxhd_02{ width:203px; height:61px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/wx_lefta.jpg) left -60px no-repeat;}
+a.wxhd_02:hover{width:203px; height:61px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/wx_lefthov.jpg) left -60px no-repeat;}
+
+.wxhd_03{ width:203px; height:60px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/wx_lefta.jpg) left -121px no-repeat;}
+a.wxhd_03:hover{width:203px; height:60px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/wx_lefthov.jpg) left -121px no-repeat;}
+
+.wxhd_04{ width:203px; height:60px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/wx_lefta.jpg) left -181px no-repeat;}
+a.wxhd_04:hover{width:203px; height:60px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/wx_lefthov.jpg) left -181px no-repeat;}
+
+.wxhd_05{ width:203px; height:60px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/wx_lefta.jpg) left -241px no-repeat;}
+a.wxhd_05:hover{width:203px; height:60px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/wx_lefthov.jpg) left -241px no-repeat;}
+
+.wxhd_06{ width:203px; height:60px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/wx_lefta.jpg) left -301px no-repeat;}
+a.wxhd_06:hover{width:203px; height:60px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/wx_lefthov.jpg) left -301px no-repeat;}
+
+
+
+.wx_right{ width:779px; border:1px solid  #075d0a; background-color:#fff; float:left;}
+.wx_r_tit{ width:779px; height:45px; line-height:45px; background:transparent url(../images/wx_contit.jpg) no-repeat; text-align:center; font-size:24px; font-family:微软雅黑; color:#fff;}
+.wx_r_con{ width:739px; padding:20px; font-size:14px; line-height:30px;}
+
+.wx_footer{ width:984px; height:50px; line-height:50px; margin:0 auto; text-align:center;}
+
+
+
+
+
+
+
+

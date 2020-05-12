@@ -1,0 +1,360 @@
+#ckepop .jiatitle {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #FFFFFF;
+    color: #000000;
+    display: block;
+    float: left;
+    font-size: 12px !important;
+    height: 22px;
+    margin: 1px 0;
+    padding-left: 5px;
+    padding-top: 1px;
+    text-decoration: none;
+    width: 85px;
+}
+#ckepop .jtico {
+    background: url("/images/jiathis_ico.png") no-repeat scroll left center transparent;
+    cursor: pointer;
+    display: block !important;
+    height: 16px !important;
+    line-height: 16px !important;
+    overflow: hidden;
+    padding-left: 20px !important;
+    text-align: left;
+}
+#ckepop .jtico:hover {
+    opacity: 0.8;
+}
+#ckepop .jtico_copy {
+    background-position: 0 0;
+}
+#ckepop .jtico_email {
+    background-position: 0 -32px;
+}
+#ckepop .jtico_fav {
+    background-position: 0 -16px;
+}
+#ckepop .jtico_buzz {
+    background-position: 0 -48px;
+}
+#ckepop .jtico_qzone {
+    background-position: 0 -64px;
+}
+#ckepop .jtico_baidu {
+    background-position: 0 -80px;
+}
+#ckepop .jtico_tsina {
+    background-position: 0 -96px;
+}
+#ckepop .jtico_tsohu {
+    background-position: 0 -112px;
+}
+#ckepop .jtico_t163 {
+    background-position: 0 -128px;
+}
+#ckepop .jtico_tqq {
+    background-position: 0 -144px;
+}
+#ckepop .jtico_renren {
+    background-position: 0 -160px;
+}
+#ckepop .jtico_kaixin001 {
+    background-position: 0 -176px;
+}
+#ckepop .jtico_sohu {
+    background-position: 0 -192px;
+}
+#ckepop .jtico_taobao {
+    background-position: 0 -208px;
+}
+#ckepop .jtico_hi {
+    background-position: 0 -224px;
+}
+#ckepop .jtico_xiaoyou {
+    background-position: 0 -240px;
+}
+#ckepop .jtico_youshi {
+    background-position: 0 -256px;
+}
+#ckepop .jtico_gmail {
+    background-position: 0 -272px;
+}
+#ckepop .jtico_hotmail {
+    background-position: 0 -288px;
+}
+#ckepop .jtico_ymail {
+    background-position: 0 -304px;
+}
+#ckepop .jtico_feixin {
+    background-position: 0 -320px;
+}
+#ckepop .jtico_51 {
+    background-position: 0 -336px;
+}
+#ckepop .jtico_google {
+    background-position: 0 -352px;
+}
+#ckepop .jtico_youdao {
+    background-position: 0 -368px;
+}
+#ckepop .jtico_qq {
+    background-position: 0 -384px;
+}
+#ckepop .jtico_sina {
+    background-position: 0 -400px;
+}
+#ckepop .jtico_live {
+    background-position: 0 -416px;
+}
+#ckepop .jtico_yahoo {
+    background-position: 0 -432px;
+}
+#ckepop .jtico_115 {
+    background-position: 0 -448px;
+}
+#ckepop .jtico_hexun {
+    background-position: 0 -464px;
+}
+#ckepop .jtico_myspace {
+    background-position: 0 -480px;
+}
+#ckepop .jtico_139 {
+    background-position: 0 -496px;
+}
+#ckepop .jtico_tieba {
+    background-position: 0 -512px;
+}
+#ckepop .jtico_haoei {
+    background-position: 0 -528px;
+}
+#ckepop .jtico_digu {
+    background-position: 0 -544px;
+}
+#ckepop .jtico_douban {
+    background-position: 0 -560px;
+}
+#ckepop .jtico_zhuaxia {
+    background-position: 0 -576px;
+}
+#ckepop .jtico_xianguo {
+    background-position: 0 -592px;
+}
+#ckepop .jtico_zuosa {
+    background-position: 0 -608px;
+}
+#ckepop .jtico_renjian {
+    background-position: 0 -624px;
+}
+#ckepop .jtico_follow5 {
+    background-position: 0 -640px;
+}
+#ckepop .jtico_delicious {
+    background-position: 0 -656px;
+}
+#ckepop .jtico_digg {
+    background-position: 0 -672px;
+}
+#ckepop .jtico_fb {
+    background-position: 0 -688px;
+}
+#ckepop .jtico_twitter {
+    background-position: 0 -704px;
+}
+#ckepop .jtico_myspacecn {
+    background-position: 0 -720px;
+}
+#ckepop .jtico_poco {
+    background-position: 0 -736px;
+}
+#ckepop .jtico_wealink {
+    background-position: 0 -752px;
+}
+#ckepop .jtico_cnfol {
+    background-position: 0 -768px;
+}
+#ckepop .jtico_leshou {
+    background-position: 0 -784px;
+}
+#ckepop .jtico_diglog {
+    background-position: 0 -800px;
+}
+#ckepop .jtico_tongxue {
+    background-position: 0 -816px;
+}
+#ckepop .jtico_waakee {
+    background-position: 0 -832px;
+}
+#ckepop .jtico_bietiao {
+    background-position: 0 -848px;
+}
+#ckepop .jtico_cyzone {
+    background-position: 0 -864px;
+}
+#ckepop .jtico_9fav {
+    background-position: 0 -880px;
+}
+#ckepop .jtico_114la {
+    background-position: 0 -896px;
+}
+#ckepop .jtico_99earth {
+    background-position: 0 -912px;
+}
+#ckepop .jtico_chouti {
+    background-position: 0 -928px;
+}
+#ckepop .jtico_dig24 {
+    background-position: 0 -944px;
+}
+#ckepop .jtico_douban9dian {
+    background-position: 0 -960px;
+}
+#ckepop .jtico_i139 {
+    background-position: 0 -976px;
+}
+#ckepop .jtico_hemidemi {
+    background-position: 0 -992px;
+}
+#ckepop .jtico_baohe {
+    background-position: 0 -1008px;
+}
+#ckepop .jtico_yijee {
+    background-position: 0 -1024px;
+}
+#ckepop .jtico_pdfonline {
+    background-position: 0 -1040px;
+}
+#ckepop .jtico_printfriendly {
+    background-position: 0 -1056px;
+}
+#ckepop .jtico_translate {
+    background-position: 0 -1072px;
+}
+#ckepop .jtico_googlereader {
+    background-position: 0 -1088px;
+}
+#ckepop .jtico_diigo {
+    background-position: 0 -1104px;
+}
+#ckepop .jtico_evernote {
+    background-position: 0 -1120px;
+}
+#ckepop .jtico_friendfeed {
+    background-position: 0 -1136px;
+}
+#ckepop .jtico_linkedin {
+    background-position: 0 -1152px;
+}
+#ckepop .jtico_mixx {
+    background-position: 0 -1168px;
+}
+#ckepop .jtico_netlog {
+    background-position: 0 -1184px;
+}
+#ckepop .jtico_netvibes {
+    background-position: 0 -1200px;
+}
+#ckepop .jtico_phonefavs {
+    background-position: 0 -1216px;
+}
+#ckepop .jtico_pingfm {
+    background-position: 0 -1232px;
+}
+#ckepop .jtico_plaxo {
+    background-position: 0 -1248px;
+}
+#ckepop .jtico_tpeople {
+    background-position: 0 -1264px;
+}
+#ckepop .jtico_reddit {
+    background-position: 0 -1280px;
+}
+#ckepop .jtico_wong {
+    background-position: 0 -1296px;
+}
+#ckepop .jtico_stumbleupon {
+    background-position: 0 -1312px;
+}
+#ckepop .jtico_plurk {
+    background-position: 0 -1328px;
+}
+#ckepop .jtico_funp {
+    background-position: 0 -1344px;
+}
+#ckepop .jtico_blogsina {
+    background-position: 0 -1360px;
+}
+#ckepop .jtico_myshare {
+    background-position: 0 -1376px;
+}
+#ckepop .jtico_fwisp {
+    background-position: 0 -1392px;
+}
+#ckepop .jtico_more, #ckepop .jtico_jiathis {
+    background-position: 0 -1408px;
+}
+#ckepop .jtico_msn {
+    background-position: 0 -1424px;
+}
+#ckepop .jtico_fanfou {
+    background-position: 0 -1440px;
+}
+#ckepop .jtico_189mail {
+    background-position: 0 -1456px;
+}
+#ckepop .jtico_dream163 {
+    background-position: 0 -1472px;
+}
+#ckepop .jtico_thexun {
+    background-position: 0 -1488px;
+}
+#ckepop .jtico_tianya {
+    background-position: 0 -1505px;
+}
+#ckepop .jtico_w3c {
+    background-position: 0 -1521px;
+}
+#ckepop .jtico_tifeng {
+    background-position: 0 -1537px;
+}
+#ckepop .jtico_bitly {
+    background-position: 0 -1553px;
+}
+#ckepop .jtico_woshao {
+    background-position: 0 -1569px;
+}
+#ckepop .jtico_ganniu {
+    background-position: 0 -1585px;
+}
+#ckepop .jtico_189cn {
+    background-position: 0 -1601px;
+}
+#ckepop .jtico_masar {
+    background-position: 0 -1617px;
+}
+#ckepop .jtico_renmaiku {
+    background-position: 0 -1633px;
+}
+#ckepop .jtico_mop {
+    background-position: 0 -1649px;
+}
+#ckepop .jtico_ifensi {
+    background-position: 0 -1665px;
+}
+#ckepop .jtico_leihou {
+    background-position: 0 -1681px;
+}
+#ckepop .jtico_mailru {
+    background-position: 0 -1697px;
+}
+#ckepop .jtico_readitlater {
+    background-position: 0 -1713px;
+}
+#ckepop .jtico_instapaper {
+    background-position: 0 -1729px;
+}
+#ckepop .jtico_print {
+    background-position: 0 -1745px;
+}
+#ckepop .jtico_139mail {
+    background-position: 0 -1760px;
+}

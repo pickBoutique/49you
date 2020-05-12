@@ -1,0 +1,92 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'游戏账号' , 'dataIndex':'appeal_guser' , 'type':'textbox' },
+          { 'header':'游戏名称' , 'dataIndex':'appeal_game' , 'type':'textbox' },
+          { 'header':'服务器名称' , 'dataIndex':'appeal_server' , 'type':'textbox' },
+          { 'header':'角色名称' , 'dataIndex':'appeal_gnickname' , 'type':'textbox' },
+          { 'header':'箱邮地址' , 'dataIndex':'appeal_email' , 'type':'textbox' },
+          { 'header':'手机号码' , 'dataIndex':'appeal_mobile' , 'type':'textbox' },
+          { 'header':'QQ号' , 'dataIndex':'appeal_qq' , 'type':'textbox' },
+          {header: '操作状态', dataIndex: 'appeal_status','type':'select' , 'options':{ '全部':'' ,'未处理':'0' ,'已处理':'1'}}
+          </div>
+        </div>
+
+		<div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="button" value="删除" class="btn action_del" onclick="todel();" />
+			<input type="button" value="添加" class="btn action_add" onclick="toadd();" />
+		</div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			
+			function getoperator(rs) {
+				return "<a href='###' class='action_edit' onclick=\"toedit('" + rs["appeal_id"] + "')\">处理</a>"  + "  <a href='###' onclick=\"todelone('" + rs["appeal_id"] + "')\">删除</a>";
+	
+			}
+	
+			
+			var cm = new ColumnModel
+			([
+			new CheckboxModel({dataIndex: 'appeal_id'}),
+			{header: '游戏账号', dataIndex: 'appeal_guser'},
+			{header: '游戏名称', dataIndex: 'appeal_game'},
+			{header: '服务器名称', dataIndex: 'appeal_server'},
+			{header: '角色名称', dataIndex: 'appeal_gnickname'},
+			{header: '箱邮地址', dataIndex: 'appeal_email'},
+			{header: '手机号码', dataIndex: 'appeal_mobile'},
+			{header: 'QQ号', dataIndex: 'appeal_qq'},
+			{header: '发生问题时间', dataIndex: 'appeal_qtime',sortable: true},
+			{header: '操作状态', dataIndex: 'appeal_status', renderer: '<?=$json->encode($appeal_status);?>' },
+			{header: '操作',  width: 120, renderer: getoperator }
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+			
+			
+		});
+		
+		
+		function toadd(){
+			show_editor({ title:'添加',src:'appeal-add.php',  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function toedit(id){
+			show_editor({ title:'编辑',src:'appeal-add.php?appeal_id=' + id,  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function todel(){
+			ajax_action('appeal-add.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+				grid.load(); 
+			});
+		}
+		
+		function todelone(id){
+			ajax_action('appeal-add.php',{ act:'del' , ids:id } , '您确定要删除吗？' , function(){ 
+				grid.load();
+			});
+		}
+		
+	
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

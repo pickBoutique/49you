@@ -1,0 +1,119 @@
+
+<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+  <tr>
+      <th colspan='2' >
+      	<b>产品信息</b>  <a href="order-modify.php?order_id=<?=$order['order_id']?>&is_attn=1">修改产品信息</a>
+      </th>
+  </tr>
+    <tr>
+      <th colspan='2' >
+      	经办人信息
+      </th>
+  </tr>
+     <tr>
+      <th>所有人证件类型：</th>
+      <td><?=$cfg_papers_type[$message['papers_type']]?>　</td>
+  </tr>
+  <tr>
+      <th>所有人证件号码：</th>
+      <td><?=$message['papers_number']?>　</td>
+  </tr>
+  <tr>
+      <th>姓名：</th>
+      <td><?=$message['name_cn']?>　</td>
+  </tr>
+  <tr>
+      <th>地址：</th>
+      <td><?=$message['address_cn']?>　</td>
+  </tr>
+  <tr>
+      <th>邮政编码：</th>
+      <td><?=$message['postcode']?>　</td>
+  </tr>
+  <tr>
+      <th>电话：</th>
+      <td><?=$message['telephone']?>　</td>
+  </tr>
+  <tr>
+      <th>移动电话：</th>
+      <td><?=$message['mobile']?>　</td>
+  </tr>
+  <tr>
+      <th>邮箱：</th>
+      <td><?=$message['email']?>　</td>
+  </tr>
+      <tr>
+      <th colspan='2' >
+      	申请资料信息
+      </th>
+  </tr>
+          <tr>
+            <th>申请资料类型：</th>
+            <td><?=$cfg_data_type[$message['data_type']]?></td>
+        </tr>
+          <tr>
+           <th>公司名称：</th>
+            <td><?=$message['company_name']?></td>
+        </tr>
+          <tr>
+           <th>公司注册地址：</th>
+            <td><?=$message['company_address']?></td>
+        </tr>
+          <tr>
+           <th>法人代表：</th>
+            <td><?=$message['corporate_re']?></td>
+        </tr>
+          <tr>
+            <th>企业类型：</th>
+            <td><?=$message['company_type']?></td>
+        </tr>
+         <tr>
+            <th>行业类型：</th>
+            <td><?=$cfg_industry_type[$message['industry_type']]?></td>
+        </tr>
+         <tr>
+           <th>成立日期：</th>
+            <td><?=date('Y-m-d',$message['setup_time'])?></td>
+        </tr>
+         <tr>
+            <th>注册号：</th>
+            <td><?=$message['register_num']?></td>
+        </tr>
+         <tr>
+           <th>注册资本：</th>
+            <td><?=$message['register_money']?></td>
+        </tr>
+        <?php if($message['business_start_time']!=0 && $message['business_end_time']!=0 && $message['business']==0){?>
+         <tr>
+            <th>营业期限：</th>
+            <td><?=date('Y-m-d',$message['business_start_time'])?> 至 <?=date('Y-m-d',$message['business_end_time'])?></td>
+        </tr>
+        <?php }else{?>
+         <tr>
+            <th>营业期限：</th>
+            <td>永远</td>
+        </tr>
+        <?php }?>
+          <tr>
+           <th>经营范围：</th>
+            <td><?=$message['business_scope']?></td>
+        </tr>
+         <tr>
+            <th>登记机关：</th>
+            <td><?=$message['enrol_organ']?></td>
+        </tr>
+        <?php if(!empty($message['check_year'])&& $message['is_not']==0){?>
+         <tr>
+           <th>最近年检年度：</th>
+            <td><?=$message['check_year']?></td>
+        </tr>
+        <?php }else{?>
+         <tr>
+            <th>最近年检年度：</th>
+            <td>无</td>
+        </tr>
+        <?php }?>
+  <tr>
+      <td colspan='2'>&nbsp;</td>
+  </tr>
+</table>

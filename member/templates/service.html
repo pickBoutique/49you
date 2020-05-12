@@ -1,0 +1,92 @@
+<?php 
+if($cid==47){
+	$title='游戏问题_客服中心_49you网页游戏平台';
+}else if($cid==48){
+	$title='充值指南_客服中心_49you网页游戏平台';
+}else if($cid==49){
+	$title='账号问题_客服中心_49you网页游戏平台';
+}else{
+	$title='客服中心_49you网页游戏平台';
+}
+?>
+<?php $nav='service'; ?>
+<?php include('header.html'); ?>
+
+<div class="text cl ">
+<div class="con clearfix">
+<!--left-->
+<div id="coleft">
+<!--login start-->
+<? include('login_info.html'); ?> 
+<!--login end-->
+  <div class="sharedspacer8"></div>
+  <div ><a href="account_appeal.html"><img src="images/ss-bt.png" width="244" height="71" /></a>
+  </div>
+</div>
+<!--right-->
+<div id="coright">
+ <div class="center_newinf">
+      <div class="newinf_title">
+            	<ul><li class="nah">客服中心</li></ul></div>
+                
+  <div class="center_list">
+
+   <div class="seve-tu fl"> <a href="service_online.html" target="_blank"><img src="images/sev-1.png" width="195" height="146" /></a></div>
+   
+<div class="seve-tu fl"><a href="<?=BBS_ROOT?>" target="_blank"><img src="images/sev-2.png" width="195" height="146" /></a></div> 
+<div class="seve-tu fl"><img src="images/sev-3.png" width="195" height="146" /> </div> 
+</div>   
+</div>
+
+
+<div class="sharedspacer8"></div>
+<div class="centnews">
+<div class="evaluationben0"><span class="newsmark">
+<?if(!empty($gcode)){?>
+<a href="service.html">常见问题</a>
+<?}else{?>
+[常见问题]
+<?}?>
+<?
+	$gameweb="";
+   if($top_games){
+   foreach($top_games as $k=> $v){
+   	if($gcode!=$v['game_code']){
+    
+    ?><a href="service.html?gcode=<?=$v['game_code']?>"><?=$v['game_name']?></a>
+   <?
+       }else{
+       	$gameweb=$v['game_web'];
+       
+       ?>[<?=$v['game_name']?>]
+       <?}
+   }
+   }?>
+</span></div>
+<div style="height: 500px" class=DutyList>
+<ul class="RightCharity">
+			<? if(!empty($list_news)){
+               foreach($list_news as $k => $v){ ?>
+			  <LI ><span class="extra"><?=date( 'Y-m-d' , $v['add_time'] ) ?></span><img src="images/NewsIcon.gif" />
+              <?if(empty($gameweb)){?>
+              <a href="news_info_<?=$v['info_id']?>.html" target="_blank">
+              <?}else{?>
+              <a href="<?=$gameweb?>/news_<?=$v['info_id']?>.html" target="_blank">
+              <?}?>
+              <?=$v['subtitle'] ? $v['subtitle'] : $v['title']?>
+              </a>
+              
+              </li>
+            <? }} ?>
+             
+</ul></div>
+<DIV class=NewsListPage><? pager_bar($pager,WEB_ROOT."/member/templates/pager.html"); ?></DIV>	
+</div>
+
+</div>
+</div>
+
+
+</div>
+
+<? include('footer.html'); ?>

@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title><?=$title?></title>
+<?if(!empty($keywords)){?>
+<meta name="keywords" content="<?=$keywords?>">
+<?}?>
+<?if(!empty($description)){?>
+<meta name="description" content="<?=$description?>">
+<?}?>
+<link href="css/style.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+function MM_swapImgRestore() { //v3.0
+  var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+}
+function MM_preloadImages() { //v3.0
+  var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
+    var i,j=d.MM_p.length,a=MM_preloadImages.arguments; for(i=0; i<a.length; i++)
+    if (a[i].indexOf("#")!=0){ d.MM_p[j]=new Image; d.MM_p[j++].src=a[i];}}
+}
+
+function MM_findObj(n, d) { //v4.01
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+  if(!x && d.getElementById) x=d.getElementById(n); return x;
+}
+
+function MM_swapImage() { //v3.0
+  var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+}
+</script>
+</head>
+<body onload="MM_preloadImages('images/jsbtn_over.jpg','images/wzbtn_over.jpg')">
+<script src="<?=YOU_ROOT?>/api/js/1.js" language="JavaScript" charset="utf-8" ></script>
+<?
+$gwname='49游戏平台盛世三国';
+require(WEB_ROOT.'/games/top_bar.html');
+?> 
+
+<div id="page">
+  <div id="top">
+	<div class="nav">
+      <div class="nav_frame"><a href="/">盛世三国</a></div>
+      <div class="nav_frame"><a href="news.html">新闻资讯</a></div>
+      <div class="nav_frame"><a href="news.html?pid=179&cid=183">游戏资料</a></div>
+      <a href="/" class="logo"> </a>
+      <div class="nav_frame"><a href="client_download.html">游戏下载</a></div>
+      <div class="nav_frame"><a href="<?=YOU_ROOT?>/pay_type.html?gid=<?=$game_id?>" target="_blank">游戏充值</a></div>
+      <div class="nav_frame"><a href="<?=BBS_ROOT?>/forumdisplay.php?fid=44" target="_blank">论坛交流</a></div>
+    </div>
+    <!--下载按钮 start-->
+    <div class="downlondbtn">
+    <ul>
+    <li><a href="<?=YOU_ROOT?>/reg_adv.html?act=download&gid=7&type=s" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image24','','images/jsbtn_over.jpg',1)"><img src="images/jsbtn.jpg" name="Image24" width="159" height="56" border="0" id="Image24" /></a>
+    <div>　大小:4.8M　3秒极速下载</div>
+    </li>
+    <li><a href="<?=YOU_ROOT?>/reg_adv.html?act=download&gid=7&type=l" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image25','','images/wzbtn_over.jpg',1)"><img src="images/wzbtn.jpg" name="Image25" width="159" height="56" border="0" id="Image25" /></a>
+    <div>　大小:498M　流畅体验游戏</div>
+    </li>
+    </ul>
+    </div>
+    <!--下载按钮 end-->
+    <!--开始游戏 start-->
+    <div class="ingame">
+          <object width="200" height="134" codebase=" http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000">
+            <param value="flash/sg_top.swf" name="movie"/>
+            <param value="high" name="quality"/>
+            <param value="noborder" name="SCALE"/>
+            <param value="transparent" name="wmode"/>
+            <param value="false" name="allowFullScreen"/>
+            <embed width="200" height="134" allowfullscreen="false" wmode="transparent" scale="noborder" type="application/x-shockwave-flash" pluginspage=" http://www.macromedia.com/go/getflashplayer" quality="high" src="flash/sg_top.swf"/>
+          </object>
+            </div>
+    <!--开始游戏 end-->
+    <!--图片公告 start-->
+    <div id="fla_img">
+      <div>
+<?
+//首页幻灯片
+$sqlstr="select source,summary,pic from ".DB_PREFIX."info where info_start<=".time()." and cate_id = 191 order by sort_num desc";
+$rs_flash = $db->getAll($sqlstr);
+?>
+<script type="text/javascript">
+linkarr = new Array();
+picarr = new Array();
+textarr = new Array();
+var swf_width=466;
+var swf_height=166;
+var files = "";
+var links = "";
+var texts = "";
+//这里设置调用标记
+  <?
+  if($rs_flash){
+    foreach($rs_flash as $k=> $v){?>
+linkarr[<?=$k+1?>] = "<?=$v["source"]?>";
+picarr[<?=$k+1?>]  = "<?=$v["pic"]?>";
+  <?
+  	}
+  }?>
+
+for(i=1;i<picarr.length;i++){
+  if(files=="") files = picarr[i];
+  else files += "|"+picarr[i];
+}
+for(i=1;i<linkarr.length;i++){
+  if(links=="") links = linkarr[i];
+  else links += "|"+linkarr[i];
+}
+
+document.write('<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" width="'+ swf_width +'" height="'+ swf_height +'">');
+document.write('<param name="movie" value="flash/bcastr3.swf"><param name="quality" value="high">');
+document.write('<param name="menu" value="false"><param name=wmode value="opaque">');
+document.write('<param name="FlashVars" value="bcastr_file='+files+'&bcastr_link='+links+'&bcastr_title='+texts+'">');
+document.write('<embed src="flash/bcastr3.swf" wmode="opaque" FlashVars="bcastr_file='+files+'&bcastr_link='+links+'&bcastr_title='+texts+'& menu="false" quality="high" width="'+ swf_width +'" height="'+ swf_height +'" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />'); document.write('</object>'); 
+</script>
+      </div>
+    </div>
+    <!--图片公告 end-->
+  </div>

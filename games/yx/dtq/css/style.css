@@ -1,0 +1,34 @@
+﻿html,body,h1,h2,h3,ul,p {margin:0;padding:0;}
+body {font-size:12px;color: #CCE2E3;}
+.clear{clear:both;font:0px/0px sans-serif;display:block;}
+
+#layout{ width:540px; margin:0px auto;}
+
+#top{ width:540px; height:152px; background:url(../images/bg1.jpg) no-repeat; float:left;}
+#ser{ width:330px; height:29px; background:url(../images/yxwz_04.gif) no-repeat; float:left; margin-top:85px; margin-left:130px;_margin-left:65px;}
+.input-test{ width:195px; height:20px; float:left; margin-left:35px;  border:none; margin-top:3px; line-height:20px; background:#FFFFFF;}
+.ser-button{ width:88px; height:29px; float:right; background:url(../images/yxwz_05.gif) no-repeat; border:none; text-align:center; font-size:14px; font-weight:bold; line-height:30px; color:#1B5902;cursor:pointer;}
+
+#libao{ width:370px; height:23px; float:left; margin-top:11px;}
+#libao2{ width:59px; height:23px; float:right; background:url(../images/yxwz_10.gif) no-repeat; text-align:center;}
+#libao2 a{ color:#FFFFFF; text-decoration:none; line-height:26px; font-weight:bold;}
+#libao2 a:hover{text-decoration: underline;}
+
+#content{ width:540px; height:272px; float:left; background:url(../images/bg2.gif) no-repeat;}
+#xldata{ width:500px; height:249px; margin:43px auto 0px auto;}
+#xldata ul{ margin:0px; padding:0px;}
+#xldata ul li{ list-style:none; width:500px; height:25px; float:left;}
+
+.title{ width:370px; height:25px; line-height:29px;_line-height:24px;float:left; text-align:left; color:#FFFFFF; overflow:hidden;}
+.title a{ color:#FFFFFF; text-decoration:none;}
+.title a:hover{ text-decoration:underline;color:#FF5F08;}
+.answer{ width:120px; height:25px; float:right; text-align:center;line-height:29px;_line-height:24px; color:#FF5F08; overflow:hidden;}
+
+#footer{ width:540px; height:95px; float:left; background:url(../images/bg3.gif) no-repeat;}
+#footer2{ width:511px; height:70px; margin:10px auto 0px auto;}
+#footer-img{ width:206px; height:70px; float:left;}
+#footer-buttom{ width:282px;height:70px; float:right;}
+#footer-buttom ul{ padding:0px; margin:0px;_margin-right:-14px}
+#footer-buttom ul li{ width:80px; height:24px; float:left; margin-top:8px;_margin-top:5px; margin-right:14px;list-style:none; text-align:center;}
+#footer-buttom ul li a{ width:80px; height:24px; background:url(../images/yxwz_17.gif) no-repeat; line-height:27px; color:#FFFFFF; text-decoration:none; display:block;}
+#footer-buttom ul li a:hover{ background:url(../images/yxwz_17_2.gif) no-repeat;text-decoration:underline;}

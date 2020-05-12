@@ -1,0 +1,84 @@
+<HTML>
+<HEAD>
+<title>后台管理系统</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="/style/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript">
+<!--
+function setSeccode()
+{
+	var img_src = '/seccode.php?rand='+Math.random();
+	document.getElementById("seccode_img").src = img_src;
+}
+function checkFrm(dom)
+{
+	if(dom.admin_name.value == '')
+	{
+		alert('请输入用户名');
+		dom.admin_name.focus();
+		return false;
+	}
+	else if(dom.admin_pwd.value == '')
+	{
+		alert('请输入密码');
+		dom.admin_pwd.focus();
+		return false;
+	}
+	else if(dom.seccode.value == '')
+	{
+		alert('请输入验证码');
+		dom.seccode.focus();
+		return false;
+	}
+	else
+	{
+		return true;
+	}
+}
+-->
+</script>
+</HEAD>
+<BODY>
+<TABLE cellSpacing=0 cellPadding=0 width="100%" border=0 height="100%">
+	<TBODY>
+		<TR>
+			<TD align="center" valign="middle">
+				<form name="form1" method="post" action="login.php" onSubmit="return checkFrm(this);">
+					<div class="webmanage_login">
+						<div class="title">后台管理入口　</div>
+						<div class="login_form">
+                        	<p>
+								<span>所在区域：</span>
+								<span><?=$area?></span>
+							</p>
+							<p>
+								<span>用户名：</span>
+								<span><input type="text" name="admin_name" id="admin_name" class="input_w200" maxlength="20"></span>
+							</p>
+							<p>
+								<span>密　码：</span>
+								<span><input type="password" name="admin_pwd" id="admin_pwd" class="input_w200" maxlength="20"></span>
+							</p>
+							<p>
+								<span>验证码：</span>
+								<span><input type="text" name="seccode" id="seccode" class="input_w50" maxlength="5"></span>
+								<span><img src="/seccode.php?rand=<?=time()?>" id="seccode_img" border="0" /></span>
+								<span><a href="###" onClick="setSeccode()" style="color:#F00;">看不清楚</a></span>
+							</p>
+							<p class="align_center">
+                            <span><input type="checkbox" name="save_week" id="save_week"  value="1" >保存一周</span>
+					
+							<span><input type="hidden" name="act" id="act" value="login" />
+								<input name="sub" type="submit" value="确认" class="btn"></span>
+							</p>
+						</div>
+					</div>
+				</form>
+				<div style="height:30px;"></div>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</BODY>
+</HTML>

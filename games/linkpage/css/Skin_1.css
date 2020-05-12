@@ -1,0 +1,219 @@
+/* body的css定义:对应css中“body”，可定义内容为网页字体颜色、背景、浏览器边框等 */
+body { background-color:#FFFFFF;
+scrollbar-face-color: #f4f4f4;
+scrollbar-highlight-color: #ffffff;
+scrollbar-shadow-color: #ffffff;
+scrollbar-3dlight-color: #f4f4f4;
+scrollbar-arrow-color:  #ffffff;
+scrollbar-track-color: #ededed;
+scrollbar-darkshadow-color: #808080; 
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+body,table,p,td,th { font-family:宋体;font-size:12px; color:#333333 }
+/*-----------格式化Table CSS样式-----------*/
+table.tbl { table-layout:fixed; }
+td.tb { word-wrap:break-word;word-break: keep-all; }
+td.tk { word-break: keep-all; }
+td.s { padding-left: 5px; padding-right: 5px; }
+td.sl { padding-left: 5px; padding-right: 5px; text-align: left; }
+td.sr { padding-left: 5px; padding-right: 5px; text-align: right; }
+/* 单元格的css定义:对应css中的“td”，这里为总的表格定义，为一般表格的的单元格风格设置，可定义内容为背景、字体颜色、样式等 */
+.td { background-image: url(/Skin/Skin_1/bg_td.gif); color: #ffffff; height: 26px; font-weight:bold; }
+
+/*-----------格式化背景CSS样式-----------*/
+.bg { background-color:#FFFFFF; }
+.selet_bg { background-color: #FFFFFF; }
+.ftd { color:#ffffff; }
+.fbg { color: #FFFFFF; }
+.bg_search { border: 1px solid #c0c0c0; padding: 1px; background-color: #ffffff; height: 20px; background-image: url(/images/bg_search.gif); }
+.Photo_table { background:#333333; border:2px solid #333333; }
+.ysvoid_table { width:100%; border:1px solid #245799; }
+
+/*-----------字体CSS样式-----------*/
+.tims { color: #808080; font-family: Verdana, Arial, Helvetica, sans-serif; font-size:7pt; }
+.mins { color: #ffffff; font-family: Verdana, Arial, Helvetica, sans-serif; font-size:7pt;  font-weight:bold;}
+.dtd { color: #ffffff; font-weight:bold;}
+.htd { line-height:150%; }
+.btd { font-weight:bold; }
+.bw { word-wrap:break-word; }
+.tf { table-layout:fixed; }
+.gray { color:#808080; }
+.red { color:#FF0000; }
+.read { color: #3131ce; }
+.red2 { color:#CC3300; }
+.blue { color:#0066CC; }
+.yellow { color:#FF6600; }
+
+/*-----------格式化表格CSS样式-----------*/
+.bg_td { background-color:#f7f7f7; }
+.bg_tds { background-color:#eeeeee; }
+.bg_table { background-color:#ffffff; }
+.bg_frame { background-color:#0096D4; }
+.bg_trt { background: #C6DDE3; }
+.bg_tr { background: #ece9d8; height: 25px; }
+.tablew { width:100%; }
+.table { width:100%; border: 1px; background-color: #ffffff; }
+.table0 { width:100%; border: 1px; background-color: #ffffff; }
+.td0 { background-image: url(/Skin/Skin_1/bg_td.gif);color: #ffffff; height: 26px; font-weight:bold; }
+.tds { background-image: url(/Skin/Skin_1/bg_tds.gif);color: #ffffff; height: 26px; }
+.trline { font-size:0px; line-height:1px; padding:0px; background-color: #F8F8F8; }
+
+/*-----------窗口引用CSS样式-----------*/
+.div_alt { width:240px; margin-left:18px; border:1px solid black; background-color:#ffffe1; color:#000000; padding:2px; }
+.div_pop { background-color: #ffffe1;color:#000000; border: 1px #666666 solid;font-color: font-size: 12px; padding-right: 4px; padding-left: 4px; height: 20px; padding-top: 2px; padding-bottom: 2px; filter: Alpha(Opacity=0); }
+
+/*-----------超链接CSS样式-----------*/
+a { color:#111111; text-decoration: none; } /* 链接无下划线,有为underline */
+a:hover { color:#3366CC; text-decoration: none; } /* 鼠标在链接上 */ 
+a.h_menu { color:#333333; text-decoration: none }/* 顶部当前频道文字链接的css定义*/
+a.h_menu:hover { color:#ff0000; text-decoration: underline }
+a.h_td { color:#ffffff; text-decoration: none }/* 底部当前文字链接的css定义*/
+a.h_td:hover { color:#ffffff; text-decoration: underline }
+a.h_pop { color:#ededed; text-decoration: none }
+a.h_pop:hover { lor:#808080; text-decoration: underline }
+
+/*-----------论坛CSS样式-----------*/
+.bbs_hh { line-height:120%; }
+.bbs_m { color: #CC3300; font-weight:bold; }
+.bbs_topic { color: #ffffff; font-weight:bold; }
+.bbs_vote { color: #cc0000; font-weight:bold; }
+.bbs_subhead { color: #808080; }
+.bbs_tablew { width:97%; background:#ffffff; border:0px; padding:0px; border-collapse:collapse; }
+.bbs_table { width:100%; background:#d7d7d7; border:1px solid #245799; }
+.bbs_tables { width:97%; background:#d7d7d7; border:1px solid #245799; }
+.bbs_td { background-image: url(/Skin/Skin_1/td_bbs.gif); background-color: #0c9eeb; height:26px; color: #FFFFFF; font-weight: bold; padding-left: 6px; padding-right: 6px; }
+.bbs_th { background-image: url(/Skin/Skin_1/th_bbs.gif); background-color: #ededed; height:26px; color: #000000; font-weight: bold; padding-left: 6px; padding-right: 6px; }
+.bbs_tr { background: #FFFFFF; height: 25px; }
+.bbs_tr_list1 { background: #FFFFFF; height: 25px; }
+.bbs_tr_list2 { background: #f7f7f7; height: 25px; }
+.bbs_tre { background: #efeff7; height: 25px; }
+.bbs_trt { background: #FFFFF0; height: 25px; }
+.bbs_trp { background-color: #f1ecdf; height: 25px; }
+.bbs_trb { background-color: #f2fafc; height: 35px; }
+.bbs_trline { font-size:0px; line-height:1px; padding:0px; background-color: #F8F8F8; }
+
+/*-----------评论CSS样式-----------*/
+.rv_table { width:100%; background:#ffffff; border:1px solid #d4d4d4; border-collapse:collapse; }
+.rv_td { background-image: url(/Skin/Skin_1/th.gif); background-color: #ededed; height:26px; color: #000000; font-weight: bold; padding-left: 6px; padding-right: 6px; }
+.rv_tr { background: #F0F7FB; }
+.rv_trt { background: #ededed; }
+.rv_trb { background: #f7f7f7; }
+.rv_trp { background-color: #f1ecdf; height: 25px; }
+.rv_trline { font-size:0px; line-height:1px; padding:0px; background-color: #F8F8F8; }
+
+/*-----------格式化表单CSS样式-----------*/
+/* 文本框的css定义:对应css中的“input”，这里为文本框的风格设置，可定义内容为背景、字体、颜色、边框等 */
+input.txt { border: 1px solid #c0c0c0; padding: 1px; background-color: #ffffff; height: 20px; }
+input.txt_num { border: 1px solid #c0c0c0; padding: 1px; background-color: #ffffff; height: 20px; text-align: center; }
+
+/* 按钮的css定义:对应css中的“button”，这里为按钮的风格设置，可定义内容为背景、字体、颜色、边框等 */
+input.btn
+{
+ border: 1px solid #c0c0c0; background-color: #f7f7f7; background-image: url(/Skin/skin_1/small/bg_btn.gif); height: 20px;
+ padding-left: 10px; padding-right: 1px; padding-top: 2px; padding-bottom: 1px;
+}
+input.btns { border: 1px solid #c0c0c0; padding: 1px; background-color: #ededed; height: 20px; }
+
+/* 文本框的css定义:对应css中的“textarea”，这里为下拉列表框的风格设置，可定义内容为背景、字体、颜色、边框等 */
+textarea.txtarea { border: 1px solid #c0c0c0; padding: 1px; background-color: #ffffff; }
+textarea { border-width: 1; border-color: #c0c0c0; background-color: #FFFFFF;
+ font-family: Verdana, Arial, Helvetica, sans-serif, 宋体; font-size: 9pt; cursor: hand; color: #000000; 
+
+}
+/* 下拉列表框的css定义:对应css中的“select”，这里为下拉列表框的风格设置，可定义内容为背景、字体、颜色、边框等 */
+select { border-width: 1; border-color: #c0c0c0; background-color: #FFFFFF;
+ font-family: Verdana, Arial, Helvetica, sans-serif, 宋体; font-size:9pt; cursor: hand; color: #000000;
+}
+select.sel { border: 1px solid #c0c0c0; padding: 1px; background-color: #ededed; }
+
+/*-----------UBB引用、代码功能CSS样式-----------*/
+.quote_table { width:100%; border: 1px; background-color: #d7d7d7; }
+.quote_tr { background-color: #ffffff; height: 21px; }
+#ubb_quote 
+  { 
+    border:1px solid #c0c0c0; 
+    font-size: 12px; 
+    background-color: #f7f7f7; 
+    border-left:5px solid #999999; 
+    padding:3px; 
+  }
+#ubb_code 
+  { 
+    border:1px solid #c0c0c0; 
+    font-size: 12px; 
+    background-color: #ffffff;   
+    border-left:5px solid #808080; 
+    font-family: Courier New; 
+    color: #465584; 
+    behavior:url(/images/ubb/code.htc); 
+  }
+
+/*-----------下拉菜单CSS样式-----------*/
+.menuskin 
+  {	
+    border: #666666 1px solid;
+    visibility: hidden;
+    font: 12px Verdana;
+    position: absolute;
+    background-color: #EFEFEF;
+    background-image: url(/Skin/Skin_1/menubg.gif);
+    background-repeat: repeat-y;
+  }
+.menuskin A
+  {
+	padding-right: 10px; 
+	padding-left: 25px; 
+	color: black; 
+	text-decoration: none;
+  }
+.menuitems
+  {
+	margin: 2px; 
+	padding: 1px; 
+	word-break: keep-all; 
+	text-align: left; 
+	line-height: 14pt;
+  }
+/*-----------导航菜单CSS样式-----------*/
+#nav {
+	float: left;
+
+	width: 100%;
+	background: #3A6DAF;
+	border-bottom: 4px solid #6BC110;
+
+	}
+
+	#nav ul {
+
+	width: 95%;
+	margin: 0 auto;
+	list-style: none;
+
+	}
+	#nav li {
+
+	float: left;
+	margin-right: 1px;
+
+	}
+	#nav a {
+	float: left;
+	display: block;
+	color: #fff;
+         background: #30588F url(/Skin/Skin_1/index/menu.gif)  top repeat-x;	
+         padding: 12px 10px 4px;
+
+
+	}
+.tddescover{
+	width:150px;
+	height:28px;
+	overflow:hidden;
+	vertical-align:middle;
+	line-height:28px;
+}
+

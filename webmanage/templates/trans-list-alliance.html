@@ -1,0 +1,43 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+		  { 'header':'游戏' , 'dataIndex':'trans_gid' , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("game","game_id","game_name",'1',true)?>} },
+          { 'header':'用户名' , 'dataIndex':'trans_mname' , 'type':'textbox' },
+          { 'header':'充值方式' , 'dataIndex':'trans_type' , 'type':'select' , 'options':{ '全部':'',<?=cfg_to_opt($cfg_pay_type)?>}  },
+		  { 'header':'下单时间' , 'dataIndex':'trans_addtime' , 'type':'datetime', 'defaultValue':'<?=date("Y-m-d")?>' }
+          </div>
+        </div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			var cm = new ColumnModel
+			([
+			{header: '用户名', dataIndex: 'trans_mname'  },
+			{header: '充值金额', dataIndex: 'trans_money'},
+			{header: '游戏名称', dataIndex: 'trans_gname'},
+			{header: '下单时间', dataIndex: 'trans_addtime', sortable: true, format:'yyyy-MM-dd HH:mm' },
+			{header: '充值方式', dataIndex: 'trans_type', renderer: '<?=$json->encode($cfg_pay_type);?>' }
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget' , filter:'[{"name":"trans_addtime","oper":">=","value":"<?=strtotime(date('Y-m-d'))?>"},{"name":"trans_addtime","oper":"<=","value":"<?=strtotime(date('Y-m-d',strtotime('+1 day')))?>"}]'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+			
+			
+		});
+		
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

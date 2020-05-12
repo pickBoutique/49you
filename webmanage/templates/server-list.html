@@ -1,0 +1,88 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'游戏编码' , 'dataIndex':'game_code' , 'type':'textbox' },
+          { 'header':'游戏名称' , 'dataIndex':'game_name' , 'type':'textbox' },
+          { 'header':'区号' , 'dataIndex':'server_num' , 'type':'textbox' },
+          { 'header':'服务器名称' , 'dataIndex':'server_name' , 'type':'textbox' }
+          </div>
+        </div>
+
+		<div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="button" value="删除" class="btn action_del" onclick="todel();" />
+			<input type="button" value="添加" class="btn action_add" onclick="toadd();" />
+		</div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			
+			function getoperator(rs) {
+				return "<a href='###' class='action_edit' onclick=\"toedit('" + rs["server_id"] + "')\">编辑</a>"  + "  <a href='###' onclick=\"todelone('" + rs["server_id"] + "')\">删除</a>";
+	
+			}
+	
+			
+			var cm = new ColumnModel
+			([
+			new CheckboxModel({dataIndex: 'server_id'}),
+			{header: 'sid', dataIndex: 'server_id',  width: 60 },
+			{header: '游戏编码', dataIndex: 'game_code',  width: 100 },
+			{header: '游戏名称', dataIndex: 'game_name',  width: 100 },
+			{header: '区号', dataIndex: 'server_num',  width: 50 },
+			{header: '服务器名称', dataIndex: 'server_name',  width: 100 },
+			new BoolenModel({header: '是否新游戏', dataIndex: 'server_isnew', priIndex: 'server_id', url: 'server-add.php',  width: 50 } ),
+			new BoolenModel({header: '是否热门游戏', dataIndex: 'server_ishot', priIndex: 'server_id', url: 'server-add.php',  width: 70 } ),
+			{header: '添加日期', dataIndex: 'server_time', sortable: true, format:'yyyy-MM-dd', width: 70 },
+			{header: '操作状态', dataIndex: 'server_status', sortable: false, width: 100, renderer: '<?=$json->encode($server_status);?>' },
+			{header: '操作',  width: 120, renderer: getoperator }
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+			
+			
+		});
+		
+		
+		function toadd(){
+			show_editor({ title:'添加',src:'server-add.php',  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function toedit(id){
+			show_editor({ title:'编辑',src:'server-add.php?server_id=' + id,  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function todel(){
+			ajax_action('server-add.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+				grid.load(); 
+			});
+		}
+		
+		function todelone(id){
+			ajax_action('server-add.php',{ act:'del' , ids:id } , '您确定要删除吗？' , function(){ 
+				grid.load();
+			});
+		}
+		
+	
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

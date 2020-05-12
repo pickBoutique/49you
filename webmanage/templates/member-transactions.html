@@ -1,0 +1,55 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post">
+		<div class="searcher" id="searchbar" style="display:none">
+			{ 'header':'用户邮箱' , 'dataIndex':'email' , 'type':'textbox' },
+			{ 'header':'订单号' , 'dataIndex':'trans_order_no' , 'type':'textbox' },
+          	{ 'header':'交易描述' , 'dataIndex':'trans_desc' , 'type':'textbox' },
+			{ 'header':'交易类型' , 'dataIndex':'trans_inout' , 'type':'select' , 'options':{ '全部':'' ,'收入':'0' ,'支出':'1'} },
+          	{ 'header':'交易时间从' , 'dataIndex':'trans_time' , 'type':'datetime' }
+        </div>
+
+		<div class="searcher" id="permimag"></div>
+	</form>
+</div>
+<?php include_once("footer.html");?>
+
+<script language="javascript">
+		
+	var grid;
+		
+	$(document).ready(function(){
+			
+		/*function getoperator(rs) {
+			return "<a href='###' class='action_list' onclick=\"tolist('" + rs["trans_id"] + "')\">查看</a>";
+		}*/
+			
+		var cm = new ColumnModel
+		([
+			new CheckboxModel({dataIndex: 'trans_id'}),
+			{header: '用户邮箱', dataIndex: 'email'},
+			{header: '交易金额', dataIndex: 'trans_money', width: 100},
+			{header: '交易类型', dataIndex: 'trans_inout', width: 100, renderer:"{'0':'收入' ,'1':'支出'}"  },
+			{header: '交易描述', dataIndex: 'trans_desc', width: 100},
+			{header: '帐户余额', dataIndex: 'trans_remain', width: 150},
+			{header: '订单号', dataIndex: 'trans_order_no', width: 100},
+			{header: '交易时间', dataIndex: 'trans_time' , format:'yyyy-MM-dd HH:mm:ss', sortable: true, width: 130 }
+			
+			<!--{ header: '操作',  width: 100, renderer: getoperator }-->
+		]);
+	
+		grid = new GridView({ id: 'permimag', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget'} });
+		grid.load();
+			
+		//搜索栏初始化
+		renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+	});
+		
+		
+	/*function tolist(mypro_id){
+		show_editor({ title:'查看',src:'renew-auto-detail.php?mypro_id=' + mypro_id, onclose:function(){
+			grid.load();
+		}});
+	}*/
+</script>

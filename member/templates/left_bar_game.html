@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style>
+body,div,img{padding:0;margin:0;border:0;font-size: 12px;}
+body{background:#000;width:100%}
+a {color:#af010e;text-decoration:none;}
+a:hover{text-decoration:underline;}
+.left_nav {width:80px;height:auto;text-align:center;float:right}
+.list {color:#af010e;float:left;height: 600px;line-height:22px;padding: 5px 0;text-align:center;width:79px;}
+.list B {
+	COLOR: #fc0
+}
+.list A:link {
+	COLOR: #ffc
+}
+.list A:visited {
+	COLOR: #ffc
+}
+.list A:hover {
+	COLOR: #f60
+}
+</style>
+</head><body>
+<div id="left_nav" class="left_nav">
+	<div class="list">
+    <? if($gamelable){
+foreach($gamelable as $k=>$v){
+?>
+<?	if(empty($v["source"])){?>
+<b><?=$v["subtitle"]?></b><br>
+<?}else{?>
+<a target="_blank" href="<?=$v["source"]?>" <?if($v["attachment"]!=""){?>style="color:#f60;"<?}?>><?=$v["subtitle"]?></a><br>
+<?}?>
+
+<?}
+}?>
+
+	</div>
+</div>
+</body></html>

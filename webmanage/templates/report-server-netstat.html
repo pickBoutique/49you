@@ -1,0 +1,40 @@
+<?php include_once("header.html");?>
+<script type="text/javascript" src="/js/swfobject.js"></script>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+		  
+          { 'header':'视图' , 'dataIndex':'mode' , 'type':'select' , 'options':{ '小时':'h','分钟':'m'} },
+          { 'header':'统计日期' , 'dataIndex':'date' , 'type':'date_1', 'defaultValue':'<?=date("Y-m-d")?>' },
+          { 'header':'指定小时' , 'dataIndex':'hour' , 'type':'select' , 'options':{ '0点':'00','1点':'1','2点':'2','3点':'3','4点':'4','5点':'5','6点':'6','7点':'7','8点':'8','9点':'9','10点':'10','11点':'11','12点':'12','13点':'13','14点':'14','15点':'15','16点':'16','17点':'17','18点':'18','19点':'19','20点':'20','21点':'21','22点':'22','23点':'23'} },
+          { 'header':'单位' , 'dataIndex':'unit' ,'type':'select' , 'options':{ 'KBytes':'KB','Mbytes':'MB'}  },
+          { 'header':'方向' , 'dataIndex':'dir' , 'type':'select' , 'options':{ '全部':'total','发送':'up','接收':'down'} }
+          </div>
+        </div>
+
+		<div class="searcher" id="OpenFlashChartControl1"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { 
+			  
+				var urla=escape('?act=dataget&rnd='+Math.random()+'&filter='+filter);
+		
+				swfobject.embedSWF("/flash/open-flash-chart.swf", "OpenFlashChartControl1", "100%", "500","9.0.0", "expressInstall.swf",{"data-file":urla});
+			});
+			$('#searchbar').show();
+		});
+	
+		</script>
+	</form>
+</div>
+<script type="text/javascript">
+swfobject.embedSWF("/flash/open-flash-chart.swf", "OpenFlashChartControl1", "100%", "500","9.0.0", "expressInstall.swf",{"data-file":"<?=urlencode("?act=dataget&rnd=".time())?>"});
+</script>
+<?php include_once("footer.html");?>

@@ -1,0 +1,247 @@
+<?php $title='逍遥剑|逍遥剑官网|49逍遥|49you逍遥剑|升级|加点|门派|侠客|武功|攻略 ';
+$keywords="逍遥剑,逍遥剑官网,49逍遥,49you逍遥剑,逍遥剑门派,逍遥剑加点,逍遥剑升级,逍遥剑侠客,逍遥剑武功,逍遥剑攻略";
+$description="逍遥剑,逍遥剑官网,49逍遥,49you逍遥剑是一款中国武侠风格的角色扮演网页游戏。49you逍遥剑官网提供逍遥剑武当、少林、华山等九大门派武功、升级、加点，侠客等攻略。"?>
+<?php include('header.html'); ?>
+<script type="text/javascript" src="js/js_list.js"></script>
+<script type="text/javascript">
+function newschange(id){
+	for(i=1;i<=3;i++){
+		$("#newsli"+i)[0].className='n2';
+		$("#newlist"+i).css("display","none");
+	}
+	$("#newsli"+id)[0].className='n1';
+	$("#newlist"+id).css("display","");
+}
+function picchange(id){
+	if(id==1){
+		$("#picli1")[0].className='n1';
+		$("#piclist1").css("display","");
+		
+		$("#picli2")[0].className='n02';
+		$("#piclist2").css("display","none");
+	}else{
+		$("#picli1")[0].className='n01';
+		$("#piclist1").css("display","none");
+		
+		$("#picli2")[0].className='n2';
+		$("#piclist2").css("display","");
+	}
+	
+}
+if (top.location != self.location)top.location=self.location;
+</script>
+
+<div class="main">
+<div class="l">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+
+<!--left_server start-->
+<? include('lefter_server.html'); ?> 
+<!--left_server end--> 
+<div class="guanggao">
+<div class="guanggao-top"></div>
+<ul><a href="<?=get_newslink(2929)?>" target="_blank"><img src="images/jinbang.jpg" width="176" height="72" /></a></ul>
+<ul><a href="<?=get_newslink(2796)?>" target="_blank"><img src="images/gamefaq.jpg" width="176" height="72" /></a></ul>
+<ul><a href="<?=get_newslink(2777)?>" target="_blank"><img src="images/jdmp.jpg" width="176" height="72" /></a></ul>
+</div> 
+
+<!--lefter_yx start-->
+<? include('lefter_yx.html'); ?> 
+<!--lefter_yx end-->
+<!--lefter_mt start-->
+<? include('lefter_mt.html'); ?> 
+<!--lefter_mt end-->
+ </div>
+ 
+<div class="r">
+ <div class="p1">
+ <div class="news">
+
+       <div class="newsh3"><a href="news.html?pid=161&cid=162" onmouseover="newschange(1);" id="newsli1" title="新闻热点" class="n1">热点</a><a href="news.html?pid=161&cid=163" onmouseover="newschange(2);" id="newsli2" title="新闻公告" class="n2">公告</a><a href="news.html?pid=161&cid=164" onmouseover="newschange(3);" id="newsli3" title="新闻活动" class="n2">活动</a></div>
+        <ul id="newlist1">
+          <?if($rs_news){
+            foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="1" | $v["cate_id"]=="2"){
+            $cls = $v["attachment"]=="red" ? 'new_list_red' : 'new_list_normal';
+            ?>
+		<li class="<?=$cls?>" ><span><?=date('m-d',$v["add_time"])?></span>
+        [<?if($v["cate_id"]=="1"){?><a href="news.html?pid=161&cid=163" target="_blank">公告</a><?}else{?><a href="news.html?pid=161&cid=164" target="_blank">活动</a><?}?>]<a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+		  <?}
+            }
+          }?>
+          <a href="news.html?pid=161&cid=162" title="逍遥剑_新闻热点_更多" target="_blank"  class="more">更多>></a>
+        </ul>
+        <ul id="newlist2" style="display:none;">
+          <?if($rs_news){
+            foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="163"){
+            $cls = $v["attachment"]=="red" ? 'new_list_red' : 'new_list_normal';
+            ?>
+		<li class="<?=$cls?>"><span><?=date('m-d',$v["add_time"])?></span>
+         [<a href="news.html?pid=161&cid=163" target="_blank">公告</a>]<a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+		  <?}
+            }
+          }?>
+          <a href="news.html?pid=161&cid=163" title="逍遥剑_公告"  target="_blank" class="more">更多>></a>
+        </ul>
+        <ul id="newlist3" style="display:none;">
+          <?if($rs_news){
+            foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="164"){
+            $cls = $v["attachment"]=="red" ? 'new_list_red' : 'new_list_normal';
+            ?>
+		<li class="<?=$cls?>" ><span><?=date('m-d',$v["add_time"])?></span>
+        [<a href="news.html?pid=161&cid=164" target="_blank">活动</a>]<a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+		  <?}
+            }
+          }?>
+          <a href="news.html?pid=161&cid=164" title="逍遥剑_活动" target="_blank" class="more">更多>></a>
+        </ul>
+      </div>
+      
+   <div class="news1"> 
+    <div class="news1h3"> </div>
+        <ul>
+          <?if($rs_gamequ){
+            foreach($rs_gamequ as $k=> $v){
+            $cls = $v["attachment"]=="red" ? 'new_list_red' : 'new_list_normal';
+            ?>
+		<li class="<?=$cls?>" ><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["subtitle"]?></a></li>
+            <?}
+          }?>
+          <a href="news.html?pid=165&cid=166" target="_blank" class="more">更多>></a>
+        </ul>  
+    </div>  
+ </div>
+
+<div class="faq">
+      <ul>
+        <li><a href="cardlist.html" target="_blank"><img src="images/getcard.jpg" width="218" height="80" /></a></li>
+        <li><a href="vippage.html" target="_blank"><img src="images/vippage.jpg" width="218" height="80" /></a></li>
+        <li><a href="<?=get_newslink(2792)?>" target="_blank"><img src="images/spbag.jpg" width="218" height="80" /></a></li>
+      </ul>
+</div>
+<div class="sharedspacer"></div>
+
+
+<div class="yxzl">
+<div class="yxzlh3">游戏资料</div>
+<div class="yxzlli">
+<ul>新手指南</ul>
+<ul>系统介绍</ul>
+<ul>特色玩法</ul>
+</div>
+<div class="yxzll">
+<ul>
+
+<li>
+<a target="_blank" href="<?=get_newslink(2709)?>">门派介绍</a>|
+<a target="_blank" href="<?=get_newslink(2717)?>">人物武功</a>|
+<a target="_blank" href="<?=get_newslink(2719)?>">人物属性</a>|
+<a target="_blank" href="<?=get_newslink(2720)?>">任务介绍</a>|
+<a target="_blank" href="<?=get_newslink(2730)?>">侠客属性</a><br />
+<a target="_blank" href="<?=get_newslink(2752)?>">联系朋友</a>|
+<a target="_blank" href="<?=get_newslink(2753)?>">组队通关</a>|
+<a target="_blank" href="<?=get_newslink(2754)?>">通用技能</a>|
+<a target="_blank" href="<?=get_newslink(2755)?>">游戏道具</a>
+</li>
+<li>
+<a target="_blank" href="<?=get_newslink(2688)?>">打工系统</a>|
+<a target="_blank" href="<?=get_newslink(2689)?>">副本系统</a>|
+<a target="_blank" href="<?=get_newslink(2691)?>">关卡系统</a>|
+<a target="_blank" href="<?=get_newslink(2715)?>">目标系统</a>|
+<a target="_blank" href="<?=get_newslink(2721)?>">突飞系统</a><br />
+<a target="_blank" href="<?=get_newslink(2732)?>">运镖系统</a>|
+<a style="color: red;" href="vippage.html">VIP系统</a>|
+<a target="_blank" href="<?=get_newslink(2757)?>">交易系统</a>|
+<a target="_blank" href="<?=get_newslink(2756)?>">生活手艺</a>|
+<a target="_blank" href="<?=get_newslink(2758)?>">秘籍系统</a>
+</li>
+<li>
+<a target="_blank" href="<?=get_newslink(2729)?>">侠客修炼</a>|
+<a target="_blank" href="<?=get_newslink(2690)?>">古代战场</a>|
+<a target="_blank" href="<?=get_newslink(2692)?>">竞技场</a>|
+<a target="_blank" href="<?=get_newslink(2711)?>">聚贤楼</a>|
+<a target="_blank" href="<?=get_newslink(2751)?>">江湖名人谱</a><br />
+<a target="_blank" href="<?=get_newslink(2734)?>">装备打孔</a>|
+<a target="_blank" href="<?=get_newslink(2735)?>">装备强化</a>|
+<a target="_blank" href="<?=get_newslink(2736)?>">装备重铸</a>|
+<a target="_blank" href="<?=get_newslink(2722)?>">侠客武功</a>|
+<a target="_blank" href="<?=get_newslink(2687)?>">帮派战</a>
+
+</li>
+ 
+</ul>
+ <a href="gamedata.html" target="_blank" class="more">更多>></a>
+</div>
+
+       <div class="ad">
+          <ul><a target="_blank" href="<?=get_newslink(2723)?>"><img src="images/x-1.jpg" border="0" /></a></ul>
+          <ul><a target="_blank" href="<?=get_newslink(2726)?>"><img src="images/x-2.jpg" border="0" /></a></ul>
+           <ul><a target="_blank" href="<?=get_newslink(2724)?>"><img src="images/x-3.jpg" border="0" /></a></ul>
+          <ul><a target="_blank" href="<?=get_newslink(2725)?>"><img src="images/x-4.jpg" border="0" /></a></ul>
+      </div>      
+      
+</div>
+<div class="sharedspacer"></div>
+<div  style="padding-left:9px;">
+<div class="hd">
+<div class="hdh1">新手攻略</div>
+      <ul class="list">
+          <?if($rs_gamexs){
+            foreach($rs_gamexs as $k=> $v){
+            $cls = $v["attachment"]=="red" ? 'new_list_red' : 'new_list_normal';
+            ?>
+		<li class="<?=$cls?>" ><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+            <?}
+          }?>
+      </ul>
+      <a class="more" href="news.html?pid=170&cid=171" target="_blank">更多>></a></div>
+      
+      
+      <div class="hd">
+<div class="hdh2">高手攻略</a></div>
+      <ul class="list">
+          <?if($rs_gamegs){
+            foreach($rs_gamegs as $k=> $v){            
+            $cls = $v["attachment"]=="red" ? 'new_list_red' : 'new_list_normal';
+            ?>
+		<li class="<?=$cls?>" ><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>"  title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+            <?}
+          }?>
+      </ul>
+      <a class="more" href="news.html?pid=170&cid=172" target="_blank">更多>></a></div> 
+      
+</div>
+           
+   <div class="sharedspacer"></div>
+    
+<div class="pic"> 
+<div class="pich3"><a href="javascript:void(0);" onmouseover="picchange(1);" id="picli1" class="n1" title="逍遥剑_游戏截图">游戏截图</a><a href="javascript:void(0);" onmouseover="picchange(2);" id="picli2" class="n02" title="逍遥剑_玩家照片">玩家照片</a></div>
+
+      <div id="piclist1"><ul>
+          <?if($rs_gamepic){
+            foreach($rs_gamepic as $k=> $v){?>
+             <li><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><img src="<?=$v['pic']?>" width="122" height="100" alt="<?=$v["summary"]?>"/></a></li>
+            <?}
+            }?>
+      </ul> <a class="more" href="news.html?pid=173&cid=174" title="逍遥剑_游戏图鉴" target="_blank">更多&gt;&gt;</a></div>
+      <div id="piclist2" style="display:none;">
+    <ul>
+          <?if($rs_memberpic){
+            foreach($rs_memberpic as $k=> $v){?>
+             <li><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><img src="<?=$v['pic']?>" width="122" height="100" alt="<?=$v["summary"]?>"/></a></li>
+            <?}
+            }?>
+      </ul> <a class="more" href="news.html?pid=173&cid=175" title="逍遥剑_玩家照片" target="_blank">更多&gt;&gt;</a></div>
+      </div>
+<div class="mandi"></div> 
+
+</div> 
+</div>
+</div>
+
+<? include('footer.html'); ?> 
+

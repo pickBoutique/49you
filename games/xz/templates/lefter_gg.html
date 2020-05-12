@@ -1,0 +1,25 @@
+<?
+//首页开服Flash 公告
+$sqlstr="select subtitle,attachment,source from ".DB_PREFIX."info where info_start<=".time()." and cate_id = '".$ids['gamefla']."' and info_gid={$game_id} order by sort_num desc,add_time desc limit 1";
+$rs_flashgg = $db->getRow($sqlstr);
+?>
+<div class="index_gg">
+     <?if($rs_flashgg){?>
+
+        <?
+        $index_fw=420;$index_fh=168;
+        ?>
+        <object width="<?=$index_fw?>" height="<?=$index_fh?>" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" style="position: absolute; z-index: 0;">
+  <param value="internal" name="allowNetworking">
+  <param value="<?=$rs_flashgg["attachment"]?>" name="movie">
+  <param value="transparent" name="wmode">
+  <param value="high" name="quality">
+  <embed width="<?=$index_fw?>" height="<?=$index_fh?>" type="application/x-shockwave-flash" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" allownetworking="internal" wmode="transparent" quality="high" src="<?=$rs_flashgg["attachment"]?>" style="position: absolute; z-index: 0;">
+</object>
+<div style="position: relative; z-index: 9999; left: 0pt; top: 0pt; width: <?=$index_fw?>px; height: <?=$index_fh?>px;">
+<a target="_blank" href="<?=$rs_flashgg["source"]?>" <?if(!empty($rs_flashgg["subtitle"])){?> title="<?=$rs_flashgg["subtitle"]?>"<?}?>>
+<img border="0" width="100%" height="100%" src="images/1px.gif">
+</a>
+</div>
+<?}?>
+       </div>

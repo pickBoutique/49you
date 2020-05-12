@@ -1,0 +1,114 @@
+function advbgcloseflash(){
+    advbg_obj.closeflash();
+}
+window.advbgcloseflash = advbgcloseflash;
+function advbgopenlink(){
+    advbg_obj.openlink();
+}
+window.advbgopenlink = advbgopenlink;
+
+function advbg(){
+	
+	
+	
+    var reurl = document.referrer;
+    var isevo=true; //是否一天只显示一次
+    var advbgisshow=true;
+    var absbg_flash_url='<?=$row["advbg_mat"]?>'; //flash地址
+    var absbg_flash_width='<?=$row["advbg_width"]?>'; //flash的宽度
+    var absbg_flash_height='<?=$row["advbg_height"]?>'; //flash的高度
+    var absbg_flash_link='<?=$row["advbg_link"]?>'; //flash链接地址
+    
+    var cookname ="advbgflash<?=$row["advbg_id"]?>";
+    if(getCookie(cookname)!=null)advbgisshow=false;
+    if(reurl.indexOf(".baidu.")<0){
+    	advbgisshow=false;
+    }
+    if(absbg_flash_url==''){
+    	advbgisshow=false;
+    }
+    if(<?=$row["advbg_status"]?>==0){
+    	advbgisshow=false;
+    }
+    this.show = function(){
+    	var cs='<style>';
+        cs+='#advbgflash {';
+        cs+='POSITION: fixed;top:<?=$row["advbg_top"]?>%; left:<?=$row["advbg_left"]?>%;z-index:19999;margin-left:'+(-1*absbg_flash_width/2)+'px; margin-top:'+(-1*absbg_flash_height/2)+'px; _position:absolute;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight )); }';
+		cs+='.clo{height:14px;float:right;font-size:12px;margin-right:2px;}';
+		cs+='.clo a{color:#FFF;}';
+		cs+='*html{background-image:url(about:blank);background-attachment:fixed;}';
+        cs+='</style>';
+        
+        document.write(cs);
+        
+    	
+        var af= '<div id="advbgflash">';
+        
+		af+='<div style="width:'+absbg_flash_width+'px; height:16px;background-color:#000"><div class="clo"><b><a href="javascript:advbg_obj.closeflash();">关闭</a></b></div></div>';
+        
+        af+='<object style="position:absolute;z-index:19999;"  classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="'+absbg_flash_width+'" height="'+absbg_flash_height+'" name="flash_contant" id="flash_contant" >';
+        af+='<param name="movie" value="' + absbg_flash_url + '" />';
+        af+='<param name="wmode" value="Opaque" />';
+        af+='<param name="quality" value="high" />';
+        af+='<embed src="' + absbg_flash_url + '"  name="flash_contant_ff" id="flash_contant_ff"  style="position:absolute;z-index:19999;"   wmode="Opaque"  quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash"    type="application/x-shockwave-flash" width="'+absbg_flash_width+'" height="'+absbg_flash_height+'" ></embed>';
+        af+='</object>';
+        af+='<div style="position: relative;z-index:29999;left:0pt;top:0pt;width:'+absbg_flash_width+'px;height:'+absbg_flash_height+'px;"><a target="_blank" href="'+absbg_flash_link+'"><img width="'+absbg_flash_width+'" height="'+absbg_flash_height+'" border="0" src="http://www.49you.com/images/1px.gif"></a></div>';
+        af+='</div>';
+        
+        document.write(af);
+    };
+    this.closeflash = function(){
+    	window.status = 'closed';
+        document.getElementById("advbgflash").style.display="none";
+        if(isevo) setCookie(cookname,1,"d1");
+    };
+    this.openlink = function(){
+	    window.status = 'openlink';
+        window.open(absbg_flash_link);
+    };
+
+    //JS操作cookies方法!
+    //写cookies
+    function setCookie(name,value,time){
+        var strsec = getsec(time);
+        var exp = new Date();
+        exp.setTime(exp.getTime() + strsec*1);
+        document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+    }
+    //读取cookies
+    function getCookie(name){
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+        if(arr=document.cookie.match(reg)) return unescape(arr[2]);
+        else return null;
+    }
+    //删除cookies
+    function delCookie(name){
+        var exp = new Date();
+        exp.setTime(exp.getTime() - 1);
+        var cval=getCookie(name);
+        if(cval!=null) document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+    }
+    //这是有设定过期时间的使用示例：
+    //s20是代表20秒
+    //h是指小时，如12小时则是：h12
+    //d是天数，30天则：d30
+    //暂时只写了这三种
+    //setCookie("name","hayden","s20″);
+    function getsec(str){
+        var str1=str.substring(1,str.length)*1; 
+        var str2=str.substring(0,1); 
+        if (str2=="s"){
+        return str1*1000;
+        }else if (str2=="h"){
+        return str1*60*60*1000;
+        }else if (str2=="d"){
+        return str1*24*60*60*1000;
+        }
+    }
+    
+    if(advbgisshow){
+       this.show();
+    }
+}
+var advbg_obj=new advbg();
+

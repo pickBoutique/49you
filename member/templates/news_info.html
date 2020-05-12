@@ -1,0 +1,91 @@
+<?php 
+$title="{$row_news[title]}_{$row_news[cate_name]}";
+//11年12月6日之后，标题要加入游戏名称
+if($row_news['add_time']>=strtotime("2011-12-06")){
+	$title.="_{$row_news[game_name]}";
+}
+
+$title.="_49you网页游戏平台"; 
+
+if(empty($row_news["pic"])){
+    $keywords=$row_news["source"];
+    $description=$row_news["summary"];
+}
+if(empty($keywords))$keywords="null";
+if(empty($description))$description="null";
+?>
+<?php $nav=$row_news['reurl']; ?>
+<?php include('header.html'); ?>
+<style>
+#NewsDetailContent{
+	color:#000;
+}
+#NewsDetailContent p{
+	line-height:25px;
+	margin:20px auto 0;
+}
+h1{font-size:19px;}
+</style>
+
+<div class="text cl ">
+  <div class="con clearfix">
+<!--left-->
+<div id="coleft">
+<!--login start-->
+<? include('login_info.html'); ?> 
+<!--login end-->
+  <div class="sharedspacer8"></div>  
+  <!--server start-->
+		<? include('server_info.html'); ?> 
+		<!--server end-->
+ 
+ 		<!--service start-->
+		<? include('service_info.html'); ?> 
+		<!--service end-->     
+</div>
+<!--right-->
+<div id="coright">
+  <div class="centnews">
+<div class="m-top"><a href='index.html'>主页</a>
+<?if($row_news['reurl']=='service'){?>
+ >> <a href='<?=$row_news['reurl']?>.html?cid=<?=$row_news['cate_id']?>'><?=$row_news['cate_name']?></a>
+<?}else{?>
+ >> <a href='news.html'>新闻动态</a>
+<?if(!empty($row_news['game_name'])){?>
+ >> <a href='news.html?gcode=<?=$row_news['game_code']?>'><?=$row_news['game_name']?></a>
+<?}
+}?>
+ >> <?=$row_news['subtitle']?></div>
+
+<div id="NewsDetail">
+		<div  id="NewsDetailTitle"><h1><?=$row_news['title']?></h1></div>
+		<div  id="NewsDetailTime"><?= date('Y-m-d H:i:s',$row_news['add_time'])?></div>
+		<br />
+        <div  id="NewsDetailContent" ><?=$row_news['content']?>
+        <br />
+<?if(!empty($row_news['game_web'])){?>
+<br />登录：<a href="<?=$row_news['game_web']?>" target="_blank"><?=$row_news['game_web']?></a>
+<br />马上注册体验：<a href="http://www.49you.com/reg.html" target="_blank">http://www.49you.com/reg.html</a>
+<?}?>
+<br />49you网页游戏平台是一个致力于为玩家营造有快乐、有激情、有分享的游戏平台。
+<br />介绍朋友一起玩游戏，可以获得你朋友充值10%的元宝。>><a href="http://www.49you.com/return.html" target="_blank">点击进入</a>
+<br />通过VIP会员系统可以获得更多的充好值优惠。>><a href="http://www.49you.com/news_info_215.html#vip_list" target="_blank">点击进入</a>
+<br />
+<br />49you平台旗下热门游戏：
+<br />爱恨江湖 华山论剑 《侠客世界》 <a href="http://xk.49you.com" target="_blank">http://xk.49you.com</a>
+<br />三国名将 斗智斗谋 《一骑当先》 <a href="http://yqdx.49you.com" target="_blank">http://yqdx.49you.com</a>
+<br />横版三国 史诗剧情 《龙将》 <a href="http://long.49you.com" target="_blank">http://long.49you.com </a>
+<br />即时战斗 角色扮演 《凡人修真2》 <a href="http://xz.49you.com" target="_blank">http://xz.49you.com</a>
+<br />横版回合 仙侠网游 《神仙道》 <a href="http://sxd.49you.com" target="_blank">http://sxd.49you.com</a>
+<br />即时战斗 历史武侠 《江湖令》 <a href="http://jhl.49you.com" target="_blank">http://jhl.49you.com</a>
+        </div>
+</div>
+  </div>
+
+</div>
+</div>
+
+
+</div>
+
+<? include('footer.html'); ?>

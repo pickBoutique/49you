@@ -1,0 +1,103 @@
+<?php $title='邮件推广_推广返利_49you网页游戏平台'; ?>
+<?php $nav='return'; ?>
+<?php include('header.html'); ?>
+
+<div class="text cl ">
+<div class="con clearfix">
+<!--left-->
+<div id="coleft">
+<!--login start-->
+<? include('login_info.html'); ?> 
+<!--login end-->
+  <div class="sharedspacer8"></div>  
+  <!--server start-->
+  <? include('server_info.html'); ?> 
+  <!--server end-->
+
+  <!--service start-->
+  <? include('service_info.html'); ?> 
+  <!--service end-->          
+</div>
+<!--right-->
+<div id="coright">
+ <div class="center_newinf">
+      <div class="newinf_title">
+            	<ul><li class="nah">返利推广</li></ul></div>
+  <div class="center_list">
+  <!--return_info start-->
+  <? include('return_info.html'); ?> 
+  <!--return_info end-->
+ <div>
+ 
+ <div>
+    <ul class="tag">
+                <li class=""><a href="return.html">推广设置</a></li> 
+                <li class="on"><a href="recom_by_mail.html">邮件推广</a></li>
+                <li class=""><a href="return_record.html">推广记录查询</a></li>
+                <li class=""><a href="member_return.html">我的返利记录</a></li>
+    </ul></div>  
+      
+ <div class="pset2">
+  <p>写下您的邮箱和密码，我们将帮助您发送邮件给您的邮箱好友，轻松又方便，且推广效果明显！</p>
+  <p class="cl"></p><br />
+<form id="form1" name="form1" method="post" action="">
+  <?if(!empty($recom_mail)){?>
+
+  <table width="614" border="0" cellspacing="0" class="cl">
+  <tr>
+    <td height="29" align="right" class="zi1">您目前设置的邮箱地址：</td>
+    <td width="12">&nbsp;</td>
+    <td width="374"><var class="pngfix"><?=$recom_mail["recommail_email"]?></var></td>
+  </tr>
+  <tr>
+    <td height="29" align="right" class="zi1">您在推广的游戏：</td>
+    <td>&nbsp;</td>
+    <td><?=$gamename?></td>
+  </tr>
+</table><br />
+  <?}?>
+  
+  <table width="614" border="0" cellspacing="0" class="cl">
+  <tr>
+    <td height="29" align="right" class="zi1">请输入您新的邮箱地址：</td>
+    <td width="12">&nbsp;</td>
+    <td width="374"><var class="pngfix">
+      <input name="email" type="text" id="email" size="30" value="<?=$_REQUEST['email']?>" />
+    </var></td>
+  </tr>
+  <tr>
+    <td height="29" align="right" class="zi1">请输入您新的邮箱密码：</td>
+    <td>&nbsp;</td>
+    <td><var class="pngfix">
+      <input name="pwd" type="password" id="pwd" size="30" />
+    </var></td>
+  </tr>
+  <tr>
+    <td height="29" align="right" class="zi1">请选择您要推广的游戏：</td>
+    <td>&nbsp;</td>
+    <td><select name="gameid" id='gameid' >
+    <? foreach($games as $k=>$v){ ?>
+    <option label="<?=$v['game_name']?>" value="<?=$v['game_id']?>"><?=$v['game_name']?></option>
+     <? } ?>
+    </select></td>
+  </tr>
+  
+  <tr>
+    <td height="37" colspan="3" align="center"><input name="image" type="image" src="images/btent2.gif" alt="提交" /> </td>
+    </tr>
+</table>
+
+    <input type="hidden" name="act" value="<?if(empty($recom_mail)){?>add<?}else{?>edit<?}?>" />
+   </form>
+ </div>
+  <p class="pshow">&nbsp;</p>               
+                   
+  </div>   
+</div>
+</div>
+</div>
+
+
+</div>
+
+<? include('footer.html'); ?>

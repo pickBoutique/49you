@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>游戏下载_盛世三国官网_盛世三国-盛世三国游戏下载</title>
+<meta name="keywords" content="游戏下载" />
+<meta name="description" content="游戏下载" />
+<link href="client_download/reset.css" rel="stylesheet" media="screen" type="text/css" />
+<link href="client_download/head.css" rel="stylesheet" media="screen" type="text/css" />
+<link href="client_download/downlod.css" rel="stylesheet" media="screen" type="text/css" />
+</head>
+<body>
+<?
+$gwname='49游戏平台盛世三国';
+require(WEB_ROOT.'/games/top_bar.html');
+?> 
+<div class="bt_bg">
+	<div id='backdrop' style="display:none;z-index:1;height:100%;width:100%;overflow:hidden;position:fixed;_position:absolute;_height:1000px;top:0;left:0;background:#000;opacity: 0.5;-moz-opacity:0.5;filter:alpha(opacity=50);"></div>	
+</div>
+
+		
+		<div class="wrapper">
+            <div class="headUl">
+                <div class="head_nav">
+                    <a class="HeadTextA headtext" href="/" title="盛世三国官网" >盛世三国官网</a>
+                    <a class="HeadTextB headtext" href="news.html" title="新闻公告">新闻公告</a>
+                    <a class="HeadTextC headtext" href="news.html" title="活动公告">活动公告</a>
+    
+                    <a class="HeadTextD headtext" href="news.html?pid=179&cid=183" title="游戏资料">游戏资料</a>
+                    <a class="HeadTextE headtext" href="client_download.html" title="游戏下载">游戏下载</a>
+                    <a class="HeadTextF headtext" href="<?=BBS_ROOT?>/forumdisplay.php?fid=44" title="游戏论坛" target="_blank">游戏论坛</a>
+                </div>
+            </div>
+    
+            <div class="sg_dl6_content">
+                <div class="sg_dl_left">
+            
+                    <p>
+                        2011最受期待的游戏《49you盛世三国》，真正史诗级大作，超大地图，万人互动，华美画面，突破游戏极限。心动游戏出品。</p>
+                </div>
+                <div class="sg_dl_middle">
+                    <div class="item1">
+                        <div style="float: left; padding-top: 35px">
+                            <p>
+                                微型客户端，3秒极速下载</p>
+            
+                            <p>
+                                立即开始游戏，部分内容边玩边下载</p>
+                            <p>
+                                大小：4.8M</p>
+                        </div>
+                        <a class="dl_button" href="<?=YOU_ROOT?>/reg_adv.html?act=download&gid=7&type=s" >&nbsp;</a></div>
+                    <div class="item2">
+                        <div style="float: left; padding-top: 40px">
+            
+                            <p>
+                                完整客户端下载,流畅体验游戏</p>
+                            <p>
+                                建议宽带较小玩家下载</p>
+                            <p>
+                                大小：498M</p>
+                        </div>
+            
+                        <a class="dl_button" href="<?=YOU_ROOT?>/reg_adv.html?act=download&gid=7&type=l" onclick="_gaq.push(['_trackPageview', 'sg_dl_full']);">&nbsp;</a></div>
+                </div>
+                <div class="sg_dl_right">
+                    <a href="/"><img src="client_download/preview.jpg" /></a>
+                    <div id="mediaplayer">
+                        盛世三国</div>
+                </div>
+            </div>
+		
+            <div id="footer" style="color:#805B34;">
+        
+             	<div class="footer">
+                <?foreach($cfg_oflink as $k=>$v){?>
+                <a target="_blank" href="<?=$v["link"]?>"><?=$v["name"]?></a> | 
+                <?}?><a href="<?=YOU_ROOT?>/news_info_207.html" target="_blank">关于我们</a> | <a href="<?=YOU_ROOT?>/jianhu/gc.html" target="_blank" >家长监护服务</a> | <a href="<?=YOU_ROOT?>/service.html" target="_blank">客服中心</a> | <a href="<?=YOU_ROOT?>/news_info_206.html" target="_blank">商务合作</a>
+                <div>
+                <?=$config['footer']?>
+                <div style="display:none;">
+                <script src="http://s17.cnzz.com/stat.php?id=3577290&web_id=3577290&show=pic" language="JavaScript"></script>
+                </div>
+        
+            </div>	
+        </div>
+</body>
+</html>

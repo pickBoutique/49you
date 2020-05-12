@@ -1,0 +1,96 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'游戏' , 'dataIndex':'trans_gid' , 'subIndex':'trans_sid', 'url':'ajax-servers.php' , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("game","game_id","game_name",'1',true)?>} },
+          { 'header':'服务器' , 'dataIndex':'trans_sid' ,  'type':'select' , 'options':{ '全部':'' } },
+          { 'header':'交易单号' , 'dataIndex':'trans_code' , 'type':'textbox' },
+          { 'header':'用户名' , 'dataIndex':'trans_mname' , 'type':'textbox' },
+          { 'header':'充值方式' , 'dataIndex':'trans_type' , 'type':'select' , 'options':{ '全部':'',<?=cfg_to_opt($cfg_pay_type)?>}  },
+		  { 'header':'下单时间' , 'dataIndex':'trans_addtime' , 'type':'datetime', 'defaultValue':'<?=date("Y-m-d")?>' },
+		  { 'header':'平台到帐' , 'dataIndex':'trans_instatus' , 'type':'select' , 'options':{ '全部':'','已到账':'1','未到账':'0'} },
+		  { 'header':'游戏到帐' , 'dataIndex':'trans_outstatus' , 'type':'select' , 'options':{ '全部':'','已到账':'1','未到账':'0'} }
+          </div>
+        </div>
+
+		<div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="button" value="添加" class="btn action_add" onclick="toadd();" />
+		</div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			
+			function getoperator(rs) {
+				return   " <a href='###' onclick=\"toedit('" + rs["trans_id"] + "')\" class='action_toedit' >修改</a>" + "　<a href='###' onclick=\"topay('" + rs["trans_code"] + "')\" class='action_topay' >游戏到帐</a>" + " <a href='###' onclick=\"toconsolepay('" + rs["trans_code"] + "','" + rs["trans_gname"] + "','" + rs["trans_sname"] + "','" + rs["trans_mname"] + "','" + rs["trans_money"] + "')\" class='action_toconsolepay' >后台直冲</a>";
+	
+			}
+
+			var cm = new ColumnModel
+			([
+			{header: '交易单号', dataIndex: 'trans_code',  width: 70 },
+			{header: '用户名', dataIndex: 'trans_mname'  },
+			{header: '充值金额', dataIndex: 'trans_money', sortable: true, width: 70 },
+			{header: '联系电话', dataIndex: 'trans_phone', width: 85 },
+			{header: '游戏名称', dataIndex: 'trans_gname',  width: 70 },
+			{header: '服务器名称', dataIndex: 'trans_sname',  width: 70 },
+			{header: '下单时间', dataIndex: 'trans_addtime', sortable: true, format:'yyyy-MM-dd HH:mm', width: 80 },
+			{header: '充值方式', dataIndex: 'trans_type',  width: 70, renderer: '<?=$json->encode($cfg_pay_type);?>' },
+			{header: '平台到帐', dataIndex: 'trans_instatus', sortable: false, width: 70, renderer: '<?=$json->encode($cfg_trans_status);?>' },
+			{header: '游戏到帐', dataIndex: 'trans_outstatus', sortable: false, width: 70, renderer: '<?=$json->encode($cfg_trans_status);?>' },
+			{header: '操作',  width: 140, renderer: getoperator }
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget' , filter:'[{"name":"trans_addtime","oper":">=","value":"<?=strtotime(date('Y-m-d'))?>"},{"name":"trans_addtime","oper":"<=","value":"<?=strtotime(date('Y-m-d',strtotime('+1 day')))?>"}]'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+			
+			
+		});
+		
+		
+		function toadd(){
+			show_editor({ title:'添加',src:'trans-add.php',  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function toedit(id){
+			show_editor({ title:'编辑',src:'trans-add.php?trans_id=' + id,  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function todel(){
+			ajax_action('trans-add.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+				grid.load(); 
+			});
+		}
+		
+		function topay(code){
+			ajax_action('trans-list.php',{ act:'topay' , code:code } , '您确定已到款了吗？' , function(){ 
+				grid.load();
+			});
+		}
+		
+		function toconsolepay(code,gname,sname,mname,money){
+			ajax_action('trans-list.php',{ act:'toconsolepay' , code:code } , '警告：该操作将为　'+gname+'-'+sname+'-'+mname+' 的游戏帐号直接充值' + money + '元，您确定已到款了吗？' , function(){ 
+				grid.load();
+			});
+		}
+		
+	
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

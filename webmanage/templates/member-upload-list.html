@@ -1,0 +1,81 @@
+<!--<?php include_once("header-open.html");?>-->
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="member-upload-list.php">
+		<!--<div class="searcher">
+			<strong>搜索：</strong>
+			用户邮箱 <input type="text" name="author_name" id="author_name" value="<?=$author_name?>" class="input_w100" />
+			&nbsp;&nbsp;
+			资料名称 <input type="text" name="source_name" id="source_name" value="<?=$source_name?>" class="input_w100" />
+			&nbsp;&nbsp;
+			时间从 <input type="text" class="Wdate" id="start_time" name="start_time" value="<?=$start_time?>" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'end_time\',{d:-1});}'})"/> 到 <input type="text" class="Wdate" id="end_time" name="end_time" value="<?=$end_time?>" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'start_time\',{d:1});}'})"/>
+			<input type="submit" value="搜索" class="btn" />
+		</div>
+		<div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="radio" name="op_column" id="op_column1" onclick="changeOperate('del')" checked="checked" />删除
+			<input type="hidden" name="act" id="act" value="del" />
+			<input type="hidden" name="request" value="<?=$request?>" />
+			<input type="button" value="提交" class="btn" onclick="OperateSubmit(this.form,'checkbox_attachment_id[]','member-upload-action.php')" />
+		</div>
+		<?=$list_html?>
+		<div class="page_html"><?=$page_html?></div>-->
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'用户' , 'dataIndex':'author_name' , 'type':'textbox' },
+          { 'header':'资料名称' , 'dataIndex':'attachment_name' , 'type':'textbox' },
+          { 'header':'时间从' , 'dataIndex':'add_time' , 'type':'datetime' }</div>
+        </div>
+        
+       <div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="button" value="删除" class="btn action_del" onclick="todel();" />
+		</div>
+        
+		<div class="searcher" id="permimag"></div>
+        
+        
+		<script>
+		var grid;
+		$(document).ready(function(){
+			
+			function getoperator(rs) {
+				return "<a href='###' class='action_edit' onclick=\"toedit('" + rs["attachment_id"] + "')\">删除</a>";
+			}
+			
+			function getattachment(rs){
+				return "<div onmouseover=\"$('#attachment_" + rs['attachment_id'] + "').show();\" onmouseout=\"$('#attachment_" + rs['attachment_id'] + "').hide();\"><a href=\"" + rs['attachment_url'] + "\" target=\"_blank\">" + rs['source_name'] + "/<font color=\"#FF0000\">（" + rs['attachment_name'] + "）</font></a></div><div id=\"attachment_" + rs['attachment_id'] + "\" style=\"display:none; position:absolute; padding:10px; border:1px solid #CCC; background-color:#F5F5F5;\" onmouseover=\"$('#attachment_" + rs['attachment_id'] + "').show();\" onmouseout=\"$('#attachment_" + rs['attachment_id'] + "').hide();\"><img src=\"" + rs['attachment_url'] + "\" width=\"150\" style=\"width:150px;\" /></div>";
+			}
+			
+			var cm = new ColumnModel
+			([
+			new CheckboxModel({dataIndex: 'attachment_id'}),
+			{header: '用户', dataIndex: 'author_name', sortable: false, width: 80},
+			{header: '资料名称', dataIndex: 'attachment_name', sortable: false, renderer: getattachment},
+			{header: '文件类型', dataIndex: 'attachment_type', sortable: false, width: 150},
+			{header: '文件大小', dataIndex: 'attachment_size', sortable: false, width: 100},
+			{header: '添加时间', dataIndex: 'add_time' , format:'yyyy-MM-dd', sortable: true, width: 100 }
+			]);
+	
+			grid = new GridView({ id: 'permimag', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+		});
+
+		function todel(){
+			if(grid.get_selected_ids() == ''){
+				alert("请选择要删除的行");
+				return;
+			}
+			ajax_action('member-upload-list.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+				grid.load(); 
+			});
+		}
+		
+		</script>
+	</form>
+</div>
+<?php include_once("footer.html");?>

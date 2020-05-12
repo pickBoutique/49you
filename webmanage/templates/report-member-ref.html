@@ -1,0 +1,205 @@
+<?if($act != 'dataget'){?>
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'注册时间' , 'dataIndex':'startime' , 'type':'datetime', 'defaultValue':'<?=date("Y-m-d")?>' }
+          </div>
+        </div>
+<div class="searcher action_rerun">
+<div class="searchoptions"><strong>重算数据：</strong>
+<div class="search_datetime">
+<input type="text" size="10" class="searCom Wdate" id="reset_start" value="<?=date("Y-m-d");?>"></div> &mdash; 
+<div class="search_datetime">
+<input type="text" size="10" class="searCom Wdate" id="reset_end"></div>
+</div>
+
+            <input type="button" value="重算" class="btn" onclick="toreset();" />
+<script type="text/javascript" src="/js/sum_data_reset.js"></script>
+<script type="text/javascript">
+		function toreset(){
+			var redt_star=$('#reset_start').val();
+			var redt_end=$('#reset_end').val();
+			sum_resetdatas("member_ref","d",redt_star,redt_end,'<?=$db->get_cache_md5();?>',0);
+		}
+</script>
+</div>
+<script>
+$(document).ready(function(){
+	//搜索栏初始化
+	renderSearchBar("searchbar", function(filter) {
+			$("#ifram_list").attr("src","report-member-ref.php?act=dataget&filter="+filter) ;
+			}
+		);
+	$('#searchbar').show();
+});
+</script>
+<div id="grid_contaniner" class="searcher" style="height:500px;">
+<iframe width="100%" scrolling="auto" height="100%" frameborder="no" allowtransparency="allowtransparency" marginheight="0" marginwidth="0" border="0" src="report-member-ref.php?act=dataget" id="ifram_list"></iframe>
+</div>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>
+
+<?}
+
+
+
+else{?>
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<link type="text/css" rel="stylesheet" href="/style/style.css">
+<link type="text/css" rel="stylesheet" href="/style/table.css">
+<link type="text/css" rel="stylesheet" href="/style/jquery_dialog.css">
+<link type="text/css" rel="stylesheet" href="/style/jquery-calendar.css">
+<script type="text/javascript" src="/js/jquery.js"></script>
+
+
+<style>
+.tdclick{
+	cursor:pointer;
+}
+.openlist{
+	width:10px;
+	height:10px;
+	border:1px solid #666;
+	margin:0 auto;
+	text-align:center;
+	line-height:10px;
+	float:left;
+	margin-right:5px;
+	margin-top:3px;
+}
+</style>
+</head>
+
+<table cellspacing="0" cellpadding="0" border="0" class="grid_table" id="tbshowlist">
+<tbody>
+<tr>
+<th class="grid_header">平台</th>
+<th class="grid_header">来源网站</th>
+<th class="grid_header">来源链接</th>
+<th class="grid_header">来源关键字</th>
+<th class="grid_header">访客数</th>
+<th class="grid_header">注册数</th>
+<th class="grid_header">注册转化率</th>
+<th class="grid_header">付费人数</th>
+<th class="grid_header">付费金额</th>
+<th class="grid_header">付费转化率</th>
+</tr>
+<? if($rs){
+	$i=0;
+    //行类型：0 平台 1 来源网站，2 来源链接，3 普通
+    $linetype= 0;
+    $linecolor=array(0=>"#F60",1=>"#A0A",2=>"#06F",3=>"#070");
+    $ptname=array(1=>"快乐营",2=>"56uu",5=>"49you");
+    $sd_domainbs="";
+	foreach($rs as $k){
+    	$linetype=0;
+        
+        if($sd_domainbs!=$k["sd_domainbs"]){
+        	$sd_domainbs=$k["sd_domainbs"];
+	        $i++;
+        }
+        $pf_id=$k["sd_platform"];
+        if(empty($k["sd_platform"]) && empty($k["sd_domainbs"]) && empty($k["sd_refmd5"])){
+    		$k["sd_platform"]="所有平台";
+            $k["sd_domainbs"]="&nbsp";
+            $k["sd_referrer"]="";
+            $k["sd_keyword"] = $k["sd_platform"]." 合计";
+        }elseif(empty($k["sd_domainbs"]) && empty($k["sd_refmd5"])){
+        	$k["sd_platform"]=$ptname[$k["sd_platform"]];
+            $k["sd_domainbs"]="&nbsp";
+            $k["sd_referrer"]="";
+            $k["sd_keyword"] = $k["sd_platform"]." 合计";
+            $linetype=1;
+        }elseif(empty($k["sd_refmd5"])){
+        	$k["sd_platform"]="&nbsp";
+            $k["sd_referrer"]="";
+            $k["sd_keyword"] = $k["sd_domainbs"]." 合计";
+            $linetype=2;
+
+        }else{
+        	$k["sd_platform"]="&nbsp";
+            if(empty($k["sd_keyword"])){
+            	$k["sd_keyword"]="&nbsp";
+            }
+            $linetype=3;
+        }
+        
+		if($linetype==1){
+	        $k["sd_platform"]="<div class='openlist'>+</div>".$k["sd_platform"];
+		}elseif($linetype==2){
+	        $k["sd_domainbs"]="<div class='openlist'>+</div>".$k["sd_domainbs"];
+        }elseif($linetype==0){
+	        $k["sd_platform"]="△ ".$k["sd_platform"]; 
+        }
+        if(!empty($k["sd_guest"])){
+        	$k["regs_point"]=number_format($k["sd_register"]/$k["sd_guest"]*100,2)."%";
+        	$k["trans_point"]=number_format($k["sd_paymember"]/$k["sd_guest"]*100,2)."%";
+        }
+
+?>
+<tr trlevel="<?=$linetype?>" pf_id="<?=$pf_id?>" <?if($linetype>2){?>style="display:none;"<?}else{?>class="tdclick" onclick="showlist(this)" tshow="<?=$linetype==1 ? "1" : "0"?>" <?}?> openid="<?=$i?>">
+<td align="left" class="grid_cell" style="color:<?=$linecolor[$linetype]?>;width:100px;"><?=$k["sd_platform"]?></td>
+<td align="left" class="grid_cell" style="color:<?=$linecolor[$linetype]?>;width:100px;"><?=$k["sd_domainbs"]?></td>
+<td align="left" class="grid_cell" style="color:<?=$linecolor[$linetype]?>;width:200px;height:20px; overflow:hide;">
+<?if(!empty($k["sd_referrer"])){?>
+<a href="<?=$k["sd_referrer"]?>" style="color:<?=$linecolor[$linetype]?>;" target="_blank"><?=substr($k["sd_referrer"],0,60);?></a>
+<?}else{?>
+&nbsp
+<?}?>
+</td>
+<td align="left" class="grid_cell" style="color:<?=$linecolor[$linetype]?>"><?=$k["sd_keyword"];?></td>
+<td align="right" class="grid_cell" style="color:<?=$linecolor[$linetype]?>"><?=$k["sd_guest"];?></td>
+<td align="right" class="grid_cell" style="color:<?=$linecolor[$linetype]?>"><?=$k["sd_register"];?></td>
+<td align="right" class="grid_cell" style="color:<?=$linecolor[$linetype]?>"><?=$k["regs_point"];?></td>
+<td align="right" class="grid_cell" style="color:<?=$linecolor[$linetype]?>"><?=$k["sd_paymember"];?></td>
+<td align="right" class="grid_cell" style="color:<?=$linecolor[$linetype]?>"><?=$k["sd_paytotal"];?></td>
+<td align="right" class="grid_cell" style="color:<?=$linecolor[$linetype]?>"><?=$k["trans_point"];?></td>
+</tr>
+<?	
+	}
+}?>
+</tbody>
+</table>
+<script type="text/javascript">
+function showlist(obj){
+	var openid=$(obj).attr("openid");
+	var pf_id=$(obj).attr("pf_id");
+	var trlevel=$(obj).attr("trlevel");
+	var tshow=$(obj).attr("tshow");
+	if(trlevel==2){
+		if(tshow==0){
+			$("tr[openid='"+openid+"']").show();
+			$("tr[openid='"+openid+"']").attr("tshow",1);
+		}else{
+			$("tr[openid='"+openid+"']").hide();
+			$("tr[openid='"+openid+"']").attr("tshow",0);
+			$(obj).show();
+		}
+	}else if(trlevel==1){
+		if(tshow==0){
+			$("tr[pf_id='"+pf_id+"']").show();
+			$("tr[pf_id='"+pf_id+"']").attr("tshow",1);
+			$("tr[trlevel='3']").hide();
+			$("tr[trlevel='2']").attr("tshow",0);
+		}else{
+			$("tr[pf_id='"+pf_id+"']").hide();
+			$("tr[pf_id='"+pf_id+"']").attr("tshow",0);
+			$(obj).show();
+		}
+	}else if(trlevel==0){
+		$("tr[trlevel='2']").hide();
+		$("tr[trlevel='3']").hide();
+		$("tr[trlevel='1']").attr("tshow",0);
+		$("tr[trlevel='2']").attr("tshow",0);
+	}
+}
+
+</script>
+</html>
+<?}?>

@@ -1,0 +1,96 @@
+<?php include_once("header.html");?>
+<script language="javascript">
+function on_game_change(){
+	<? if($act=='add'){ ?>
+	var gid = $('#server_gid').val();
+	ajax_action('server-add.php',{act:'get_next_server' , gid:gid} , null , function(data){ 
+				var obj = eval('(' + data + ')');
+				
+					$('#server_num').val(obj.server_num);
+					
+					$('#server_name').val(obj.server_name);
+			
+			});
+	<? } ?>
+}
+</script>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>游戏名称：</th>
+				<td>
+					<select name="server_gid" id="server_gid" onchange="on_game_change();">
+						<?php
+							if($game_group_arr){
+								foreach($game_group_arr as $row){
+									$strSelected="";
+									if($row['game_id'] == $rs['server_gid']){
+										$strSelected="selected";
+									}
+						?>
+						<option value="<?=$row['game_id']?>" <?=$strSelected?> ><?=$row['game_name']?></option>
+						<?php
+								}
+							}
+						?>
+					</select>
+                    <script language="javascript">on_game_change();</script>
+				</td>
+			</tr>
+			<tr>
+				<th>区号：</th>
+				<td>
+					<input type="text" name="server_num" id="server_num" value="<?=$rs['server_num']?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th>服务器名称：</th>
+				<td>
+					<input type="text" name="server_name" id="server_name" value="<?=$rs['server_name']?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th>注册人数：</th>
+				<td>
+					<input type="text" name="server_register" id="server_register" value="<?=$rs['server_register']?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th>是否新服务器：</th>
+				<td>
+                    <input name="server_isnew" value="1" <?=$rs['server_isnew']!='0' ? 'checked' : '' ?> type="radio">是
+                    <input name="server_isnew" value="0" <?=$rs['server_isnew']=='0' ? 'checked' : '' ?> type="radio">否
+				</td>
+			</tr>
+			<tr>
+				<th>是否火爆服务器：</th>
+				<td>
+                    <input name="server_ishot" value="1" <?=$rs['server_ishot']!='0' ? 'checked' : '' ?> type="radio">是
+                    <input name="server_ishot" value="0" <?=$rs['server_ishot']=='0' ? 'checked' : '' ?> type="radio">否
+				</td>
+			</tr>
+             <tr>
+				<th>开服时间：</th>
+				<td>
+                	<input type="text" name="server_start" id="server_start" value="<?= empty($rs['server_start']) ? date('Y-m-d 11:00:00',strtotime("+1 day") ) : date('Y-m-d H:i:s',$rs['server_start']) ?>" class="input_w200"  />
+				</td>
+			</tr>           
+			<tr>
+				<th>服务器状态：</th>
+				<td>
+                    <input name="server_status" value="1" <?=$rs['server_status']=='1' ? 'checked' : '' ?> type="radio">开启
+                    <input name="server_status" value="0" <?=$rs['server_status']!='1' ? 'checked' : '' ?> type="radio">关闭
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<?php include_once("footer.html");?>

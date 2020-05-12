@@ -1,0 +1,41 @@
+@charset "utf-8";
+/* CSS Document */
+body{margin:0;}
+img{border:none;}
+div,span,ul,li,p,h1,h2,h3,h4,h5,h6,img,p,dl,dd,dt{margin:0px;padding:0px;}
+ul,li,dl,dt,dd,form,img,p,li span{margin:0; padding:0; border:none; list-style-type:none; }
+ul{ list-style-type: none; }
+
+body{font-size:12px;color:#3b3322;font-family:"宋体";}
+a{color:#3b3322;text-decoration:none;}
+a:hover{text-decoration:underline;color:#C60;}
+
+#topbg{top:0; left:0;width:540px; background-color:#684b23;  margin:0 auto;}
+.top{width:540px;height:41px;background:url(../images/top-1.jpg) center bottom;}
+.sosuo{background:url(../images/top-2.jpg) center bottom; height:32px; line-height:32px; padding:6px 32px 0px 32px; color:#FFC; position:relative;  }
+
+.so{width:120px;height:18px;background:#f5eace;border:1px solid #bc7f3c; margin-left:14px; line-height:18px;  }
+.ipt2{
+	width:69px;
+	height:29px;
+	background:url(../images/ico-c.jpg);
+	display:block;
+	border:0;
+	position:absolute;
+	left: 444px;
+	top: 7px;
+}
+
+
+.sharedspacer5 {  height:5px; *height:5px; _height:5px; line-height:5px; clear:both; }
+.main{ margin:0px 5px; background-color:#f5eace; }
+.tab{background:url(../images/ben-bg.jpg) center top;height:24px;line-height:24px;color:#FFC;}
+
+.page {color: #A4580D; line-height: 20px; padding: 10px 0 ; text-align: center;}
+.page a {  background: #8a4b0f;  border: 1px solid #000000;  color: #FFFFFF; margin-right: 8px;  padding: 0 6px;}
+.page strong {  background: #39C;  border: 1px solid #000000;  color: #FFFFFF; margin-right: 8px;  padding: 0 6px;}
+.shuom{padding:0px 20px; line-height:18px;}
+
+.anniu{ font-weight:bold; text-align:center; width:119px; height:26px; line-height:26px;  background:url(../images/ico-bj.jpg) left top; color:#FFC; }
+.anniu a:hover{color:#FFF;text-decoration: underline;}
+.mgdata{width:530px; height: 450px;position:relative;overflow:hidden;text-align:center;}

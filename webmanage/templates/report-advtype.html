@@ -1,0 +1,66 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'平台' , 'dataIndex':'sd_platform' , 'type':'select' , 'options':{'全部':'',<?=get_system_select(true)?>} },
+          { 'header':'广告ID' , 'dataIndex':'sd_advid'  , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("adv","adv_id","adv_name",'1 order by adv_name',true)?>}},
+          { 'header':'广告分类' , 'dataIndex':'advgroup_id'  , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("advgroup","advgroup_id","advgroup_name",'1',true)?>}},
+		  { 'header':'注册时间' , 'dataIndex':'reg_addtime' , 'type':'datetime', 'defaultValue':'<?=date("Y-m-d")?>' },
+          { 'header':'充值时间' , 'dataIndex':'trans_intime' , 'type':'datetime' }
+          </div>
+        </div>
+		<div class="searcher">
+			
+<div class="searchoptions"><strong>重算数据：</strong>
+<div class="search_datetime">
+<input type="text" size="10" class="searCom Wdate" id="reset_start" value="<?=date("Y-m-d");?>"></div> &mdash; 
+<div class="search_datetime">
+<input type="text" size="10" class="searCom Wdate" id="reset_end"></div>
+</div>
+
+            <input type="button" value="重算" class="btn" onclick="toreset();" />
+<script type="text/javascript" src="/js/sum_data_reset.js"></script>
+<script type="text/javascript">
+		function toreset(){
+			var redt_star=$('#reset_start').val();
+			var redt_end=$('#reset_end').val();
+			var system_id=$("select[name='sd_platform']").val();
+			sum_resetdatas("adv","d",redt_star,redt_end,'<?=$db->get_cache_md5();?>',system_id);
+		}
+</script>
+            
+		</div>
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			var cm = new ColumnModel
+			([
+			{header: '广告id', dataIndex: 'sd_advid',sortable: true,width:75},
+			{header: '广告名称', dataIndex: 'adv_name'},
+			{header: '广告费', dataIndex: 'adv_cost', sortable: true},
+			{header: '注册人数[成本]', dataIndex: 'sd_memreg',sortable: true},
+			{header: '付费人数[成本]', dataIndex: 'trans_count',sortable: true},
+			{header: '充值总额[回款率]', dataIndex: 'trans_money', sortable: true},
+			{header: '隔天活跃[成本]', dataIndex: 'sd_actve2day', sortable: true},
+			{header: '3天活跃[成本]', dataIndex: 'sd_actve3day', sortable: true},
+			{header: '5天活跃[成本]', dataIndex: 'sd_actve5day', sortable: true}
+			]);
+
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 1000,sort:'adv_cost',dir:'desc', params: {'act': 'dataget'}});
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 1000, filter: filter} }); });
+			$('#searchbar').show();
+		});
+	
+
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

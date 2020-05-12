@@ -1,0 +1,19 @@
+@charset "utf-8";
+/* CSS Document */
+
+.save_dea{
+	background: url("img/lottery.jpg") no-repeat;
+	width:162px;
+	height:23px;
+	float:left;
+	margin-top:3px;
+}
+/*
+.save_dea{
+	background: url("/images/christmas/lottery.jpg") no-repeat;
+	width:162px;
+	height:23px;
+	float:left;
+	margin-top:3px;
+}
+*/

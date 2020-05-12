@@ -1,0 +1,58 @@
+@charset "utf-8";
+/* 双旦节活动页面 CSS Desinged by Qi Leer Email:cherry.dlh@gmail.com 2011-12-07 */ 
+
+/* layout元素 */
+body {font-family:Arial,Helvetica,Tahoma; font-size: 12px; text-align: left;margin:0; padding:0;}  
+img {border:0px;   }
+.clear {	clear: both;  font-size: 0px; padding: 0px;margin: 0px;height:0px;line-height: 0px; }
+div,ul,ol,li,dl,dd,form,p,h1, h2{padding:0px 0px 0px 0px;margin:0px;border:0px;}
+ul { list-style:none;}
+.clearfix:after {visibility: hidden;display: block;font-size: 0;content: " ";clear: both;height: 0;}
+.clearfix { display: inline-table; }
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* End hide from IE-mac */
+a{outline: none;star:expression(this.onFocus=this.blur());}
+
+/* 内容Layout设置 */
+.continer  {background: url(../images/yqi/bg_repeat.gif ) repeat-x center top;  }  
+
+
+/* 头部*/
+.top_wraper{background:url(../images/yqi/bg_top_wraper.jpg) no-repeat center top;}
+.top_wraper .top{background:url(../images/yqi/bg_top.jpg) no-repeat center top;height:390px;width:1000px;margin:0 auto;position:relative;zoom:1;}
+.top_wraper .logo{position:absolute;top:75px;left:57px;width:180px;height:82px;background:url(../images/yqi/logo_yqi.gif) no-repeat left top;}
+.top_wraper .logo a{width:180px;height:82px;display:inline-block;}
+.top_wraper .top .linktext{background:url(../images/yqi/top_textarea.jpg) no-repeat 467px top;height:31px;line-height:31px;text-align:right;padding-right:10px;color:#fe9320;}
+.top_wraper .top .linktext a{margin:0 10px;color:#fffeb1;text-decoration:none;text-shadow:3px 2px 6px #000;}
+.top_wraper .top .linktext a:hover{ text-decoration:underline;}
+.top_wraper .top .linktext a.net{font-weight:bold;}
+.game_entry a{ width:183px; height:53px; display:inline-block; position:absolute; bottom:16px; left:339px;}
+
+
+/* 中间*/
+.con_wraper{background:url(../images/yqi/bg_content.jpg) no-repeat center bottom;width:100%;}
+.content{background:url(../images/yqi/bg_content.jpg) no-repeat center bottom;height:600px;padding:38px 40px 0 58px;width:902px;margin:0 auto;}
+.stepbox1,.stepbox2,.stepbox3,.stepbox4,.stepbox5,.stepbox6,.stepbox7{float:left;display:inline;margin:6px 0 10px 0;}
+.stepbox1{margin-left:0;}
+.stepbox4{margin: 12px 0 0 270px;}
+.stepbox5{margin-top:13px;}
+
+/*pop 弹出框部分*/
+.PopsBar {border:8px solid #750e05;position: relative;  zoom:1;background:#fff8e5 url(../images/shuangdan/bg_pop_top.jpg) no-repeat right top;width:574px; padding:25px 0 0;*padding:75px 0 0 0;}
+.PopsBar .closequ  {position: absolute;	z-index:3;	right:-34px;	top:-8px;	width:34px;  }
+.PopsBar .closequ  .btn_close { display:block; 	width:34px; height:34px; background: url(../images/yqi/btn_close.gif ) no-repeat 0px 0px; text-align:center;line-height:124px; overflow:hidden;   } 
+
+.popContiner{padding:0 10px 138px 125px; background:url(../images/yqi/xinxing.jpg) no-repeat left bottom;}
+.popTitle{width:125px;margin-left:-125px;float:left;display:inline; text-align:center;}
+.popContent{color:#782f02;font-size:14px;line-height:25px; min-height:400px; height:auto!important; height:400px;}
+.popContent a{color:#782f02;font-size:14px;line-height:25px;}
+.popContent p{}
+
+.popContent .con_special{font-weight:bold;margin-top:35px;}
+.popContent .con_title{font-weight:bold; font-size:13px;}
+.popContent .remark{ color:#bf1105;}
+.pop6_tab{ border-collapse:collapse; border:1px solid #782f02;}
+.pop6_tab thead{ font-weight:bold; }
+.pop6_tab td{ padding:0;border:1px solid #782f02;text-align:center; font-size:12px;s}

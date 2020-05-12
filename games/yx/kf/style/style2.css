@@ -1,0 +1,103 @@
+body{
+	font-family:'宋体',Arial, Helvetica, sans-serif;
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-color:#000;
+	background-image:url(../images/bg1.jpg);
+	background-repeat: no-repeat;
+	background-position: top;
+
+}
+
+div,p,ul,li,dl,dt,dd,h1,h2,h3,h4,h5,form,a,object{ margin:0; padding:0; word-wrap:break-word; outline:none; list-style:none;}
+
+/*
+ * 将具有默认margin和padding的标记置零
+ * @overlay *
+ * @desc	所有标记的margin、padding都在使用时具体定义
+ */
+*{
+	margin:0;
+	padding:0;
+	font-size:12px;
+}
+
+
+.main{ width:1004px; margin: 0 auto;}
+
+.wipper1{ width:1004px; height:60px; }
+.wipper2{width:1004px; height:129px; background-image:url(../images/page2_04.jpg)}
+.wipper3{width:1004px; height:140px; background-image:url(../images/page2_05.jpg) }
+.wipper4{width:1004px; height:128px;  }
+
+
+
+
+
+.butA_01{ display:block; width:224px; height:67px; text-indent:-9999px; overflow:hidden;  background:url(../images/icon0.jpg) left top no-repeat; margin:0px;}
+a.butA_01:hover{background:url(../images/icon0.jpg) 0px -67px no-repeat;}
+
+.butA_02{ display:block; width:224px; height:67px; text-indent:-9999px; overflow:hidden;  background:url(../images/icon1.jpg) left top no-repeat; margin:0px;}
+a.butA_02:hover{background:url(../images/icon1.jpg) 0px -67px no-repeat;}
+
+
+
+
+
+.content{
+	width:708px;
+	margin:0 auto;
+	overflow:hidden;
+	position: relative;
+	left: 80px;
+}
+
+
+
+
+.nr01{ width:862px; background-image:url(../images/nr_01.jpg); height:128px; margin:0 auto;}
+
+.nr02{ width:862px; background-image:url(../images/nr_02.jpg); overflow:hidden;  margin:0 auto;}
+
+.nr03{width:862px; background-image:url(../images/nr_03.jpg); height:136px; margin:0 auto;}
+
+
+.nr01 h2{
+	font-size:30px;
+	line-height:63px;
+	color:#f47900;
+	top:30px;
+	width:443px;
+	background-image:url(../images/tbg.jpg);
+	height:63px;
+	text-align:center;
+	position: relative;
+	margin:0 auto;
+}
+
+.nr{ padding:0 50px 0 50px; line-height:24px; color:#b09900; font-size:14px;}
+
+.but0{ margin:20px auto 0 auto; width:300px; padding-top:10px; text-align:center;}
+
+.but0 span{ margin-left:8px;}
+
+
+.foot{
+	width:100%;
+	line-height:24px;
+	color:#aaaaaa;
+	text-align:center;
+	height:75px;
+	margin:0 auto;
+	background-image: url(../images/footbg.jpg);
+
+}
+
+.foot p { padding-top:15px;}
+
+.red1{ color:#FF0000; font-size:14px;}
+
+.r{ color:#FF0000; font-size:16px;}
+
+
+/*  |xGv00|32671b2a9bb7545c3590fc36888638eb */

@@ -1,0 +1,48 @@
+<?php include_once("header.html");?>
+
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'平台' , 'dataIndex':'sd_platform' , 'type':'select' , 'options':{'全部':'',<?=get_system_select(true)?>} },
+          { 'header':'广告' , 'dataIndex':'advid' , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("adv","adv_id","adv_name",'1 order by adv_name',true)?>}},
+          { 'header':'广告分类' , 'dataIndex':'advgroup_id'  , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("advgroup","advgroup_id","advgroup_name",'1',true)?>}},
+		  { 'header':'注册时间' , 'dataIndex':'regtime' , 'type':'datetime', 'defaultValue':'<?=date("Y-m-d")?>' }
+          </div>
+        </div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			var cm = new ColumnModel
+			([
+			{header: '广告ID', dataIndex: 'sd_advid'},
+			{header: '广告名称', dataIndex: 'adv_name' ,sortable: true},
+			{header: '登陆数量', dataIndex: 'onlogin' ,sortable: true},
+			{header: '5分钟', dataIndex: '5min'},
+			{header: '10分钟', dataIndex: '10min'},
+			{header: '15分钟', dataIndex: '15min'},
+			{header: '20分钟', dataIndex: '20min'},
+			{header: '25分钟', dataIndex: '25min'},
+			{header: '30分钟', dataIndex: '30min'},
+			{header: '30分钟以上', dataIndex: 'sd_activeall'}
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, sort:'onlogin',dir:'desc' , size: 50, params: { 'act': 'dataget' }});
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 50, filter: filter} }); });
+			$('#searchbar').show();
+			
+			
+		});
+	
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

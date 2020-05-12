@@ -1,0 +1,27 @@
+<?php include_once("header-open.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="attachment-list.php?upload_input=<?=$upload_input?>">
+		<div class="searcher">
+			<strong>搜索：</strong>
+			上传者 <input type="text" name="author_name" id="author_name" value="<?=$author_name?>" class="input_w100" />
+			<select name="author_type" id="author_type">
+				<option value="3">全部</option>
+				<option value="1" <?php if($author_type=='1'){echo "selected";}?> >管理员</option>
+				<option value="2" <?php if($author_type=='2'){echo "selected";}?> >会员</option>
+			</select>
+			&nbsp;&nbsp;
+			时间从 <input type="text" class="Wdate" id="start_time" name="start_time" value="<?=$start_time?>" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'end_time\',{d:-1});}'})"/> 到 <input type="text" class="Wdate" id="end_time" name="end_time" value="<?=$end_time?>" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'start_time\',{d:1});}'})"/>
+			<input type="submit" value="搜索" class="btn" />
+		</div>
+		<div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="radio" name="op_column" id="op_column1" onclick="changeOperate('del')" checked="checked" />删除
+			<input type="hidden" name="act" id="act" value="del" />
+			<input type="hidden" name="request" value="<?=$request?>" />
+			<input type="button" value="提交" class="btn" onclick="OperateSubmit(this.form,'checkbox_attachment_id[]','attachment-action.php')" />
+		</div>
+		<?=$list_html?>
+		<div class="page_html"><?=$page_html?></div>
+	</form>
+</div>
+<?php include_once("footer.html");?>

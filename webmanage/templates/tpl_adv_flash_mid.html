@@ -1,0 +1,54 @@
+<? 
+$swf_path = "/advs/material/{$row[adv_metrid]}";
+$flashValue = "act=".urlencode(YOU_ROOT."/reg_adv.html")."&mtrpath=".urlencode("{$swf_path}/")."&sendparam=".urlencode("&act=reg&gid={$row[adv_gid]}&sid={$row[adv_sid]}&at={$row[adv_type]}&ad={$row[adv_id]}&md={$row[adv_metrid]}"); ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/2399/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?=$row['adv_title']?></title>
+<style>
+*{ margin:0px; padding:0px;}
+body{ background:#000;}
+#warp{ width:1000px; height:600px; margin:0 auto;}
+</style>
+
+
+</head>
+<body>
+
+<div id="warp">
+	
+	<div class="index-swf" id="divswf">
+	  <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="1000" height="600" id="flash_contant" name="flash_contant">
+        <param name="movie" value="<?="{$swf_path}/index.swf"?>" />
+        <param name="quality" value="high" />
+        <param name="wmode" value="transparent" />
+        <param name="wmode" value="opaque" />
+        <param name="menu" value="false" />
+        <param name="AllowScriptAccess" value="always" />
+        <param name="FlashVars" value="<?php echo $flashValue;?>" />
+        <embed src="<?="{$swf_path}/index.swf"?>?<?php echo $flashValue;?>" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="1000" height="600" wmode="transparent" name="flash_contant"></embed>
+      </object>
+  </div>
+
+</div>
+<script type="text/javascript">
+var _title = document.title;
+var _space = '';
+var isshow = false;
+
+for(var i=0; i<=_title.length; i+=2){
+     _space += ' 　';
+}
+function flash_title(){
+    if(isshow){document.title = _title; isshow=false;}
+    else{ document.title = _space;isshow = true;}
+}
+
+setInterval("flash_title()",500);
+ 
+</script>
+<bgsound src="<?="{$swf_path}/sound.mid"?>" loop="-1"> 
+</body>
+</html>
+

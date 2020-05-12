@@ -1,0 +1,86 @@
+<?php $nav='member'; ?>
+<?php include('header.html'); ?>
+<form id="form1" name="form1" method="post" action="">
+<div class="text cl ">
+<div class="con clearfix">
+
+ <div class="ptop"><h3>49you安全中心</h3>
+ </div>  
+   <div class="pmid"> 
+    <p><img src="images/ptop-1.jpg" width="940" height="45" /></p>
+    <div class="pmid_bj1">
+    
+    <div class="pmid_bj2">
+ <div class="pmid_mo">
+        <div class="pbj1">
+        <h3 >通过密保找回密码：</h3><br />
+        <div class="entryitem">
+		<div class="entrylabel">
+		  <p>请输入用户名：</p>
+		</div>
+		<div class="entryfl"><input type="text" id="loginname" name="loginname"  class="entrytext" tabindex="1"  value=""  onBlur="on_change_name(this.value);" />
+          <span class="red">必填</span>
+          <p>&nbsp;</p>
+        </div></div>
+
+        <div class="entryitem cl">
+		<div class="entrylabel">
+		  <p>密保问题：</p>
+		</div>
+		<div  id="question1" class="entryfl">
+		 	
+		    <!--<label>
+		       <select name="select" id="select" class="entryselect">
+              	<option value="0">请选择您的密保问题</option>
+              <? foreach($cfg_question as $k => $v){ ?>
+              	<option value="<?=$k?>"><?=$v?></option>
+              <? } ?>
+		      </select>
+		    </label>-->
+		   
+		 
+        </div></div>
+
+        <div class="entryitem cl">
+		<div class="entrylabel">
+		  <p>密保答案：</p>
+		</div>
+		<div class="entryfl"><input type="text" id="answer" name="answer"  class="entrytext" tabindex="2"  value="" />
+		</div></div> 
+        
+                       
+         </div>
+<div class="sharedspacer12"></div>
+<P>提示：如果您忘记了您的密保答案，可以使用密码申述或者通过邮箱找回您的密码。 
+ </P>
+<div class="btn" ><a href="pwd_find.html" class="btn-link btn-personal2" >返 回</a><a href="javascript:$('#form1').submit();" class="btn-link btn-n" >下一步</a> </div> 
+
+    
+     <div class="cl"></div>    
+ 
+ </div>
+     
+        
+    </div>
+    </div>
+     <p><img src="images/ptop-3.jpg" width="940" height="45" /></p>
+   </div> 
+  
+      <div class="pbom"> </div> 
+</div>
+
+
+</div>
+	<input type="hidden" name="act" value="check_protect" />
+</form>
+<script type="text/javascript">
+function on_change_name(name){
+	ajax_action('pwd_find_by_protect.html',{ act:'get_protect' ,loginname:name},null,function(data,isOk){
+			if(isOk){
+				$('#question1').html(data);
+			}
+		
+		});
+}
+</script>
+<? include('footer.html'); ?>

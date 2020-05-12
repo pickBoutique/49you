@@ -1,0 +1,76 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'推广渠道' , 'dataIndex':'adv_type' , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("advtype","advtype_id","advtype_name",'1',true)?>}},
+          { 'header':'广告' , 'dataIndex':'adv_id' , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("adv","adv_id","adv_name",'1',true)?>}}
+          </div>
+        </div>
+
+		<div class="searcher">
+			
+		</div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			
+			function getoperator(rs) {
+				return "<a href='###' class='action_edit' onclick=\"toedit('" + rs["advcost_id"] + "')\">编辑</a>"  + "  <a href='###' onclick=\"todelone('" + rs["advcost_id"] + "')\">删除</a>";
+	
+			}
+	
+			var cm = new ColumnModel
+			([
+			{header: '排序', dataIndex: 'adv_sort',  width: 50 , sortable: true},
+			{header: '广告ID', dataIndex: 'adv_id',  width: 80 , sortable: true},
+			{header: '广告', dataIndex: 'adv_name'   },
+			new TextboxModel({header: '弹窗成本（元/每IP）', dataIndex: 'adv_cost', priIndex: 'adv_id', url: 'popupcost-list.php', width: 150 })
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, sort:'adv_sort',dir:'desc',cm: cm, size: 10, params: { 'act': 'dataget'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+			
+			
+		});
+		
+		
+		function toadd(){
+			show_editor({ title:'添加',src:'advcost-add.php',  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function toedit(id){
+			show_editor({ title:'编辑',src:'advcost-add.php?advcost_id=' + id,  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function todel(){
+			ajax_action('advcost-add.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+				grid.load(); 
+			});
+		}
+		
+		function todelone(id){
+			ajax_action('advcost-add.php',{ act:'del' , ids:id } , '您确定要删除吗？' , function(){ 
+				grid.load();
+			});
+		}
+		
+	
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

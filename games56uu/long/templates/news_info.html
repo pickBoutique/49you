@@ -1,0 +1,67 @@
+<?php $read_title = $row['title']; ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo $row_news[title]; ?>_<?php echo $row_news[cate_name]; ?>_56uu龙将官方网站</title>
+<link href="/style/style.css" rel="stylesheet" type="text/css" />
+<link href="/top/top.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/login.js"></script>
+<script type="text/javascript" src="/js/108j.js"></script>
+</head>
+<body>
+<!--------------------------------------------------------------------top bar--------------------------------------------------------------------------->
+<?php include('top.html'); ?>
+	
+	<!--content-->
+	<div id="content">
+	  <div id="main">
+	    <div id="main2">
+		  
+		   <div id="i-left">
+<?php include('leftn.html'); ?>
+           </div>
+		   
+		   <!--right -->
+		   <div id="n-right">
+		      <div id="n-right-title"><strong><?=$row_news['cate_name']?></strong><span>你现在的位置：<a href="#">龙将</a>>><?if($row_news['reurl']!=''){?>
+            <a href='<?=$row_news['reurl']?>'><?=$row_news['cate_name']?></a>
+            <?}else{?>
+            <?=$row_news['cate_name']?>
+            <?}?>
+            </span></div>
+			  <div id="n-right-content">
+			    <div id="n-right-c-content-1">
+                   <div id="n-news-title"><strong><?=$row_news['title']?></strong><p>作者：56uu<span>时间：<?= date('Y-m-d H:i:s',$row_news['add_time'])?></span></p></div>
+				   <div id="n-news-main">
+                    <?=$row_news['content']?>				  
+                     </div>
+                    <!--info_tg start-->
+                    <?if(!PUBLIC_INFOTAG || in_array($game_id,$game_infotag)){?>
+                    <? include('info_tg.html'); ?> 
+                    <?}else{
+                        require(WEB_ROOT.'/games/info_tg.html');
+                    }?>
+                    <!--info_tg end-->
+				   <div class="clear"></div>
+				</div>
+			  </div>
+			  <div id="n-right-footer"><img src="/images/neiye-footer.gif" /></div>
+			  <div class="clear"></div>
+		   </div>
+		   <div class="clear"></div>
+		</div>
+	  </div>
+	  <div id="main-f"></div>
+	</div>
+	
+	<div class="clear"></div>
+  </div> 
+  <div class="clear"></div>
+</div>
+
+<!------------------------------------------------------------------------- footer -------------------------------------------------------------------->
+<?php include('footer.html'); ?>
+</body>
+</html>

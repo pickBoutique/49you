@@ -1,0 +1,14 @@
+<?php include_once("header.html");?>
+<div class="main">
+    <div class="searcher">
+    <input type="checkbox" id="cache_date" name="cache_date" checked="checked" />数据缓存
+      <input type="button" value="清除" class="btn" onclick="toclean();" />
+  </div>
+  <script>
+		function toclean(){
+			show_editor({ title:'清理缓存',src:'cache-manage.php?act=clean&cache_date=' + $("#cache_date").attr("checked"),  onclose:function(){return;}});
+		}
+	</script>
+</div>
+
+<?php include_once("footer.html");?>

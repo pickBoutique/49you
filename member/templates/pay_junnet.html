@@ -1,0 +1,138 @@
+<?php $nav='pay'; ?>
+<?php include('header.html'); ?>
+
+<script type="text/javascript">
+
+
+	function on_pay_type_change(obj,pay_type, pay_rate,pay_type_name ){
+		if(pay_type=='account'){
+			window.location.href='exchange.html?gid=<?=$gid?>&sid=<?=$sid?>';
+		}else if(pay_type=='junnet'){
+			window.location.href='pay_junnet.html?gid=<?=$gid?>&sid=<?=$sid?>';
+		}else{
+			window.location.href='pay.html?t='+pay_type+'&gid=<?=$gid?>&sid=<?=$sid?>';
+		}
+		
+	}
+	
+	function on_amount_change(obj){
+		if(obj.value == '0'){
+			$('#other_amount').show();
+		}else{
+			$('#other_amount').hide();
+		}
+		on_rate_change();
+	}
+	
+	function on_oth_amount_blur(obj){
+		obj.value = Math.floor( parseInt(obj.value) / 10 ) * 10;
+		if(parseInt(obj.value) > parseInt($('#total_cur').html()) ){
+			obj.value = Math.floor( parseInt($('#total_cur').html()) / 10 ) * 10;
+		}
+		if(parseInt(obj.value) < 10 ){
+			alert("兑换额必须为10的倍数");
+			obj.value = 10;
+		}
+		
+		
+		
+		var v = parseInt(obj.value);
+
+		obj.value = ( isNaN(v) ? 0 : v );
+		on_rate_change();
+	}
+	
+	function on_rate_change(){
+		var money = $('#pay_amount').val();
+		if(money=='0'){
+			money = parseInt($('#oth_amount').val());
+		}
+		var cur = money;
+		var game_cur = Math.floor(cur * parseFloat($('#game_rate').val()));
+		$('#pay_amount_show').html(game_cur);
+		
+		
+	}
+	$(document.body).ready(function(){
+		$("#pay_type_name").html('<?=$cfg_pay_type["junnet"]?>');
+		$("#pay_type_content").html('<?=$cfg_pay_desc["junnet"]?>');
+			
+	});
+
+</script>
+
+
+<form id="form1" name="form1" method="post" action="">
+<div class="text cl ">
+<div class="con clearfix">
+<!--left-->
+<div class="left box pay fl">
+<div><img src="images/pay_top.gif" width="712" height="14" /></div>
+
+<div class="margin clearfix fl">
+<div><img src="images/pay_ico4.gif" width="171" height="30" /></div>
+            <ul class="pay_nav fl">
+            	<? foreach($cfg_pay_type as $k => $v){ 
+	                if($k=="yeepay_junnet_net") continue;
+                	$cls="";
+                    if($k=='junnet'){
+                    	$cls='on';
+                    }
+                ?>
+                <li><a href="###" id="opt_<?=$k?>" onclick="javascript:on_pay_type_change(this,'<?=$k?>','<?=$cfg_pay_rate[$k]?>','<?=$v?>');" class="paytype <?=$cls?>" ><?=$v?></a></li>
+                <? } ?>
+            </ul></div>
+            
+<div class="pay_main fr">
+<div class="step1">
+<div class="tip_b">
+<div>
+<ul style="height:28px;">
+<div style="float:left;"><h4>您当前选择的是"<span id="pay_type_name" class="c_o">骏网支付</span>"支付方式<span class="c_o">&#12288;*兑换比例为1元=<span id="parcen_top">8</span><span name="game_curr_top">元宝</span></span></h4></div>
+<div id="payhelp" style="float:right;"><a target="_blank" style="color:red; padding-right:20px;" href="http://www.d8pk.com/news_info_2606.html">[充值帮助]</a></div>
+</ul>
+<ul><div style="float:left;">
+<p id="pay_type_content">支持骏网一卡通实物卡、虚拟卡充值，实物卡可以通过各地网吧、电脑城、报刊亭等市面上购买。</p>
+</div>
+</ul>
+</div>
+</div>
+</div>
+<iframe src="http://www.jcard.cn/Official/49you/IFrameCharge.aspx?account=<?=$login_info[1]?>&region=<?=$gid?>&server=<?=$sid?>" width="530" height="550" scrolling="no" frameborder="0"></iframe>
+</div>
+      
+  <div class="cl"><img src="images/pay_bom.gif" width="712" height="14" /></div>
+ 
+
+ </div> 
+<!--right-->
+<div class="sidebar">
+  <!--service start-->
+  <? include('service_info.html'); ?> 
+  <!--service end-->    
+
+<div class="sharedspacer8"></div>
+
+<div class="nwes2">
+  <div class="title2"><span>充值问题</span><a target="_blank" href="service.html?cid=48" class="pl-more"><img src="images/moer.gif" /></a></div>
+  <div id="MediaNews2" class="BgColor LinePart">
+      <ul>
+      		<?
+             if($rs_news){
+             foreach($rs_news as $k=> $v){?>
+            <li class="MediaNewsLi"><a href="news_info_<?=$v['info_id']?>.html" target="_blank"><?=$v['subtitle']?></a></li>    
+            <?
+             }
+            }?>         
+            </ul>
+          </div>
+</div>
+
+</div>
+             
+</div>
+
+
+</div>
+</form>
+<? include('footer.html'); ?>

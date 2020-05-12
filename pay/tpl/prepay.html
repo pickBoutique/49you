@@ -1,0 +1,20 @@
+<table width="603" border="0" cellspacing="1">
+    <tr>
+        <td colspan="2" align="left"> 目前可用金额：￥
+            <?=intval($_SESSION['web_member_money'])  ?>
+            <br/>
+            需支付金额：￥
+            <?=$total_fee?>
+            
+            <br/>
+            
+            <? if( $_SESSION['web_member_money'] < $total_fee ){ ?>
+            <input id="can_not_pay_<?=$v['code']?>" name="can_not_pay_<?=$v['code']?>" type="hidden" value="1" />
+            <div style="color:#F00;"> 您的可用金额不够支付，请选择其它支付方式。</div>
+            <? } ?>
+            
+            
+            <input id="confirm_<?=$v['code']?>" name="confirm_<?=$v['code']?>" type="hidden" value="此操作将从您的帐户余额中扣除 <?=$total_fee?> 元，您确定要付款吗？" />
+        </td>
+    </tr>
+</table>

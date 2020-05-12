@@ -1,0 +1,298 @@
+<?php $title='账号申诉'; ?>
+<?php $nav='service'; ?>
+<?php include('header.html'); ?>
+<script language="javascript">
+	var bValid_usr=false;
+ 	var bValid_sfz=false;
+	var bValid_input=false;
+	function isIdCardNo(num)
+	{  
+			  num = num.toUpperCase(); 
+			 //身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X。  
+			  if (!(/(^\d{15}$)|(^\d{17}([0-9]|X)$)/.test(num)))  
+			  {
+				   //alert('输入的身份证号长度不对，或者号码不符合规定！\n15位号码应全为数字，18位号码末位可以为数字或X。');
+				  return false;
+			 }
+	//校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+	//下面分别分析出生日期和校验位
+	var len, re;
+	len = num.length;
+	if (len == 15)
+	{
+	re = new RegExp(/^(\d{6})(\d{2})(\d{2})(\d{2})(\d{3})$/);
+	var arrSplit = num.match(re);
+	
+	//检查生日日期是否正确
+	var dtmBirth = new Date('19' + arrSplit[2] + '/' + arrSplit[3] + '/' + arrSplit[4]);
+	var bGoodDay;
+	bGoodDay = (dtmBirth.getYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
+	if (!bGoodDay)
+	{
+			  //alert('输入的身份证号里出生日期不对！');  
+			   return false;
+	}
+	else
+	{
+	//将15位身份证转成18位
+	//校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+			  var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+			   var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+			   var nTemp = 0, i;  
+				num = num.substr(0, 6) + '19' + num.substr(6, num.length - 6);
+			   for(i = 0; i < 17; i ++)
+			  {
+					nTemp += num.substr(i, 1) * arrInt[i];
+			   }
+			   num += arrCh[nTemp % 11];  
+				return num;  
+	}  
+	}
+	if (len == 18)
+	{
+	re = new RegExp(/^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/);
+	var arrSplit = num.match(re);
+	
+	//检查生日日期是否正确
+	var dtmBirth = new Date(arrSplit[2] + "/" + arrSplit[3] + "/" + arrSplit[4]);
+	var bGoodDay;
+	bGoodDay = (dtmBirth.getFullYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
+	if (!bGoodDay)
+	{
+	//alert(dtmBirth.getYear());
+	//alert(arrSplit[2]);
+	//alert('输入的身份证号里出生日期不对！');
+	return false;
+	}
+	else
+	{
+	//检验18位身份证的校验码是否正确。
+	//校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+	var valnum;
+	var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+	var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+	var nTemp = 0, i;
+	for(i = 0; i < 17; i ++)
+	{
+	nTemp += num.substr(i, 1) * arrInt[i];
+	}
+	valnum = arrCh[nTemp % 11];
+	if (valnum != num.substr(17, 1))
+	{
+	//alert('18位身份证的校验码不正确！应该为：' + valnum);
+	return false;
+	}
+	return num;
+	}
+	}
+	return false;
+	}
+	function ChkUserName(){
+		bValid_input=false;
+		var username=$("#guser").val();
+		if(username==""||username.length<6){
+			ShowMsg("msgguser",0,"由6-16位字母和数字组成!");
+			return; 
+		}
+		if(/.*[\u4e00-\u9fa5]+.*$/.test(username)){
+			ShowMsg("msgguser",0,"对不起，账号不能使用中文!");
+			return;
+		}
+		bValid_input=true;
+		ShowMsg("msgguser",1,"此账号填写正确!");
+	}
+	function chkidcard(){
+		var str_NO=$("#idcard").val();
+		bValid_sfz=false;
+		if(str_NO=="" || isIdCardNo(str_NO)){
+			ShowMsg("msgsfz",1,"身份证可用!");
+			bValid_sfz=true;
+		}else{
+			ShowMsg("msgsfz",0,"身份证号码不符合规定!");
+			bValid_sfz=false;
+		}
+	}
+	function chknull(obj,msgid){
+		var cidval=$("#"+obj).val();
+		if(cidval==""){
+			ShowMsg(msgid,0,"该项不能为空!");
+			bValid_input=false;
+			return; 
+		}else{
+			ShowMsg(msgid,1,"填写正确!");
+			bValid_input=true;	
+		}
+	}
+	function ShowMsg(IdStr,ErrNum,ErrStr){
+		var ClrArr=new Array("#f00","#33f","#339900");
+		$("#"+IdStr).css({fontWeight:"bold",fontSize:"9pt",color:ClrArr[ErrNum]});
+		$("#"+IdStr).html(ErrStr);
+	}
+	function form_submit(){
+		chkidcard();if(!bValid_sfz){return false;}
+		ChkUserName();if(!bValid_input){return false;}
+		chknull('game','msggame');if(!bValid_input){return false;}
+		chknull('gnickname','msggnickname');if(!bValid_input){return false;}
+		
+		document.form1.submit();
+	}
+	function setSeccode(){
+		var img_src = '/seccode.php?rand='+Math.random();
+		document.getElementById("seccode_img").src = img_src;
+	}
+</script>
+	
+	<form id="form1" name="form1" method="post" action="" enctype="multipart/form-data">
+<div class="text cl ">
+<div class="con clearfix">
+ <div class="ptop"><h3>通过账号申诉找回密码</h3>
+ </div>  
+   <div class="pmid"> 
+    <p><img src="images/ptop-1.jpg" width="940" height="45" /></p>
+    <div class="pmid_bj1">
+    <div class="pmid_bj2">
+ <div class="pmid_mo">
+        <div class="pbj5">
+        <h3 >请填写您账号的基本资料：</h3>
+        <div style="margin-left:0px" >
+        <div class="entryitem">
+		<div class="entrylabel">游戏账号：</div>
+		<div class="entryf1"><input type="text" id="guser" name="guser" onblur="ChkUserName();" class="entrytexta" tabindex="1"  value="<?=$_REQUEST['guser']?>" /> <label id="msgguser"><span class="red">* 必填</span></label></div>
+</div>
+
+          <div class="entryitem">
+		<div class="entrylabel">身份证号：</div>
+		<div class="entryf1"><input type="text" id="idcard" name="idcard" onblur="chkidcard();" class="entrytexta" tabindex="2"  value="<?=$_REQUEST['idcard']?>" /> <label id="msgsfz">例如：320812198011111110</label>
+        </div></div> 
+        
+        <div class="entryitem">
+		<div class="entrylabel">主战游戏：</div>
+		<div class="entryf1"><input type="text" id="game" name="game" onblur="chknull('game','msggame');" class="entrytexta" tabindex="3"  value="<?=$_REQUEST['game']?>" /> <label id="msggame"><span class="red">* 必填</span> </label>
+        </div></div>
+        
+          <div class="entryitem">
+		<div class="entrylabel">所在服务器：</div>
+		<div class="entryf1"><input type="text" id="server" name="server"  class="entrytexta" tabindex="4"  value="<?=$_REQUEST['server']?>" />
+        </div></div> 
+        
+         <div class="entryitem">
+		<div class="entrylabel">角色昵称：</div>
+		<div class="entryf1"><input type="text" id="gnickname" name="gnickname" onblur="chknull('gnickname','msggnickname');" class="entrytext" tabindex="5"  value="<?=$_REQUEST['gnickname']?>" /> <label id="msggnickname"><span class="red">* 必填</span> 游戏中角色使用的昵称</label></div></div>
+           <div class="entryitem">
+		<div class="entrylabel">角色等级：</div>
+		<div class="entryf1"><input type="text" id="glevel" name="glevel"  class="entrytext" tabindex="6"  value="<?=$_REQUEST['glevel']?>" />
+        </div></div>
+        </div>
+ <div class="cl"></div>
+ <br />
+ <h3 >申诉结果出来后如何联系您？</h3>
+        <div class="entryitem2">
+		<div class="entrylabe2">邮箱地址：</div>
+		<div class="entryf2"><input type="text" id="email" name="email"  class="entrytexta" tabindex="7"  value="<?=$_REQUEST['email']?>" />
+        </div></div>
+        
+          <div class="entryitem2">
+		<div class="entrylabe2">手机号码：</div>
+		<div class="entryf2"><input type="text" id="mobile" name="mobile"  class="entrytexta" tabindex="8"  value="<?=$_REQUEST['mobile']?>" />
+        </div></div> 
+        
+        <div class="entryitem2">
+		<div class="entrylabe2">QQ号码：</div>
+		<div class="entryf2"><input type="text" id="qq" name="qq"  class="entrytexta" tabindex="9"  value="<?=$_REQUEST['qq']?>" />
+        </div></div>
+   <div class="cl"></div>
+ <br />
+ <h3 >申诉基本资料:</h3><br />
+                <div class="entryitem">
+		<div class="entrylabel">
+		  <p>发生问题的时间：</p>
+		</div>
+		<div class="entryfl"><input type="text" id="qtime" name="qtime"  class="entrytext" tabindex="10"  value="<?=$_REQUEST['qtime']?>" />
+        </div></div>
+        
+         <div class="entryitem">
+		<div class="entrylabel">
+		  <p>账号注册时间：</p>
+		</div>
+		<div class="entryfl"><input type="text" id="rtime" name="rtime"  class="entrytext" tabindex="11"  value="<?=$_REQUEST['rtime']?>" />
+        </div></div>
+        <div class="entryitem">
+		<div class="entrylabel">
+		  <p>账号注册城市：</p>
+		</div>
+		<div class="entryfl"><input type="text" id="regcity" name="regcity"  class="entrytext" tabindex="12"  value="<?=$_REQUEST['regcity']?>" />
+        </div></div> 
+        
+         <div class="entryitem">
+		<div class="entrylabel">
+		  <p>最后一次成功登陆时间：</p>
+		</div>
+		<div class="entryfl"><input type="text" id="ltime" name="ltime"  class="entrytext" tabindex="13"  value="<?=$_REQUEST['ltime']?>" />
+        </div></div>
+              
+  <div class="cl"></div>
+        <br />
+        <h3 >最近充值资料<span class="red" style="font-size:12px;">（如果冲过值，请仔细填写以下资料，如不填写，这默认为未曾充值）</span></h3>
+        <br />
+
+        <div class="entryitem">
+		<div class="entrylabel">
+		  <p>充值金额：</p>
+		</div>
+		<div class="entryfl"><input type="text" id="tarmoney" name="tarmoney"  class="entrytext" tabindex="14"  value="<?=$_REQUEST['tarmoney']?>" />
+        </div></div>
+
+        <div class="entryitem">
+		<div class="entrylabel">
+		  <p>充值方式：</p>
+		</div>
+		<div class="entryfl"><input type="text" id="tartype" name="tartype"  class="entrytext" tabindex="15"  value="<?=$_REQUEST['tartype']?>" />
+        </div></div>
+        
+        <div class="entryitem">
+		<div class="entrylabel">
+		  <p>最后充值时间：</p>
+		</div>
+		<div class="entryfl"><input type="text" id="tartime" name="tartime"  class="entrytext" tabindex="16"  value="<?=$_REQUEST['tartime']?>" />
+        </div></div>
+        
+        
+        <div class="entryitem" style="height:70px;">
+		<div class="entrylabel">
+		  <p>充值记录截图：</p>
+		</div>
+		<div class="entryfl"><label>
+    <input name="fileField" type="file"  id="fileField" size="40" value="<?=$_REQUEST['fileField']?>" />
+  </label><P style="line-height:14px;">如果您是网银或支付宝充值、请您登陆您的网银、支付宝截取充值记录的截图，这样将大大增加你申诉的成功机会！
+</P></div>
+ </div>
+<div class="entryitem">
+		<div class="entrylabel">验证码：</div>
+		<div class="entryfl"><input type="text" id="seccode" name="seccode"  class="entrytext entrytext-1" tabindex="17"   value="" /> 
+		  <img src="/seccode.php?rand=<?=time()?>" border="0" align="top" style="height:26px" id="seccode_img" /><a href="###" onClick="setSeccode()" class="flk13">&nbsp;看不清？换一张</a>
+
+        </div></div>
+ <h3 >补充资料<span class="red" style="font-size:12px;">（您可以根据实际情况填写补充资料，用于提高申诉成功的机会）</span></h3>
+  <br />
+   <div class="entryitem" style="height:100px;"><span class="entryitem" style="height:100px;"><span class="entryitem" style="height:100px;"><span class="entryitem" style="height:100px;">
+     <textarea name="desc" rows="5" style="width:700px;" tabindex="18" ><?=$_REQUEST['desc']?></textarea>
+   </span></span></span></div>        
+   </div><br />
+    <div class="btn cl" ><a href="#" onclick="javascript:form_submit();" class="btn-link btn-n" >确定提交</a> </div>     
+     <div class="cl"></div>    
+ </div>
+     </div>
+    </div>
+    <p><img src="images/ptop-3.jpg" width="940" height="45" /></p>
+   </div> 
+   <div class="cl"></div>
+      <div class="pbom"> 
+    
+   </div> 
+</div>
+
+
+</div>
+	<input type="hidden" name="act" id="act" value="appeal" />
+	</form>
+<? include('footer.html'); ?>

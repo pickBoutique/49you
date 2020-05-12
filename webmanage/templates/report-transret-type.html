@@ -1,0 +1,43 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+		  { 'header':'游戏' , 'dataIndex':'trans_gid' , 'subIndex':'trans_sid', 'url':'ajax-servers.php' , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("game","game_id","game_name",'1',true)?>} },
+          { 'header':'服务器' , 'dataIndex':'trans_sid' ,  'type':'select' , 'options':{ '全部':'' } },
+          { 'header':'推广渠道' , 'dataIndex':'trans_advtype' , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("advtype","advtype_id","advtype_name",'1',true)?>}},
+          { 'header':'广告' , 'dataIndex':'trans_advid' , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("adv","adv_id","adv_name",'1 order by adv_name',true)?>}},
+          { 'header':'素材ID' , 'dataIndex':'trans_metrid' , 'type':'text' } ,
+		  { 'header':'充值时间' , 'dataIndex':'trans_intime' , 'type':'datetime', 'defaultValue':'<?=date("Y-m-d")?>'}
+          </div>
+        </div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			var cm = new ColumnModel
+			([
+			{header: '充值类型', dataIndex: 'trans_type',renderer: '<?=$json->encode($cfg_pay_type);?>' },
+			{header: '充值次数', dataIndex: 'trans_con'},
+			{header: '充值金额', dataIndex: 'trans_money'},
+			{header: '游戏币', dataIndex: 'transout_gcurrency'}
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 20, params: { 'act': 'dataget',filter:	'[{"name":"trans_intime","oper":">=","value":"<?=strtotime(date('Y-m-d'))?>"}]'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 20, filter: filter} }); });
+			$('#searchbar').show();
+			
+			
+		});
+	
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

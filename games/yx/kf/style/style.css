@@ -1,0 +1,76 @@
+body{
+	font-family:'宋体',Arial, Helvetica, sans-serif;
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-color:#000;
+	background-image:url(../images/bg.jpg);
+	background-repeat: no-repeat;
+	background-position: top;
+
+}
+
+div,p,ul,li,dl,dt,dd,h1,h2,h3,h4,h5,form,a,object{ margin:0; padding:0; word-wrap:break-word; outline:none; list-style:none;}
+
+/*
+ * 将具有默认margin和padding的标记置零
+ * @overlay *
+ * @desc	所有标记的margin、padding都在使用时具体定义
+ */
+*{
+	margin:0;
+	padding:0;
+	font-size:12px;
+}
+
+
+.main{ width:1004px; margin: 0 auto;}
+
+.wipper1{ width:1004px; height:53px; }
+.wipper2{width:1004px; height:163px; background-image:url(../images/index_04.jpg)}
+.wipper3{width:1004px; height:173px; background-image:url(../images/index_05.jpg) }
+.wipper4{width:1004px; height:168px; background-image:url(../images/index_06.jpg) }
+.wipper5{width:1004px; height:118px; background-image:url(../images/index_07.jpg)}
+
+
+
+
+.butA_01{ display:block; width:224px; height:67px; text-indent:-9999px; overflow:hidden;  background:url(../images/icon0.jpg) left top no-repeat; margin:0px;}
+a.butA_01:hover{background:url(../images/icon0.jpg) 0px -67px no-repeat;}
+
+.butA_02{ display:block; width:224px; height:67px; text-indent:-9999px; overflow:hidden;  background:url(../images/icon1.jpg) left top no-repeat; margin:0px;}
+a.butA_02:hover{background:url(../images/icon1.jpg) 0px -67px no-repeat;}
+
+
+
+
+
+.content{
+	width:708px;
+	margin:0 auto;
+	overflow:hidden;
+	position: relative;
+	left: 80px;
+}
+
+
+
+
+
+
+.foot{
+	width:100%;
+	line-height:24px;
+	color:#aaaaaa;
+	text-align:center;
+	height:75px;
+	margin:0 auto;
+	background-image: url(../images/footbg.jpg);
+
+}
+
+.foot p { padding-top:15px;}
+
+.r{ color:#FF0000; font-size:16px;}
+
+
+/*  |xGv00|32671b2a9bb7545c3590fc36888638eb */

@@ -1,0 +1,73 @@
+body{margin:0;padding:0;background:#17100A url(../style/d_bg.jpg) no-repeat center 30px;color:#fff4be;font-family:Arial,Helvetica,sans-serif;font-size:12px;}
+div,span,ul,li,p,h1,h2,h3,h4,h5,h6,img,p,dl,dt,dd{margin:0;padding:0;}
+ul{list-style-type:none;}
+a{color:#d5ae72;text-decoration:none;}
+a:hover{text-decoration:underline;}
+img{border:0;}
+form{margin:0;padding:0;}
+input{padding:0 1px;font-size:12px;vertical-align:middle;}
+select{vertical-align:middle;}
+/*toptop*/
+.toptop{width:100%;height:36px;background:url(../images/toptop_bg.jpg) repeat-x top;}
+.toptop a{color:#000000; text-decoration: none;}
+.top_main{width:1000px; height:36px; margin: 0px auto;}
+.main_left{width:auto;height:36px;float:left;}
+.main_right{width:auto;height:36px;line-height:36px;float:right;}
+.main_left li{width:auto;height:36px;line-height:36px;text-align:center;float:left;list-style:none;margin-right:10px;}
+.main_right li{width:70px;height:36px;line-height:36px;text-align:center;float:left;list-style:none;margin-right:10px;cursor:hand;}
+
+#page{width:960px;height:100%;margin:auto;}
+#top{width:960px;height:314px;background:url(../style/d_top.jpg) no-repeat;}
+#inweb{width:320px;height:120px;overflow:hidden;display:inline;float:left;margin:150px 0 0 300px;text-indent:-2000px;}
+#getcard{width:174px;height:64px;overflow:hidden;display:inline;float:left;margin:250px 0 0 145px;text-indent:-2000px;}
+
+#main{width:960px;height:378px;overflow:hidden;}
+#left{width:180px;height:348px;float:left;overflow:hidden;padding:0 50px 60px 22px;background:url(../style/d_left.jpg) no-repeat;}
+#loginframe{width:180px;height:348px;overflow:hidden;line-height:24px;}
+#register{width:180px;height:318px;overflow:hidden;padding-top:30px;}
+.r_usr,.r_psw{width:180px;height:24px;overflow:hidden;margin:auto;padding-top:4px;line-height:24px;color:#fff4be;}
+.in{width:110px;height:22px;float:right;line-height:22px;border:1px solid #543e20;background:#170f09;color:#fff;}
+.r_txt{width:180px;overflow:hidden;padding-top:6px;line-height:20px;color:#b69d25;}
+#userreg{width:100px;height:38px;overflow:hidden;margin:12px auto 0;background:url(../style/d_reg_btn.jpg) no-repeat;cursor:pointer;}
+
+.loged{width:180px;height:288px;overflow:hidden;}
+.loged .top{width:180px;height:30px;overflow:hidden;background:url(../style/loged.jpg) no-repeat;}
+.loged .con{width:180px;height:258px;overflow:hidden;}
+.loged ul{width:160px;overflow:hidden;margin:auto;padding-top:10px;}
+.loged li{width:160px;height:24px;overflow:hidden;line-height:24px;}
+.loged a, .loged a:hover{color:#b69d25}
+.loged .font_1{color:#b69d25;}
+.loged .li_r{text-align:right;}
+.loged .slt{font-size:14px;text-align:center;}
+.loged .slt1{text-align:center;}
+.loged .text{font-size:12px;}
+
+#center{width:470px;height:368px;float:left;overflow:hidden;padding-top:10px;background:#121210 url(../style/d_center_top.jpg) no-repeat;}
+#fla_img{width:466px;height:166px;overflow:hidden;border:2px solid #4b270d;}
+#fla_img div{width:466px;height:166px;}
+#download{width:422px;height:182px;overflow:hidden;padding:8px 24px;}
+.download_frame{width:422px;height:80px;oveflow:hidden;}
+.download_frame .frame_left{width:262px;height:56px;float:left;overflow:hidden;padding-top:24px;color:#795b41}
+#info_1{background:url(../style/d_txt_1.jpg) no-repeat;}
+#info_2{background:url(../style/d_txt_2.jpg) no-repeat;}
+.download_frame .frame_right{width:150px;height:60px;float:left;oveflow:hidden;padding:20px 10px 0 0;}
+.download_sept{width:422px;height:22px;overflow:hidden;background:url(../style/d_center_sept.jpg) no-repeat;}
+
+#right{width:158px;height:378px;float:left;overflow:hidden;padding:0 20px 0 60px;background:url(../style/d_right.jpg) no-repeat;}
+
+.game_server{width:158px;height:152px;overflow:hidden;}
+.game_server .top{width:158px;height:48px;overflow:hidden;}
+.game_server .con{width:158px;height:104px;overflow:hidden;}
+.game_server .con ul{width:158px;line-height:26px;}
+.game_server .con li{width:148px;height:26px;overflow:hidden;padding:0 5px;text-align:left;color:#fff4be}
+.game_server .con .dot{background:url(../style/server_btn.jpg) no-repeat 0 5px;}
+.game_server .con li a{color:#fff4be}
+.game_server .con li span{float:right;color:#b69d25;}
+
+.service{width:158px;height:126px;overflow:hidden;}
+.service .top{width:158px;height:48px;overflow:hidden;}
+.service .con{width:158px;height:78px;overflow:hidden;}
+.service ul{width:158px;margin:auto;}
+.service li{width:158px;height:26px;overflow:hidden;line-height:26px;}
+
+#bottom{width:960px;height:40px;background:url(../style/d_bottom.jpg) no-repeat;}

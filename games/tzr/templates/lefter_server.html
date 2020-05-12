@@ -1,0 +1,19 @@
+<?$list = $db->getAll("select  server_id,server_name,server_gid,server_num,server_status,server_isnew,server_ishot,server_time,server_start FROM " .DB_PREFIX."server WHERE server_gid='$game_id' and (server_status=1 or server_ishot=1) order by server_start desc limit 5");?>
+
+	  <div class="server">
+	     <div class="server-t"></div>
+	     <div class="server-c">
+		     <div class="server-c1">
+			    <ul>
+          <?if($list){
+            foreach($list as $k=> $v){?>
+				   <li><a href="<?=YOU_ROOT?>/game_add.html?gid=<?=$v["server_gid"]?>&sid=<?=$v["server_id"]?>" target="_blank"><?=$v["server_name"]?></a><span><?= date('m/d',$v['server_start'])?>开启</span></li>
+        	<?}
+          }?>
+				</ul>
+			 </div>
+			 <div class="server-c2"><a href="server_list.html">更多服务器</a></div>
+		 </div>
+	     <div class="server-f"></div>
+	     <div class="clear"></div>
+	  </div>

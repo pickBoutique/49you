@@ -1,0 +1,83 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>卡类型名称：</th>
+				<td>
+					<input type="text" name="cardtype_name" id="cardtype_name" value="<?=$rs['cardtype_name']?>" class="input_w200"  />
+				</td>
+			</tr>
+            <tr>
+				<th>游戏：</th>
+				<td>
+                	<select name="cardtype_gid" id="cardtype_gid">
+                    
+                    </select>
+					<input type="hidden" name="cardtype_gid_default" id="cardtype_gid_default" value="<?=$rs['cardtype_gid']?>" class="input_w200"  />
+    				<input type="hidden" name="cardtype_gname" id="cardtype_gname" value="<?=$rs['cardtype_gname']?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th>服务器：</th>
+				<td>
+                	<select name="cardtype_sid" id="cardtype_sid">
+                    
+                    </select>
+					<input type="hidden" name="cardtype_sid_default" id="cardtype_sid_default" value="<?=$rs['cardtype_sid']?>" class="input_w200"  />
+                    <input type="hidden" name="cardtype_sname" id="cardtype_sname" value="<?=$rs['cardtype_sname']?>" class="input_w200"  />
+				</td>
+			</tr>
+            <tr>
+				<th>领取时间：</th>
+				<td>
+                    <input name="cardtype_timelimit" value="1" <?=$rs['cardtype_timelimit']=='1' ? 'checked' : '' ?> type="radio">限制
+                    <input name="cardtype_timelimit" value="0" <?=$rs['cardtype_timelimit']!='1' ? 'checked' : '' ?> type="radio">不限制
+				</td>
+			</tr>
+			<tr>
+				<th>可领取时间：</th>
+				<td>
+					<input type="text" name="cardtype_start" id="cardtype_start" value="<?= empty($rs['cardtype_start']) ? date('Y-m-d H:i:s',time()) : date('Y-m-d H:i:s',$rs['cardtype_start']) ?>" class="input_w200"  /> —
+					<input type="text" name="cardtype_end" id="cardtype_end" value="<?= empty($rs['cardtype_end']) ? date('Y-m-d H:i:s',time()) : date('Y-m-d H:i:s',$rs['cardtype_end']) ?>" class="input_w200"  />
+				</td>
+			</tr>
+            <tr>
+				<th>剩余数量：</th>
+				<td>
+					<input type="text" name="cardtype_count" id="cardtype_count" value="<?=$rs['cardtype_count']?>" class="input_w200"  />
+				</td>
+			</tr>
+            <tr>
+				<th>礼包描述：</th>
+				<td>
+					<textarea  style="width:300px; height:200px;" name="cardtype_desc" id="cardtype_desc" value="<?=$rs['cardtype_desc']?>" class="input_w200"  ><?=$rs['cardtype_desc']?></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script language="javascript">
+function on_server_change(){
+	var obj_game = document.getElementById('cardtype_gid');
+	var obj_server = document.getElementById('cardtype_sid');
+	$('#cardtype_gname').val(obj_game.options[obj_game.selectedIndex].text);
+	$('#cardtype_sname').val(obj_server.options[obj_server.selectedIndex].text);
+}
+function on_server_load(domid,game_id,obj){
+	$("<option value='0'>全部</option>").prependTo('#' + domid);
+}
+$(document).ready(function(){
+	
+	get_games('cardtype_gid','cardtype_sid');
+	
+});
+</script>
+<?php include_once("footer.html");?>

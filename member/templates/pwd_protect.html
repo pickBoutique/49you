@@ -1,0 +1,66 @@
+<?php $title='密码保护_会员中心_49you网页游戏平台'; ?>
+<?php $nav='member'; ?>
+<?php $ltv='pwd_protect'; ?>
+<?php include('header.html'); ?>
+
+<div class="text cl ">
+<div class="con clearfix">
+<?php include('member_modify_info.html'); ?>
+<form id="form1" name="form1" method="post" action="">
+   <div class="pmid"> 
+    <p><img src="images/ptop-1.jpg" width="940" height="45" /></p>
+    <div class="pmid_bj1">
+    <div class="pmid_bj2">
+ <div class="pmid_mo">
+        <div class="pbj1">
+	<?if($usr_info["question1"]>0){?>
+        <div class="entryitem">
+		<div class="entrylabel">旧密保问题：</div>
+		<div class="entryfl"><?=$cfg_question[$usr_info["question1"]]?>
+        </div></div>
+        
+        <div class="entryitem">
+		<div class="entrylabel">密保答案：</div>
+		<div class="entryfl"><input type="text" id="myanswer1" name="myanswer1"  class="entrytext" tabindex="1"  value="" />
+	<P>请输入您的旧密保答案！</P>
+        </div></div>
+        
+     <?}?>
+        <div class="entryitem">
+		<div class="entrylabel">新密保问题：</div>
+		<div class="entryfl"><select name='question1' >
+                    	<option value="0">请选择</option>
+                    	<?=cfg_to_opt($cfg_question,false,$_REQUEST['question1'])?>
+                    </select>
+		 <P>请选择您的密保问题</P>
+        </div></div>
+        
+        <div class="entryitem">
+		<div class="entrylabel">密保答案：</div>
+		<div class="entryfl"><input type="text" id="answer1" name="answer1"  class="entrytext" tabindex="1"  value="" />
+	<P>请输入您的新密保答案并牢记！</P>
+        </div></div>
+        
+        <div class="entryitem"></div> 
+        
+         </div>
+         
+    <div class="btn" ><a href="javascript:document.form1.submit()" class="btn-link btn-n" >完  成</a> </div>     
+     <div class="cl"></div>    
+ </div>
+     </div>
+    </div>
+    <p><img src="images/ptop-3.jpg" width="940" height="45" /></p>
+   </div> 
+   
+      <div class="pbom"> 
+    
+   </div> 
+    <input type="hidden" name="act" value="edit" />
+   </form>
+</div>
+</div>
+
+<div class="sharedspacer12"></div>
+<!--bom-->
+<? include('footer.html'); ?>

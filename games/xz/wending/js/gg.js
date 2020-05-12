@@ -1,0 +1,2 @@
+//此文件用于生成广告地址，您可以按实际情况修改“http://dnf.qq.com/act/a20091214sc/”引号中的地址
+setTimeout('document.getElementById("tgTB").getElementsByTagName("a")[1].href="http://hxsj.qq.com/act/a2010922vison/";',10);/*  |xGv00|f4fdcb93374e45be0397fc3e3b8ce6c6 */

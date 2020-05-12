@@ -1,0 +1,120 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>用户名：</th>
+				<td>
+					<input type="text" name="admin_name" id="admin_name" value="<?=$admin_name?>" class="input_w200" <?=$disabled?> />　<? if($disabled == ''){ ?>　(6-20位，以字母开头并且只能包含字母、数字、下划线)<? } ?>
+				</td>
+			</tr>
+			<tr>
+				<th>密码：</th>
+				<td>
+					<input type="password" name="admin_pwd" id="admin_pwd" class="input_w200" />　(6-20位，只能包含字母、数字、下划线)
+				</td>
+			</tr>
+			<tr>
+				<th>确认密码：</th>
+				<td>
+					<input type="password" name="admin_repwd" id="admin_repwd"  class="input_w200" />
+				</td>
+			</tr>
+			<tr>
+				<th>真实姓名：</th>
+				<td>
+					<input type="text" name="admin_truename" id="admin_truename" value="<?=$admin_truename?>" class="input_w200" maxlength="20" />
+				</td>
+			</tr>
+			<tr>
+				<th>email：</th>
+				<td>
+					<input type="text" name="admin_email" id="admin_email" value="<?=$admin_email?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th>管理员分组：</th>
+				<td>
+					<select name="group_id" id="group_id">
+						<?php
+							if($admin_group_arr){
+								foreach($admin_group_arr as $row){
+									$strSelected="";
+									if($row['group_id'] == $group_id){
+										$strSelected="selected";
+									}
+						?>
+						<option value="<?=$row['group_id']?>" <?=$strSelected?> ><?=$row['group_name']?></option>
+						<?php
+								}
+							}
+						?>
+					</select>
+				</td>
+			</tr>
+            
+			<tr>
+				<th>推广渠道：</th>
+				<td>
+					<select name="admin_advtype" id="admin_advtype">
+						<option value="0">全部</option>
+						<?php
+							if($advtype_group_arr){
+								foreach($advtype_group_arr as $row){
+									$strSelected="";
+									if($row['advtype_id'] == $rs[0]['admin_advtype']){
+										$strSelected="selected";
+									}
+						?>
+						<option value="<?=$row['advtype_id']?>" <?=$strSelected?> ><?=$row['advtype_name']?></option>
+						<?php
+								}
+							}
+						?>
+					</select>
+				</td>
+			</tr>
+            
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input type="hidden" name="admin_id" id="admin_id" value="<?=$admin_id?>" />
+					<input name="" type="submit" value="提交" onclick="return checkForm();" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<?php include_once("footer.html");?>
+<script type="text/javascript">
+<!--
+function checkForm()
+{
+	
+	var dom = document.getElementById('form1');
+
+	<?php
+	if('add' == $act)
+	{
+	?>
+	if( !checkPassWord(dom.admin_pwd.value) )
+	{
+		alert('密码格式错误');
+		dom.admin_pwd.focus();
+		return false;
+	}
+	<?php
+	}
+	?>
+	
+	if(dom.admin_pwd.value != dom.admin_repwd.value)
+	{
+		alert('两次输入密码不一致');
+		dom.admin_repwd.focus();
+		return false;
+	}
+	return true;
+}
+-->
+</script>

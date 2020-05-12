@@ -1,0 +1,62 @@
+<?php $title=$row_news['title'].'_'.$row_news['cate_name']."_49you千军破官方网站"; ?>
+<?php $nav='member'; ?>
+<?php include('header.html'); ?>
+<style type="text/css">
+h1{font-size:19px;}
+</style>
+<div class="mid">
+<div class="ind_left">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--lefter_server start-->
+<? include('lefter_info.html'); ?> 
+<!--lefter_server end-->
+</div>
+  <div class="ind_rig"> 
+  <div class="news_1ist">
+   <h2><span>您的位置：<a href="index.html">首页</a>>
+<?if($row_news['reurl']!=''){?>
+<a href='<?=$row_news['reurl']?>'><?=$row_news['cate_name']?></a>
+<?}else{?>
+<?=$row_news['cate_name']?>
+<?}?>
+</span><img height="30" width="118" src="../images/<?=$imgico?>"></h2>
+   <div class="page_inf">
+        	<div class="newsinf_title"><div class="titl2"><h1><?=$row_news['title']?></h1></div><p>作者：
+            <a href="<?=YOU_ROOT?>" alt="49you游戏平台">49you.com</a> 时间：<?= date('Y-m-d H:i:s',$row_news['add_time'])?>  </p></div>
+            <div class="news_conbox">
+            <?=$row_news['content']?>
+            <!--info_tg start-->
+            <?if(!PUBLIC_INFOTAG || in_array($game_id,$game_infotag)){?>
+            <? include('info_tg.html'); ?> 
+            <?}else{
+                require(WEB_ROOT.'/games/info_tg.html');
+            }?>
+            <!--info_tg end-->
+
+            </div>
+        </div>
+        
+   <div class="page_inf"> 
+<ul>
+<?if($row_move){
+	foreach($row_move as $k=>$v){
+    	if($v["ty"]==1){?>
+<li><a href="<?=get_newslink($v["info_id"])?>">上一条：<?=$v["subtitle"]?></a></li>
+	<?}else if($v["ty"]==2){?>
+<li><a href="<?=get_newslink($v["info_id"])?>">下一条：<?=$v["subtitle"]?></a></li>
+<?		}
+	}
+}?>
+</ul>
+</div>     
+   <div class="sharedspacer"></div>
+          
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+<? include('footer.html'); ?>

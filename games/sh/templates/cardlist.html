@@ -1,0 +1,76 @@
+<?php $title='新手卡领取_49you山海创世录官方网站'; 
+$keywords="山海创世录新手卡";
+$description="49you山海创世录新手卡"?>
+<?php include('header.html'); ?>
+<style>.fontred{color:red;font-weight:bold}</style>
+<script language="javascript">
+function getcard(){
+	if($('#secode').val()!="49山海"){alert("请在\"第一步\"输入\"49山海\"");$('#secode').val("");return;}
+	if($('#country').val()==0){alert("请选择服务器！");return;}
+	window.open('<?=YOU_ROOT?>/get_package.html?ct='+$('#country').val());
+}
+</script>
+
+
+<div class="main">
+  <div class="l">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--left_server start-->
+<? include('lefter_server.html'); ?> 
+<!--left_server end-->
+<!--lefter_info start-->
+<? include('lefter_info.html'); ?> 
+<!--lefter_info end--> 
+<div class="sharedspacer"></div> 
+<!--lefter_kf start-->
+<? include('lefter_kf.html'); ?> 
+<!--lefter_kf end-->
+<!--lefter_mt start-->
+<? include('lefter_mt.html'); ?> 
+<!--lefter_mt end--> 
+ </div>
+ 
+ 
+<div class="r">
+      <div class="dh">
+      <label>礼品卡领取</label>
+      <div>您当前的位置：<a href="index.html">山海创世录</a> &gt; 礼品卡领取</div>
+    </div>
+<div class="sharedspacer"></div>
+    
+<div class="contend">
+<div >
+    <div class="news_so" ><p><strong>第一步：</strong>输入游戏名称</p>
+      <input name="input" type="text" id="secode"/>  答案：<font color="#41c7f9">49山海</font></div>
+          <div class="news_so" ><p><strong>第二步：</strong>选择服务器</p>
+<select name="coid" id="country">
+       <option value="0" selected="selected">请选择服务器</option>
+<? if(!empty($cardlist)){ 
+    	foreach($cardlist as $k=>$v){?>
+        <option value="<?=$v["cardtype_id"]?>"><?=$v["cardtype_name"]?></option>
+<?}
+}?>
+      </select>
+            <input class="inp3" type="button" name="button" value="点击领取" onClick="getcard()" />  </div>
+    </div>
+    
+    
+<div class="txt2" style="margin-top:10px;" >
+<p class="xsliebiao">【新手卡奖励道具】</p>    
+<p class="padding10">内含：祝福水*5（使用后1小时内所有身上的装备耐久度不减少）、还魂丹*5（角色死亡时，可以使用此丹原地复活，每次消耗1颗）、升级卷轴*10（用于在炼金炉中装备升级使用道具）、双倍经验卡*3（使用以后在线打怪、挂机均可获得2倍经验）、 10绑定元宝卡*5（使用以后可以获得绑定元宝，等值于充值货币，可以购买商城道具）</p> 
+<p class="xsliebiao">【使用方法】</p>    
+<p class="padding10">点击游戏右上角的【活】字按钮，选择福利兑换，点击【输入礼品码】按钮，在弹出框中输入礼品码，点击【确定】</p> 
+<p class="xsliebiao">【注意】</p>    
+<p class="padding10">1、每个角色和每个激活码只能使用一次，不能重复使用。<br />
+2、该活动的所有解释权归49you网页游戏平台。</p>
+</div> 
+
+</div>       
+</div>
+
+
+</div>
+
+<? include('footer.html'); ?>

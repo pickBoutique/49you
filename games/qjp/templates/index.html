@@ -1,0 +1,237 @@
+<?php $title='千军破_49you千军破官方网站_三国群雄万人国战，打开网页即可玩'; 
+$keywords="千军破,千军破官网,49you千军破,千军破武将,千军破攻略,三国网页游戏";
+$description="千军破是一款人气最火爆的史实三国战争策略类网页游戏，为你提供最全的千军破武将、兵种、新手卡等游戏攻略和最新的活动资讯，带你体验千军破三国群雄逐鹿天下、万人国战和激情璀璨的战争壮观！"?>
+<?php $nav='member'; ?>
+<?php include('header.html'); ?>
+<script language="javascript" src="../js/js_list.js"></script>
+<script type="text/javascript">
+function newschange(id,tab,list){
+	$("li[name="+tab+"]").removeClass('ibg news');
+	$("#"+tab+id).addClass('ibg news');
+	$("div[name="+list+"]").css("display","none");
+	$("#"+list+id).css("display","");
+}
+
+if (top.location != self.location)top.location=self.location;
+<?/*
+$(document).ready(function(){
+	getServerInfo("s2");
+});
+*/?>
+</script>
+<div class="mid">
+<div class="ind_left">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--lefter_server start-->
+<? include('lefter_server.html'); ?> 
+<!--lefter_server end-->
+</div>
+<div class="ind_rig">
+    <div>
+      <div class="ind_1">
+        <div class="i_1"><span><a target="_blank" href="news.html?pid=56"><img height="13" width="41" src="../images/more.jpg"></a></span>
+          <ul id="tbpanel">
+            <li id="newsli1" name="newsli" class="ibg news"><a href="javascript:void(0);" onmousemove="javascript:newschange(1,'newsli','newlist');">热 点</a></li>
+            <li id="newsli2" name="newsli"><a href="javascript:void(0);" onmousemove="javascript:newschange(2,'newsli','newlist');" >公告</a></li>
+            <li id="newsli3" name="newsli"><a href="javascript:void(0);" onmousemove="javascript:newschange(3,'newsli','newlist');" >新闻</a></li>
+            <li id="newsli4" name="newsli"><a href="javascript:void(0);" onmousemove="javascript:newschange(4,'newsli','newlist');" >活动</a></li>
+          </ul>
+        </div>
+        <div class="i_2" id="newlist1" name="newlist">
+          <ul>
+          <?if($rs_news){
+            foreach($rs_news as $k=> $v){
+              if($v["cate_id"]=="69"){?>
+            <li><span class="ii1 col1"><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["subtitle"]?></a></span><span class="ii2"><?=date( 'm/d',$v["add_time"])?></span></li>
+		    <?}
+            }
+          }?>
+          </ul>
+        </div>
+		<div class="i_2" id="newlist2" name="newlist" style="display:none;">
+          <ul>
+          <?if($rs_news){
+            foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="57"){?>
+            <li><span class="ii1 col1"><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["subtitle"]?></a></span><span class="ii2"><?=date( 'm/d',$v["add_time"])?></span></li>
+		  <?}
+            }
+          }?>
+          </ul>
+        </div>
+		<div class="i_2" id="newlist3" name="newlist" style="display:none;">
+          <ul>
+         <?if($rs_news){
+           foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="58"){?>
+            <li><span class="ii1 col1"><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["subtitle"]?></a></span><span class="ii2"><?=date( 'm/d',$v["add_time"])?></span></li>
+		 <?}
+          	}
+          }?>
+          </ul>
+        </div>
+        <div class="i_2" id="newlist4" name="newlist" style="display:none;">
+          <ul>
+          <?if($rs_news){
+            foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="59"){?>
+            <li><span class="ii1 col1"><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["subtitle"]?></a></span><span class="ii2"><?=date( 'm/d',$v["add_time"])?></span></li>
+		  <?}
+          }
+          }?>
+          </ul>
+        </div>
+      </div>
+      <div class="ind_2">
+        <div class="ind_3">
+          <h2>游戏区选择：
+            <select name="sidc" id="sidc" onchange="javascript:getServerInfo(this.value)">
+              <option value="s1">49you一区</option>
+            </select>
+          </h2>
+          <ul id="rankTab">
+      <li id="li_1" class="on"><a href="###" onclick="javascript:repchange(1);">玩家排行</a></li>
+      <li id="li_2" ><a href="###" onclick="javascript:repchange(2);">势力排行</a></li>
+      <li id="li_3" ><a href="###" onclick="javascript:repchange(3);">军团排行</a></li>
+      <li id="li_4" ><a href="###" onclick="javascript:repchange(4);">武将排行</a></li>
+    </ul>
+          <table width="407" border="0" cellspacing="0" class="rankTable" id="rankTable1" name="rankTable"></table>
+          <table width="407" border="0" cellspacing="0" class="rankTable" id="rankTable2" name="rankTable" style="display:none;"></table>
+          <table width="407" border="0" cellspacing="0" class="rankTable" id="rankTable3" name="rankTable" style="display:none;"></table>
+          <table width="407" border="0" cellspacing="0" class="rankTable" id="rankTable4" name="rankTable" style="display:none;"></table>
+          <div class="cl"></div>
+        </div>
+      </div>
+      <div class="faq">
+        <ul>
+          <li><a href="<?=get_newslink(356)?>" target="_blank"><img src="../images/20110602qjpbenner01.jpg" width="170" height="85" /></a></li>
+          <li><a href="<?=get_newslink(230)?>" target="_blank"><img src="../images/20110602qjpbenner02.jpg" width="170" height="85" /></a></li>
+          <li><a href="<?=BBS_ROOT?>/forumdisplay.php?fid=10" target="_blank"><img src="../images/20110602qjpbenner03.jpg" width="170" height="85" /></a></li>
+          <li><a href="<?=YOU_ROOT?>/news_info_218.html" target="_blank"><img src="../images/20110602qjpbenner04.jpg" width="170" height="85" /></a></li>
+        </ul>
+      </div>
+    </div>
+ <div class="ziliao cl">
+ <h2><span><a target="_blank" href="news.html?pid=54&cid=60"><img height="13" width="41" src="../images/more.jpg"></a></span><img height="30" width="118" src="../images/a_2.png"></h2>
+   <div class="flag">
+   <div class="adbg"><img src="../images/20110602qjpyxrw001.jpg" width="140" height="174" /></div>
+    </div>
+ <div class="jiesao"> 
+   <dl>
+    <dt>新手指南:</dt>
+     <dd><a href="<?=get_newslink(248)?>" target="_blank">游戏背景</a> | <a href="<?=get_newslink(250)?>" target="_blank">游戏界面</a> | <a href="<?=get_newslink(244)?>" target="_blank">地图场景</a> | <a href="<?=get_newslink(245)?>" target="_blank">基本操作</a>
+      <dt>&nbsp;</dt><dd>
+     <a href="<?=get_newslink(246)?>" target="_blank">新手任务</a> | <a href="<?=get_newslink(231)?>" target="_blank">兵种介绍</a> </dd>
+  <div style="height:6px;line-height:6px; font-size:0px;"></div>
+      <dt>高手进阶:</dt>
+     <dd><a href="<?=get_newslink(253)?>" target="_blank">城市发展</a> | <a href="<?=get_newslink(259)?>" target="_blank">田庄发展</a> | <a href="<?=get_newslink(234)?>" target="_blank">技能详情</a> | <a href="<?=get_newslink(236)?>" target="_blank">爵位详情</a>
+     <dt>&nbsp;</dt><dd>
+       <p><a href="<?=get_newslink(235)?>" target="_blank">建筑详情</a> | <a href="<?=get_newslink(233)?>" target="_blank">道具详情</a> | <a href="<?=get_newslink(258)?>" target="_blank">建立同盟</a> | <a href="<?=get_newslink(279)?>" target="_blank">征战沙场</a></p>
+     </dd>     
+      <dt>&nbsp;</dt><dd>
+       <p><a href="<?=get_newslink(257)?>" target="_blank">广征良兵</a> | <a href="<?=get_newslink(255)?>" target="_blank">攻防策略</a> | <a href="<?=get_newslink(280)?>" target="_blank">武将养成</a>  | <a href="<?=get_newslink(240)?>" target="_blank">深山剿匪</a></p>
+     </dd> 
+   <div style="height:6px;line-height:6px; font-size:0px;"></div>
+       <dt>游戏特色:</dt>
+     <dd>
+       <p><a href="<?=get_newslink(278)?>" target="_blank">竞技系统</a> | <a href="<?=get_newslink(239)?>" target="_blank">任务系统</a> | <a href="<?=get_newslink(237)?>" target="_blank">军事系统</a> | <a href="<?=get_newslink(243)?>" target="_blank">战场系统</a> </p>
+     <dt>&nbsp;</dt><dd>
+       <p><a href="<?=get_newslink(242)?>" target="_blank">武将系统</a> | <a href="<?=get_newslink(238)?>" target="_blank">军团系统</a> | <a href="<?=get_newslink(241)?>" target="_blank">势力系统</a></p>
+     </dd> 
+     
+    
+     </dd>            
+   </dl>
+</div>   
+   
+ <div class="k_5">
+<ul>
+<li><a href="<?=get_newslink(253)?>" target="_blank"><img src="../images/20110602qjpbenner05.jpg" width="185" height="55" /></a></li>
+<li><a href="<?=get_newslink(259)?>" target="_blank"><img src="../images/20110602qjpbenner06.jpg" width="185" height="55" /></a></li>
+<li><a href="<?=get_newslink(279)?>" target="_blank"><img src="../images/20110602qjpbenner07.jpg" width="185" height="55" /></a></li>
+
+</ul>
+</div>
+ </div>
+ <div class="sharedspacer"></div>
+ <div class="ziliao">
+ <h2><span><a target="_blank" href="news.html?pid=60"><img height="13" width="41" src="../images/more.jpg"></a></span><img height="30" width="118" src="../images/a_5.png"></h2>
+<div class="daoju">
+        <ul>
+          <?if($rs_gametools){
+            foreach($rs_gametools as $k=> $v){?>
+          <li><a href="<?=get_newslink($v["info_id"])?>" target="_blank" title="49you_千军破_热门道具_<?=$v["subtitle"]?>"><img src="<?=$v["pic"]?>" width="63" height="63" alt="49you_千军破_热门道具_<?=$v["subtitle"]?>" /></a><P><?=$v["subtitle"]?></P></li>
+            <?}
+            }?>
+        </ul>
+      </div>
+
+ </div>
+<div class="sharedspacer"></div>
+<div class="glue">
+<h2><span><a href="news.html?pid=54&cid=64" target="_blank"><img src="images/more.jpg" width="41" height="13" /></a></span>
+          <ul>
+            <li class="ibg" id="gdtab1" name="gdtab"><a href="void(0);" onmousemove="javascript:newschange(1,'gdtab','gdlist');">游戏攻略</a></li>
+            <li id="gdtab2" name="gdtab"><a href="void(0);" onmousemove="javascript:newschange(2,'gdtab','gdlist');">叶子猪攻略</a></li>
+          </ul>
+
+</h2>
+<div class="zqu" id="gdlist1" name="gdlist"><ul>
+          <?if($rs_gamegn){
+            foreach($rs_gamegn as $k=> $v){?>
+            <li><span class="ii1 col1"><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["subtitle"]?></a></span><span class="ii2"><?=date( 'm/d',$v["add_time"])?></span></li>
+            <?}
+            }?>
+</ul></div>
+<div class="zqu" id="gdlist2" name="gdlist" style="display:none;"><ul>
+<iframe scrolling="no" height="100%" frameborder="no" width="100%" border="0" allowtransparency="allowtransparency" id="ifram" marginheight="0" marginwidth="0" name="ifram" src="http://webgame.yzz.cn/96pk/qjpqt/"></iframe>
+</ul></div>
+</div>
+
+<div class="glue2">
+<h2><span><a href="news.html?pid=54&cid=65" target="_blank"><img src="../images/more.jpg" width="41" height="13" /></a></span><img height="30" width="118" src="../images/a_4.png" /></h2>
+<div class="zqu">
+<ul>
+          <?if($rs_gamequ){
+            foreach($rs_gamequ as $k=> $v){?>
+            <li><span class="ii1 col1"><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["subtitle"]?></a></span><span class="ii2"><?=date( 'm/d',$v["add_time"])?></span></li>
+            <?}
+            }?>
+</ul>
+</div>
+</div>
+<div class="sharedspacer"></div>
+<div class="ziliao ">
+<div class="wanjia_1"><span><a target="_blank" href="news.html?pid=72&cid=73"><img height="13" width="41" src="../images/more.jpg"></a></span>
+          <ul >
+            <li class="ibg pic" id="picli1" name="picli"><a href="void(0);" onmousemove="javascript:newschange(1,'picli','piclist');">游戏截图</a></li>
+            <li id="picli2" name="picli"><a href="void(0);" onmousemove="javascript:newschange(2,'picli','piclist');">玩家照片</a></li>
+          </ul>
+        </div>
+	<div class="wanjia" id="piclist1" name="piclist">
+        <ul>
+          <?if($rs_gamepic){
+            foreach($rs_gamepic as $k=> $v){?>
+             <li><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><img src="<?=$v['pic']?>" width="170" height="110" /></a></li>
+            <?}
+            }?>
+        </ul>
+      </div>
+	<div class="wanjia" id="piclist2" style="display:none"  name="piclist">
+        <ul>
+          <?if($rs_memberpic){
+            foreach($rs_memberpic as $k=> $v){?>
+             <li><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><img src="<?=$v['pic']?>" width="170" height="110" /></a></li>
+            <?}
+            }?>
+        </ul>
+      </div>  
+</div>
+  </div>
+</div>
+</div>
+</div>
+
+<? include('footer.html'); ?>

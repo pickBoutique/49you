@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="pragma" content="no-cache" />
+<?php $title='游戏服务器列表_49you盛世三国官方网站'; 
+$keywords="盛世三国服务器列表,盛世三国新服";
+$description="49you盛世三国服务器列表"?>
+<title><?=$title?></title>
+<?if(!empty($keywords)){?>
+<meta name="keywords" content="<?=$keywords?>">
+<?}?>
+<?if(!empty($description)){?>
+<meta name="description" content="<?=$description?>">
+<?}?>
+<link href="style/server.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+<?
+$gwname='49游戏平台盛世三国';
+require(WEB_ROOT.'/games/top_bar.html');
+?> 
+<div class="row" id="top"> <a href="/">
+  <div class="btn1"></div>
+  </a> <a href="<?=YOU_ROOT?>" target="_blank">
+
+  <div class="btn2"></div>
+  </a> <a href="<?=YOU_ROOT?>/pay_type.html?gid=<?=$game_id?>" target="_blank">
+  <div class="btn3"></div>
+  </a> <a href="#" onclick="window.external.addFavorite('http://sg.49you.com/server_list.html','49you《盛世三国》');return false;">
+  <div class="btn4"></div>
+  </a> <a href="<?=YOU_ROOT?>/reg_adv.html?act=download&gid=7&type=s" target="_blank">
+  <div class="btn5"></div>
+
+  </a> <a href="<?=YOU_ROOT?>/reg_adv.html?act=download&gid=7&type=s" target="_blank">
+  <div class="btn6"></div>
+  </a> <a href="http://www.d8pk.com/reg_adv.html?act=download&gid=7&type=l" target="_blank">
+  <div class="btn7"></div>
+  </a> </div>
+<div class="row">
+  <div class="s_left"></div>
+  <div class="content">
+
+    <div class="server">
+<script type="text/javascript">
+function memberServers(){
+	var gid="<?=$game_id?>";
+	var url="<?=YOU_ROOT?>/ajax_server.html?act=mygame&gid="+gid+"&format=json&jsoncallback=?";
+	$.getJSON(url,
+	function(data){
+		var myrs=eval(data);
+		var shtml = "";
+		for(var i in myrs){
+			shtml +='<ul><li>';
+			shtml +='<label class="label1"></label>';
+
+			shtml +='<a href="<?=YOU_ROOT?>/game_add.html?gid='+myrs[i].mg_game_id+'&sid='+myrs[i].mg_server_id+'" target="_blank">'+myrs[i].mg_server_name+'<font style="color:deepskyblue; margin-left:5px;">'+myrs[i].mg_last_time.substring(2)+'</font></a>';
+			shtml +='</li></ul>';
+		}
+		$("#lastgames").html(shtml);
+
+	});
+}
+</script>
+      <div class="server_list" >
+        <div class="top">－推荐服务器列表－</div>
+        <div class="con">
+          <ul>
+
+                      <?if($rs_servertj){
+                        foreach($rs_servertj as $k=> $v){?>
+      <li class="li_bg"><a href="<?=YOU_ROOT?>/game_add.html?gid=<?=$v["server_gid"]?>&sid=<?=$v["server_id"]?>" target="_blank"><?=$v["server_name"]?> <font style="color:#f3b800"><?= date('m/d H:i',$v['server_start'])?> 开启</font></a></li>
+                    <?}
+                    }?>
+          </ul>
+
+        </div>
+      </div>
+<div class="server_list">
+        <div class="top">－我的服务器列表－</div>
+        <div class="con" id="lastgames">
+        </div>
+<script language="javascript">memberServers();</script>
+      </div>
+      <div class="server_list">
+        <div class="top">－所有服务器列表－</div>
+        <div class="con">
+          <ul>
+              <?if($rs_servers){
+                foreach($rs_servers as $k=> $v){?>
+<li class="li_bg"><a href="<?=YOU_ROOT?>/game_add.html?gid=<?=$v["server_gid"]?>&sid=<?=$v["server_id"]?>" target="_blank"><?=$v["server_name"]?> <font style="color:#f3b800"><?= date('m/d H:i',$v['server_start'])?> 开启</font></a></li>
+            <?}
+            }?>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="right">
+      <div class="news">
+        <div class="news_top"></div>
+        <ul>
+          <?if($rs_news){
+            foreach($rs_news as $k=> $v){{
+            $cls = $v["attachment"]=="red" ? 'new_list_red' : '';
+            ?>
+		<li <?if(!empty($cls)){?> class="<?=$cls?>"<?}?> >
+        <a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+		  <?}
+            }
+          }?>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="s_right"></div>
+<?php include('footer.html'); ?>

@@ -1,0 +1,44 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'平台' , 'dataIndex':'sd_platform' , 'type':'select' ,'subIndex':'sd_gid', 'url':'ajax-games.php' , 'options':{ '全部':'' ,<?=get_system_select(true)?>} },
+		  { 'header':'游戏' , 'dataIndex':'sd_gid' , 'subIndex':'sd_sid', 'parentIndex':'sd_platform', 'url':'ajax-servers.php' , 'type':'select' , 'options':{ '全部':'' , <?= getTableSelect("game","game_id","game_name",'1',true)?>} },
+          { 'header':'服务器' , 'dataIndex':'sd_sid' ,  'type':'select' , 'options':{ '全部':'' } },
+		  { 'header':'统计时间' , 'dataIndex':'sd_sumtime' , 'type':'datetime', 'defaultValue':'<?=date("Y-m-d")?>' }
+          </div>
+        </div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		var grid;
+		$(document).ready(function(){
+			var cm = new ColumnModel
+			([
+			{header: '日期时间', dataIndex: 'sd_sumtime', format:'yyyy-MM-dd HH', sortable: true},
+			{header: '总上线人数', dataIndex: 'sd_memonline', sortable: true},
+			{header: '在线人数', dataIndex: 'sd_houronline', sortable: true},
+			{header: '5分钟活跃', dataIndex: 'sd_active5min'},
+			{header: '10分钟活跃', dataIndex: 'sd_active10min'},
+			{header: '15分钟活跃', dataIndex: 'sd_active15min'},
+			{header: '20分钟活跃', dataIndex: 'sd_active20min'},
+			{header: '25分钟活跃', dataIndex: 'sd_active25min'},
+			{header: '30分钟活跃', dataIndex: 'sd_active30min'},
+			{header: '30分钟以上活跃', dataIndex: 'sd_activeall'}
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 24 ,sort:'sd_sumtime',dir:'desc', params: { 'act': 'dataget', filter: '[{"name":"sd_sumtime","oper":">=","value":"<?=strtotime(date('Y-m-d'))?>"}]'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 24, filter: filter} }); });
+			$('#searchbar').show();
+		});
+	
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

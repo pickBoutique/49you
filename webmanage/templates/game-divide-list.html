@@ -1,0 +1,72 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'游戏编码' , 'dataIndex':'game_code' , 'type':'textbox' },
+          { 'header':'游戏名称' , 'dataIndex':'game_name' , 'type':'textbox' }
+          </div>
+        </div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			
+			function getoperator(rs) {
+				return "<a href='###' class='action_edit' onclick=\"toedit('" + rs["game_id"] + "')\">编辑</a>"  + "  <a href='###' onclick=\"todelone('" + rs["game_id"] + "')\">删除</a>";
+	
+			}
+			
+			var cm = new ColumnModel
+			([
+			new CheckboxModel({dataIndex: 'game_id'}),
+			{header: '游戏编码', dataIndex: 'game_code',  width: 100 },
+			{header: '游戏名称', dataIndex: 'game_name',  width: 200 },
+			new TextboxModel({header: '游戏分成', dataIndex: 'game_divide', priIndex: 'game_id', url: 'game-divide-list.php', sortable: true, width: 50 })
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+			
+			
+		});
+		
+		
+		function toadd(){
+			show_editor({ title:'添加',src:'game-divide-add.php',  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function toedit(id){
+			show_editor({ title:'编辑',src:'game-divide-add.php?game_id=' + id,  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function todel(){
+			ajax_action('game-divide-add.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+				grid.load(); 
+			});
+		}
+		
+		function todelone(id){
+			ajax_action('game-divide-add.php',{ act:'del' , ids:id } , '您确定要删除吗？' , function(){ 
+				grid.load();
+			});
+		}
+		
+	
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

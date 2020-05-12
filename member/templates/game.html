@@ -1,0 +1,119 @@
+<?php $title='游戏中心_49you网页游戏平台'; ?>
+<?php $nav='game'; ?>
+<?php include('header.html'); ?>
+<script>
+function getLocTime(nS) {
+    return new Date(parseInt(nS) * 1000).toLocaleString().replace("/年|月/g", "-").replace("/日/g", " ");
+}
+Date.prototype.pattern=function(fmt) {        
+    var o = {        
+    "M+" : this.getMonth()+1, //月份        
+    "d+" : this.getDate(), //日        
+    "h+" : this.getHours() == 0 ? 12 : this.getHours(), //小时        
+    "H+" : this.getHours(), //小时        
+    "m+" : this.getMinutes(), //分        
+    "s+" : this.getSeconds(), //秒        
+    "q+" : Math.floor((this.getMonth()+3)/3), //季度        
+    "S" : this.getMilliseconds() //毫秒        
+    };        
+    var week = {        
+    "0" : "\u65e5",        
+    "1" : "\u4e00",        
+    "2" : "\u4e8c",        
+    "3" : "\u4e09",        
+    "4" : "\u56db",        
+    "5" : "\u4e94",        
+    "6" : "\u516d"       
+    };        
+    if(/(y+)/.test(fmt)){        
+        fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));        
+    }        
+    if(/(E+)/.test(fmt)){        
+        fmt=fmt.replace(RegExp.$1, ((RegExp.$1.length>1) ? (RegExp.$1.length>2 ? "\u661f\u671f" : "\u5468") : "")+week[this.getDay()+""]);        
+    }        
+    for(var k in o){        
+        if(new RegExp("("+ k +")").test(fmt)){        
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));        
+        }        
+    }        
+    return fmt;        
+} 
+
+function showServer(_c) {
+		ajax_action('ajax_server.html',{ gid:_c },null,function(data){
+			var obj = eval('(' + data + ')');
+			var _server = obj.servers;
+			var shtml ='';
+			var optime="";
+			optime=new Date(parseInt(_server[0].server_start) * 1000).pattern("M月dd日 hh:mm");
+		
+			shtml += '<div class="titl"><b><a href="'+obj.game.game_web+'" target="_blank">'+obj.game.game_name+'</a></b><span>'+obj.game.game_classname+'网页游戏</span>';
+			shtml += '<em><a href="#">火爆新服</a></em><p>'+obj.game.game_desc+'</p>	</div>';
+			shtml += '<div class="news"><a target="_blank" href="game_add.html?gid='+_server[0].server_gid+'&sid='+_server[0].server_id+'" style="font-weight:bold;">'+_server[0].server_name+' '+optime+' 火爆开启</a></div>';
+			shtml += '<div class="shop"><a target="_blank" href="'+obj.game.game_guidenew+'">新手指南</a> <a target="_blank" href="'+obj.game.game_guide+'">游戏资料</a> <a href="'+obj.game.game_web+'" target="_blank">官方网站</a>';
+			shtml += '<a class="Start" href="game_add.html?gid='+_server[0].server_gid+'&sid='+_server[0].server_id+'">进入游戏</a></div>';	
+			//alert(shtml);
+			$('#gameL').html(shtml);
+			$('#gameL').css('background', 'transparent url(/game/' + _c + '_706_240.jpg) repeat scroll 0 0');
+			shtml ='';
+			
+			shtml = '<div class="game_title"><ul><li class="nah">'+obj.game.game_name+'</li></ul></div><div class="allserver">';
+			for(var j in _server){
+				shtml +='<ul ><li>';
+				
+				optime=new Date(parseInt(_server[j].server_start) * 1000).pattern("MM-dd hh:mm");
+				if(_server[j].server_isnew==1)shtml+='<span class="hb"><span class="red">'+optime+'</span></span>';
+				
+				shtml +='<a href="game_add.html?gid='+_server[j].server_gid+'&sid='+_server[j].server_id+'" target="_blank">'+_server[j].server_name+'</a>';
+				shtml +='</li></ul>';
+			}
+			shtml +='<div style="clear:both;"></div></div>';
+			$('#game_server').html(shtml);
+		});
+    }
+	$(document).ready(function(){
+		showServer('<?=$game_id?>');
+	});
+</script>
+<div class="text cl ">
+<div class="con clearfix">
+<!--left-->
+<div id="coleft">
+
+<? include('login_info.html'); ?> 
+
+<!--login end-->
+
+  <div class="sharedspacer8"></div>
+
+   <div class="fwq_tj">
+    <h3>游戏列表</h3>
+    <div class="mid">
+    <div class="box">
+    <?foreach($rs_gamelist as $k=> $v){?>  
+   <a href="###" onclick="javascript:showServer(<?=$v['game_id']?>);"  class="g"><b><?=$v['game_name']?></b><span><?=$cfg_game_type[$v['game_class']]?></span><em class="ico_mhxx" style="background-image: url(/game/<?=$v['game_id']?>_16_16.jpg);"></em></a> 
+	 <?}?>
+    </div>
+    </div>
+    <div class="bom"></div>
+    </div>
+    
+    
+    
+</div>
+<!--right-->
+<div id="coright">
+  <div class="jtxmL" id="gameL"><!--gameinfo--></div>
+<div class="sharedspacer12"></div>
+<div id="game_server">
+
+<!--gameserver-->
+</div>
+<div class="game_bom"></div>
+</div>
+</div>
+
+
+</div>
+
+<? include('footer.html'); ?>

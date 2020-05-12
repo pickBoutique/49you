@@ -1,0 +1,63 @@
+<?php $title='礼包领取_49you网页游戏平台'; ?>
+<?php $nav='package'; ?>
+<?php include('header.html'); ?>
+<script language="javascript">
+function show_content(id){
+	$('#content').html($('#content_'+id).html());
+}
+</script>
+<div class="text cl ">
+  <div class="con clearfix">
+    <div class="libao">
+      <div class="xsk_lq" >
+     
+<ul class="clearfix" >
+  <li><img src="game/<?=$game_id?>_258_144.jpg" />
+  </li>
+  <li id="content">
+  </li>
+</ul>
+   
+    </div> 
+    <table width="90%" border="0" align="center" cellpadding="00" cellspacing="1" class="liebiao" >
+      <tr>
+        <td width="12%" align="center" class="liebiao-zi1 liebiaor3" >礼包名称</td>
+        <td width="17%" align="center" class="liebiao-zi1 liebiaor3" >可使用服务器</td>
+        <td width="10%" align="center" class="liebiao-zi1 liebiaor3" >剩余</td>
+        <td width="15%" align="center" class="liebiao-zi1 liebiaor3" >领取时段</td>
+        <td width="17%" align="center" class="liebiao-zi1 liebiaor3" >价格</td>
+        <td width="10%" height="22" align="center" class="liebiao-zi1 liebiaor3" >礼包内容</td>
+        <td width="10%" align="center" class="liebiao-zi1 liebiaor3 ">领取</td>
+        </tr>
+    <? if(!empty($list)){ 
+    	for($i=0;$i<sizeof($list);$i++){
+        	$v = $list[$i];
+            $color = "#FFFFFF";
+            if($i % 2 == 0){
+            	$color = "#EEFAFD";
+            }
+    ?>
+     <tr>
+        <td width="12%" align="center" bgcolor="<?=$color?>" ><?=$v['cardtype_name']?></td>
+        <td width="17%" align="center" bgcolor="<?=$color?>" ><?=empty($v['server_name']) ? "无限制" : $v['server_name'] ?></td>
+        <td width="10%" align="center" bgcolor="<?=$color?>" ><?=$v['cardtype_count']?></td>
+        <td width="15%" align="center" bgcolor="<?=$color?>" ><?=$v['cardtype_timelimit']==1 ?  date('Y-m-d',$v['cardtype_start'])."到".date('Y-m-d',$v['cardtype_end'])   : "无限制" ?></td>
+        <td width="17%" align="center" bgcolor="<?=$color?>" >免费</td>
+        <td width="10%" height="22" align="center" bgcolor="<?=$color?>" ><a href="###" onclick="show_content(<?=$v['cardtype_id']?>);" class="red">点击查看</a>
+        <div id="content_<?=$v['cardtype_id']?>" style="display:none;"><?=$v['cardtype_desc']?></div>
+        </td>
+        <td width="10%" height="22" align="center" bgcolor="<?=$color?>" ><input name="button2" type="button" onClick="window.open('get_package.html?ct=<?=$v['cardtype_id']?>');" class="btin_lb" id="button2" value="点击领取"  /></td>
+        </tr>
+    <?  }
+       } ?>
+     
+      
+    </table>
+   <br />
+    
+  </div>
+  </div>
+  
+</div>
+
+<? include('footer.html'); ?>

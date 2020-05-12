@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>龙将_龙将官网_56uu龙将|新手卡|礼包|猜拳|职业|攻略</title>
+<meta name="keywords" content="龙将，龙将官网，56uu龙将，龙将新手卡，龙将礼包，龙将职业，龙将攻略" />
+<meta name="description" content="龙将，龙将官网，56uu龙将是一款三国题材类的大型RPG网页游戏。56uu龙将官网提供龙将新手卡和礼包领取，三大职业和丰富的武将系统，还有斗地主、猜拳、将星图等特色玩法，带你体验别样的三国时代。"/>
+<link href="/style/style.css" rel="stylesheet" type="text/css" />
+<link href="/top/top.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/login.js"></script>
+<script type="text/javascript" src="/js/108j.js"></script>
+<script type="text/javascript" src="/js/changetab.js"></script>
+</head>
+<body>
+<!--------------------------------------------------------------------top bar--------------------------------------------------------------------------->
+<?php include('top.html'); ?>
+	
+	<!--content-->
+	<div id="content">
+	  <div id="main">
+	    <div id="main2">
+		  
+		   <div id="i-left">
+<?php include('left.html'); ?>
+		   </div>
+		   
+		   
+		   <div id="i-right">
+		      
+			  <!--news -->
+			  <div id="news">
+                 <div class="news-title"><span style="font-size:15px; font-weight:bold; color:#fff;line-height: 37px;margin-left: 50px;">新闻公告</span><a href="news.html?cid=302" style="float: right; margin: 10px 20px 0pt 0pt;">更多</a></div>
+				 <div class="news-content">
+				    <div class="news-img">
+                      <?if($rs_newspic){
+                        foreach($rs_newspic as $k=> $v){
+                        ?>
+                    <a href="<?=$v['source']?>" target="_blank"><img src="http://www.49you.com<?=$v['pic']?>" border="0" /></a>
+                    <?php }} ?>
+                    </div>
+					<div class="news-main">
+					   <ul>
+                      <?if($rs_news){
+                        foreach($rs_news as $k=> $v){
+                        ?>
+                            <li><span class="right"><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>"><?=$v["subtitle"]?></a>
+                      <?php }} ?>
+                       </ul>
+					</div>
+				 </div>
+				 <div class="news-footer"><img src="/images/game-footer.gif" /></div>
+              </div>
+			  
+			  <!--action-->
+			  <div id="action">
+                 <div class="news-title"><span style="font-size:15px; font-weight:bold; color:#fff;line-height: 37px;margin-left: 50px;">活动咨询</span><a href="news.html?cid=330" style="float: right; margin: 10px 20px 0pt 0pt;">更多</a></div>
+				 <div class="news-content">
+				    <div class="news-img">
+                      <?if($rs_huodongpic){
+                        foreach($rs_huodongpic as $k=> $v){
+                        ?>
+                    <a href="<?=$v['source']?>" target="_blank"><img src="http://www.49you.com<?=$v['pic']?>" border="0" /></a>
+                    <?php }} ?>
+                    </div>
+					<div class="news-main">
+					   <ul>
+                      <?if($rs_huodong){
+                        foreach($rs_huodong as $k=> $v){
+                        ?>
+                            <li><span class="right"><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>"><?=$v["subtitle"]?></a>
+                      <?php }} ?>
+                       </ul>
+					</div>
+				 </div>
+				 <div class="news-footer"><img src="/images/game-footer.gif" /></div>
+              </div>
+			  
+			 <!--vip-img --> 
+			   <div id="vip-img">
+			     <div id="vip-img2">
+			          <div class="vip-img-1"><a href="news_5916.html" target="_blank"><img src="/images/vip.jpg" width="145" height="86" border="0" /></a></div>
+				      <div class="vip-img-1"><a href="news_5915.html" target="_blank"><img src="/images/bqwj.jpg" width="145" height="86" border="0" /></a></div>
+				      <div class="vip-img-1"><a href="news_5929.html" target="_blank"><img src="/images/qc.jpg" width="145" height="86" border="0" /></a></div>
+					  <div class="vip-img-2"><a href="news_5921.html" target="_blank"><img src="/images/faq.jpg" width="145" height="86" border="0" /></a></div>
+				 </div>
+			   </div>
+			 
+			 <!--infor -->
+			   <div id="infor">
+			      <div id="infor-title"><span style="font-size:15px; font-weight:bold; color:#fff;line-height: 37px;margin-left: 50px;">游戏资料</span></div>
+				  <div id="infor-content">
+				     <div id="infor-pic"><a href="tmp_yxjt.html" target="_blank"><img src="/images/infor-img.gif" /></a><p><a href="tmp_yxjt.html">游戏场景</a></p></div>
+				     <div id="infor-content2">
+					   <div class="infor-content-2-1">
+                      <?if($rs_xszn){
+                        foreach($rs_xszn as $k=> $v){
+                        ?>
+                        <a href="news_<?=$v['info_id']?>.html"><?=$v['subtitle']?></a><span style="padding-left:5px;">|</span>
+                        <?php }} ?>
+                       </div>
+					   <div class="infor-content-2-1">
+                      <?if($rs_xszn){
+                        foreach($rs_xtjs as $k=> $v){
+                        ?>
+                        <a href="news_<?=$v['info_id']?>.html"><?=$v['subtitle']?></a><span style="padding-left:5px;">|</span>
+                        <?php }} ?>
+                       </div>
+					   <div class="infor-content-2-1">
+                      <?if($rs_xszn){
+                        foreach($rs_tswf as $k=> $v){
+                        ?>
+                        <a href="news_<?=$v['info_id']?>.html"><?=$v['subtitle']?></a><span style="padding-left:5px;">|</span>
+                        <?php }} ?>
+                       </div>
+					 </div>
+				  </div>
+			   </div>
+			   
+			 <!--gonglve -->
+			   <div id="gonglve">
+                 <div class="gl-title"><span style="font-size:15px; font-weight:bold; color:#fff;line-height: 37px;margin-left: 50px; float:left;">游戏攻略</span><a href="news.html?cid=335">更多</a></div>
+                 <div class="gl-content">
+                   <div class="gl-content2">
+                   <ul>
+                      <?if($rs_gamegl){
+                        foreach($rs_gamegl as $k=> $v){
+                        ?>
+                            <li><span class="right"><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>"><?=$v["subtitle"]?></a>
+                      <?php }} ?>
+                  </ul>
+                  </div>
+                </div>
+                <div class="gl-footer"><img src="/images/game-footer.gif" /></div>
+                <div class="clear"></div>
+             </div>
+			 
+			 
+			 <!--story -->
+			   <div id="story">
+                 <div class="story-title"><span style="font-size:15px; font-weight:bold; color:#fff;line-height: 37px;margin-left: 50px; float:left;">玩家心情</span><a href="news.html?cid=336">更多</a></div>
+                 <div class="gl-content">
+                   <div class="gl-content2">
+                   <ul>
+                      <?if($rs_gamexq){
+                        foreach($rs_gamexq as $k=> $v){
+                        ?>
+                            <li><span class="right"><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>"><?=$v["subtitle"]?></a>
+                      <?php }} ?>
+                  </ul>
+                  </div>
+                </div>
+                <div class="gl-footer"><img src="/images/game-footer.gif" /></div>
+                <div class="clear"></div>
+             </div>
+			 
+			 <!--265G -->
+			   <div class="gl-265G">
+				   <div class="tabmenu1">
+                     <ul>
+                       <li onmouseover="tabChange(this,'tabcontent')" class="cli">265G攻略</li>
+                       <li onmouseover="tabChange(this,'tabcontent')">cweb攻略</li>
+                     </ul>
+                   </div>
+
+                   <div id="tabcontent">
+                     <ul name="tabul">
+                             <iframe src="http://im.265g.com/articlelist/lj1.html
+" scrolling=no frameborder=0 height=160 width="320"></iframe>
+                     </ul>
+                    <ul class="hidden">
+                             <iframe src="http://www.cwebgame.com/webgame/app/longjiang/" scrolling=no frameborder=0 height=163 width="330"></iframe>
+                     </ul>
+				   </div>
+			  </div>
+			 
+			 <!--yezizhu -->
+			 <div class="gl-yzzhu">
+				   <div class="tabmenu1">
+                     <ul>
+                       <li onmouseover="tabChange(this,'tabcontent2')" class="cli">07073攻略</li>
+                       <li onmouseover="tabChange(this,'tabcontent2')">游戏窝攻略</li>
+                     </ul>
+                   </div>
+
+                   <div id="tabcontent2">
+                     <ul name="tabul">
+                             <iframe src="http://www.07073.com/plus/huanshi_js.php?bg=4B1100&type=3481&pagesize=6&tmp=if_ceshi05&width=314&height=174&color=DCD0CC&alk=DCD0CC&avs=DCD0CC&ahv=DCD0CC&sort=40&lh=18&pp=1&time=1&py=lz" scrolling=no width="320" frameborder=0 height=160></iframe>
+                     </ul>
+                    <ul class="hidden">
+                             <iframe src="http://web.yoxiwo.com/news/longjiang.html" scrolling=no frameborder=0 width="320" height=160></iframe>
+                     </ul>
+				   </div>
+			  </div>
+			 
+			</div>
+		   
+		   <!--link -->
+		   <div id="link">
+		      <div id="link-title"><span style="font-size:15px; font-weight:bold; color:#fff;line-height: 37px;margin-left: 50px;">友情链接</span></div>
+			  <div id="link-content">
+			     <div id="link-content2">
+				    <ul>
+                    <?
+                    //合作媒体130
+                    $sqlstr="select source,summary,pic from ".DB_PREFIX."info where info_start<=".time()." and cate_id = {$ids['gamemt']} order by sort_num desc ";
+                    $rs_link = $db->getAll($sqlstr);
+                    ?>
+                    <?
+                  if($rs_link){
+                    foreach($rs_link as $k=> $v){?>
+                    <li class="link-img2"><a href="<?=$v["source"]?>" target="_blank" rel="nofollow"><img src="<?=HTTP_ROOT?><?=$v["pic"]?>" width="88" height="31" border="0" alt="<?=$v["summary"]?>" /></a></li>
+                    <?php }} ?>
+					</ul>
+				 </div>
+			  </div>
+		   </div>
+		   <div class="clear"></div>
+		</div>
+	  </div>
+	  <div id="main-f"></div>
+	</div>
+	
+	<div class="clear"></div>
+  </div> 
+  <div class="clear"></div>
+</div>
+
+<!------------------------------------------------------------------------- footer -------------------------------------------------------------------->
+<?php include('footer.html'); ?>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<?php include_once("templates/header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>模块名称：</th>
+				<td>
+					<input type="text" name="module_name" id="module_name" value="<?=$rs['module_name']?>" class="input_w400" />　(*)
+				</td>
+			</tr>
+			<tr>
+				<th>所属模块：</th>
+				<td> 
+					<select name="parent_id" id="parent_id">
+						<option value="0">顶级模块</option>
+						<?php
+						if($parent_rs)
+						{
+							foreach($parent_rs as $v)
+							{
+								$str_selected = '';
+								if($rs['parent_id'] == $v['module_id'])
+								{
+									$str_selected = 'selected';
+								}
+								echo "<option value=\"".$v['module_id']."\" ".$str_selected.">".$v['module_name']."</option>\n";
+							}
+						}
+						?>
+					</select> 
+				</td>
+			</tr>
+            <tr>
+				<th>所需权限：</th>
+				<td>
+                	<select name="permi_code" id="permi_code">
+						<option value="">没有</option>
+						<?php
+						if($permis)
+						{
+							foreach($permis as $v)
+							{
+								$str_selected = '';
+								if($rs['permi_code'] == $v['permi_code'])
+								{
+									$str_selected = 'selected';
+								}
+								echo "<option value=\"".$v['permi_code']."\" ".$str_selected.">".$v['permi_code']."(".$v['permi_name'].")</option>\n";
+							}
+						}
+						?>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>功能模块路径：</th>
+				<td>
+					<input type="text" name="module_url" id="module_url" value="<?=$rs['module_url']?>" class="input_w400" />
+				</td>
+			</tr>
+			<tr>
+				<th>是否激活：</th>
+				<td>
+					<label><input name="is_active" id="is_active1" type="radio" value="1" <?=$rs['is_active']=='1'||$rs['is_active']==''?'checked':''?> />激活</label>
+					<label><input name="is_active" id="is_active2" type="radio" value="0" <?=$rs['is_active']=='0'?'checked':''?> />非激活</label>
+				</td>
+			</tr>
+			<tr>
+				<th>排序号：</th>
+				<td>
+					<input type="text" name="sort_num" id="sort_num" value="<?=$rs['sort_num']==''?'0':$rs['sort_num']?>" class="input_w100" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn action_add action_edit" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<?php include_once("templates/footer.html");?>

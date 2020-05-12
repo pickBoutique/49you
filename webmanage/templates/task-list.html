@@ -1,0 +1,88 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'任务名称' , 'dataIndex':'task_name' , 'type':'textbox' },
+          { 'header':'请求地址' , 'dataIndex':'task_url' , 'type':'textbox' },
+          { 'header':'下次运行时间' , 'dataIndex':'task_next' , 'type':'datetime' }
+          </div>
+        </div>
+
+		<div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="button" value="删除" class="btn action_del" onclick="todel();" />
+			<input type="button" value="添加" class="btn action_add" onclick="toadd();" />
+		</div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			
+			function getoperator(rs) {
+				return "<a href='###' class='action_edit' onclick=\"toedit('" + rs["task_id"] + "')\">编辑</a>"  + "  <a href='###' class='action_del' onclick=\"todelone('" + rs["task_id"] + "')\">删除</a>";
+	
+			}
+	
+			
+			var cm = new ColumnModel
+			([
+			new CheckboxModel({dataIndex: 'task_id'}),
+			{header: '任务名称', dataIndex: 'task_name' },
+			{header: '每多少', dataIndex: 'task_num'},
+			{header: '时间', dataIndex: 'task_type', renderer: '<?=$json->encode($task_type);?>'},
+			{header: '小时', dataIndex: 'task_hours'},
+			{header: '分钟', dataIndex: 'task_minutes'},
+			{header: '请求地址', dataIndex: 'task_url'},
+			{header: '上次运行时间', dataIndex: 'task_last', format:'yyyy-MM-dd HH:mm:ss'},
+			{header: '上次运行时长(秒)', dataIndex: 'task_runtime'},
+			{header: '下次运行时间', dataIndex: 'task_next', format:'yyyy-MM-dd HH:mm:ss'},
+			new BoolenModel({header: '已启用', dataIndex: 'task_enable', priIndex: 'task_id', url: 'task-add.php',  width: 50 } ),
+			{header: '操作',  width: 120, renderer: getoperator }
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+			
+			
+		});
+		
+		
+		function toadd(){
+			show_editor({ title:'添加',src:'task-add.php',  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function toedit(id){
+			show_editor({ title:'编辑',src:'task-add.php?task_id=' + id,  onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		function todel(){
+			ajax_action('task-add.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+				grid.load(); 
+			});
+		}
+		
+		function todelone(id){
+			ajax_action('task-add.php',{ act:'del' , ids:id } , '您确定要删除吗？' , function(){ 
+				grid.load();
+			});
+		}
+		
+	
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

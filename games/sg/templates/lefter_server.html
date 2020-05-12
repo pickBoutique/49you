@@ -1,0 +1,18 @@
+<?$list = $db->getAll("select  server_id,server_name,server_gid,server_num,server_status,server_isnew,server_ishot,server_time,server_start FROM " .DB_PREFIX."server WHERE server_gid='$game_id' and (server_status=1 or server_ishot=1) order by server_start desc limit 5");?>
+
+    <div class="left_frame game_server">
+    <div class="top"></div>
+    <div class="con">
+      <ul>
+         <?if($list){
+            foreach($list as $k=> $v){?>
+        <li>
+        <span class="green"> <?= date('m/d',$v['server_start'])?> 开启</span>
+        <a target="_blank" href="<?=YOU_ROOT?>/game_add.html?gid=<?=$v["server_gid"]?>&sid=<?=$v["server_id"]?>"><?=$v["server_name"]?></a></li>
+        	<?}
+          }?>
+      </ul>
+      <div class="left_card"><a href="server_list.html" target="_blank"><img src="images/getcard.jpg" alt=""/></a></div>
+    </div>
+    <div class="btm"></div>
+    </div>

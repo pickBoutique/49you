@@ -1,0 +1,95 @@
+<?php 
+if($cid==40){
+	$title='公告_新闻动态_49you网页游戏平台';
+}else if($cid==42){
+	$title='新闻_新闻动态_49you网页游戏平台';
+}else if($cid==41){
+	$title='活动_新闻动态_49you网页游戏平台';
+}else{
+	$title='新闻动态_49you网页游戏平台';
+}
+?>
+<?php $nav='news'; ?>
+<?php include('header.html'); ?>
+
+<div class="text cl ">
+<div class="con clearfix">
+<!--left-->
+<div id="coleft">
+  <!--login start-->
+  <? include('login_info.html'); ?> 
+  <!--login end-->
+  
+  <div class="sharedspacer8"></div>  
+  
+  <!--server start-->
+  <? include('server_info.html'); ?> 
+  <!--server end-->
+
+  <!--service start-->
+  <? include('service_info.html'); ?> 
+  <!--service end-->        
+</div>
+<!--right-->
+<div id="coright">
+ <div class="center_newinf">
+      <div class="newinf_title">
+            	<ul><li class="nah">开服新闻</li></ul></div>
+  <div class="center_list">
+    <div class="yc">
+    		<? $top = $db->getRow("select pic,info_id,subtitle,title,summary,server_name,server_start,game_web,game_bbs,info_gid,info_sid from ".DB_PREFIX."info left join ".DB_PREFIX."game on info_gid=game_id left join ".DB_PREFIX."server 
+            				on info_sid=server_id where info_id = ".intval($config_index["kaifu_news"])."  limit 0,1 "); ?>
+            <div class="cer_img" ><a target="_blank" href="news_info_<?=$top['info_id']?>.html"><img height="138" width="186" style="width:186px; height:138px;" src="<?=$top['pic']?>"></a></div>
+              <div class="cer_con">
+                    	<div class="cer_gname">
+                        <a class=" cer_yxname" target="_blank" href="news_info_<?=$top['info_id']?>.html"><?=$top['subtitle'] ? $top['subtitle'] : $top['title']?></a></div>
+                <p><?=$top['summary']?><a href="news_info_<?=$top['info_id']?>.html">详细</a></p>
+                <div class="xf_notice">服务器名：<a target="_blank" href="game_add.html?gid=<?=$top['info_gid']?>&sid=<?=$top['info_sid']?>"><?=$top['server_name']?></a>　开服时间：<?=date( 'm月d日 H点',$top['server_start'] )?></div>
+                <div class="xf_l"><div class="login_5" ><input type="button" name="button2" id="button2" onclick="window.location.href='<?=$top['game_web']?>';" value="进入官网" /> </div><a target="_blank" href="news_info_<?=$top['info_id']?>.html">开服活动</a> | <a target="_blank" href="<?=$top['game_bbs']?>">游戏论坛</a> | <a target="_blank" href="package.html">礼包领取</a></div>
+
+          <div class="cl"></div>
+            </div>
+              <div class="cl"></div>
+          </div>
+  </div>   
+</div>
+
+
+<div class="sharedspacer8"></div>
+<div class="centnews">
+<div class="evaluationben0"><span class="newsmark">
+<?if(!empty($gcode)){?>
+<a href="news.html">平台动态</a>
+<?}else{?>
+[平台动态]
+<?}?>
+<?
+   if($top_games){
+   foreach($top_games as $k=> $v){
+   	if($gcode!=$v['game_code']){
+    ?><a href="news.html?gcode=<?=$v['game_code']?>"><?=$v['game_name']?></a>
+   <?
+       }else{
+       ?>[<?=$v['game_name']?>]
+       <?}
+   }
+   }?>
+</span></div>
+<div style="height: 500px" class=DutyList>
+<ul class="RightCharity">
+			<? if(!empty($list_news)){
+               foreach($list_news as $k => $v){ ?>
+			  <LI ><span class="extra"><?=date( 'Y-m-d' , $v['add_time'] ) ?></span><img src="images/NewsIcon.gif" /> [<?=$v['typ']?>] <a href="news_info_<?=$v['info_id']?>.html"><?=$v['subtitle'] ? $v['subtitle'] : $v['title']?> </a></li>
+            <? }} ?>
+             
+</ul></div>
+<DIV class=NewsListPage><? pager_bar($pager,WEB_ROOT."/member/templates/pager.html"); ?></DIV>	
+</div>
+
+</div>
+</div>
+
+
+</div>
+
+<? include('footer.html'); ?>

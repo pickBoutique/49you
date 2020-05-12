@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="网页游戏,网页小游戏,最新网页游戏,傲视天地,仙侠风云,2011年最新网页游戏,最新网页游戏开服表">
+<meta name="description" content="49网页游戏平台为大家提供最新最热门的网页游戏。包括傲视天地、仙侠风云、千军破、十年一剑、魔塔世界等多款最好玩的网页游戏。">
+<title>49you</title>
+<link href="<?=HTTP_ROOT?>/style/Log.css" type="text/css" rel="stylesheet" />
+<script src="<?=HTTP_ROOT?>/js/basic.js" language="javascript" ></script>
+<script language="javascript">
+function copy_link() 
+{
+	var url = document.getElementById('card_code').innerHTML;
+	if(copy_text(url)){
+		alert("卡号已经复制到您的剪贴板");
+	}else{
+		alert("被浏览器拒绝！\n请自行复制卡号"); 
+	}
+} 
+</script>
+</head>
+
+<body>
+<br><br>
+	<div class="pop_mo">
+	<div class="pop_1">系统提示  <a href="package.html" class="pl-x"><img src="style/img/x.jpg" /></a></div>
+	<div class="pop_3">
+    
+<div class="p_bj3">    
+	<div class="p_3">
+	<h2>恭喜您成功领取<?=$row['cardtype_name']?>！
+</h2>
+
+<p >您领取的礼包卡号为：</p>
+
+<p><span id='card_code'><?=$new_card['card_code']?></span></p>
+
+	</div>
+</div>
+
+<div style="height:24px; width:380px; float: right; margin:10px 0px;"><a href="game.html?gid=<?=$row['cardtype_gid']?>" class="btn-link btn-p0" >兑换礼包</a><a href="###" onclick="javascript:copy_link();" class="btn-link btn-p1" >复制卡号</a>
+          <a href="package.html" class="btn-link btn-p2" >确 定</a>
+          </div>
+	<div class="cl"></div>
+	
+	</div>
+	</div>
+</body>
+</html>

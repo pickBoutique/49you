@@ -1,0 +1,22 @@
+<?
+//合作媒体130
+$sqlstr="select source,summary,pic from ".DB_PREFIX."info where info_start<=".time()." and cate_id = 254 order by sort_num desc limit 6";
+$rs_link = $db->getAll($sqlstr);
+?>
+
+		<div class="hzmt">
+		  <h1>合作媒体</h1>
+		  <div class="hzmt-img">
+		     <ul>
+               	<?
+      if($rs_link){
+    	foreach($rs_link as $k=> $v){?>
+
+			    <li><a href="<?=$v["source"]?>" target="_blank"><img src="<?=$v["pic"]?>" border="0" alt="<?=$v["summary"]?>"/></a></li>
+		<?}
+	}
+    ?>
+
+			 </ul>
+		  </div>
+		</div>

@@ -1,0 +1,20 @@
+body{background:url(/zt/year/images/bg.jpg) repeat;padding:0px;margin:0px;font-family:宋体;font-size:14px;}
+a{text-decoration:none;color:#F00;}
+a:hover{text-decoration:none;color:#F90;}
+.main{width:100%;height:306px;background:url(/zt/year/images/main1.jpg) no-repeat;background-position:center top;}
+.main .main_bg{width:963px;height:306px;background:url(/zt/year/images/main12.jpg) no-repeat;margin:0 auto;}
+.banner{width:963px;height:163px;margin:0 auto;background:url(/zt/year/images/banner.jpg) no-repeat;}
+.content{width:963px;margin:0 auto;background:url(/zt/year/images/main_bg.jpg) repeat-y;}
+.content .line{width:949px;height:2px;margin:0 auto;padding-top:2px;}
+.content .btn{width:947px;height:62px;margin:auto;padding-top:10px;}
+.content .flash{width:949px;height:700px;margin:0 auto;_margin-left:-32px;*margin-left:-32px;_margin-top:-8px;*margin-top:5px;}
+.content .flash ul{width:949px;height:699px;padding:0;}
+.content .flash ul li{list-style:none;float:left;}
+.content .fenx{width:930px;height:79px;margin:20px auto;background:url(/zt/year/images/fenx.jpg) no-repeat;}
+.content .chanpin{width:780px;height:130px;margin:10px auto;}
+.content .chanpin .long{width:331px;height:115px;float:left;}
+.content .chanpin .xk{width:331px;height:115px;float:right;}
+.content .foot{width:963px;height:16px;margin:0 auto;background:url(/zt/year/images/foot.jpg) no-repeat;}
+.footer{width:963px;height:140px;margin:0 auto;}
+.swf{}
+#ckepop{width:700px;padding-left:100px; padding-top:15px;}

@@ -1,0 +1,193 @@
+<?php $title='山海创世录_山海创世录官网_49you山海创世录_49山海|职业|加点|装备|攻略';
+$keywords="山海创世录,山海创世录官网,49you山海创世录,49山海,山海创世录职业,山海创世录技能,山海创世录加点,山海创世录攻略";
+$description="山海创世录,山海创世录官网,49山海,49you山海创世录是一款4D立体PK的东方玄幻ARPG网页游戏。49you网页游戏平台提供战士、法师、猎人各职业技能加点,装备强化,神兽坐骑,新服等攻略。"?>
+<?php include('header.html'); ?>
+<script type="text/javascript" src="js/js_list.js"></script>
+<script type="text/javascript">
+function newschange(id){
+	for(i=1;i<=3;i++){
+		$("#newsli"+i)[0].className='n2';
+		$("#newlist"+i).css("display","none");
+	}
+	$("#newsli"+id)[0].className='n1';
+	$("#newlist"+id).css("display","");
+}
+function picchange(id){
+	if(id==1){
+		$("#picli1")[0].className='n1';
+		$("#piclist1").css("display","");
+		
+		$("#picli2")[0].className='n02';
+		$("#piclist2").css("display","none");
+	}else{
+		$("#picli1")[0].className='n01';
+		$("#piclist1").css("display","none");
+		
+		$("#picli2")[0].className='n2';
+		$("#piclist2").css("display","");
+	}
+	
+}
+if (top.location != self.location)top.location=self.location;
+</script>
+
+
+<div class="main">
+  <div class="l">
+  
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--left_server start-->
+<? include('lefter_server.html'); ?> 
+<!--left_server end-->
+<!--lefter_yx start-->
+<? include('lefter_yx.html'); ?> 
+<!--lefter_yx end-->
+    
+<!--lefter_mt start-->
+<? include('lefter_mt.html'); ?> 
+<!--lefter_mt end-->
+ </div>
+ 
+ 
+<div class="r">
+ <div class="p1">
+ <div class="news">
+        <div><a href="news.html?pid=143&cid=144" onmouseover="newschange(1);" id="newsli1" title="新闻热点" class="n1">热点</a><a href="news.html?pid=143&cid=145" onmouseover="newschange(2);" id="newsli2" title="新闻公告" class="n2">公告</a><a href="news.html?pid=143&cid=146" onmouseover="newschange(3);" id="newsli3" title="新闻活动" class="n2">活动</a></div>
+        <ul id="newlist1">
+          <?if($rs_news){
+            foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="1" | $v["cate_id"]=="2"){?>
+		<li <?if($v["attachment"]=="red"){?>style="color:red;"<?}?>><span><?=date('m-d',$v["add_time"])?></span>
+        [<?if($v["cate_id"]=="1"){?><a href="news.html?pid=143&cid=145" target="_blank">公告</a><?}else{?><a href="news.html?pid=143&cid=146" target="_blank">活动</a><?}?>]<a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+		  <?}
+            }
+          }?>
+          <a href="news.html?pid=143&cid=144" title="山海创世录_新闻热点_更多" target="_blank"  class="more">更多>></a>
+        </ul>
+        <ul id="newlist2" style="display:none;">
+          <?if($rs_news){
+            foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="145"){?>
+		<li <?if($v["attachment"]=="red"){?>style="color:red;"<?}?>><span><?=date('m-d',$v["add_time"])?></span>
+         [<a href="news.html?pid=143&cid=145" target="_blank">公告</a>]<a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+		  <?}
+            }
+          }?>
+          <a href="news.html?pid=143&cid=145" title="山海创世录_公告"  target="_blank" class="more">更多>></a>
+        </ul>
+        <ul id="newlist3" style="display:none;">
+          <?if($rs_news){
+            foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="146"){?>
+		<li <?if($v["attachment"]=="red"){?>style="color:red;"<?}?>><span><?=date('m-d',$v["add_time"])?></span>
+        [<a href="news.html?pid=143&cid=146" target="_blank">活动</a>]<a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+		  <?}
+            }
+          }?>
+          <a href="news.html?pid=143&cid=146" title="山海创世录_活动" target="_blank" class="more">更多>></a>
+        </ul>
+      </div>
+      
+   <div class="news1"> 
+   <div></div>
+        <ul>
+          <?if($rs_gamequ){
+            foreach($rs_gamequ as $k=> $v){?>
+			<li <?if($v["attachment"]=="red"){?>style="color:red;"<?}?>><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["subtitle"]?></a></li>
+            <?}
+          }?>
+          <a href="news.html?pid=147&cid=157" target="_blank" class="more">更多>></a>
+        </ul>  
+    </div>  
+ </div>
+
+<div class="faq">
+      <ul>
+        <li><a href="cardlist.html" title="新手卡" target="_blank"><img src="images/xinshouka.jpg" width="168" height="80" /></a></li>
+        <li><a href="<?=get_newslink('2377')?>" title="VIP专享特权" target="_blank"><img src="images/vip.jpg" width="168" height="80" /></a></li>
+        <li><a href="<?=get_newslink('2504')?>" title="每日活动" target="_blank"><img src="images/huodong.jpg" width="168" height="80" /></a></li>
+        <li><a href="<?=get_newslink('2440')?>" title="皇城争霸战" target="_blank"><img src="images/huangchen.jpg" width="168" height="80" /></a></li>
+      </ul>
+</div>
+<div class="sharedspacer"></div>
+
+
+<div class="yxzl">
+<div>游戏资料</div>
+<ul>
+ <li><strong>【新手指南】</strong>
+ <a href="<?=get_newslink('2387')?>">怪物分类</a>|<a href="<?=get_newslink('2394')?>">角色创建</a>|<a href="<?=get_newslink('2401')?>">两大阵营</a><br />
+ <a href="<?=get_newslink('2404')?>">人物包裹</a>|<a href="<?=get_newslink('2405')?>">人物属性</a>|<a href="<?=get_newslink('2407')?>">游戏界面</a><br />
+ <a href="<?=get_newslink('2412')?>">使用物品</a>|<a href="<?=get_newslink('2416')?>">游戏操作</a>|<a href="<?=get_newslink('2415')?>">游戏FAQ</a><br />
+ <a href="<?=get_newslink('2417')?>">游戏界面</a>|<a href="<?=get_newslink('2418')?>">战斗模式</a>|<a href="<?=get_newslink('2419')?>">装备介绍</a><br />
+ <a href="<?=get_newslink('2444')?>">网络异常处理</a>|<a href="<?=get_newslink('2445')?>">各浏览器清缓存</a>
+ </li>
+
+ <li><strong>【系统介绍】</strong>
+ <a href="<?=get_newslink('2379')?>">副本系统</a>|<a href="<?=get_newslink('2383')?>">公会系统</a>|<a href="<?=get_newslink('2385')?>">挂机系统</a><br />
+ <a href="<?=get_newslink('2391')?>">好友系统</a>|<a href="<?=get_newslink('2393')?>">交易系统</a>|<a href="<?=get_newslink('2402')?>">聊天系统</a><br />
+ <a href="<?=get_newslink('2406')?>">任务系统</a>|<a href="<?=get_newslink('2409')?>">生活系统</a>|<a href="<?=get_newslink('2411')?>">声望系统</a><br />
+ <a href="<?=get_newslink('2414')?>">邮件系统</a>|<a href="<?=get_newslink('2421')?>">组队系统</a>|<a href="<?=get_newslink('2422')?>">坐骑系统</a><br />
+ <a href="<?=get_newslink('2375')?>">PK系统</a>|<a href="<?=get_newslink('2377')?>" style="color:red;')?>">VIP系统</a>|<a href="<?=get_newslink('2378')?>">称号系统</a>
+ <li><strong>【特色玩法】</strong>
+ <a href="<?=get_newslink('2408')?>">神秘宝库</a>|<a href="<?=get_newslink('2413')?>">物品拍卖</a>|<a href="<?=get_newslink('2424')?>">离线经验</a><br />
+ <a href="<?=get_newslink('2425')?>">十日目标</a>|<a href="<?=get_newslink('2426')?>">女娲遗迹</a>|<a href="<?=get_newslink('2427')?>">神装合成</a><br />
+ <a href="<?=get_newslink('2431')?>">服食仙丹</a>|<a href="<?=get_newslink('2432')?>">汇聚真气</a>|<a href="<?=get_newslink('2433')?>">坐骑进阶</a><br />
+ <a href="<?=get_newslink('2435')?>">打通经脉</a>|<a href="<?=get_newslink('2437')?>">神功阵法</a>|<a href="<?=get_newslink('2403')?>">排行榜</a><br />
+ <a href="<?=get_newslink('2397')?>">竞技场</a>|<a href="<?=get_newslink('2399')?>">炼金炉</a>
+
+</li>
+</ul>
+ <a href="#" target="_blank" class="more">更多>></a>
+</div>
+<div class="sharedspacer"></div>
+<div class="hd1">
+    <div>新手指引</div>
+      <ul class="list">
+          <?if($rs_gamexs){
+            foreach($rs_gamexs as $k=> $v){?>
+			<li <?if($v["attachment"]=="red"){?>style="color:red;"<?}?>><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+            <?}
+          }?>
+      </ul>
+      <a class="more" href="news.html?pid=149&cid=152" title="山海创世录_新手指引">更多&gt;&gt;</a> </div>
+      
+      
+<div class="hd2">
+      <div>高手进阶</div>
+      <ul class="list">
+          <?if($rs_gamegs){
+            foreach($rs_gamegs as $k=> $v){?>
+			<li <?if($v["attachment"]=="red"){?>style="color:red;"<?}?>><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>"  title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+            <?}
+          }?>
+      </ul>
+      <a class="more" href="news.html?pid=149&cid=153" title="山海创世录_高手宝典">更多&gt;&gt;</a></div>      
+   <div class="sharedspacer"></div>
+    
+<div class="pic"> 
+<div id="divlab"><a href="javascript:void(0);" onmouseover="picchange(1);" id="picli1" class="n1" title="山海创世录_游戏截图">游戏截图</a><a href="javascript:void(0);" onmouseover="picchange(2);" id="picli2" class="n02" title="山海创世录_玩家照片">玩家照片</a></div>
+      <div id="piclist1"><ul>
+          <?if($rs_gamepic){
+            foreach($rs_gamepic as $k=> $v){?>
+             <li><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><img src="<?=$v['pic']?>" width="122" height="100" alt="<?=$v["summary"]?>"/></a></li>
+            <?}
+            }?>
+      </ul> <a class="more" href="news.html?pid=148&cid=158" title="山海创世录_游戏图鉴">更多&gt;&gt;</a></div>
+      <div id="piclist2" style="display:none;">
+    <ul>
+          <?if($rs_memberpic){
+            foreach($rs_memberpic as $k=> $v){?>
+             <li><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><img src="<?=$v['pic']?>" width="122" height="100" alt="<?=$v["summary"]?>"/></a></li>
+            <?}
+            }?>
+      </ul> <a class="more" href="news.html?pid=148&cid=159" title="山海创世录_玩家照片">更多&gt;&gt;</a></div>
+</div>
+
+
+</div>
+</div>
+
+<? include('footer.html'); ?> 

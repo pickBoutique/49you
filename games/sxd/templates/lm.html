@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>神仙道_神仙道命格_猎命模拟器</title>
+<meta name="keywords" content="神仙道,神仙道猎命,神仙道命格,神仙道命格模拟器,神仙道猎命模拟器">
+<meta name="description" content="49you神仙道猎命模拟器是一款高度模仿游戏内猎命系统，在游戏外真实呈现猎命结果的测试工具。心动有木有？赶快来测试你今天的猎命运势吧！">
+<link href="css/lm.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/basic.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jscontrol_lm.js"></script>
+</head>
+
+<body>
+<div class="man">
+<div class="top">
+<div class="top_list">
+<div style="float:left;">
+<p class="nav1"><a href="###" id="sxdyb" onclick="add_yb()">0</a> <a href="###" onclick="add_yb()">增加元宝</a></p>
+<p class="nav2"><a href="###" id="sxdtc" onclick="add_tc()">0</a> <a href="###" onclick="add_tc()">增加铜钱</a></p>
+</div>
+<div style="float:right;">
+<p>使用情况：</p>
+<p class="nav1"><a href="###" id="sxdybu">0</a></p>
+<p class="nav2"><a href="###" id="sxdtcu">0</a></p>
+</div>
+</div>
+</div>
+
+<div class="kuang" id="divmglist">
+</div>
+
+<div class="mginfo" id="divmginfo">
+<center><div><b>49you猎命统计</b></div></center>
+<div class="txtmginfo" id="txt_mginfo"></div>
+<center><div><input type="button" value=" 复制结果 " onclick="copyToClipboard();" /> <input type="button" value=" 重新开始 " onclick="location.reload();" /></div></center>
+</div>
+
+<div class="lie">
+<h3><a href="###" class="n1" id="onekeylm" onclick="onekey_lm()">一键猎命</a><a href="###" class="n2a" id="onekeyget" onclick="onekey_get()">一键拾取</a><a href="###" class="n3a" id="onekeysale" onclick="onekey_sale();">一键卖出</a>
+</h3>
+</div>
+
+<div class="mind">
+<div class="mindleft">
+<p id="server_news">49you新服信息</p>
+<div>
+<a href="http://sxd.49you.com" target="_blank">49仙道官网</a><a href="http://sxd.49you.com/server_list.html" target="_blank">进入游戏猎命</a><a href="http://www.49you.com/reg_4_3594221.html" target="_blank">注册账号</a><a href="http://app.baidu.com/49yousxdmg" target="_blank">命格大全</a>
+</div>
+</div>
+<div class="mindan">
+<a href="###" class="nan-1" id="meet1" onclick="meet(0)"> </a>
+<div class="nanmid"> </div>
+<a href="###"  class="nan-2a" id="meet2" onclick="meet(1)"> </a>
+<div class="nanmid"> </div>
+<a href="###"  class="nan-3a" id="meet3" onclick="meet(2)"> </a>
+<div class="nanmid"> </div>
+<a href="###"  class="nan-4a" id="meet4" onclick="meet(3)"> </a>
+<div class="nanmid"> </div>
+<a href="###" class="nan-5a" id="meet5" onclick="meet(4)"> </a>
+</div>
+
+</div>
+</div>
+
+<div style="display:none;">
+<script src="http://s23.cnzz.com/stat.php?id=3530984&web_id=3530984&show=pic" language="JavaScript"></script>
+</div>
+<? if($config_index['enabled_floor_flash']=='1'){ ?>
+<!-- flash -->
+<script type="text/javascript">
+var isleft = false;
+var absolute_flash_url = "<?=$config_index['header_floor']?>";
+var absolute_flash_root = "<?=YOU_ROOT?>";
+var absolute_flash_link = "<?=$config_index['header_floor_link']?>";
+var absolute_flash_width = "<?=$config_index['header_floor_width']?>";
+var absolute_flash_height = "<?=$config_index['header_floor_height']?>";
+</script>
+<script src="<?=YOU_ROOT?>/js/absolute_flash.js" language="JavaScript"></script>
+<!-- flash -->
+<? } ?>
+</body>
+</html>

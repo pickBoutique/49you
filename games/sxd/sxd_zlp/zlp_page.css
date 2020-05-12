@@ -1,0 +1,104 @@
+.footer{text-align:center; color:#675b40; padding:20px 0 10px 0; line-height:20px}
+.foot_link{color:#675B40;text-decoration:underline;}
+body{background:url(zlp/zlp_bg.jpg?4) no-repeat center top #000; min-width:980px; margin:0 auto; font-size:12px}
+body, input, textarea, select, button, td{font-family:"Lucida Grande",Tahoma,Arial,sans-serif}
+.content{
+	clear:both;
+	padding-top:275px;
+	width:800px;
+	margin:0 auto;
+}
+.content .head{
+	background:url(zlp/page_head.gif) no-repeat;
+	height:64px;
+	padding:14px 20px 0 20px;
+}
+.content .line{
+	background:url(zlp/page_line.jpg) repeat-y;
+}
+.content .foot{
+	background:url(zlp/page_foot.gif) no-repeat;
+	height:59px;
+}
+.content .head a{
+	background:url(zlp/zlp_btn.jpg) no-repeat;
+	height:35px;
+	cursor:pointer
+}
+.content .head .gw{
+	float:right;
+	width:72px;
+	background-position:-144px -37px;
+}
+.content .head #jxgz{
+	float:left;
+	width:113px;
+	background-position:-113px 0px;
+}
+.content .head #jxgz.active{
+	background-position:0 0px;
+}
+.content .head #dj{
+	float:left;
+	width:72px;
+	background-position:-72px -37px;
+}
+.content .head #dj.active{
+	background-position:0 -37px;
+}
+.content .head #xdh{
+	float:left;
+	width:95px;
+	background-position:-95px -74px;
+}
+.content .head #xdh.active{
+	background-position:0 -74px;
+}
+.line_inner{
+	padding:15px 45px;
+	color:#6a3906;
+	line-height:2;
+}
+.line_inner table td{
+border:1px solid #ad9766;
+padding:3px 5px;
+text-align:center;
+}
+.line_inner .half_t td{
+	width:50%;
+}
+.line_inner table tr.headtr{
+background:#97784a;
+color:#fcdf9b;
+font-weight:bold;
+}
+.line_inner li{
+padding:5px 0;}
+.line_inner table{
+width:90%;
+margin:0 auto;}
+.line_inner h1{
+
+	font-weight:bold;
+	padding-top:15px;
+	font-size:14px;
+}
+.line_inner .spe_red{
+	color:#c10110;
+}
+.line_inner h2{
+	line-height:5;
+	font-weight:bold;
+}
+.xdh_head{
+	background:url(zlp/xdh_head.jpg) no-repeat 17px -13px;
+	height:152px;
+}
+.dj_head{
+	background:url(zlp/dj_head.jpg) no-repeat 17px -13px;
+	height:152px;
+}
+.jxgz_head{
+	background:url(zlp/jxgz_head.jpg) no-repeat 17px -13px;
+	height:152px;
+}

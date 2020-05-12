@@ -1,0 +1,79 @@
+<?php $title="{$row_news[title]}_{$row_news[cate_name]}_49you降龙十八掌官方网站"; 
+
+if(empty($row_news["pic"])){
+    $keywords=$row_news["source"];
+    $description=$row_news["summary"];
+}
+?>
+<?php include('header.html'); ?>
+<!--main -->
+<div id="main">
+ <!--content -->
+ <div class="content">
+<div class="left">
+     
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--server -->
+<? include('lefter_server.html'); ?> 
+<!--server end -->
+<!--info -->
+<? include('lefter_info.html'); ?> 
+<!--info end -->
+<!-----kefu----->
+<? include('lefter_kf.html'); ?> 
+<!--kefu end -->
+	 </div>
+	 <!--right -->
+	 <div class="right">
+		<!--newslist -->
+        <div id="newslist">
+		  <div class="newslist-top">
+          <div class="newslist-title">资讯中心</div> 
+      	  <div class="newslist-floor">您当前的位置：<a href="index.html">降龙十八掌</a> >> 
+              <strong>
+<?if($row_news['reurl']!=''){?>
+<a href='<?=$row_news['reurl']?>'><?=$row_news['cate_name']?></a>
+<?}else{?>
+<?=$row_news['cate_name']?>
+<?}?>
+</strong>
+          </div>
+          </div>
+          <div id="newslist-content">
+            <h1><?=$row_news['title']?></h1>
+			<div class="newslist-content-top"><span>时间 ：<?= date('Y-m-d H:i:s',$row_news['add_time'])?></span></div>
+			<div class="newslist-content-con"><?=$row_news['content']?><br/>
+            <!--info_tg start-->
+            <?if(!PUBLIC_INFOTAG || in_array($game_id,$game_infotag)){?>
+            <? include('info_tg.html'); ?> 
+            <?}else{
+                require(WEB_ROOT.'/games/info_tg.html');
+            }?>
+            
+            <!--info_tg end-->
+
+            </div>
+            
+<div class="page_inf"> 
+<ul>  
+<?if($row_move){
+foreach($row_move as $k=>$v){
+    if($v["ty"]==1){?>
+<li><a href="<?=get_newslink($v["info_id"])?>">上一篇：<?=$v["subtitle"]?></a></li>
+<?}else if($v["ty"]==2){?>
+<li><a href="<?=get_newslink($v["info_id"])?>">下一篇：<?=$v["subtitle"]?></a></li>
+<?		}
+}
+}?>
+</ul>
+      </div>
+		 
+        </div>
+ <div class="newslist-footer"><img src="images/index2_82.png"></div>
+	 </div><!--right end -->
+	 <div class="clear"></div>
+ </div><!--content end -->
+</div><!--main end -->
+<? include('footer.html'); ?> 

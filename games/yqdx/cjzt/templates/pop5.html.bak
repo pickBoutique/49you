@@ -1,0 +1,18 @@
+﻿<div style="width:700px">
+<div class="PopsBar">
+  <div class="closequ"><a href="#" class="btn_close">close</a></div>
+  <div class="popContiner">
+	<div class="popTitle"><img src="images/yqi/poptitle_05.gif" alt="" /></div>
+	<div class="popContent">
+		<p class="con_special">活动时间：</p>
+		<p>2012-1-18至2012-1-30</p>
+		<p class="con_special">活动内容：</p>
+		<p>活动期间，玩家可以在雇佣界面内雇佣农夫与船夫帮助自己委派船只与耕地，可自动收获。</p>
+		<p class="con_special">活动奖励：</p>
+		<p>农夫：10黄金/24小时，自动耕地指定的农作物，自动收获。</p>
+		<p>船夫：10黄金/24小时，自动委派船只，自动收获。</p>
+	</div>
+	</div>
+</div>
+</div>
+

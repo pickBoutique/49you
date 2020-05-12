@@ -1,0 +1,32 @@
+<?php $title="{$titleinfo}_49you盛世三国官方网站"; 
+$keywords="盛世三国新闻公告";
+$description="49you盛世三国新闻公告"?>
+<?php include('header.html'); ?>
+<link href="style/style_news_test.css" rel="stylesheet" type="text/css"/>
+<div id="main">
+    <div style="background-color:#000">
+      <div>
+      <div class="dhh3">新闻中心</div> 
+      <div class="dhdiv"></div>
+    </div>
+<div class="sharedspacer"></div>
+<div class="contend">
+<div class="pic2"></div>
+<ul class="list2">
+        <?if($list_news){
+        	foreach($list_news as $k=> $v){?>
+               <li>标　题：<span class="news_more"><?=date( 'y-m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["title"]?></a> <br />
+               关键字：<?=$v["source"]?> <br />
+               描　述：<?=$v["summary"]?>
+</li>
+		<?}
+        }?>
+      </ul>
+   <div class="page">
+    <? pager_bar($pager,WEB_ROOT."/games/pager.html"); ?>
+     </div>    
+</div>
+
+</div>
+  </div>
+<?php include('footer.html'); ?>

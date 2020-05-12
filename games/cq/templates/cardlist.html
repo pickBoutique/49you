@@ -1,0 +1,116 @@
+<?php $title='新手卡领取_49you传奇国度官方网站'; 
+$keywords="传奇国度新手卡";
+$description="49you传奇国度新手卡"?>
+<?php include('header.html'); ?>
+<style>.fontred{color:red;font-weight:bold}</style>
+<script language="javascript">
+function getcard(){
+	if($('#secode').val()!="49传奇"){alert("请在“第一步“输入”49传奇”");$('#secode').val("");return;}
+	if($('#country').val()==0){alert("请选择服务器！");return;}
+	window.open('<?=YOU_ROOT?>/get_package.html?ct='+$('#country').val());
+}
+</script>
+<div class="main">
+<div class="l">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--left_server start-->
+<? include('lefter_server.html'); ?> 
+<!--left_server end-->
+<!--lefter_info start-->
+<? include('lefter_info.html'); ?> 
+<!--lefter_info end-->
+<!--lefter_kf start-->
+<? include('lefter_kf.html'); ?> 
+<!--lefter_kf end-->
+<!--lefter_mt start-->
+<? include('lefter_mt.html'); ?> 
+<!--lefter_mt end-->
+  </div>
+  <div class="ra" id="content">
+    <div class="dh">
+      <label>礼品卡领取</label>
+      <div>您当前的位置：<a href="index.html" title="传奇国度_49传奇">传奇国度</a> &gt;&gt; 礼品卡领取</div>
+    </div>
+    <div class="contend">
+     <div class="txt" >
+    <p>第一步 请输入游戏名称</p>
+    <br />
+&nbsp;&nbsp;<input type="text" id="secode" style="width:75px"/> 答案：<span class="fontred">49传奇</span>
+<br /><br />
+  </div>
+    <div class="txt" >
+    <p>第二步 选择服务器</p>
+	<br />
+      <select name="coid" id="country">
+       <option value="0" selected="selected">请选择服务器</option>
+<? if(!empty($cardlist)){ 
+    	foreach($cardlist as $k=>$v){?>
+        <option value="<?=$v["cardtype_id"]?>"><?=$v["cardtype_name"]?></option>
+<?}
+}?>
+      </select>
+    &nbsp;&nbsp;&nbsp;<input class="inp3" type="button" name="button" value="点击领取" onClick="getcard()" />  
+<br /><br />
+     </div>
+
+    <div class="txt">
+      <div>
+        <div>
+          <p>【新手卡奖励道具】</p>
+        </div>
+      </div>
+      <div>
+        <div>
+          <p><span> &nbsp; &nbsp;&nbsp;金疮药（大）*99，魔法药（大）*99，
+            超级传送卷轴*5，
+            华景村回城卷*9，
+            飞行令*1
+            <br />
+            洗髓丹*1，
+            积分券*1，
+            饺子（魔御）*2，
+            饺子（物防）*2，
+            双倍经验药水*2，
+            随机传送卷*9<br />
+          </span><span> 专注药水*1，
+            消红药水*2</span></p>
+<p> </p>
+        </div>
+      </div>
+      <div>
+        <div>
+          <p>【领取流程】</p>
+          <p style="text-align:left;">按步骤输入游戏名称和选择服务器后，点击领取获得卡码，然后请在游戏中的礼品兑换员（春之城 54,53 | 华景村 116,24）处兑换。<br />
+          </p>
+          <p><img src="images/u78_original.jpg" /></p>
+          <div>
+            <div>
+              <p></p>
+            </div>
+          </div>
+
+<br />
+          <div id="u60">
+            <div>
+              <p>【注意】</p>
+              <p>      1、玩家需要登录账号后才能领取，如未有账号，请进行注册。</p>
+              <p>      2、每个账号在每个服务器内只能兑换一次。</p>
+              <p>      3、该活动的解释权归49传奇运营团队所有。</p>
+            </div>
+          </div>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+      <p><br>
+</p>
+<p></p>
+      </div>
+    </div>
+    <div class="bgdi">抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</div>
+  </div>
+</div>
+</div>
+
+<? include('footer.html'); ?>

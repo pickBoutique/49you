@@ -1,0 +1,36 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'统计时间' , 'dataIndex':'startime' , 'type':'datetime' }
+          </div>
+        </div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			var cm = new ColumnModel
+			([
+			{header: '日期', dataIndex: 'dtime', sortable: true},
+			{header: '充值总额', dataIndex: 'trans_mm', sortable: true},
+			{header: '充值平台币', dataIndex: 'trans_jf', sortable: true},
+			{header: '赠送平台币', dataIndex: 'trans_zs', sortable: true}
+			]);
+	
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 1000, params: { 'act': 'dataget',filter:	'[{"name":"startime","oper":">=","value":"<?=strtotime(date('Y-m-d'))?>"}]'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 1000, filter: filter} }); });
+			$('#searchbar').show();
+		});
+	
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

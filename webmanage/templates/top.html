@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>网站管理平台</title>
+<link href="<?=$web_root?>/style/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="<?=$web_root?>/js/ie6png.js"></script>
+<script type="text/javascript" src="<?=$web_root?>/js/jquery.js"></script>
+<script type="text/javascript" src="<?=$web_root?>/js/jquery.contextmenu.r2.js"></script>
+
+</head>
+
+<body>
+<div class="contextMenu" id="myMenu1">
+  <ul>
+    <li id="add"><img src="add.png" /> 添加</li>
+    <li id="edit"><img src="edit.gif" /> 修改</li>
+    <li id="delete"><img src="delete.png" /> 删除</li>
+  </ul>
+</div>
+<div class="top">
+	<a href="http://www.8hy.cn" target="_blank"><img src="/images/logo2.png" class="logo" /></a><span style="float:left; font-size:24px; font-weight:bold; margin:10px 0px 10px 20px; height:50px; line-height:50px;">注册平台管理系统</span>
+	<span class="user_info"><a href="/index.php" target="_blank"><strong>网站首页</strong></a>　┊　用户名：<?=$login_info[3]?>　<a href="logout.php" target="_top">[退出]</a></span>
+</div>
+<script language="javascript">
+$('.top').contextMenu('myMenu1', {
+	bindings: {
+		'add': function(t) {
+			var id = $(t).attr('id');
+			var pid = $(t).attr('pid');
+			var txt = $(t).children('a').text();
+			alert('This node info:\n id:'+id+'\n 父ID：'+ pid+'\n文本：'+txt);
+		 },
+		 'edit': function(t) {
+			alert('Trigger was '+t.id+'\nAction was Email');
+		 },
+		 'delete': function(t) {
+			alert('Trigger was '+t.id+'\nAction was Delete');
+		 }
+	}
+});
+</script>
+</body>
+</html>

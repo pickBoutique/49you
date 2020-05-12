@@ -1,0 +1,28 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>用户邮箱：</th>
+				<td><?=$rs['email']?></td>
+			</tr>
+			<tr>
+				<th>用户名称：</th>
+				<td><?=$rs['name_cn']?></td>
+			</tr>
+			<tr>
+				<th>请输入要充值的金额：</th>
+				<td>
+					<input type="text" name="order_money" id="order_money" /> *
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="add" />
+					<input name="" type="submit" value="提交" class="btn action_add" />&nbsp;
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<?php include_once("footer.html");?>

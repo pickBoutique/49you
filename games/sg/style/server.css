@@ -1,0 +1,57 @@
+@charset "utf-8";
+ul,li,a,div,body,dl,dt{margin:0;padding:0;}
+ul,li{list-style-type:none;}
+body{margin:0;padding:0;background:#000;color:#4e2801;font-family:"Verdana","宋体","sans-serif";font-size:12px;}
+a,a:link,a:visited{color:#efb485;text-decoration:none;}
+a:hover{text-decoration:underline;}
+img{border:none;}
+
+.row{width:1000px;margin:auto;overflow:hidden;}
+#top{width:1000px;height:376px;position:relative;overflow:hidden;background:url(s_top.jpg) no-repeat;}
+.btn1,.btn2,.btn3,.btn4{width:94px;height:34px;position:absolute;top:0;cursor:pointer;}
+.btn1{left:534px;}
+.btn2{left:644px;}
+.btn3{left:756px;}
+.btn4{left:858px;}
+.btn5,.btn6,.btn7{position:absolute;cursor:pointer;}
+.btn5{width:200px;height:62px;top:286px;left:236px;}
+.btn6{width:130px;height:114px;top:234px;left:436px;}
+.btn7{width:200px;height:58px;top:290px;left:570px;}
+
+.s_left{width:84px;height:217px;float:left;overflow:hidden;background:url(s_left.jpg) no-repeat 0 top;}
+.s_right{width:77px;height:217px;float:left;overflow:hidden;background:url(s_right.jpg) no-repeat 0 top;}
+.content{width:819px;float:left;overflow:hidden;padding:0 10px 10px;background:#17140f;}
+.server{width:536px;float:left;overflow:hidden;}
+.server_list{width:536px;overflow:hidden;margin:10px auto 0;background:#221d14}
+.server_list .top{width:536px;height:30px;overflow:hidden;margin:auto;line-height:28px;color:#ad7e01;font-size:14px;font-weight:bold;text-align:center;}
+.server_list .con{width:536px;}
+.server_list ul{width:536px;overflow:hidden;margin:auto;padding:10px 0;}
+.server_list li{width:268px;height:30px;float:left;overflow:hidden;margin:10px 0;line-height:30px;background:url(server_btn.jpg) no-repeat center 0;text-align:center;}
+td img {display: block;}
+.news{float:left;width:262px;overflow:hidden;padding-left:10px;}
+.news_top{width:262px;overflow:hidden;height:22px;background:url(news.jpg) no-repeat left top;}
+.news ul{width:262px;overflow:hidden;line-height:24px;}
+.news li{width:262px;height:21px;overflow:hidden;background:url(dot.jpg) no-repeat 0 50%;padding-left:10px;}
+.foot{margin:20px auto 0;width:1002px;height:40px;line-height:20px;text-align:center;color:#fff;}
+.foot a{color:#fff;}
+.footer{
+	clear:both;
+	padding-top:10px; /* padding-top:169px; */
+	color:#FFFFFF;
+	text-align:center;
+	z-index:200;
+	position:relative;
+}
+.footer p{line-height:25px;}
+.footer a{color:#FFFFFF;}
+/*浮动在线客服*/
+#CusService {
+POSITION: absolute; PADDING-BOTTOM: 10px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; TOP: 100px; RIGHT: 0px; PADDING-TOP: 10px;z-index:9999; 
+}
+/*隐藏旧的在线客服浮动框*/
+#iconDiv1{
+display:none;
+}
+.new_list_red a{
+	color:red;
+}

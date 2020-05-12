@@ -1,0 +1,90 @@
+body{
+	font-family:'宋体',Arial, Helvetica, sans-serif;
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-color:#fff;
+	background-image:url(../images/bg0.jpg);
+	background-repeat: no-repeat;
+	background-position: top;
+	font-size:12px;
+
+}
+
+div,p,ul,li,dl,dt,dd,h1,h2,h3,h4,h5,form,a,object{ margin:0; padding:0; word-wrap:break-word; outline:none; list-style:none;}
+
+/*
+ * 将具有默认margin和padding的标记置零
+ * @overlay *
+ * @desc	所有标记的margin、padding都在使用时具体定义
+ */
+*{
+	margin:0;
+	padding:0;
+
+}
+
+
+.main{ width:1004px; margin: 0 auto;}
+
+.wipper1{ width:1004px; height:53px;background-image:url(../images/page_02.jpg) }
+.wipper2{width:1004px; height:254px; background-image:url(../images/page_04.jpg)}
+.wipper3{width:1004px; height:471px; background-image:url(../images/page_05.jpg)}
+.wipper4{width:1004px; height:55px; background-image:url(../images/page_06.jpg)}
+
+
+.wipper1 span{ color:#FFFFFF; line-height:24px; float:right; margin-right:45px; margin-top:18px;}
+.wipper1 span a{  color:#f3e8c8; line-height:24px; text-decoration:none;}
+.wipper1 span a:hover{color:#f3e8c8; text-decoration:underline;}
+
+
+.nr01{ width:678px; height:471px; background-image:url(../images/nr01.jpg); margin-left:167px;}
+.nr02{ width:678px; height:471px; background-image:url(../images/nr02.jpg); margin-left:167px;}
+.nr03{ width:678px; height:471px; background-image:url(../images/nr03.jpg); margin-left:167px;}
+.nr04{ width:678px; height:471px; background-image:url(../images/nr04.jpg); margin-left:167px;}
+.nr05{ width:678px; height:471px; background-image:url(../images/nr05.jpg); margin-left:167px;}
+
+.but0{ margin:20px auto 0 auto; width:94px; height:33px;}
+
+
+
+
+.content{
+	width:1004px;
+	margin:0 auto;
+	overflow:hidden;}
+	
+.left{ width:290px; float:left;}
+
+.right{ float:left; width:645px; overflow:hidden;}
+
+
+
+
+
+
+
+.nr{ padding:20px 40px 0 40px; line-height:24px; color:#935113;}
+
+.but0{ margin:20px auto 0 auto; width:300px; padding-top:10px; text-align:center;}
+
+.but0 span{ margin-left:8px;}
+
+
+.foot{
+	width:1004px;
+	line-height:24px;
+	color:#000;
+	text-align:center;
+	height:102px;
+	margin:0 auto;
+	background-image: url(../images/foot.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.foot p { padding-top:10px;}
+
+.r{ color:#FF0000; font-size:16px;}
+
+
+/*  |xGv00|32671b2a9bb7545c3590fc36888638eb */

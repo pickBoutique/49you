@@ -1,0 +1,73 @@
+@charset "gb2312";
+body {color: #000; padding:0px; margin:0px; background-color:#420101; line-height:24px; font-family:Arial, Helvetica, sans-serif;}
+div,span,ul,li,p,h1,h2,h3,h4,h5,h6,img,p,dl,dd,dt{ margin:0px; padding:0px;}
+ul{ list-style-type: none; }
+a{ color:#fffcad; text-decoration:none;}
+a:hover{ text-decoration:underline;}
+img{ border:0px;}
+form{ margin:0px; padding:0px;}
+input {vertical-align:middle; font-size:12px; padding:0 1px;border:none; margin:0}
+.red{ color:#c10000;}
+.green{ color:#339900;}
+.orange{ color:#057a05;}
+.blue{ color:#0171ee;}
+.black{ color:#000;}
+.bold{ font-weight:bold;}
+li{ list-style-type:none;}
+.fl{ float:left;}
+.fr{ float:right;}
+.cl{ clear:both;}
+.tc{ text-align:center;}
+.td_u{ text-decoration:underline;}
+.tr{ text-align:right;}
+/********************************************凡人修真2倾世仙缘专题CSS************************************************************/
+.ny_wrap{ width:100%; margin:0 auto; padding:0; background:transparent url(../images/ny_bg01.jpg) no-repeat top center;}
+.ny_01{ width:1000px; margin:0 auto; height:205px;background:transparent url(../images/ny_01.jpg) no-repeat;}
+.ny_02{ width:1000px; margin:0 auto; height:529px; background:transparent url(../images/ny_02.jpg) no-repeat;}
+.ny_03{ width:1000px; margin:0 auto; height:66px; background:transparent url(../images/ny_03.jpg) no-repeat;}
+.ny_topnav{ font-size:12px; font-weight:bold; color:#FFF;}
+.ny_topnav a{ padding:0 5px;}
+
+.ny_wrap2{ width:100%; margin:0 auto; padding:0; background:transparent url(../images/ny_bg02.jpg) no-repeat top center;}
+.ny_05{ width:1000px; margin:0 auto; height:133px;}
+.ny_04{ width:1000px; margin:0 auto; height:205px;background:transparent url(../images/ny_04.jpg) no-repeat;}
+.ny_06{ width:1000px; margin:0 auto;}
+.ny_left{ width:175px; height:494px; float:left; background-image:url(../images/ny_left.jpg);}
+
+.ny_left_01{ width:175px; height:122px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/ny_left.jpg) top left no-repeat;}
+a.ny_left_01:hover{width:175px; height:122px; display:block; text-indent:-9999px; overflow:hidden; background:url(../images/ny_lefthov.jpg) top left no-repeat;}
+
+.ny_left_02{ width:175px; height:117px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/ny_left.jpg) left -122px no-repeat;}
+a.ny_left_02:hover{width:175px; height:117px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/ny_lefthov.jpg) left -122px no-repeat;}
+
+.ny_left_03{ width:175px; height:120px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/ny_left.jpg) left -239px no-repeat;}
+a.ny_left_03:hover{width:175px; height:120px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/ny_lefthov.jpg) left -239px no-repeat;}
+
+.ny_left_04{ width:175px; height:135px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/ny_left.jpg) left -359px no-repeat;}
+a.ny_left_04:hover{width:175px; height:135px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/ny_lefthov.jpg) left -359px no-repeat;}
+
+
+
+.ny_middle{width:650px; height:494px; float:left;}
+.ny_right{ width:175px; height:494px; float:left; background-image:url(../images/ny_right.jpg);}
+
+.ny_right_01{ width:175px; height:122px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/ny_right.jpg) top left no-repeat;}
+a.ny_right_01:hover{width:175px; height:122px; display:block; text-indent:-9999px; overflow:hidden; background:url(../images/ny_righthov.jpg) top left no-repeat;}
+
+.ny_right_02{ width:175px; height:117px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/ny_right.jpg) left -122px no-repeat;}
+a.ny_right_02:hover{width:175px; height:117px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/ny_righthov.jpg) left -122px no-repeat;}
+
+.ny_right_03{ width:175px; height:120px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/ny_right.jpg) left -239px no-repeat;}
+a.ny_right_03:hover{width:175px; height:120px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/ny_righthov.jpg) left -239px no-repeat;}
+
+.ny_right_04{ width:175px; height:135px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/ny_right.jpg) left -359px no-repeat;}
+a.ny_right_04:hover{width:175px; height:135px; display:block; text-indent:-9999px; overflow:hidden;  background:url(../images/ny_righthov.jpg) left -359px no-repeat;}
+
+.ny_title{ width:650px; height:86px;}
+.ny_text{ width:650px; font-size:12px; height:408px; background:transparent url(../images/ny_textbg.jpg) no-repeat;}
+.ny_07{ width:1000px; margin:0 auto;}
+
+.nr{height:380px; overflow:auto;}
+
+
+

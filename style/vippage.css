@@ -1,0 +1,37 @@
+﻿@charset "utf-8";
+/* CSS Document */
+html,body,h1,h2,h3,ul,p {margin:0;padding:0;}
+body {font-size:12px;color:#28160d;background: url(../images/vippage/vip_01.jpg) no-repeat;background-position: center top;}
+ul li{ list-style:none;}
+img{border:none;}
+a:hover{color:#C90D04;text-decoration:underline;}
+a{color: #28160d;text-decoration:none;}
+.clear{clear:both;font:0px/0px sans-serif;display:block;}
+
+
+#layout{ width:960px; margin:0px auto;}
+
+#top1{ width:960px; height:95px; background:url(../images/vippage/vip_02.jpg) no-repeat; float:left;}
+#top2{ width:960px; height:113px; background:url(../images/vippage/vip_04.jpg) no-repeat; float:left;}
+#top3{ width:960px; height:53px; background:url(../images/vippage/vip_05.jpg) no-repeat; float:left;}
+#left{ width:269px; height:277px; float:left; background:url(../images/vippage/vip_06.jpg) no-repeat;}
+#right{ width:677px; height:277px; float:right; background:url(../images/vippage/vip_08.jpg) no-repeat;}
+#footer{ width:960px; height:30px; text-align:center; line-height:30px; font-size:13px; color:#FFFFFF; margin-top:10px; float:left;}
+
+.logo{ width:120px; height:40px; float:left; margin-left:30px; margin-top:10px;_margin-left:15px;}
+.logo a{width:120px; height:40px; float:left;}
+
+.name{ width:155px; height:35px; float:left; position: relative; left:90px; top:5px; font-size:18px; color:#000000; text-align:center; line-height:35px; font-weight:bold;} 
+
+.nav{ width:565px; height:35px; float:right;margin-right:100px;_margin-right:50px;}
+.nav ul{ margin:0; padding:0;}
+.nav ul li{ list-style:none; float:left; width:80px;  height:20px; margin-left:20px; _margin-left:10px;margin-top:10px; margin-right:7px;_margin-right:17px;}
+.nav ul li a{width:80px;  height:20px; float:left; display:block;}
+
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+<?
+//合作媒体130
+$sqlstr="select source,summary,pic from ".DB_PREFIX."info where info_start<=".time()." and cate_id = 226 order by sort_num desc limit 6";
+$rs_link = $db->getAll($sqlstr);
+?>
+		<div class="hzmt">
+		<span style="font-size:14px; font-weight:bold;color:#f60;margin-left:20px;">合作媒体</span>
+        &nbsp;&nbsp;&nbsp;<span>
+  	<?
+      if($rs_link){
+    	foreach($rs_link as $k=> $v){?>
+		<a href="<?=$v["source"]?>" target="_blank"><img src="<?=$v["pic"]?>" alt="<?=$v["summary"]?>" border="0" width="89" height="31"></a>
+		<?}
+	}
+    ?>
+        </span>
+        
+		<p style="color:#838383;">&nbsp;&nbsp;健康游戏忠告：抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</p>
+		</div>

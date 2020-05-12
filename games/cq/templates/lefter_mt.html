@@ -1,0 +1,17 @@
+<?
+//合作媒体118
+$sqlstr="select source,summary,pic from ".DB_PREFIX."info where info_start<=".time()." and cate_id = 118 order by sort_num desc";
+$rs_link = $db->getAll($sqlstr);
+?>
+	<div class="mt"><div id="Medias" style="display: none;" class="Medias"> 
+      <ul class="mulitline">
+      <?
+      if($rs_link){
+    	foreach($rs_link as $k=> $v){?>
+		<li style="margin-top: 0px;"><a href="<?=$v["source"]?>" target="_blank"><img src="<?=$v["pic"]?>" alt="<?=$v["summary"]?>" border="0" width="172" height="65"></a>&nbsp;</li>
+		<?}
+	}
+    ?>
+    </ul> </div>
+	<a href="javascript:void(0);" onclick="if($('#Medias').css('display')=='none'){$('#Medias').slideDown('slow');}else{$('#Medias').slideUp('slow');}">合作媒体</a>
+    </div>

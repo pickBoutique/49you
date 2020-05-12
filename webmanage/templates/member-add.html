@@ -1,0 +1,268 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="" >
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+        	<tr>
+				<th colspan="2" class="tb_title">基本信息</th>
+			</tr>
+			<tr>
+				<th>用户名：</th>
+				<td>
+					<? if($disabled == ''){ ?>
+					<input type="text" name="member_name" id="member_name" value="<?=$rs['member_name']?>" class="input_w200" <?=$disabled?> /> *　
+					<? }else{ ?>
+					<input type="text" name="member_name" id="member_name" value="<?=$rs['member_name']?>" class="input_w200" <?=$disabled?> /> *　
+					<? } ?>
+				</td>
+			</tr>
+            <tr>
+				<th>邮箱已激活：</th>
+				<td>
+                	 <input name="email_isvalid" value="1" <?=$rs['email_isvalid']=='1' ? 'checked' : '' ?> type="radio">已激活
+                    <input name="email_isvalid" value="0" <?=$rs['email_isvalid']!='1' ? 'checked' : '' ?> type="radio">未激活
+					
+				</td>
+			</tr>
+            <tr>
+				<th>email：</th>
+				<td>
+                	<input type="text" name="email" id="email" value="<?=$rs['email']?>" class="input_w200" />
+				</td>
+			</tr>
+            <tr>
+				<th>移动电话：</th>
+				<td>
+               		<input type="text" name="mobile" id="mobile" value="<?=$rs['mobile']?>" class="input_w200" />
+				</td>
+			</tr>
+			<tr>
+				<th>密码：</th>
+				<td>
+					<input type="password" name="member_pwd" id="member_pwd" class="input_w200" /> *　(6-20位)
+				</td>
+			</tr>
+			<tr>
+				<th>确认密码：</th>
+				<td>
+					<input type="password" name="member_repwd" id="member_repwd" class="input_w200" /> *
+				</td>
+			</tr>
+			
+			<tr>
+				<th>昵称：</th>
+				<td>
+                	<input type="text" name="member_nickname" id="member_nickname" value="<?=$rs['member_nickname']?>" class="input_w200" />
+				</td>
+			</tr>
+            <tr>
+				<th>性别：</th>
+				<td>
+                	<select name='sex' >
+                    	<option value="0">请选择</option>
+                    	<?=cfg_to_opt($cfg_sex,false,$rs['sex'])?>
+                    </select>
+					
+				</td>
+			</tr>
+            <tr>
+				<th>出生年月：</th>
+				<td>
+                	<input type="text" onfocus="WdatePicker({})" value="<?=date('Y-m-d',$rs['birth'])?>" name="birth" id="birth" class="Wdate">
+				</td>
+			</tr>
+            <tr>
+				<th>教育情况：</th>
+				<td>
+                	<select name='education' >
+                    	<option value="0">请选择</option>
+                    	<?=cfg_to_opt($cfg_edu,false,$rs['education'])?>
+                    </select>
+				</td>
+			</tr>
+            <tr>
+				<th>启用状态：</th>
+				<td>
+                	<select name='member_status' >
+                    	<?=cfg_to_opt($cfg_member_status,false,$rs['member_status'])?>
+                    </select>
+				</td>
+			</tr>
+		</table>
+        <div  class="name">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+        	<tr>
+				<th colspan="2" class="tb_title">密保设置</th>
+			</tr>
+            <tr>
+				<th>是否已设置：</th>
+				<td>
+                	 <input name="is_setup" value="1" <?=$rs['is_setup']=='1' ? 'checked' : '' ?> type="radio">已设置
+                    <input name="is_setup" value="0" <?=$rs['is_setup']!='1' ? 'checked' : '' ?> type="radio">未设置
+					
+				</td>
+			</tr>
+		
+			<tr>
+				<th>密保问题：</th>
+				<td>
+                	<select name='question1' >
+                    	<option value="0">未设置</option>
+                    	<?=cfg_to_opt($cfg_question,false,$rs['question1'])?>
+                    </select>
+					
+				</td>
+			</tr>
+		</table>
+		</div>
+        <div  class="name">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+        	<tr>
+				<th colspan="2" class="tb_title">防沉迷认证</th>
+			</tr>
+            <tr>
+				<th>是否已设置：</th>
+				<td>
+                	 <input name="member_idvalid" value="1" <?=$rs['member_idvalid']=='1' ? 'checked' : '' ?> type="radio">已设置
+                    <input name="member_idvalid" value="0" <?=$rs['member_idvalid']!='1' ? 'checked' : '' ?> type="radio">未设置
+					
+				</td>
+			</tr>
+			<tr>
+				<th>真实姓名：</th>
+				<td>
+					<input type="text" name="member_truename" id="member_truename" value="<?=$rs['member_truename']?>"  class="input_w200" />
+				</td>
+			</tr>
+            <tr>
+				<th>身份证号：</th>
+				<td>
+					<input type="text" name="member_idcard" id="member_idcard" value="<?=$rs['member_idcard']?>"  class="input_w200" />
+				</td>
+			</tr>
+		</table>
+		</div>
+		<div  class="name">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+        	<tr>
+				<th colspan="2" class="tb_title">充值情况</th>
+			</tr>
+			<tr>
+				<th>会员级别：</th>
+				<td>
+                	<?php
+							if($member_level_arr){
+								foreach($member_level_arr as $row){
+									$strSelected="";
+									if($row['level_id'] == $rs['member_level']){
+										$strSelected="selected";
+                                        echo($row['level_name']);
+                                        break;
+									}
+                                }
+                            }
+                    ?>
+					<!--<select name="member_level" id="member_level">
+						<?php
+							if($member_level_arr){
+								foreach($member_level_arr as $row){
+									$strSelected="";
+									if($row['level_id'] == $rs['member_level']){
+										$strSelected="selected";
+									}
+						?>
+						<option value="<?=$row['level_id']?>" <?=$strSelected?> ><?=$row['level_name']?></option>
+						<?php
+								}
+							}
+						?>
+					</select>-->
+				</td>
+			</tr>
+            <tr>
+				<th>剩余<?=$config['money_name']?>：</th>
+				<td>
+					<?=intval($rs['money'])?>
+				</td>
+			</tr>
+            <tr>
+				<th>积分：</th>
+				<td>
+					<?=intval($rs['points'])?>
+				</td>
+			</tr>
+		</table>
+		</div>
+		<div  class="name">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add" >
+			<tr>
+				<th colspan="2" class="tb_title">活跃情况</th>
+			</tr>
+			
+            <tr>
+				<th>活跃天数：</th>
+				<td>
+					<?= intval($rs['login_day']) ?>　天
+				</td>
+			</tr>
+            <tr>
+				<th>最后登陆时间：</th>
+				<td>
+                	<?= $rs['last_time'] > 0 ? date('Y-m-d H:i:s',$rs['last_time']) : '' ?>
+				</td>
+			</tr>
+            <tr>
+				<th>最后登陆IP：</th>
+				<td>
+                	<?= $rs['last_ip'] ?>
+				</td>
+			</tr>
+            <tr>
+				<th>推荐人：</th>
+				<td>
+                	<?=$rs['member_reomname']?>
+				</td>
+			</tr>
+            
+            <tr>
+				<th>注册时间：</th>
+				<td>
+                	<?= $rs['add_time'] > 0 ? date('Y-m-d H:i:s',$rs['add_time']) : '' ?>
+				</td>
+			</tr>
+             <tr>
+				<th>最近登陆游戏：</th>
+				<td>
+                	
+					<table width="400" border="0" cellpadding="2" cellspacing="1" class="table_add">
+                      <tr>
+                          <th>服务器</th>
+                          <td>首次登陆时间</td>
+                          <td>最后登陆时间</td>
+                      </tr>
+                      <? if(!empty($server)){ 
+                    	foreach($server as $k => $v){
+                      ?>
+                      <tr>
+                          <td><?=$v['mg_game_name'].'-'.$v['mg_server_name']?></td>
+                          <td><?= date('Y-m-d H:i:s', $v['mg_time'] )?></td>
+                          <td><?= date('Y-m-d H:i:s', $v['mg_last_time'] )?></td>
+                      </tr>
+                      <? }} ?>
+                   </table>
+				</td>
+			</tr>
+        	<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input type="hidden" name="member_id" id="member_id" value="<?=$member_id?>" />
+					<input name="" type="submit" value="提交"  class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+        
+		</div>
+		
+	</form>
+</div>
+<?php include_once("footer.html");?>

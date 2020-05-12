@@ -1,0 +1,27 @@
+<?
+//游戏资讯 
+
+$sqlstr="select  info_id,title,subtitle,add_time,attachment,source from (select cate_id,info_id,title,subtitle,add_time,attachment,source from ".DB_PREFIX."info where info_start<=".time()." and (cate_id=199)   order by sort_num desc,add_time desc limit 0,5) a ";
+$rs_news = $db->getAll($sqlstr);
+
+//右侧图片
+$sqlstr="select source,summary,pic from ".DB_PREFIX."info where info_start<=".time()." and cate_id = 198 order by sort_num desc limit 0,1";
+$rs_top = $db->getRow($sqlstr);
+?>
+<DIV class=sidebar>
+<DIV class=ads-box>
+<? if(!empty($rs_top)){ ?>
+<A href="<?=$rs_top['source']?>" target="_blank"><IMG alt="<?=$rs_top['summary']?>" src="<?=$rs_top['pic']?>"></A>
+<? } ?>
+</DIV>
+<DIV class=news-box>
+<DIV class=news-box-title><SPAN style="FLOAT: left">新闻公告</SPAN> 
+<A style="FLOAT: right; COLOR: #d8d8d8; FONT-SIZE: 12px" href="<?=HTTP_ROOT?>" target=_blank>进入官网&gt;&gt;</A> </DIV>
+<DIV class=news-box-main>
+<? if(!empty($rs_news)){
+    foreach($rs_news as $k => $v){ ?>
+<A style="COLOR: #bca734; FONT-WEIGHT: bold; " href="<?=$v['source']?>" target="_blank">• <?=empty($v['subtitle']) ? $v['title'] : $v['subtitle']?></A><BR>
+<? }} ?>
+</DIV>
+</DIV>
+</DIV>

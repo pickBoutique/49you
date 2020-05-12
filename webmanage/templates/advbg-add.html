@@ -1,0 +1,104 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="" >
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>广告名称：</th>
+				<td>
+					<input type="text" name="advbg_name" id="advbg_name" value="<?=$rs['advbg_name']?>" class="input_w400" />
+				</td>
+			</tr>
+          
+			<? if(!empty($rs['advbg_url'])){ ?>
+			<tr>
+				<th>链接地址：</th>
+				<td>
+					<?=$rs['advbg_url']?>
+				</td>
+			</tr>
+			<? } ?>
+			
+            
+            <tr>
+				<th>广告模板：</th>
+				<td>
+					<select name="advbg_tpl" id="advbg_tpl">
+						<?=cfg_to_opt($cfg_advbg_tpl,false,$rs['advbg_tpl']); ?>
+					</select>
+				</td>
+			</tr>
+            
+			<tr>
+				<th>投放素材：</th>
+				<td>
+                    <div class="upload_input">
+						<input type="text" name="advbg_mat" id="advbg_mat" class="input_w400" value="<?=$rs['advbg_mat']?>" />&nbsp;
+						<input type="button" name="upload_btn" id="upload_btn" class="btn" value="上传" onclick="popupWindow('upload-img.php?upload_input=advbg_mat&is_pic=1',460,240);" />&nbsp;
+						<input type="button" name="choose_btn" id="choose_btn" class="btn" value="选择" onclick="popupWindow('attachment-list.php?upload_input=advbg_mat',800,600);" />&nbsp;
+					</div>
+					 仅支持swf格式
+                    
+				</td>
+			</tr>
+            
+			<tr>
+				<th>点击链接地址：</th>
+				<td>
+					<input type="text" name="advbg_link" id="advbg_link" value="<?=$rs['advbg_link']?>" class="input_w400" />
+				</td>
+			</tr>
+            <tr>
+				<th>水平位置：</th>
+				<td>
+					<input type="text" name="advbg_left" id="advbg_left" value="<?=isset($rs['advbg_left']) ? $rs['advbg_left'] : '50'?>" class="input_w100" />%
+				</td>
+			</tr>
+            <tr>
+				<th>垂直位置：</th>
+				<td>
+					<input type="text" name="advbg_top" id="advbg_top" value="<?=isset($rs['advbg_top']) ? $rs['advbg_top'] : '50'?>" class="input_w100" />%
+				</td>
+			</tr>
+            
+            <tr>
+				<th>宽度：</th>
+				<td>
+					<input type="text" name="advbg_width" id="advbg_width" value="<?=$rs['advbg_width']?>" class="input_w100" />
+				</td>
+			</tr>
+            
+            <tr>
+				<th>高度：</th>
+				<td>
+					<input type="text" name="advbg_height" id="advbg_height" value="<?=$rs['advbg_height']?>" class="input_w100" />
+				</td>
+			</tr>
+            
+			<tr>
+				<th>排序号：</th>
+				<td>
+					<input type="text" name="advbg_sort" id="advbg_sort" value="<?=$rs['advbg_sort']==''?'0':$rs['advbg_sort']?>" class="input_w100" maxlength="10" />&nbsp;
+				</td>
+			</tr>
+           
+           <tr>
+				<th>启用状态：</th>
+				<td>
+					<input name="advbg_status" value="1" <?=$rs['advbg_status']=='1' ? 'checked' : '' ?> type="radio">已启用
+                    <input name="advbg_status" value="0" <?=$rs['advbg_status']!='1' ? 'checked' : '' ?> type="radio">已关闭
+				</td>
+			</tr>
+           
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>
+

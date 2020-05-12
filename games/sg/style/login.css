@@ -1,0 +1,24 @@
+@charset "utf-8";
+ul,li,a,div,body,dl,dt{margin:0;padding:0;}
+ul,li{list-style-type:none;}
+body{margin:0;padding:0;background:#000;color:#fff;font-family:"Verdana","ËÎÌו","sans-serif";font-size:14px;}
+a,a:link,a:visited{text-decoration:none;}
+a:hover{text-decoration:underline;}
+img{border:none;}
+#body{width:1000px;height:600px;overflow:hidden;margin:auto;background:url(login_bg.jpg) no-repeat center top;}
+.row{width:784px;margin:282px 176px 0 40px;overflow:hidden;}
+.login{width:274px;height:134px;position:relative;overflow:hidden;margin-left:250px;}
+.usr,.psw{width:173px;height:30px;position:absolute;left:92px;padding:2px 0;}
+.usr{top:0;}
+.psw{top:46px;}
+#userlogin,.l_reg{width:118px;height:34px;position:absolute;top:100px;cursor:pointer;}
+#userlogin{left:0;}
+.l_reg{left:156px;}
+.in{width:169px;height:28px;padding:1px 2px;line-height:28px;border:0;background:none;color:#000;font-size:14px;}
+.menu{width:782px;height:38px;position: relative;overflow:hidden;margin-top:58px;}
+.btn1,.btn2,.btn3,.btn4,.btn5{width:148px;height:38px;position:absolute;top:0;cursor:pointer;}
+.btn1{left:0;}
+.btn2{left:158px;}
+.btn3{left:318px;}
+.btn4{left:478px;}
+.btn5{left:634px;} 

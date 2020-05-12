@@ -1,0 +1,57 @@
+<?
+if(empty($returl)){
+	$returl = !empty($topbariframe) ? $_SERVER['HTTP_REFERER'] : $_SERVER['REQUEST_URI'];
+}
+if($login_status != SUC_LOGIN){
+?>
+<!--top-->
+<div class="strip">
+<div class="strip_top">
+<div class="st_1">www.49you.com  49you网页游戏平台欢迎您！</div>
+<div class="st_r">
+<ul class="q_nav">
+    <li>
+        <p class="fl"><a class="icon i_reg" href="reg.html?returl=<?=$returl?>" title="注册" >注册</a>
+            <a class="icon i_log" href="login.html?returl=<?=$returl?>" title="登录" >登录</a>
+            <a class="icon i_pay" href="pay_games.html" title="账户充值" >账户充值</a>
+        </p>
+        <p class="fr">
+            <a href="javascript:void(0);" title="设为首页" onClick="SetHome(this,window.location);" >设为首页</a>|
+            <a href="javascript:void(0);" title="收藏本站" onClick="AddFavorite('<?=YOU_ROOT?>','49游戏平台');" >收藏本站</a>|
+            <a href="shortcut.html" title="保存到桌面" target="_blank" >保存到桌面</a>
+        </p>
+    </li>
+</ul>
+</div>
+</div>
+</div>
+<?
+}else{
+//print_r($_SERVER);
+
+$usr_info = $obj_user->get_user_by_id($login_info[2]);
+$level_info = $db->getRow("select * from ".DB_PREFIX."member_level where level_id='{$usr_info[member_level]}' ");
+?>
+<!--top-->
+<div class="strip">
+<div class="strip_top">
+<div class="st_1"><font style="color: rgb(206, 18, 31);"><?=$usr_info['member_name']?></font>　49you网页游戏平台欢迎您！</div>
+<div class="st_r">
+<ul class="q_nav">
+    <li>
+        <p class="fl"><a class="icon i_reg" href="member.html" title="会员中心"  <?if(!empty($topbariframe)){?>target="_blank"<?}?>>会员中心</a>
+        <a class="icon i_pay" href="pay_games.html" title="账户充值"  <?if(!empty($topbariframe)){?>target="_blank"<?}?>>账户充值</a>
+            <a class="icon i_logout" href="loginout.html?returl=<?=$returl?>" title="退出" >退出</a>
+            
+        </p>
+        <p class="fr">
+            <a href="javascript:void(0);" title="设为首页" onClick="SetHome(this,window.location);" >设为首页</a>|
+            <a href="javascript:void(0);" title="收藏本站" onClick="AddFavorite('<?=YOU_ROOT?>','49游戏平台');" >收藏本站</a>|
+            <a href="shortcut.html" title="保存到桌面" target="_blank" >保存到桌面</a>
+        </p>
+    </li>
+</ul>
+</div>
+</div>
+</div>
+<? } ?>

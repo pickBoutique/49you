@@ -1,0 +1,145 @@
+
+#Options FollowSymLinks -MultiViews
+RewriteEngine On
+#RewriteOptions MaxRedirects=1
+RewriteBase / 
+
+RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+RewriteRule .* - [F]
+
+
+
+#ErrorDocument 400 /error.html
+#ErrorDocument 401 /error.html
+#ErrorDocument 402 /error.html
+#ErrorDocument 403 /error.html
+#ErrorDocument 404 /error.html
+
+
+
+
+RewriteCond %{HTTP_HOST}  ^d8pk\.com$
+RewriteRule (.*) http://www.d8pk.com/$1 [R=301,L] 
+
+RewriteCond %{HTTP_HOST}  ^jgame\.adv\.com$
+RewriteRule ^([0-9a-zA-Z_-]+)/([0-9]+)\.html$   advs/joy400/ad/$2\.html [L]
+
+RewriteCond %{HTTP_HOST}  ^jgame\.adv\.com$
+RewriteRule ^advs/material/([0-9]+)/([0-9a-zA-Z_-]+)\.(gif|jpg|css|png|bmp|js|swf|flv|rar|mid|midi|mp3)$   advs/material/$1/$2\.$3 [L]
+
+RewriteCond %{HTTP_HOST}  ^56game\.adv\.com$
+RewriteRule ^([0-9a-zA-Z_-]+)/([0-9]+)\.html$   advs/56uu/ad/$2\.html [L]
+
+RewriteCond %{HTTP_HOST}  ^56game\.adv\.com$
+RewriteRule ^advs/material/([0-9]+)/([0-9a-zA-Z_-]+)\.(gif|jpg|css|png|bmp|js|swf|flv|rar|mid|midi|mp3)$   advs/material/$1/$2\.$3 [L]
+
+
+RewriteCond %{HTTP_HOST}  ^web\.d8pk\.com$
+RewriteRule ^([0-9a-zA-Z_-]+)/([0-9]+)\.html$   advs/ad/$2\.html [L]
+
+RewriteCond %{HTTP_HOST}  ^web\.d8pk\.com$
+RewriteRule ^advs/material/([0-9]+)/([0-9a-zA-Z_-]+)\.(gif|jpg|css|png|bmp|js|swf|flv|rar|mid|midi|mp3)$   advs/material/$1/$2\.$3 [L]
+
+RewriteCond %{HTTP_HOST}  kknd.com$
+RewriteCond %{HTTP_HOST}  ^((www)\.)?kknd.com$
+RewriteRule ^favicon\.ico$  games/linkpage/favicon\.ico [L]
+
+RewriteCond %{HTTP_HOST}  d8pk.com$
+RewriteCond %{HTTP_HOST}  !^((www)\.)?d8pk.com$
+RewriteRule ^favicon\.ico$  favicon\.ico [L]
+
+###游戏官网
+RewriteCond %{HTTP_HOST}  d8pk.com$
+RewriteCond %{HTTP_HOST}  !^web.d8pk.com$
+RewriteCond %{HTTP_HOST}  !^((www)\.)?d8pk.com$
+RewriteCond %{REQUEST_URI}  !^/games
+RewriteCond %{REQUEST_URI}  !^/uploadfiles
+RewriteRule ^(.*)\.php$ - [F]
+
+
+RewriteCond %{HTTP_HOST}  d8pk.com$
+RewriteCond %{HTTP_HOST}  !^web.d8pk.com$
+RewriteCond %{HTTP_HOST}  !^((www)\.)?d8pk.com$
+RewriteCond %{REQUEST_URI}  !^/games
+RewriteCond %{REQUEST_URI}  !^/uploadfiles
+RewriteRule ^news_([0-9]+)\.html$ /%{HTTP_HOST}/news_info\.php?id=$1 [C]
+RewriteRule ^/([a-z0-9\-]+)\.d8pk\.com/(.*)$ games/$1/$2 [L]
+
+RewriteCond %{HTTP_HOST}  d8pk.com$
+RewriteCond %{HTTP_HOST}  !^web.d8pk.com$
+RewriteCond %{HTTP_HOST}  !^((www)\.)?d8pk.com$
+RewriteCond %{REQUEST_URI}  !^/games
+RewriteCond %{REQUEST_URI}  !^/uploadfiles
+RewriteRule ^(.*)\.html$ /%{HTTP_HOST}/$1.php [C]
+RewriteRule ^/([a-z0-9\-]+)\.d8pk\.com/(.*)$ games/$1/$2 [L]
+
+
+
+RewriteCond %{HTTP_HOST}  d8pk.com$
+RewriteCond %{HTTP_HOST}  !^web.d8pk.com$
+RewriteCond %{HTTP_HOST}  !^((www)\.)?d8pk.com$
+RewriteCond %{REQUEST_URI}  !^/games
+RewriteCond %{REQUEST_URI}  !^/uploadfiles
+RewriteRule ^([0-9a-zA-Z_-]+)/(.*)$ %{HTTP_HOST}/$1/$2 [C]
+RewriteRule ^([a-z0-9\-]+)\.d8pk\.com/(.*)$ games/$1/$2 [L]
+####
+
+RewriteCond %{HTTP_HOST}  d8pk.com$
+RewriteCond %{HTTP_HOST}  !^((www)\.)?d8pk.com$
+RewriteRule ^([0-9a-zA-Z_-]+)\.([0-9a-zA-Z_-]+)$ /error.html [L]
+
+RewriteCond %{HTTP_HOST}  d8pk.com$
+RewriteCond %{HTTP_HOST}  !^((www)\.)?d8pk.com$
+RewriteRule ^service(.*)$ "http://www.d8pk.com/service_online.html" [R=301,L]
+
+RewriteCond %{HTTP_HOST}  d8pk.com$
+RewriteCond %{HTTP_HOST}  !^((www)\.)?d8pk.com$
+RewriteRule ^guide(.*)$ /%{HTTP_HOST}/guide$1
+RewriteRule ^([a-z0-9\-]+)\.d8pk\.com/guide(.*)$ "http://$1.d8pk.com/news_info.html?id=230" [R=301,L]
+
+###开服榜系统
+#RewriteCond %{HTTP_HOST}  ^((www)\.)?kknd.com$
+#RewriteRule ^([0-9a-zA-Z_]+)\.html$ /%{HTTP_HOST}/$1.html
+#RewriteRule ^([a-z0-9\-]+)\.kknd\.com/([0-9a-zA-Z_]+)\.html$ games/linkpage/$2\.php [L]
+#RewriteCond %{HTTP_HOST}  ^((www)\.)?kknd.com$
+#RewriteRule ^([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)\.(gif|jpg|css|png|bmp|js|swf|flv)$ /%{HTTP_HOST}/$1/$2\.$3
+#RewriteRule ^([a-z0-9\-]+)\.kknd\.com/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)\.(gif|jpg|css|png|bmp|js|swf|flv)$ games/linkpage/$2/$3\.$4 [L]
+###
+
+
+RewriteRule ^jianhu/([0-9a-zA-Z_-]+)\.html$   project/jianhu/$1\.php [L] 
+RewriteRule ^jianhu/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)\.(gif|jpg|css|png|bmp|js|swf|flv|rar)$   project/jianhu/$1/$2\.$3 [L] 
+
+
+
+RewriteCond %{REQUEST_URI} webmanage/
+RewriteCond %{QUERY_STRING} !gowepldvoregmpp534pporth646
+RewriteRule .*\.(php|html) [F,L]
+RewriteCond %{QUERY_STRING} !gowepldvoregmpp534pporth646
+RewriteRule ^wodehoutaishishenmo/(.*) webmanage/$1?%{QUERY_STRING}&gowepldvoregmpp534pporth646 [L]
+
+RewriteCond %{REQUEST_URI} fckeditor/
+RewriteCond %{QUERY_STRING} !gowepldvoregmpp534pporth646
+RewriteRule .*\.(php|html) [F,L]
+RewriteCond %{QUERY_STRING} !gowepldvoregmpp534pporth646
+RewriteRule ^lilizizi_michael_editor/(.*) fckeditor/$1?%{QUERY_STRING}&gowepldvoregmpp534pporth646 [L]
+
+
+RewriteRule ^yg/([0-9a-zA-Z_-]+)/([0-9a-zA-Z_-]+)\.html$      member/yingguang\.php?at=$1&ad=$2      [L]
+RewriteRule ^download_([0-9a-zA-Z_-]+)\.html$      member/reg_adv\.php?act=download&gid=$1      [L]
+RewriteRule ^login_([0-9]+)_([0-9]+)\.html       member/login\.php?returl=/game_add.html?gid=$1\%26scode=$2     [L]
+RewriteRule ^pay_([0-9]+)_([0-9]+)\.html       member/pay\.php?gid=$1&scode=$2      [L]
+RewriteRule ^reg_([0-9]+)_([0-9]+)\.html       member/reg\.php?gid=$1&mid=$2      [L]
+RewriteRule ^news_info_([0-9]+)\.html       member/news_info\.php?id=$1      [L]
+RewriteRule ^([0-9a-zA-Z_-]+)\.html$       member/$1\.php      [L]
+RewriteRule ^(.*)\.inc\.php       member/error\.php      [L]
+RewriteRule ^(.*)\.class\.php       member/error\.php      [L]
+RewriteRule (.*)\.htaccess       member/error\.php      [L]
+RewriteRule ^game/([0-9]+)_([0-9]+)_([0-9]+)\.jpg       uploadfiles/game/$1/$2_$3\.jpg      [L]
+
+RewriteCond %{HTTP_HOST}  pppp.com$
+RewriteRule ^member/([0-9a-zA-Z_-]+)\.php$       member/tmp_index\.php      [L]
+
+
+#RewriteRule ^member/(.+)      member/error\.php      [L]
+

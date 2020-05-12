@@ -1,0 +1,53 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="member-list.php">
+		
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'用户名' , 'dataIndex':'member_name' , 'type':'text' },
+          { 'header':'注册时间' , 'dataIndex':'add_time' , 'type':'time' , 'defaultValue':'<?=date("Y-m-d")?>' }</div>
+        </div>
+        
+		<div class="searcher" id="permimag"></div>
+        
+        
+		<script>
+		var grid;
+		$(document).ready(function(){
+			
+			function getoperator(rs) {
+				return "<a href='###' class='' onclick=\"toview('" + rs["member_id"] + "')\">查看</a>";;
+			}
+	 
+			var cm = new ColumnModel
+			([
+			{header: '用户名', dataIndex: 'member_name'},
+			{header: '充值金额', dataIndex: 'trans_money', sortable: true},
+			{header: '注册渠道', dataIndex: 'advtype_name'},
+			{header: '注册广告', dataIndex: 'adv_name'},
+			{header: '注册时间', dataIndex: 'add_time' , format:'yyyy-MM-dd', sortable: true, width: 80 },
+			{ header: '操作', renderer: getoperator }
+			]);
+	
+			grid = new GridView({ id: 'permimag', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget'} });
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+			$('#searchbar').show();
+		});
+		
+
+		function toview(id){
+			show_editor({ title:'查看',src:'member-view-alliance.php?member_id=' + id, onclose:function(){
+				grid.load();
+			}});
+		}
+		
+		
+		
+		
+		</script>
+	</form>
+</div>
+<?php include_once("footer.html");?>

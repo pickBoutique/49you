@@ -1,0 +1,51 @@
+@charset "gb2312";
+body { font-family:ÀŒÃÂ; font-size: 12px; color: #000; padding:0px; margin:0px; background: url(../images/bwz_bg.jpg) no-repeat scroll top center #e2e5c8; line-height:24px;}
+div,span,ul,li,p,h1,h2,h3,h4,h5,h6,img,p,dl,dd,dt{ margin:0px; padding:0px;}
+ul{ list-style-type: none; }
+a{ color:#fffcad; text-decoration:none;}
+a:hover{ color:#ff0000; text-decoration:none;}
+img{ border:0px;}
+form{ margin:0px; padding:0px;}
+input {vertical-align:middle; font-size:12px; padding:0 1px;border:none; margin:0}
+.red{ color:#c10000;}
+.green{ color:#339900;}
+.orange{ color:#057a05;}
+.blue{ color:#0171ee;}
+.black{ color:#000;}
+.bold{ font-weight:bold;}
+li{ list-style-type:none;}
+.fl{ float:left;}
+.fr{ float:right;}
+.cl{ clear:both;}
+.tc{ text-align:center;}
+.td_u{ text-decoration:underline;}
+.tr{ text-align:right;}
+/********************************************Ω≠∫˛¡Ó≥ËŒÔ±£Œ¿’Ω◊®Ã‚************************************************************/
+.bwz_wrap{ width:892px; margin:0 auto; padding:0; font-size:14px; font-family:Œ¢»Ì—≈∫⁄; line-height:30px; text-indent:24px;}
+.bwz_01{ width:892px; height:80px; margin:0 auto; background:transparent url(../images/bwz_01.jpg) no-repeat;}
+.bwz_nav{ width:280px; float:right; padding-right:180px; font-size:12px; color:#a4ff67;}
+.bwz_nav a{ color:#a4ff67; padding:0 10px;}
+.bwz_nav a:hover{ color:#ff9600;}
+
+.bwz_02{ width:892px; height:130px; background:transparent url(../images/bwz_02.jpg) no-repeat;}
+.bwz_03{ width:892px; height:160px; background:transparent url(../images/bwz_03.jpg) no-repeat;}
+.bwz_04{ width:892px; background:transparent url(../images/bwz_04.jpg) no-repeat;}
+.bwz_04con{ width:760px; padding:0 40px 0 60px;font-size:16px;}
+.bwz_05{ width:892px; background:transparent url(../images/bwz_05.jpg) repeat-y;}
+
+.bwz_con{ width:760px; padding-left:60px;}
+.bwz_tit{ padding:15px 0;}
+.bwz_img{ padding-bottom:15px;}
+
+.bwz_footer{ width:1000px; height:107px; margin:0 auto; background:transparent url(../images/bwz_08.jpg) no-repeat;}
+.bwz_gg{ width:1000px; margin:0 auto;font-size:14px; padding-top:20px; height:30px; font-family:Œ¢»Ì—≈∫⁄;  color:#666666; text-align:center;}
+.bwz_zg{ width:1000px; margin:0 auto; font-size:12px; color:#000; text-align:center; padding-top:30px;}
+
+
+
+
+
+
+
+
+

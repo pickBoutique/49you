@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<?$title="49you-为打造最实惠的游戏平台而努力!"?>
+<title><?=$title?></title>
+<?
+if(empty($keywords))$keywords=$config['keyword'];
+if(empty($description))$description=$config['description'];
+?>
+<?if($keywords!="null"){?>
+<meta name="keywords" content="<?=$keywords?>">
+<?}?>
+<?if($description!="null"){?>
+<meta name="description" content="<?=$description?>">
+<?}?>
+<link href="style/sty.css" type="text/css" rel="stylesheet" />
+<link href="style/list.css" type="text/css" rel="stylesheet" />
+<link href="style/style_vip.css" type="text/css" rel="stylesheet" />
+<script language="javascript" src="js/jquery.js"></script>
+<script language="javascript" src="js/basic.js"></script>
+
+</head>
+<body>
+<!--top_bar start-->
+<?
+$gwname=$title;
+require(WEB_ROOT.'/games/top_bar.html');
+?> 
+<!--top_bar end-->
+<!--toptop结束-->
+<div class="main" align="center">
+<span style="float:left;"><img src="images/vip/vip_03.jpg" width="982" height="119" border="0" /></span>
+<span style="float:left;"><img src="images/vip/vip_05.jpg" width="982" height="146" border="0"/></span>
+<span style="float:left;width:982px;">
+<div class="left"><img src="images/vip/vip_left.png" width="690" height="253" border="0" usemap="#Map" />
+  <map name="Map" id="Map">
+    <area shape="rect" coords="318,94,415,111" href="#tg"  title="VIP详细介绍"/>
+    <area shape="rect" coords="483,67,656,113" href="<?=YOU_ROOT?>/reg.html" target="_blank" title="帐号注册" />
+    <area shape="rect" coords="317,224,420,244" href="#tg"  title="推广详细介绍" />
+    <area shape="rect" coords="481,202,656,245" href="<?=YOU_ROOT?>/return.html" target="_blank" title="获取推广地址" />
+  </map>
+</div>
+<div class="right">
+	<div class="col1 fl" style="padding-top:5px;">
+    <!--server start-->
+    <? $list_count = '5'; ?>
+    <? include('server_info.html'); ?> 
+    <!--server end-->
+    </div>
+</div>
+</span>
+<span style="float:left;clear:both;" id="tg" name="tg"><img src="images/vip/vip_07.jpg" width="982" height="105" border="0"/></span>
+<span style="float:left;"><img src="images/vip/vip_08.jpg" width="982" height="100" border="0"/></span>
+<span style="float:left;"><img src="images/vip/vip_09.jpg" width="982" height="109" border="0"/></span>
+<span style="float:left;"><img src="images/vip/vip_10.jpg" width="982" height="102" border="0"/></span>
+<span style="float:left;"><img src="images/vip/vip_11.jpg" width="982" height="90" border="0"/></span>
+<span style="float:left;"><img src="images/vip/vip_12.jpg" width="982" height="90" border="0"/></span>
+<span style="float:left;"><img src="images/vip/vip_13.jpg" width="982" height="95" border="0"/></span>
+<span style="float:left;"><img src="images/vip/vip_14.jpg" width="982" height="80" border="0"/></span>
+<span style="float:left;"><img src="images/vip/vip_15.jpg" width="982" height="92" border="0"/></span><br />
+
+<span style="float:left;"><img src="images/vip/vip_16.jpg" width="982" height="75" border="0"/></span><br />
+
+<span style="float:left;"><img src="images/vip/vip_17.jpg" width="982" height="125" border="0" usemap="#Map2"/>
+<map name="Map2" id="Map2">
+  <area shape="rect" coords="176,22,357,72" href="<?=YOU_ROOT?>/return.html" target="_blank" title="获取推广地" />
+  <area shape="rect" coords="630,23,816,73" href="<?=YOU_ROOT?>/reg.html" target="_blank" title="帐号注册" />
+</map>
+</span>
+</div>
+
+<!-- //底部模板 -->
+<div class="bottom"> 
+<h2> <a target="_blank" href="http://sxd.49you.com">神仙道</a> | 
+<a target="_blank" href="http://xz.49you.com">凡人修真2</a> | 
+<a target="_blank" href="http://jhl.49you.com">江湖令</a> | 
+<a target="_blank" href="http://sg.49you.com">盛世三国</a> | 
+<a target="_blank" href="http://jtxm.49you.com">九天仙梦</a> | 
+<a target="_blank" href="http://sh.49you.com">山海创世录</a> | 
+<a target="_blank" href="http://xyj.49you.com">逍遥剑</a> | 
+<a href="/news_info_207.html">关于我们</a> | <a href="/jianhu/gc.html" target="_blank" >家长监护服务</a> | <a href="/service.html">客服中心</a> | <a href="/news_info_206.html">商务合作</a> | <a href="#">网站地图</a> | <a href="/news_info_205.html">人才招聘</a></h2>
+<div class="b_1">
+<?=$config['footer']?>
+</div>
+</div>
+<!--底结束-->
+</body>
+</html>

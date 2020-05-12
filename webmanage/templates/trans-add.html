@@ -1,0 +1,167 @@
+<?php include_once("header.html");?>
+<? if($act=='add'){ ?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>游戏：</th>
+				<td>
+                	<select name="trans_gid" id="trans_gid">
+                    
+                    </select>
+					<input type="hidden" name="trans_gid_default" id="trans_gid_default" value="<?=$rs['trans_gid']?>" class="input_w200"  />
+                    <input type="hidden" name="trans_gname" id="trans_gname" value="<?=$rs['trans_gname']?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th>服务器：</th>
+				<td>
+                	<select name="trans_sid" id="trans_sid">
+                    
+                    </select>
+					<input type="hidden" name="trans_sid_default" id="trans_sid_default" value="<?=$rs['trans_sid']?>" class="input_w200"  />
+                    <input type="hidden" name="trans_sname" id="trans_sname" value="<?=$rs['trans_sname']?>" class="input_w200"  />
+				</td>
+			</tr>
+            <tr>
+				<th>充值帐号：</th>
+				<td>
+                	<textarea name="trans_mname" style="width:200px; height:200px;"><?=$rs['trans_mname']?></textarea>
+				</td>
+			</tr>
+			<tr>
+				<th>充值金额：</th>
+				<td>
+                <script language="javascript">
+				function sel_to_change(obj){
+					if(obj.value == '0'){
+						$('#trans_money').show();
+					}else{
+						$('#trans_money').hide();
+					}
+					$('#trans_money').val(obj.value);
+				}
+				</script>
+                	<select name="pay_money" onchange="sel_to_change(this);">
+                    	<option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="0">其它</option>
+                    </select>
+                    <input type="text" name="trans_money" id="trans_money" value="1" class="input_w200" style="display:none;"  />元
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<? }else{ ?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>游戏：</th>
+				<td>
+                <? if($rs['trans_outstatus'] == '1'){ ?>
+                	<?=$rs['trans_gname']?>
+                <? }else{ ?>
+                	<select name="trans_gid" id="trans_gid">
+                    
+                    </select>
+					<input type="hidden" name="trans_gid_default" id="trans_gid_default" value="<?=$rs['trans_gid']?>" class="input_w200"  />
+                    <input type="hidden" name="trans_gname" id="trans_gname" value="<?=$rs['trans_gname']?>" class="input_w200"  />
+                <? } ?>
+				</td>
+			</tr>
+			<tr>
+				<th>服务器：</th>
+				<td>
+                <? if($rs['trans_outstatus'] == '1'){ ?>
+                	<?=$rs['trans_sname']?>
+                <? }else{ ?>
+                	<select name="trans_sid" id="trans_sid">
+                    
+                    </select>
+					<input type="hidden" name="trans_sid_default" id="trans_sid_default" value="<?=$rs['trans_sid']?>" class="input_w200"  />
+                    <input type="hidden" name="trans_sname" id="trans_sname" value="<?=$rs['trans_sname']?>" class="input_w200"  />
+                 <? } ?>
+				</td>
+			</tr>
+            <tr>
+				<th>充值帐号：</th>
+				<td>
+					<?=$rs['trans_mname']?>
+				</td>
+			</tr>
+			<tr>
+				<th>充值金额：</th>
+				<td>
+					<?=$rs['trans_money']?>元
+				</td>
+			</tr>
+            
+            <tr>
+				<th>最近登陆游戏：</th>
+				<td>
+                	
+					<table width="300" border="0" cellpadding="2" cellspacing="1" class="table_add">
+                      <tr>
+                          <th>服务器</th>
+                          <td>时间</td>
+                      </tr>
+                      <? if(!empty($server)){ 
+                    	foreach($server as $k => $v){
+                      ?>
+                      <tr>
+                          <td><?=$v['mg_game_name'].'-'.$v['mg_server_name']?></td>
+                          <td><?= date('Y-m-d H:i:s', $v['mg_last_time'] )?></td>
+                      </tr>
+                      <? }} ?>
+                   </table>
+				</td>
+			</tr>
+			<? if(empty($rs['trans_outstatus'])){ ?>
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+            <? } ?>
+		</table>
+	</form>
+</div>
+<? } ?>
+
+<? if(empty($rs['trans_outstatus'])){ ?>
+<script language="javascript">
+function on_server_change(){
+	var obj_game = document.getElementById('trans_gid');
+	var obj_server = document.getElementById('trans_sid');
+	$('#trans_gname').val(obj_game.options[obj_game.selectedIndex].text);
+	$('#trans_sname').val(obj_server.options[obj_server.selectedIndex].text);
+}
+function on_server_load(domid,game_id,obj){
+	$("<option value='0'>全部</option>").prependTo('#' + domid);
+}
+function on_game_load(domid,game_id,obj){
+	$("<option value='0'>帐号余额</option>").prependTo('#' + domid);
+}
+$(document).ready(function(){
+	
+	get_games('trans_gid','trans_sid');
+	
+});
+</script>
+<? } ?>
+<?php include_once("footer.html");?>

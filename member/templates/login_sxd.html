@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>欢迎登录49you《<?=$game['game_name']?>》</title>
+<style>
+ul,li,a,div,body,dl,dt{margin:0;padding:0;}
+ul,li{list-style-type:none;}
+body{margin:0;padding:0;background:#f4e9cd;color:#000;font-family:"Verdana","宋体","sans-serif";font-size:14px;}
+a,a:link,a:visited{text-decoration:none;}
+a:hover{text-decoration:underline;}
+img{border:none;}
+
+#body{width:980px;height:600px;overflow:hidden;margin:auto;background:url(/images/login_sxd_bg.jpg) no-repeat center top;}
+.row{width:660px;margin:220px auto 0;overflow:hidden;}
+.login{width:257px;height:134px;position:relative;float:left;overflow:hidden;margin-top:48px;}
+.usr,.psw{width:206px;height:30px;position:absolute;left:51px;}
+.usr{top:0;}
+.psw{top:40px;}
+#userlogin,.l_reg{width:120px;height:34px;position:absolute;top:100px;cursor:pointer;}
+#userlogin{left:0;}
+.l_reg{left:133px;}
+.in{width:202px;height:28px;padding:1px 2px;line-height:28px;border:0;background:none;color:#000;font-size:14px;}
+.menu{width:150px;height:220px;position: relative;float:left;overflow:hidden;padding-right:80px;}
+.btn1,.btn2,.btn3,.btn4{width:150px;height:40px;position:absolute;left:0;cursor:pointer;}
+.btn1{top:0;}
+.btn2{top:59px;}
+.btn3{top:120px;}
+.btn4{top:180px;}
+td img {display: block;}
+</style>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+<div id="body">
+<div class="row">
+	<div class="menu"><a href="<?=$game_root?>" target="_blank"><div class="btn1"></div></a>
+	<a href="<?=YOU_ROOT?>" target="_blank"><div class="btn2"></div></a>
+	<a href="<?=YOU_ROOT.'/pay_type.html?gid='.$gid ?>" target="_blank"><div class="btn3"></div></a>
+	<a href="###" onclick="window.external.addFavorite('<?=$game_root?>','49you《<?=$game['game_name']?>》');return false;"><div class="btn4"></div></a></div>
+	<div class="login">
+	<div class="usr"><input type="text" class="in" name="username" id="username"/></div>
+	<div class="psw"><input type="password" class="in" name="password" id="password"/></div>
+	<a href="reg.html?returl=<?=urlencode($returl)?>&gid=<?=$gid?>"><div class="l_reg"></div></a>
+    <input type="hidden" name="act" value="login" />
+    <input type="hidden" name="returl" value="<?=$returl?>" />
+	<input type="submit" id="userlogin" name="loginsubmit" style=" cursor:pointer;border:medium none;width:120px; height:34px; background:url(style/bt_ok2.jpg) center no-repeat;" value=" " >
+	</div>
+</div>
+</div>
+
+<div style="margin:40px auto 0;width:1002px;height:40px;overflow:hidden;line-height:40px;text-align:center;">24小时客服电话：<?=$config['service_tel1']?></div>
+</form>
+</body>
+
+</html>

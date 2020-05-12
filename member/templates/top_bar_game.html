@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>49游戏平台</title>
+<?
+$cssdir="../style";
+$topbarcss="top_bar_game.css";
+if(file_exists("$cssdir/top_bar_$game[game_code].css")){
+	$topbarcss="top_bar_$game[game_code].css";
+}
+?>
+
+<link href="style/<?=$topbarcss?>" type="text/css" rel="stylesheet" />
+<link href="style/top_bar_public.css" type="text/css" rel="stylesheet" />
+
+<? if(empty($game["game_nickname"])){
+	$game["game_nickname"]=$game["game_name"];
+}
+?>
+<script language="javascript" src="js/jquery.js"></script>
+<script language="javascript" src="js/basic.js"></script>
+<script language="javascript">
+<?if($game["game_hasfav"]==1){?>
+$(window).bind("unload", onunload_handler); 
+function onunload_handler(){
+	var cookname = "C_Favorite_<?=$game_id?>_<?=$server_id?>";
+	if(getCookie(cookname)==null){
+		//alert('请收藏"<?=$game["game_nickname"]?>"，以便下次再玩！');
+		setCookie(cookname,1,"d360");
+		AddFavorite(top.location.href,'<?=$game["game_nickname"]?>--49you网页游戏平台');
+		
+		
+	}
+}
+<?}?>
+
+<? if($game_id=='7' && $_REQUEST['fromadv']=='1' && false){ ?>
+function setdownload() {
+	window.open('http://sg.49you.com/client_download.html');
+	clearInterval(int_dow);
+}
+var int_dow = setInterval("setdownload()", 1000*60*5);
+<? } ?>
+
+function hidegame_bar(){
+	frmBody = parent.document.getElementById('game_bar');
+	frmBody.rows="0,*";
+}
+
+function setlog() {
+	$.ajax({
+		type: "GET",
+		url: "top_bar_game.html?act=log"
+	});
+}
+var int_log = setInterval("setlog()", 1000*60*8);
+
+</script>
+
+
+
+<script language="javascript">
+var online_values={'pid':"5",'gid':"<?=$game["game_id"]?>",'sid':"<?=$server_id?>",'at':"<?=$usr_info["member_advtype"]?>",'ad':"<?=$usr_info["member_advid"]?>",'md':"<?=$usr_info["member_metrid"]?>",'mid':"<?=$login_info[2]?>",'subtype':"<?=$usr_info["account_type"]?>",'reg':"<?=$usr_info['add_time']?>",'pos_add':"<?=str_replace('www','status',YOU_ROOT);?>"}
+</script>
+<script language="javascript" src="<?=str_replace('www','status',YOU_ROOT);?>/js/member_action.js"></script>
+
+<?if($login_info[6]=='0'){
+?>
+<script language="javascript">
+var _msg = "激活账号";
+var _space = '';
+var isshow = false;
+var showreg = true;
+var regInt=setInterval(regreg,1000*60*10);
+
+function regreg(){
+	clearInterval(regInt);
+	if(!showreg){
+		return;
+	}
+	if(confirm("您好，您正在试玩 《<?=$game["game_nickname"]?>》 网页游戏。\n请点击\"确定\"保存游戏进度。\n点击\"取消\"将继续试玩模式。")){window.onunload = function(){};
+		//window.open("rereg.html?returl="+ escape(top.location.href));
+		top.location.href= "rereg.html?returl="+ escape(top.location.href);
+	}
+	else{regInt=setInterval(regreg,1000*60*10);}
+}
+
+for(var i=0; i<=_msg.length; i+=2){
+     _space += ' 　';
+}
+function flash_regmsg(){
+    if(isshow){$("#reglink").html(_msg); isshow=false;}
+    else{$("#reglink").html(_space);isshow = true;}
+}
+var reglnk=setInterval(flash_regmsg,500);
+
+</script>
+  <?}?>
+
+
+<? 
+//换个游戏玩玩
+if($_REQUEST['fromadv']=='1' && $game["game_haschangegame"]==1 ){ ?>
+<script language="javascript" type="text/javascript">
+function myAddEventListener(o,s,fn,b){
+	b=b||false;
+	if(o.addEventListener){
+		o.addEventListener(s,fn,b);
+	}else if(o.attachEvent){
+		o.attachEvent('on'+s,fn);
+	}
+}
+
+function csexitp(cs_url){
+	var obj=document.getElementById("acsuieop");
+	obj.launchURL(cs_url);
+}
+
+var dat = new Date();
+myAddEventListener(window,'beforeunload',function(){
+	var tme = new Date();
+	var jian = (tme.getTime()-dat.getTime())/1000;
+	if(jian<590){
+		csexitp("<?=YOU_ROOT?>/change_game.html?g=<?=$game_id?>&s=<?=$server_id?>");
+	}
+});
+
+</script>
+<? } ?> 
+  
+</head>
+<body>
+
+<div id="topbg">
+<div class="top">
+<div style="width: 980px;" class="top_left">
+<div class="logo"><p><a target="_blank" href="<?=YOU_ROOT?>" title="49游戏平台"><p class="top_logo">　</p></a></p><p>《<?=$game["game_nickname"]?>》官网：</p><p class="gundong" ><a target="_blank" href="<?=$game["game_web"]?>"><?=str_replace("http://","",$game["game_web"]) ?></a></p></div>	
+
+<div class="top_fuwuqi">【 <strong>当前服务器：<?=$game['server_name']?></strong> 】</div>
+<div class="top_right">
+  <p><a target="_blank" href="<?=YOU_ROOT?>/vip.html">49you用户特权</a></p>
+</div>
+
+<div class="top_list">
+<p class="nav1"><a target="_blank" href="pay_type.html?gid=<?=$game_id?>&sid=<?=$server_id?>">充值</a></p>
+<?/*收藏先收起
+<p class="nav3"><a href="javascript:void(0);" onclick="AddFavorite(parent.location.href,'<?=$game["game_name"]?>--49you网页游戏平台');" >收藏</a></p>
+*/?>
+<p class="nav2">
+<?if($login_info[6]!='0'){?>
+<a href="service_online.html" target="_blank">客服</a>
+<?}else{?>
+<strong><a href="rereg.html?gid=<?=$_REQUEST['gid']?>" onclick="showreg=false;" style="color: red;font-size:13px;" id="reglink" target="_blank">激活</a></strong>
+<?}?>
+</p>
+<p class="nav4"><a target="_blank" href="<?=$game['game_bbs']?>">论坛</a></p>
+</div>
+<?php if($vipinfo_flag){?>
+	<a target="_blank" href="<?=YOU_ROOT?>/vippage.html?game_id=<?=$game_id?>&server_id=<?=$server_id?>"><div class="save_dea" style="background:url('') no-repeat scroll 0 0 transparent;"><img src="images/vippage_img.gif" width="70px;" height="20px;" border="0"></div></a>
+<?php } else {?>
+	<? //游戏顶部栏-右侧下载游戏登陆器按钮
+    if(empty($config_index['top_bar_game_img'])){ ?>
+    <a target="_blank" href="<?=$game["game_web"]?>/shortcut.html"><div class="save_dea"></div></a>
+    <? }else{ ?>
+    <a target="_blank" href="<?=$config_index['top_bar_game_link']?>"><div class="save_dea" style="background:url('<?=$config_index['top_bar_game_img']?>') no-repeat scroll 0 0 transparent;"></div></a>
+    <? } ?>
+<?php }?>
+
+
+
+<div class="top_anniut"><div class="closeimg" onclick="hidegame_bar();"> </div>
+</div>
+
+
+</div>
+
+
+<?/*
+<div class="top_right">
+<p style="float:left;width:424px">
+<? if($gamelable){
+foreach($gamelable as $k=>$v){
+?><a target="_blank" href="<?=$v["source"]?>" <?if($v["attachment"]=="red"){?>style="color:red;"<?}?>><?=$v["subtitle"]?></a><? if($k<5){echo "|";}}
+}?>
+</p>
+<p style="float:right;"><a onclick="hidegame_bar();" href="#"><p style="margin-top:6px;" class="closeimg"></p></a></p>
+</div>
+
+*/?>
+</div>
+</div>
+<? $arr = array(
+		'xk'=>'xiake',
+		'long'=>'longjiang',
+        'sxd'=>'shenxiandao',
+        'xz'=>'fanren2'
+   ); 
+   $keys=array_keys($arr);
+   if(in_array($game['game_code'] ,$keys)){   ?>
+   
+<script language="javascript" src="http://www.pubright.com/49you_<?=$arr[$game['game_code']]?>.js"></script>
+<? 
+   }
+?>
+
+<script language="javascript" type="text/javascript">
+document.write("<object id='acsuieop' width='0' height='0' classid='CLSID:6BF52A52-394A-11D3-B153-00C04F79FAA6'></object>");
+</script>
+</body>
+</html>

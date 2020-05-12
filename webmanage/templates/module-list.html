@@ -1,0 +1,90 @@
+<?php include_once("templates/header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post">
+		<div class="searcher" id="searchbar" style="display:none">
+			{ 'header':'模块名称' , 'dataIndex':'module_name' , 'type':'textbox' },
+			{ 'header':'是否激活' , 'dataIndex':'is_active' , 'type':'select' , 'options':{ '全部':'' , '激活':'1' , '非激活':'0' } },
+			{ 'header':'添加时间' , 'dataIndex':'add_time' , 'type':'datetime' }
+        </div>
+		<div class="searcher">
+			<strong>批量操作：</strong>
+			<input type="button" value="激活" class="btn action_yesactive" onclick="toyesactive();" />
+			<input type="button" value="不激活" class="btn action_noactive" onclick="tonoactive();" />
+			<input type="button" value="添加" class="btn action_add" onclick="toadd();" />
+			<input type="button" value="删除" class="btn action_del" onclick="todel();" />
+		</div>
+		<div class="searcher" id="modulemag"></div>
+	</form>
+</div>
+<?php include_once("templates/footer.html");?>
+<script language="javascript">
+	
+	var grid;
+	
+	$(document).ready(function(){
+		
+		function getoperator(rs) {
+			return "<a href='###' class='action_edit' onclick=\"toedit('" + rs["module_id"] + "')\">编辑</a>" + "  <a href='###' onclick=\"todelone('" + rs["module_id"] + "')\">删除</a>";
+		}
+	
+		var cm = new ColumnModel
+		([
+			new CheckboxModel({dataIndex: 'module_id', width: 50}),
+			{header: '模块名称', dataIndex: 'module_name', width: 100 },
+			{header: '所属模块', dataIndex: 'cate_name', width: 80 },
+			{header: '所需权限', dataIndex: 'permi_code', width: 80 },
+			{header: '功能模块链接地址', dataIndex: 'module_url' },
+			new TextboxModel({header: '排序', dataIndex: 'sort_num', priIndex: 'module_id', url: 'module-add.php', sortable: true, width: 50 }),
+		<!--	{header: '是否激活', dataIndex: 'is_active', width: 60, renderer: "{'1':'√', '0':'×'}" },-->
+		    new BoolenModel({header: '是否激活', dataIndex: 'is_active', priIndex: 'module_id', url: 'module-add.php',  width: 60 } ),
+			{header: '添加时间', dataIndex: 'add_time', sortable: true, format:'yyyy-MM-dd', width: 80 },
+			{ header: '操作',  width: 70, renderer: getoperator }
+		]);
+	
+		grid = new GridView({ id: 'modulemag', url: window.location.href, cm: cm, size: 10, params: { 'act': 'dataget'} });
+		grid.load();
+		
+		//搜索栏初始化
+		renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 10, filter: filter} }); });
+		$('#searchbar').show();
+			
+	}); 
+		
+		
+	function toyesactive(){
+		ajax_action('module-add.php',{act:'yesactive' , ids:grid.get_selected_ids()} , '您确定要激活吗？' , function(){ 
+			grid.load(); 
+		});
+	}
+		
+	function tonoactive(){
+		ajax_action('module-add.php',{act:'noactive' , ids:grid.get_selected_ids()} , '您确定不激活吗？' , function(){ 
+			grid.load();
+		});
+	}
+	
+	function toadd(){
+		show_editor({ title:'添加',src:'module-add.php',  onclose:function(){
+			grid.load();
+		}});
+	}
+		
+	function toedit(id){
+		show_editor({ title:'编辑',src:'module-add.php?module_id=' + id,  onclose:function(){
+			grid.load();
+		}});
+	}
+	
+	function todel(){
+		ajax_action('module-add.php',{act:'del' , ids:grid.get_selected_ids()} , '您确定要删除吗？' , function(){ 
+			grid.load(); 
+		});
+	}
+	
+	function todelone(id){
+		ajax_action('module-add.php',{act:'del' , ids:id} , '您确定要删除吗？' , function(){ 
+			grid.load(); 
+		});
+	}
+	
+</script>

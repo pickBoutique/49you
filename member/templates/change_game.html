@@ -1,0 +1,57 @@
+<? $flashValue='returl='.urlencode("/change_game.html?act=redir&g=".$_REQUEST['g']); ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>49you网页游戏平台推荐您进入以下游戏</title>
+<style type="text/css" media="screen">
+	html, body { height:600px;}
+	body { margin:0px; padding:0px; overflow:hidden; }
+	#container{
+	margin:0px;
+	}
+	#flashContent { width:980px;  height:100%;margin:auto;}
+</style>
+<script language="javascript" src="js/jquery.js"></script>
+
+</head><body>
+<div id="flashContent">
+			<object style="margin-left: auto;" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" id="index" width="980px" align="middle" height="570px">
+				<param name="movie" value="/flash/change_game.swf">
+				<param name="quality" value="high">
+				<param name="bgcolor" value="#000000">
+				<param name="play" value="true">
+				<param name="loop" value="true">
+				<param name="wmode" value="transparent">
+				<param name="scale" value="showall">
+				<param name="menu" value="true">
+				<param name="devicefont" value="false">
+				<param name="salign" value="">
+				<param name="allowScriptAccess" value="sameDomain">
+                <param name="FlashVars" value="<?php echo $flashValue;?>" />
+				<!--[if !IE]>-->
+				<object type="application/x-shockwave-flash" data="/flash/change_game.swf" width="980px" height="570px">
+					<param name="movie" value="index.swf">
+					<param name="quality" value="high">
+					<param name="bgcolor" value="#000000">
+					<param name="play" value="true">
+					<param name="loop" value="true">
+					<param name="wmode" value="transparent">
+					<param name="scale" value="showall">
+					<param name="menu" value="true">
+					<param name="devicefont" value="false">
+					<param name="salign" value="">
+					<param name="allowScriptAccess" value="sameDomain">
+                    <param name="FlashVars" value="<?php echo $flashValue;?>" />
+				<!--<![endif]-->
+					<a href="http://www.adobe.com/go/getflash">
+						<img src="flash/get_flash_player.gif" alt="获得 Adobe Flash Player">
+					</a>
+				<!--[if !IE]>-->
+				</object>
+				<!--<![endif]-->
+			</object>
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" >
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>标题：</th>
+				<td>
+					<?=$title?>
+				</td>
+			</tr>
+			<tr <?=$display_none?> >
+				<th>分类：</th>
+				<td>
+						<?=$cate_name?>
+				</td>
+			</tr>
+			<tr>
+				<th>图片：</th>
+				<td>
+					<!--<div class="upload_input">
+						<input type="text" name="pic" id="pic" class="input_w200" value="<?=$pic?>" />&nbsp;
+						<input type="button" name="upload_btn" id="upload_btn" class="btn" value="上传" onclick="popupWindow('upload-img.php?upload_input=pic&&is_pic=1&thumb=1&thumb_w=140&thumb_h=110',460,240);" />&nbsp;
+						<input type="button" name="choose_btn" id="choose_btn" class="btn" value="选择" onclick="popupWindow('attachment-list.php?upload_input=pic',800,600);" />&nbsp;
+					</div>-->
+					<div class="view_pic_div" id="view_pic_div" <?php if($pic==''){echo "style=\"display:none;\"";} ?> ><?php if($pic){ ?><img src="<?=$pic?>" width="100" border="0" /><?php } ?></div>
+				</td>
+			</tr>
+			<!--<tr>
+				<th>附件：</th>
+				<td>
+					<div class="upload_input">
+						<input type="text" name="attachment" id="attachment" class="input_w200" value="<?=$attachment?>" />&nbsp;
+						<input type="button" name="upload_btn" id="upload_btn" class="btn" value="上传" onclick="popupWindow('upload-img.php?upload_input=attachment',460,140);" />&nbsp;
+						<input type="button" name="choose_btn" id="choose_btn" class="btn" value="选择" onclick="popupWindow('attachment-list.php',800,600);" />&nbsp;
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th>作者：</th>
+				<td>
+					<input type="text" name="author" id="author" value="<?=$author?>" class="input_w400" />
+				</td>
+			</tr>-->
+			<tr>
+				<th>来源：</th>
+				<td>
+				<?=$source?>
+				</td>
+			</tr>
+			<tr>
+				<th>排序号：</th>
+				<td>
+					<?=$sort_num==''?'0':$sort_num?>
+				</td>
+			</tr>
+			<tr>
+				<th>内容：</th>
+				<td>
+					<?=$content?>
+				</td>
+			</tr>
+			<!--<tr>
+				<th>摘要：</th>
+				<td>
+					<textarea  rows="8" name="summary" id="summary" class="input_w400" /><?=$summary?></textarea>
+				</td>
+			</tr>-->
+			<!--<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input type="hidden" name="info_id" id="info_id" value="<?=$info_id?>" />
+					<input type="hidden" name="top_id" id="top_id" value="<?=$top_id?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>-->
+		</table>
+	</form>
+</div>
+<?php include_once("footer.html");?>

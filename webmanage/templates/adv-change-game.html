@@ -1,0 +1,60 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="" >
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+		
+            <tr>
+				<th>平台：</th>
+				<td>
+                	<select name="adv_pid" id="adv_pid">
+                    
+                    </select>
+					<input type="hidden" name="adv_pid_default" id="adv_pid_default" value="<?=$rs['adv_pid']?>" class="input_w200"  />
+                    <input type="hidden" name="material_gname" id="material_gname" value="<?=$rs['material_gname']?>" class="input_w200"  />
+				</td>
+			</tr>
+            <tr>
+				<th>游戏：</th>
+				<td>
+                	<select name="adv_gid" id="adv_gid">
+                    
+                    </select>
+					<input type="hidden" name="adv_gid_default" id="adv_gid_default" value="<?=$rs['adv_gid']?>" class="input_w200"  />
+                    <input type="hidden" name="material_gname" id="material_gname" value="<?=$rs['material_gname']?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th>服务器：</th>
+				<td>
+                	<select name="adv_sid" id="adv_sid">
+                    
+                    </select>
+					<input type="hidden" name="adv_sid_default" id="adv_sid_default" value="<?=$rs['adv_sid']?>" class="input_w200"  />
+                    <input type="hidden" name="material_sname" id="material_sname" value="<?=$rs['material_sname']?>" class="input_w200"  />
+				</td>
+			</tr>
+            
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script language="javascript">
+function on_server_change(){
+	var obj_game = document.getElementById('adv_gid');
+	var obj_server = document.getElementById('adv_sid');
+}
+function on_server_load(domid,game_id,obj){
+	$("<option value='0'>全部</option>").prependTo('#' + domid);
+}
+$(document).ready(function(){
+	get_platforms('adv_pid','adv_gid','adv_sid');
+});
+</script>
+<?php include_once("footer.html");?>
+

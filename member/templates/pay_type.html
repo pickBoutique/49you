@@ -1,0 +1,230 @@
+<?php $title='充值中心_49you网页游戏平台'; ?>
+<?php $nav='pay'; ?>
+<?php include('header.html'); ?>
+
+<form id="form1" name="form1" method="post" action="">
+<div class="text cl ">
+<div class="con clearfix">
+<!--left-->
+<div class="meb_left">
+    	<div class="inf_System">
+        <div class="paid">
+        <p>
+        <span class="p180"><img src="images/chzhi.png" width="123" height="57" /></span>
+        <span class="p93"><img src="images/c1a.jpg" width="93" height="78" /></span>
+        <span class="p12"><img src="images/c_m.jpg" width="12" height="23" /></span>
+        <span class="p93"><img src="images/c_2.jpg" width="93" height="78" /></span>
+        <span class="p12"><img src="images/c_m.jpg" width="12" height="23" /></span>
+        <span class="p93"><img src="images/c_3.jpg" width="93" height="78" /></span>
+        <span class="p12"><img src="images/c_m.jpg" width="12" height="23" /></span>
+        <span class="p93"><img src="images/c_4.jpg" width="93" height="78" /></span>
+        </p>
+        <div class="cl"></div>
+        </div>
+      </div>
+      
+
+  <div class="page_newinf">
+        	<div class="newinf_title">
+            	<ul>
+                	<li class="nah">选择充值游戏</li>
+              </ul>
+   	    </div>
+
+ 		 <? if(isset($cfg_pay_type['yeepay'])){ ?>
+               <div class="payment">
+            <div class="payment_img"><a  href="pay.html?gid=<?=$gid?>&sid=<?=$sid?>&t=yeepay" title="<?=$cfg_pay_type['yeepay']?>"  ><img src="images/y_4.jpg" width="118" height="80" border="0" /></a></div>
+            <div class="payment_rig">
+            <h2><a  href="pay.html?gid=<?=$gid?>&sid=<?=$sid?>&t=yeepay" title="<?=$cfg_pay_type['yeepay']?>" style=" color:#000" ><?=$cfg_pay_type['yeepay']?></a> <span>>></span></h2>
+            <p><?=$cfg_pay_desc['yeepay']?></p>
+            <div class="pay_zhif">
+                  <a  href="pay.html?gid=<?=$gid?>&sid=<?=$sid?>&t=yeepay" title="<?=$cfg_pay_type['yeepay']?>" id="pay_1">
+                  <p style="text-align:center; font-size:14px;"><strong><?=$cfg_pay_type['yeepay']?></strong></p>
+                  <p><span><?=convert_to_curr('yeepay',$game['game_rate'])?></span></p>
+                  </a>
+              </div>            </div>
+              <div class="cl"></div>
+            </div>
+          <? } ?>
+          
+          <? if(isset($cfg_pay_type['alipay'])){ ?>
+          <div class="payment">
+            <div class="payment_img"><a  href="pay.html?gid=<?=$gid?>&sid=<?=$sid?>&t=alipay" title="<?=$cfg_pay_type['alipay']?>"  ><img src="images/y_3.jpg" width="118" height="80" border="0" /></a></div>
+            <div class="payment_rig">
+            <h2><a  href="pay.html?gid=<?=$gid?>&sid=<?=$sid?>&t=alipay" title="<?=$cfg_pay_type['alipay']?>" style=" color:#000" ><?=$cfg_pay_type['alipay']?></a> <span>>></span></h2>
+            <p><?=$cfg_pay_desc['alipay']?></p>
+            <div class="pay_zhif">
+                <a href="pay.html?gid=<?=$gid?>&sid=<?=$sid?>&t=alipay" title="<?=$cfg_pay_type['alipay']?>" id="pay_4">
+                <p style="text-align:center; font-size:14px;"><strong>><?=$cfg_pay_type['alipay']?></strong></p>
+                <p><span><?=convert_to_curr('alipay',$game['game_rate'])?></span></p>
+                </a>
+            </div>            
+            </div>
+            <div class="cl"></div>
+          </div>
+          <? } ?>
+               
+          
+  
+          <div class="payment">
+            <div class="payment_img"><a  href="pay.html?gid=<?=$gid?>&sid=<?=$sid?>&t=yeepay_szx" title="<?=$cfg_pay_type['yeepay_szx']?>"  ><img src="images/y_5.jpg" width="118" height="80" border="0" /></a></div>
+            <div class="payment_rig">
+            <h2><a  href="pay.html?gid=<?=$gid?>&sid=<?=$sid?>&t=yeepay_szx" title="<?=$cfg_pay_type['yeepay_szx']?>" style=" color:#000" >手机充值卡充值</a> <span>>></span></h2>
+            <p>手机充值卡可以直接为游戏充值，支持中国移动全国发行的50元、100元面额的神州行充值卡及联通手机充值卡，无需手机，购买便捷，让您更方便地畅游互动娱乐的世界。 </p>
+         
+            
+                        <div class="pay_zhif">
+                <a href="pay.html?gid=<?=$gid?>&sid=<?=$sid?>&t=yeepay_szx" title="<?=$cfg_pay_type['yeepay_szx']?>" id="pay_2">
+                <p style="text-align:center; font-size:14px;"><strong>易宝神州行</strong></p>
+                                <p><span><?=convert_to_curr('yeepay_szx',$game['game_rate'])?></span></p>
+                                </a>
+            </div>            
+                        <div class="pay_zhif">
+                <a href="pay.html?gid=<?=$gid?>&sid=<?=$sid?>&t=yeepay_unicom" title="<?=$cfg_pay_type['yeepay_unicom']?>" id="pay_7">
+                <p style="text-align:center; font-size:14px;"><strong>易宝联通卡</strong></p>
+                                 <p><span><?=convert_to_curr('yeepay_unicom',$game['game_rate'])?></span></p>
+                </a>
+                
+            </div>    
+            
+            			<div class="pay_zhif">
+                <a href="pay.html?gid=<?=$gid?>&sid=<?=$sid?>&t=yeepay_telecom_net" title="<?=$cfg_pay_type['yeepay_telecom_net']?>"  id="pay_16">
+                <p style="text-align:center; font-size:14px;"><strong>易宝电信卡</strong></p>
+                <p><span><?=convert_to_curr('yeepay_telecom_net',$game['game_rate'])?></span></p>
+                </a>
+            </div>  
+                    
+            </div>
+            <div class="cl"></div>
+          </div>
+               
+          
+                    <div class="payment">
+            <div class="payment_img"><a  href="pay.html?gid=<?=$gid?>&sid=<?=$sid?>&t=yeepay_sndacard" title="<?=$cfg_pay_type['yeepay_sndacard']?>"  ><img src="images/y_9.jpg" width="118" height="80" border="0" /></a></div>
+            <div class="payment_rig">
+            <h2><a  href="pay.html?gid=<?=$gid?>&sid=<?=$sid?>&t=yeepay_sndacard" title="<?=$cfg_pay_type['yeepay_sndacard']?>" style=" color:#000" >游戏卡充值</a> <span>>></span></h2>
+            <p>支持游戏实物卡、虚拟卡充值。实物卡可以通过各地网吧、电脑城、报刊亭等市面上购买 </p>
+            
+                        <div class="pay_zhif">
+                <a href="pay.html?gid=<?=$gid?>&sid=<?=$sid?>&t=yeepay_sndacard" title="<?=$cfg_pay_type['yeepay_sndacard']?>" id="pay_6">
+                <p style="text-align:center; font-size:14px;"><strong>盛大卡充值</strong></p>
+                <p><span><?=convert_to_curr('yeepay_sndacard',$game['game_rate'])?></span></p>
+                </a>
+            </div>            
+                        <div class="pay_zhif">
+                <a  href="pay.html?gid=<?=$gid?>&sid=<?=$sid?>&t=yeepay_zhengtu" title="<?=$cfg_pay_type['yeepay_zhengtu']?>" id="pay_5">
+                <p style="text-align:center; font-size:14px;"><strong>征途卡充值</strong></p>
+                <p><span><?=convert_to_curr('yeepay_zhengtu',$game['game_rate'])?></span></p>
+                </a>
+            </div>            
+                        <div class="pay_zhif">
+                <a  href="pay_junnet.html?gid=<?=$gid?>&sid=<?=$sid?>&t=junnet" title="<?=$cfg_pay_type['junnet']?>" id="pay_3">
+                <p style="text-align:center; font-size:14px;"><strong>骏网官网直充</strong></p>
+                <p><span><?=convert_to_curr('junnet',$game['game_rate'])?></span></p>
+                </a>
+            </div>            
+                        <div class="pay_zhif">
+                <a  href="pay.html?gid=<?=$gid?>&sid=<?=$sid?>&t=yeepay_jiuyou_net" title="<?=$cfg_pay_type['yeepay_jiuyou_net']?>" id="pay_14">
+                <p style="text-align:center; font-size:14px;"><strong>久游卡充值</strong></p>
+                <p><span><?=convert_to_curr('yeepay_jiuyou_net',$game['game_rate'])?></span></p>
+                </a>
+            </div>            
+                        <div class="pay_zhif">
+                <a href="pay.html?gid=<?=$gid?>&sid=<?=$sid?>&t=yeepay_wanmei_net" title="<?=$cfg_pay_type['yeepay_wanmei_net']?>" id="pay_15">
+                <p style="text-align:center; font-size:14px;"><strong>完美卡充值</strong></p>
+                <p><span><?=convert_to_curr('yeepay_wanmei_net',$game['game_rate'])?></span></p>
+                </a>
+            </div>            
+                        <div class="pay_zhif">
+                <a href="pay.html?gid=<?=$gid?>&sid=<?=$sid?>&t=yeepay_netease_net" title="<?=$cfg_pay_type['yeepay_netease_net']?>"  id="pay_16">
+                <p style="text-align:center; font-size:14px;"><strong>网易卡充值</strong></p>
+                <p><span><?=convert_to_curr('yeepay_netease_net',$game['game_rate'])?></span></p>
+                </a>
+            </div>      
+            			<div class="pay_zhif">
+                <a href="pay.html?gid=<?=$gid?>&sid=<?=$sid?>&t=yeepay_qqcard_net" title="<?=$cfg_pay_type['yeepay_qqcard_net']?>"  id="pay_16">
+                <p style="text-align:center; font-size:14px;"><strong>Q币卡充值</strong></p>
+                <p><span><?=convert_to_curr('yeepay_qqcard_net',$game['game_rate'])?></span></p>
+                </a>
+            </div>      
+            			  
+            
+            </div>
+            
+            <div class="cl"></div>
+          </div>
+       <!--             
+                    <div class="payment">
+            <div class="payment_img"><img src="images/y_7.jpg" width="118" height="80" /></div>
+            <div class="payment_rig">
+            <h2>全国固话支付（V币） <span>>></span></h2>
+            <p>使用固定电话直充，24小时都可随时充值，只需扣除相应的话费，充值最安全最便捷。 </p>
+            
+                        <div class="pay_zhif">
+                <a href="#" title="全国固话充值v币" id="pay_10">
+                <p style="text-align:center; font-size:14px;"><strong>全国固话充值</strong></p>
+                <p><span>1元=5游戏币</span></p>
+                </a>
+            </div>            </div>
+            
+            <div class="cl"></div>
+          </div>
+                    
+          
+          <div class="payment">
+            <div class="payment_img"><img src="http://img.yaowan.com/Template/2010ex/images/y_8.jpg" width="119" height="70" /></div>
+            <div class="payment_rig">
+            <h2>其他 <span>>></span></h2>
+            <p>其它方式进行充值 </p>
+            
+                        <div class="pay_zhif">
+                <a href="#" title="如意付充值" id="pay_12">
+                <p style="text-align:center; font-size:14px;"><strong>如意付充值</strong></p>
+                <p><span>1元=5游戏币</span></p>
+                </a>
+            </div>            </div>
+            
+            <div class="cl"></div>
+            
+          </div>
+          -->
+          <p class="pn">
+                    <input class="td_t3" type="button" name="button2" id="button2" value="返回" onclick="location.href='pay_games.html'" />
+                    </p>
+ 
+            
+      </div>
+	</div>
+    
+<!--right-->
+<div class="sidebar">
+  <!--service start-->
+  <? include('service_info.html'); ?> 
+  <!--service end-->    
+
+<div class="sharedspacer8"></div>
+
+<div class="nwes2">
+  <div class="title2"><span>充值问题</span><a target="_blank" href="service.html?cid=48" class="pl-more"><img src="images/moer.gif" /></a></div>
+  <div id="MediaNews2" class="BgColor LinePart">
+      <ul>
+      		<?
+             if($rs_news){
+             foreach($rs_news as $k=> $v){?>
+            <li class="MediaNewsLi"><a href="news_info_<?=$v['info_id']?>.html" target="_blank"><?=$v['subtitle']?></a></li>    
+            <?
+             }
+            }?>         
+            </ul>
+          </div>
+</div>
+
+</div>
+             
+</div>
+
+
+</div>
+</form>
+
+<? include('footer.html'); ?>

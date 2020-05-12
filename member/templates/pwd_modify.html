@@ -1,0 +1,48 @@
+<?php $title='修改密码_会员中心_49you网页游戏平台'; ?>
+<?php $nav='member'; ?>
+<?php $ltv='pwd_modify'; ?>
+<?php include('header.html'); ?>
+<form id="form1" name="form1" method="post" action="">
+<div class="text cl ">
+<div class="con clearfix">
+<?php include('member_modify_info.html'); ?>
+   <div class="pmid"> 
+    <p><img src="images/ptop-1.jpg" width="940" height="45" /></p>
+    <div class="pmid_bj1">
+    <div class="pmid_bj2">
+ <div class="pmid_mo">
+        <div class="pbj1">
+
+        <div class="entryitem">
+		<div class="entrylabel">原密码：</div>
+		<div class="entryfl"><input type="password" id="oldpsw" name="oldpsw"  class="entrytext" tabindex="1"  value="" />
+		
+        </div></div>
+
+        <div class="entryitem">
+		<div class="entrylabel">新密码：</div>
+		<div class="entryfl"><input type="password" id="psw" name="psw"  class="entrytext" tabindex="1"  value="" />
+		 
+        </div></div>
+
+        <div class="entryitem">
+		<div class="entrylabel">确认码：</div>
+		<div class="entryfl"><input type="password" id="psw2" name="psw2"  class="entrytext" tabindex="1"  value="" />
+        </div></div>                        
+         </div>
+    <div class="btn" ><a href="javascript:document.form1.submit()" class="btn-link btn-n" >完  成</a> </div>     
+     <div class="cl"></div>    
+ </div>
+     </div>
+    </div>
+    <p><img src="images/ptop-3.jpg" width="940" height="45" /></p>
+   </div> 
+
+      <div class="pbom"> 
+    
+   </div> 
+</div>
+</div>
+    <input type="hidden" name="act" value="edit" />
+   </form>
+<? include('footer.html'); ?>

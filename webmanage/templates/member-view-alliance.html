@@ -1,0 +1,43 @@
+<?php include_once("header.html");?>
+<div class="main">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+        	<tr>
+				<th colspan="2" class="tb_title">基本信息</th>
+			</tr>
+			<tr>
+				<th>用户名：</th>
+				<td>
+					<?=$rs['member_name']?>
+				</td>
+			</tr>
+		</table>
+        <div  class="name">
+  
+</div>
+		<div  class="name">
+		
+  </div>
+		<div  class="name">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add" >
+			<tr>
+				<th colspan="2" class="tb_title">活跃情况</th>
+			</tr>
+            <tr>
+				<th>最后登陆时间：</th>
+				<td>
+                	<?= $rs['last_time'] > 0 ? date('Y-m-d H:i:s',$rs['last_time']) : '' ?>
+				</td>
+			</tr>
+            
+            <tr>
+				<th>注册时间：</th>
+				<td>
+                	<?= $rs['add_time'] > 0 ? date('Y-m-d H:i:s',$rs['add_time']) : '' ?>
+				</td>
+			</tr>
+
+		</table>
+        
+		</div>
+</div>
+<?php include_once("footer.html");?>

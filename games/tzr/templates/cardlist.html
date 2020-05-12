@@ -1,0 +1,80 @@
+<?php $title='天之刃|天之刃官网|49you天之刃新手卡|职业|跑商|宠物|攻略';
+$keywords="天之刃,天之刃官网,49you天之刃,天之刃新手卡,天之刃职业,天之刃宠物,天之刃攻略";
+$description="天之刃,天之刃官网,49you天之刃是一款远古神话题材的即时战斗游戏。49you天之刃官网提供天之刃新手卡、活动礼包领取，四大职业，副本和BOSS群等攻略及最新开服、活动等资讯."?>
+<?php include('header.html'); ?>
+<script language="javascript">
+function getcard(){
+	if($('#secode').val()!="49you天之刃"){alert("请在\"第一步\"输入\"49you天之刃\"");$('#secode').val("");return;}
+	if($('#country').val()==0){alert("请选择服务器！");return;}
+	window.open('<?=YOU_ROOT?>/get_package.html?ct='+$('#country').val());
+}
+</script>
+ <!--content -->
+ <div class="content">
+
+    <div class="left">
+<?php include('lefter_login.html'); ?>
+<?php include('lefter_server.html'); ?>	  
+<?php include('lefter_info.html'); ?>
+<?php include('lefter_kf.html'); ?>
+
+	 <div class="clear"></div>
+     </div>
+	 
+	 <!--right -->
+	 <div id="n-right">
+	    <div class="hdp"><? include('lefter_gg.html'); ?></div>
+	   
+	    <div id="n-right-t"><h1>新手卡</h1><span>您现在的位置：<a href="/">首页</a> > <a href="cardlist.html">新手卡</a></span></div>
+		
+		<div id="n-right-c">
+		   <div id="n-right-c1">
+		   
+		      <div class="xsk1"><h1>第一步：输入游戏名称</h1>
+			    <div class="xsk1-1"><input name="input" type="text" id="secode"	 class="xsk1-input"/><span style="color:red;">答案：49you天之刃</span></div>
+			  </div>
+			  
+			  <div class="xsk1"><h1>第二步：选择服务器</h1>
+			    <div class="xsk1-1"><select name="coid" id="country" class="xsk1-input2">
+                   <option value="0" selected="selected">请选择服务器</option>
+            <? if(!empty($cardlist)){ 
+                    foreach($cardlist as $k=>$v){?>
+                    <option value="<?=$v["cardtype_id"]?>"><?=$v["cardtype_name"]?></option>
+            <?}
+            }?>
+                </select>&nbsp;&nbsp;<input class="inp3" type="button" name="button" value="点击领取" onClick="getcard()" /></div>
+			  </div>
+		      
+			  <div class="game-zl-1">
+			     <div class="game-zl-1-t"><h1>礼包内容</h1></div>
+				 <div class="game-zl-1-c">
+                   <p>《天之刃》尊贵礼包</p>
+                   <p>礼包内容：</p>
+                   <p>高级经验符*2，护心丸*1，九花玉露*1，初级开孔符*3，初级强化石*3，低级精血石*3，初级洗灵丹*3，十两银票*2</p>
+                 </div>
+			  </div>
+			  
+			  <div class="game-zl-1">
+			     <div class="game-zl-1-t"><h1>领取方法</h1></div>
+                 <div class="game-zl-1-c">
+				 <p>进入游戏中点击右上方"礼包"按钮，打开礼包界面；在礼包界面下方"输入礼包序列号"处填入领取到的礼包序列号，点击"领取"。</p>
+                 </div>
+			  </div>
+			  
+			  <div class="game-zl-1">
+			     <div class="game-zl-1-t"><h1>注意事项</h1></div>
+				 <div class="game-zl-1-c">1、每个激活码只能使用一次，不能重复使用。<p>2、该活动的所有解释权归49you网页游戏平台。</p></div>
+			  </div>
+
+			  <div class="clear"></div>
+		   </div>
+		</div>
+     <div><img src="../images/neiye_03_2.gif" width="720" height="14"></div>
+		<div class="clear"></div>
+	 </div>
+	 <!--right end -->
+	 
+	 <div class="clear"></div>
+ </div><!--content end -->
+<?php include('footer.html'); ?>
+

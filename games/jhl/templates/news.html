@@ -1,0 +1,60 @@
+<?php $title="{$titleinfo}_49you江湖令官方网站 ";
+
+$keywords="江湖令{$titleinfo}";
+$description="49you江湖令{$titleinfo}。"
+
+?>
+<?php include('header.html'); ?>
+<!--main -->
+<div id="main">
+ <!--content -->
+ <div class="content">
+	 <!--left -->
+	 <div class="left">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--server -->
+<? include('lefter_server.html'); ?> 
+<!--server end -->
+<!--info -->
+<? include('lefter_info.html'); ?> 
+<!--info end -->
+<!-----kefu----->
+<? include('lefter_kf.html'); ?> 
+<!--kefu end -->
+	 </div>
+     <!--left end -->
+	 <!--right -->
+	 <div class="right">
+     <!--gg -->
+<? include('lefter_gg.html'); ?> 
+<!--gg end -->
+		<!--newslist -->
+        <div id="newslist">
+		  <div class="newslist-top">
+          <div class="newslist-title"><?=$titleinfo?></div> 
+      	  <div class="newslist-floor">您当前的位置：<a href="index.html">江湖令</a> >> <?=$titleinfo?></div>
+          </div>
+          <div id="newslist-content">
+            <ul>
+        <?if($list_news){
+        	foreach($list_news as $k=> $v){?>
+               <li><span><?=date( 'y-m-d',$v["add_time"])?></span>
+               <a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["title"]?></a>
+               </li>
+		<?}
+        }?>
+  
+			</ul>
+   <div class="newslist-page">
+    <? pager_bar($pager,WEB_ROOT."/games/pager.html"); ?>
+     </div>   
+          </div>
+		  <div class="newslist-footer"><img src="images/index2_82.png"></div>
+        </div>
+	 </div><!--right end -->
+	 <div class="clear"></div>
+ </div><!--content end -->
+</div><!--main end -->
+<? include('footer.html'); ?> 

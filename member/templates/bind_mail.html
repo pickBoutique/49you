@@ -1,0 +1,53 @@
+<?php $title='邮箱绑定_会员中心_49you网页游戏平台'; ?>
+<?php $nav='member'; ?>
+<?php $ltv='bind_mail'; ?>
+<?php include('header.html'); ?>
+    <form id="form1" name="form1" method="post" action="">
+<div class="text cl ">
+    <div class="con clearfix">
+    <?php include('member_modify_info.html'); ?>
+    <div class="pmid">
+    <p><img src="images/ptop-1.jpg" width="940" height="45" /></p>
+    
+    <div class="pmid_bj1">
+    <div class="pmid_bj2">
+    <div class="pmid_mo">
+    
+        <div class="maltop">
+        <ul class="maltag">
+        <li class=""><a href="#">快速认证通道</a></li>
+        <li class="on"><a href="#">传统邮箱认证通道</a></li>
+        </ul></div>
+        
+        <div class="pbj4">
+        <div class="entryitem" style="height:30px;">
+        <P>我们将发送一份邮件到您的邮箱，您登陆邮箱后点击激活即可完成邮箱认证！</P>
+        </div>
+        <?if($usr_info["email_isvalid"]==0){?>
+            <div class="entryitem"><div class="entrylabel">请输入您的邮箱：</div><div class="entryfl"><input type="text" id="email" name="email"  class="entrytext" tabindex="1"  value="<?=$usr_info["email"]?>" /></div></div>
+            <div class="entryitem"><div class="entrylabel">邮箱激活状态：</div><div class="entryfl">未激活</div></div>
+            <div class="entryitem"></div> 
+        <?}else{?>
+            <div class="entryitem"><div class="entrylabel">您的激活邮箱：</div><div class="entryfl"><?=$usr_info["email"]?></div></div>
+            <div class="entryitem"><div class="entrylabel">邮箱激活状态：</div><div class="entryfl">已激活</div></div> 
+            <div class="entryitem"></div> 
+        <?}?>
+        </div>
+    <div class="btn" ><?if($usr_info["email_isvalid"]==0){?><a href="javascript:document.form1.submit()" class="btn-link btn-n" >进行激活</a><?}?></div>     
+    <div class="cl"></div>    
+    </div>
+    </div>
+    </div>
+    <p><img src="images/ptop-3.jpg" width="940" height="45" /></p>
+    </div>
+    
+    <div class="pbom"></div> 
+    </div>
+</div>
+    <input type="hidden" name="mid" value="<?=$login_info[2]?>" />
+    <input type="hidden" name="act" value="sendmail" />
+    
+    </form>
+<div class="sharedspacer12"></div>
+<!--bom-->
+<? include('footer.html'); ?>

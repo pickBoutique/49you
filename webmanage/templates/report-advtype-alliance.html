@@ -1,0 +1,42 @@
+<?php include_once("header.html");?>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+        <div class="searcher">
+          <div id="searchbar" style="display:none">
+          { 'header':'平台' , 'dataIndex':'sd_platform' , 'type':'select' , 'options':{'全部':'',<?=get_system_select(true)?>} },
+		  { 'header':'注册时间' , 'dataIndex':'reg_addtime' , 'type':'datetime', 'defaultValue':'<?=date("Y-m-d")?>' }
+          </div>
+        </div>
+
+		<div class="searcher" id="grid_contaniner"></div>
+                
+        <script>
+		
+		var grid;
+		$(document).ready(function(){
+			var cm = new ColumnModel
+			([
+			{header: '广告id', dataIndex: 'sd_advid',width:75},
+			{header: '广告名称', dataIndex: 'adv_name'},
+			{header: '注册人数', dataIndex: 'sd_memreg'},
+			{header: '付费人数', dataIndex: 'trans_count'},
+			{header: '充值总额', dataIndex: 'trans_money'},
+			{header: '隔天活跃', dataIndex: 'sd_actve2day'},
+			{header: '3天活跃', dataIndex: 'sd_actve3day'},
+			{header: '5天活跃', dataIndex: 'sd_actve5day'}
+			]);
+
+			grid = new GridView({ id: 'grid_contaniner', url: window.location.href, cm: cm, size: 1000, params: {'act': 'dataget'}});
+			grid.load();
+			
+			//搜索栏初始化
+			renderSearchBar("searchbar", function(filter) { grid.load({ params: { start: 0, limit: 1000, filter: filter} }); });
+			$('#searchbar').show();
+		});
+	
+
+		</script>
+	</form>
+</div>
+
+<?php include_once("footer.html");?>

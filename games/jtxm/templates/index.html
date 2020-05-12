@@ -1,0 +1,217 @@
+<?php $title='九天仙梦_九天仙梦官网_49you九天仙梦_49仙梦|宠物|职业|攻略';
+$keywords="九天仙梦,九天仙梦官网,49you九天仙梦,49仙梦,九天仙梦宠物,九天仙梦职业,九天仙梦攻略,九天仙梦常见问题,九天仙梦活动,九天仙梦公告";
+$description="九天仙梦49you专区官网资料站.九天仙梦最新开服信息,宠物技能,魂玉,技能书,宝宝技能,职业加点,职业介绍，宝石攻略,宠物攻略,升级攻略尽在49you九天仙梦官网！"?>
+<?php include('header.html'); ?>
+<script type="text/javascript">
+function newschange(id){
+	for(i=1;i<=3;i++){
+		$("#newsli"+i)[0].className='n2';
+		$("#newlist"+i).css("display","none");
+	}
+	$("#newsli"+id)[0].className='n1';
+	$("#newlist"+id).css("display","");
+}
+function picchange(id){
+	if(id==1){
+		$("#picli1")[0].className='n1';
+		$("#piclist1").css("display","");
+		
+		$("#picli2")[0].className='n02';
+		$("#piclist2").css("display","none");
+	}else{
+		$("#picli1")[0].className='n01';
+		$("#piclist1").css("display","none");
+		
+		$("#picli2")[0].className='n2';
+		$("#piclist2").css("display","");
+	}
+	
+}
+function quchange(id){
+	if(id==1){
+		$("#quli1")[0].className='cjn2';
+		$("#qulist1").css("display","");
+		
+		$("#quli2")[0].className='yzn1';
+		$("#qulist2").css("display","none");
+	}else{
+		$("#quli1")[0].className='cjn1';
+		$("#qulist1").css("display","none");
+		
+		$("#quli2")[0].className='yzn2';
+		$("#qulist2").css("display","");
+	}
+	
+}
+if (top.location != self.location)top.location=self.location;
+</script>
+<div class="main">
+  <div class="l">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--left_server start-->
+<? include('lefter_server.html'); ?> 
+<!--left_server end-->
+<!--left_server start-->
+<? include('lefter_dj.html'); ?> 
+<!--left_server end-->
+
+  </div>
+  <div class="r">
+    <div class="p1">
+      <div class="cad2">
+        <ul>
+<h1></h1>
+          <li><a href="news.html?pid=78&cid=92" title="九天仙梦_精彩活动"><img src="images/banner1.jpg" border="0" alt="九天仙梦_精彩活动"/></a></li>
+          <li><a href="<?=get_newslink(436)?>" title="九天仙梦_职业详解"><img src="images/banner2.jpg" border="0" alt="九天仙梦_职业详解" /></a></li>
+          <li><a href="<?=get_newslink(518)?>" title="九天仙梦_宠物图鉴"><img src="images/banner3.jpg" border="0" alt="九天仙梦_宠物图鉴"/></a></li>
+
+        </ul>
+      </div>
+      <div class="news">
+        <h3><a href="news.html?pid=79&cid=80" onmouseover="newschange(1);" id="newsli1" title="新闻热点" class="n1">热点</a><a href="news.html?pid=79&cid=81" onmouseover="newschange(2);" id="newsli2" title="新闻公告" class="n2">公告</a><a href="news.html?pid=79&cid=82" onmouseover="newschange(3);" id="newsli3" title="新闻活动" class="n2">活动</a>
+        </h3>
+        <ul id="newlist1">
+          <?if($rs_news){
+            foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="80"){?>
+		<li><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+		  <?}
+            }
+          }?>
+          <a href="news.html?pid=79&cid=80" title="九天仙梦_新闻热点_更多" target="_blank"  class="more">更多>></a>
+        </ul>
+        <ul id="newlist2" style="display:none;">
+          <?if($rs_news){
+            foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="81"){?>
+		<li><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+		  <?}
+            }
+          }?>
+          <a href="news.html?pid=79&cid=81" title="九天仙梦_公告"  target="_blank" class="more">更多>></a>
+        </ul>
+        <ul id="newlist3" style="display:none;">
+          <?if($rs_news){
+            foreach($rs_news as $k=> $v){
+          	if($v["cate_id"]=="82"){?>
+		<li><span><?=date('m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></li>
+		  <?}
+            }
+          }?>
+          <a href="news.html?pid=79&cid=82" title="九天仙梦_活动" target="_blank" class="more">更多>></a>
+        </ul>
+      </div>
+      <div class="ad">
+        <ul>
+<h2></h2>
+          <li><a href="cardlist.html" title="九天仙梦_新手卡领取"><img src="images/xsbanner1.jpg" border="0" alt="九天仙梦_新手卡领取"/></a></li>
+          <li><a href="<?=get_newslink(418)?>" title="九天仙梦_新手常见问题"><img src="images/xsbanner2.jpg" border="0" title="九天仙梦_新手常见问题"/></a></li>
+          <li><a href="news.html?cid=89&pid=88" title="九天仙梦_新手秘籍"><img src="images/xsbanner3.jpg" border="0" title="九天仙梦_新手秘籍"/></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="yxzl">
+      <h3>游戏资料</h3>
+      <ul>
+        <li><strong>【新手指南】</strong><a href="<?=get_newslink(418)?>" title="九天仙梦_新手指南_游戏FAQ">游戏FAQ</a>|<a href="<?=get_newslink(480)?>" title="九天仙梦_新手指南_怪物分布">怪物分布</a>|<a href="<?=get_newslink(419)?>" title="九天仙梦_新手指南_flash插件">flash插件</a>|<a href="<?=get_newslink(429)?>" title="九天仙梦_新手指南_flash插件">清理缓存</a>|<a href="<?=get_newslink(473)?>" title="九天仙梦_新手指南_防盗防骗知识">防盗防骗知识</a></li>
+        <li><strong>【副本介绍】</strong>
+          <p><a href="<?=get_newslink(469)?>" title="九天仙梦_副本介绍_普通副本">普通副本</a>|<a href="<?=get_newslink(470)?>" title="九天仙梦_副本介绍_帮派副本">帮派副本</a>|<a href="<?=get_newslink(471)?>" title="九天仙梦_副本介绍_幻境之塔">幻境之塔</a>|<a href="<?=get_newslink(472)?>" title="九天仙梦_副本介绍_神魔之井">神魔之井</a></p>
+        </li>
+        <li><strong>【系统介绍】</strong><a href="<?=get_newslink(444)?>" title="九天仙梦_系统介绍_PK系统">PK　系统</a>|<a href="<?=get_newslink(443)?>" title="九天仙梦_系统介绍_战斗系统">战斗系统</a>|<a href="<?=get_newslink(445)?>" title="九天仙梦_系统介绍_帮派系统">帮派系统</a>|<a href="<?=get_newslink(446)?>" title="九天仙梦_系统介绍_挂机系统">挂机系统</a>|<a href="<?=get_newslink(447)?>" title="九天仙梦_系统介绍_复活系统">复活系统</a>
+          <br />
+          <a href="<?=get_newslink(448)?>" title="九天仙梦_系统介绍_装备系统">装备系统</a>|<a href="<?=get_newslink(450)?>" title="九天仙梦_系统介绍_商城系统">商城系统</a>|<a href="<?=get_newslink(451)?>" title="九天仙梦_系统介绍_时装系统">时装系统</a>|<a href="<?=get_newslink(452)?>" title="九天仙梦_系统介绍_宠物系统">宠物系统</a>|<a href="<?=get_newslink(453)?>" title="九天仙梦_系统介绍_交易系统">交易系统</a>
+
+          <br />
+          <a href="<?=get_newslink(442)?>" title="九天仙梦_系统介绍_好友系统">好友系统</a>|<a href="<?=get_newslink(454)?>" title="九天仙梦_系统介绍_角色系统">角色系统</a>|<a href="<?=get_newslink(441)?>" title="九天仙梦_系统介绍_聊天系统">聊天系统</a>|<a href="<?=get_newslink(436)?>#xuexijineng" title="九天仙梦_系统介绍_技能系统">技能系统</a>|<a href="<?=get_newslink(455)?>" title="九天仙梦_系统介绍_活动系统">活动系统</a>
+
+          <br />
+          <a href="<?=get_newslink(440)?>" title="九天仙梦_系统介绍_信函系统">信函系统</a>|<a href="<?=get_newslink(439)?>" title="九天仙梦_系统介绍_组队系统">组队系统</a>|<a href="<?=get_newslink(456)?>" title="九天仙梦_系统介绍_组队系统">坐骑系统</a>|<a href="<?=get_newslink(457)?>" title="九天仙梦_系统介绍_目标系统">目标系统</a>
+
+          <br />
+        <a href="<?=get_newslink(458)?>" title="九天仙梦_系统介绍_装备强化炫耀系统">装备强化炫耀系统</a></li>
+        <li><strong>【职业介绍】</strong>
+          <p><a href="<?=get_newslink(436)?>#pojun" title="九天仙梦_职业介绍_破军">破 军</a>|<a href="<?=get_newslink(436)?>#qisha" title="九天仙梦_职业介绍_七煞">七 煞</a>|<a href="<?=get_newslink(436)?>#jianling" title="九天仙梦_职业介绍_剑灵">剑 灵</a>|<a href="<?=get_newslink(436)?>#tianshang" title="九天仙梦_职业介绍_天殇">天 殇</a>|<a href="<?=get_newslink(436)?>#lingxing" title="九天仙梦_职业介绍_铃星">铃 星</a></p>
+        </li>
+        <li><strong>【特色玩法】</strong>
+          <div id="u115_rtf">
+            <p><a href="<?=get_newslink(463)?>" title="九天仙梦_特色玩法_温泉系统">温泉系统</a>|<a href="<?=get_newslink(464)?>" title="九天仙梦_特色玩法_双修打坐">双修打坐</a>|<a href="<?=get_newslink(465)?>" title="九天仙梦_特色玩法_挖矿系统">挖矿系统</a>|<a href="<?=get_newslink(461)?>" title="九天仙梦_特色玩法_摆摊系统">摆摊系统</a>|<a href="<?=get_newslink(467)?>" title="九天仙梦_特色玩法_元神系统">元神系统</a> </p>
+            <p><a href="<?=get_newslink(460)?>" title="九天仙梦_特色玩法_寄售系统">寄售系统</a>|<a href="<?=get_newslink(466)?>" title="九天仙梦_特色玩法_押镖系统">押镖系统</a>|<a href="<?=get_newslink(468)?>" title="九天仙梦_特色玩法_远古战场">远古战场</a>|<a href="<?=get_newslink(459)?>" title="九天仙梦_特色玩法_boss系统">boss系统</a>|<a href="<?=get_newslink(462)?>" title="九天仙梦_特色玩法_聚灵阵系统">聚灵阵系统</a></p>
+          </div>
+        </li>
+       
+      </ul> <a href="gamedata.html" target="_blank" class="more" title="九天仙梦_游戏资料">更多>></a>
+    </div>
+    <div class="ad2"><a href="<?=get_newslink(458)?>" title="九天仙梦_装备强化炫耀系统"><img src="images/cenbanner.jpg" border="0" alt="九天仙梦_装备强化炫耀系统"/></a></div>
+    <div class="hd">
+      <h1>新手秘籍</h1>
+      <ul class="list">
+          <?if($rs_gamexs){
+            foreach($rs_gamexs as $k=> $v){?>
+			<li><span><?=date('m-d',$v["add_time"])?></span><div class="indexlist"><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></div></li>
+            <?}
+          }?>
+      </ul>
+      <a class="more" href="news.html?cid=89&pid=88" title="九天仙梦_新手秘籍">更多&gt;&gt;</a> </div>
+    <div class="hd">
+      <h2>高手宝典</h2>
+      <ul class="list">
+          <?if($rs_gamegs){
+            foreach($rs_gamegs as $k=> $v){?>
+			<li><span><?=date('m-d',$v["add_time"])?></span><div class="indexlist"><a href="<?=get_newslink($v["info_id"])?>"  title="<?=$v["subtitle"]?>" target="_blank"><?=$v["subtitle"]?></a></div></li>
+            <?}
+          }?>
+      </ul>
+      <a class="more" href="news.html?pid=88&cid=90" title="九天仙梦_高手宝典">更多&gt;&gt;</a></div>
+    <div class="clear"></div>
+    <div class="pic">
+      <h3><a href="javascript:void(0);" onmouseover="picchange(1);" id="picli1" class="n1" title="九天仙梦_游戏图鉴">游戏图鉴</a><a href="javascript:void(0);" onmouseover="picchange(2);" id="picli2" class="n02" title="九天仙梦_玩家截图">玩家截图</a></h3>
+      <div id="piclist1"><ul>
+          <?if($rs_gamepic){
+            foreach($rs_gamepic as $k=> $v){?>
+             <li><a href="<?=get_newslink($v["info_id"])?>" title="<?=$v["subtitle"]?>" target="_blank"><img src="<?=$v['pic']?>" width="122" height="100" alt="<?=$v["summary"]?>"/></a></li>
+            <?}
+            }?>
+      </ul> <a class="more" href="news.html?pid=84&cid=85" title="九天仙梦_游戏图鉴">更多&gt;&gt;</a></div>
+      <div id="piclist2" style="display:none;">
+    <ul>
+          <?if($rs_memberpic){
+            foreach($rs_memberpic as $k=> $v){?>
+             <li><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><img src="<?=$v['pic']?>" width="122" height="100" alt="<?=$v["summary"]?>"/></a></li>
+            <?}
+            }?>
+      </ul> <a class="more" href="news.html?pid=84&cid=86" title="九天仙梦_玩家截图">更多&gt;&gt;</a></div>
+    </div>
+    <div class="wt">
+      <h3><a href="javascript:void(0);" class="cjn2" id="quli1" onmouseover="quchange(1);">常见问题</a><a href="javascript:void(0);" class="yzn1" id="quli2" onmouseover="quchange(2);">叶子猪攻略</a></h3>
+      <ul class="list" id="qulist1">
+          <?if($rs_gamequ){
+            foreach($rs_gamequ as $k=> $v){
+            	if($v["cate_id"]==91){?>
+			<li><span><?=date('m-d',$v["add_time"])?></span><div class="indexlist"><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["subtitle"]?></a></div></li>
+            <?}
+            }
+          }?>
+      </ul>
+	<ul class="list" id="qulist2" style="display:none;">
+    <li>
+    <iframe scrolling="no" height="190" frameborder="no" width="100%" border="0" allowtransparency="allowtransparency" id="ifram" marginheight="0" marginwidth="0" name="ifram" src="http://webgame.yzz.cn/96pk/jtxmqt"></iframe>
+    </li>
+      </ul>
+      <a class="more" href="news.html?pid=78&cid=91" title="九天仙梦_常见问题">更多&gt;&gt;</a> </div>
+    <div class="hd">
+      <h3>日常活动</h3>
+      <ul class="list">
+          <?if($rs_gamehd){
+            foreach($rs_gamehd as $k=> $v){?>
+			<li><span><?=date('m-d',$v["add_time"])?></span><div class="indexlist"><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["subtitle"]?></a></div></li>
+            <?}
+          }?>
+      </ul>
+      <a class="more" href="news.html?pid=78&cid=92" title="九天仙梦_日常活动">更多&gt;&gt;</a></div>
+    <div class="bg1">抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当 适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</div>
+  </div>
+  <div class="clear"></div>
+</div>
+<? include('footer.html'); ?> 

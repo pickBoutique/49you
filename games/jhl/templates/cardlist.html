@@ -1,0 +1,112 @@
+<?php $title='新手卡领取_49yo江湖令官方网站'; 
+$keywords="江湖令新手卡";
+$description="49you江湖令新手卡"?>
+<?php include('header.html'); ?>
+<style>.fontred{color:red;font-weight:bold}</style>
+<script language="javascript">
+function getcard(){
+	if($('#secode').val()!="49you江湖令"){alert("请在\"第一步\"输入\"49you江湖令\"");$('#secode').val("");return;}
+	if($('#country').val()==0){alert("请选择服务器！");return;}
+	window.open('<?=YOU_ROOT?>/get_package.html?ct='+$('#country').val());
+}
+</script>
+<!--main -->
+<div id="main">
+ <!--content -->
+ <div class="content">
+	 <!--left -->
+	 <div class="left">
+<!--left_login start-->
+<? include('lefter_login.html'); ?> 
+<!--left_login end-->
+<!--server -->
+<? include('lefter_server.html'); ?> 
+<!--server end -->
+<!--info -->
+<? include('lefter_info.html'); ?> 
+<!--info end -->
+<!-----kefu----->
+<? include('lefter_kf.html'); ?> 
+<!--kefu end -->
+	 </div>
+<!--left end -->
+	 <!--right -->
+	 <div class="right">
+     <!--gg -->
+<? include('lefter_gg.html'); ?> 
+<!--gg end -->
+		<!--newslist -->
+        <div id="newslist">
+		  <div class="newslist-top"><span style="margin-left:20px;">新手卡领取</span></div>
+          <div id="newslist-content" style="text-align:center;">
+		    <p style="width:639px;text-align:left;margin:0 auto;font-weight:bold;">第一步：输入游戏名称</p>
+			<p style="width:639px;text-align:left;margin:0 auto;padding-top:10px;padding-bottom:10px;"><input name="input" type="text" id="secode"/><span style="font-size:12px;color:red;margin-left:20px;">答案：49you江湖令</span></P>
+			<hr color="#999" size=1 width=639><br/>
+		    <p style="width:639px;text-align:left;margin:0 auto;font-weight:bold;">第二步：选择服务器</p>
+			<p style="width:639px;text-align:left;margin:0 auto;padding-top:10px;padding-bottom:10px;">
+            <select name="coid" id="country">
+       <option value="0" selected="selected">请选择服务器</option>
+<? if(!empty($cardlist)){ 
+    	foreach($cardlist as $k=>$v){?>
+        <option value="<?=$v["cardtype_id"]?>"><?=$v["cardtype_name"]?></option>
+<?}
+}?>
+      </select>
+            <span style="font-size:11px;color:#999;margin-left:20px;"><input class="inp3" type="button" name="button" value="点击领取" onClick="getcard()" /></span></P>
+			<hr color="#999" size=1 width=639><br/><br/>
+            <p style="width:639px;text-align:left;margin:0 auto;"><img src="images/xsk_03.png"></p><br/>
+			<div class="p-content">
+             <table width="638" border="1" cellpadding="0" cellspacing="0">
+  <tr>
+    <th colspan="2">新手卡礼包</th>
+  </tr>
+  <tr>
+    <td>初级强化石*1</td>
+    <td>用以强化装备基础属性的石头，能把装备强化到+11~+20。</td>
+  </tr>
+  <tr>
+    <td>中级洗炼石*1</td>
+    <td>能对蓝色装备进行洗炼，随机增加1~3点附加属性。</td>
+  </tr>
+  <tr>
+    <td>银锭*3</td>
+    <td>每个银锭打开可获得10绑定银两</td>
+  </tr>
+  <tr>
+    <td>绑定元宝*20</td>
+    <td>元宝可在商场购买道具</td>
+  </tr>
+  <tr>
+    <td>洗髓丹*2</td>
+    <td>可改变宠物的属性</td>
+  </tr>
+</table>
+
+			</div><br/><br/><br/>
+            <p style="width:639px;text-align:left;margin:0 auto;"><img src="images/xsk_06.png"></p><br/>
+			<div class="p-content">
+			   <ul>
+				 <li style="border:none; line-height: 50px; margin: 0 auto;text-align: left;width: 600px;">1)登陆账号后到新手卡领取页面：<a href="http://jhl.49you.com/cardlist.html">http://jhl.49you.com/cardlist.html</a></li>	
+                 <li style="border:none; line-height: 50px; margin: 0 auto;text-align: left;width: 600px;">2)输入游戏名称，选择对应的游戏区</li>
+                 <li style="border:none; line-height: 50px; margin: 0 auto;text-align: left;width: 600px;">3)点击领取新手卡</li>
+                 <li style="border:none; line-height: 50px; margin: 0 auto;text-align: left;width: 600px;">4)在长安寻找活动使者，点击领取奖励，在弹出框中输入您的新手卡序号，即可领取礼包</li>
+                 <li style="border:none;"><img src="images/xsk1.jpg"></li>
+                 <li style="border:none;"><img src="images/xsk2.jpg"></li>		
+			   </ul>
+			</div>			
+			<br/><br/><br/>
+            <p style="width:639px;text-align:left;margin:0 auto;"><img src="images/xsk_09.png"></p><br/>
+			<div class="p-content">
+			   <ul>
+				 <li style="border:none; line-height: 30px; margin: 0 auto;text-align: left;width: 600px;">1、每个激活码只能使用一次，不能重复使用。</li>		
+				 <li style="border:none; line-height: 30px; margin: 0 auto;text-align: left;width: 600px;">2、该活动的所有解释权归49you网页游戏平台。</li>	
+				 </ul>
+			</div>
+			</div>
+		  <div class="newslist-footer"><img src="images/index2_82.png"></div>
+        </div>
+	 </div><!--right end -->
+	 <div class="clear"></div>
+ </div><!--content end -->
+</div><!--main end -->
+<? include('footer.html'); ?>

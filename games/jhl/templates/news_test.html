@@ -1,0 +1,76 @@
+<?php $title="{$titleinfo}_49you江湖令官方网站 ";
+
+$keywords="江湖令{$titleinfo}";
+$description="49you江湖令{$titleinfo}。"
+
+?>
+<?php include('header.html'); ?>
+<style>
+.dh{
+	background:url(../images/h_05.jpg);
+	height:53px;
+	width:730px;
+}
+.dh label{
+	font-family:"微软雅黑";
+	font-size:18px;
+	line-height:30px;
+	float:left;
+	width:200px;
+	padding-left:36px;
+	color:#FFF;
+	padding-top:10px;
+} 
+.dh div{
+	float:right;
+	width:400px;
+	line-height:30px;
+	padding-top:10px;
+	text-align:right;
+	padding-right:48px;
+	color:#fff;
+}
+.dh div a{ color:#fff;}
+.contend{ background:url(../images/14.jpg);min-height:1106px;height:auto !important; height:1106px;overflow:visible;overflow-x:hidden; }
+.list2{ padding:20px 40px;}
+.list2 li{ line-height:26px; border-bottom:1px dotted #868686; background:url(../images/index_13.gif) no-repeat 4px 9px; padding-left:17px;}
+.list2 li a{
+	color:#600; font-size:14px;
+}
+.list2 li span{
+	float:right;
+	color:#F60;
+} 
+.page {color: #A4580D; line-height: 20px; padding: 10px 0 ; text-align: center;}
+.page a {  background: #8a4b0f;  border: 1px solid #000000;  color: #FFFFFF; margin-right: 8px;  padding: 0 6px;}
+</style>
+<!--main -->
+<div id="main">
+ <!--content -->
+ <div style="background-color:#FFF">
+      <div>
+      <div class="dhh3">新闻中心</div> 
+      <div class="dhdiv"></div>
+    </div>
+<div class="sharedspacer"></div>
+<div class="contend">
+<div class="pic2"></div>
+<ul class="list2">
+        <?if($list_news){
+        	foreach($list_news as $k=> $v){?>
+               <li>标　题：<span class="news_more"><?=date( 'y-m-d',$v["add_time"])?></span><a href="<?=get_newslink($v["info_id"])?>" target="_blank"><?=$v["title"]?></a> <br />
+               关键字：<?=$v["source"]?> <br />
+               描　述：<?=$v["summary"]?>
+</li>
+		<?}
+        }?>
+      </ul>
+   <div class="page">
+    <? pager_bar($pager,WEB_ROOT."/games/pager.html"); ?>
+     </div>    
+</div>
+
+</div>
+<!--content end -->
+</div><!--main end -->
+<? include('footer.html'); ?> 

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?=$title?></title>
+<?if(!empty($keywords)){?>
+<meta name="keywords" content="<?=$keywords?>">
+<?}?>
+<?if(!empty($description)){?>
+<meta name="description" content="<?=$description?>">
+<?}?>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery.js" type="text/javascript"></script>
+<script language="javascript" src="js/jquery.js"></script>
+<script language="javascript" src="js/TroJs.js"></script>
+<script language="javascript" src="js/basic.js"></script>
+</head>
+
+
+<body>
+<script src="<?=YOU_ROOT?>/api/js/1.js" language="JavaScript" charset="utf-8" ></script>
+<?/*
+<iframe src="<?=YOU_ROOT?>/top_bar_iframe.html?url=<?=urlencode(HTTP_ROOT.$_SERVER['REQUEST_URI'])?>&name=<?=urlencode('49游戏平台神仙道')?>" frameborder="0" height="37px;" scrolling="no" width="100%"></iframe> 
+*/?>
+<!--top_bar start-->
+<?
+$gwname='49游戏平台神仙道';
+require(WEB_ROOT.'/games/top_bar.html');
+?> 
+<!--top_bar end-->
+<div class="man">
+<div class="top">
+  <div class="nav"><a href="index.html" class="logo">
+    <h1>神仙道</h1>
+    </a>
+    <div class="links"><a href="index.html">神仙道</a><a href="news.html">新闻公告</a><a href="gamedata.html" >游戏资料</a><a href="<?=get_newslink('964')?>" style="MARGIN-RIGHT: 174px">新手指南</a><a href="<?=YOU_ROOT?>/member.html" target="_blank">个人中心</a><a href="<?=YOU_ROOT?>/pay_type.html?gid=<?=$game_id?>" target="_blank">游戏充值</a><a href="<?=YOU_ROOT?>/service.html" target="_blank">客服中心</a><a href="<?=BBS_ROOT?>/forumdisplay.php?fid=25" target="_blank" style=" text-indent:-1000px; margin-right:0px;">火爆论坛</a> </div>
+    <div class="play">
+	
+    <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" height="130" width="160">
+      <param value="transparent" name="wmode">
+      <param value="high" name="quality"><param name="SRC" value="images/play.swf">
+      <embed src="images/play.swf" wmode="transparent" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" quality="high" height="130" width="160">
+    </object>
+  
+	</div>
+<?
+//首页幻灯片
+$sqlstr="select source,summary,pic from ".DB_PREFIX."info where info_start<=".time()." and cate_id = 129 order by sort_num desc";
+$rs_flash = $db->getAll($sqlstr);
+?>
+<div class="l_gx1" style="position:absolute; left: 299px; top: 100px;">
+<div id="img_ctrl" style="height:222px;width:356px;overflow:hidden" class="img_ctrl_style">
+				<ul style="list-style:none outside none;padding:0px;margin-top:0px;">
+  <?if($rs_flash){
+    foreach($rs_flash as $k=> $v){?>
+    <li><a href="<?=$v["source"]?>" target="_blank"><img src="<?=$v["pic"]?>" alt="<?=$v["summary"]?>"></a></li>
+  <?}
+  }?>
+				</ul>
+		</div>	
+			
+			<div id="btn_ctrl" class="btn_ctrl_style" style="position:absolute;visibility:visibility">
+				<ul>
+				</ul>
+			</div>
+			
+<script language="javascript" src="js/img_ctrl.js"></script>
+</div>
+  </div>
+</div>

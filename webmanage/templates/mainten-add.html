@@ -1,0 +1,110 @@
+<?php include_once("header.html");?>
+<script language="javascript">
+function on_last_change(){
+	<? if($act=='add'){ ?>
+	var gid = $('#mainten_gid').val();
+	var sid = $('#mainten_sid').val();
+	if(sid != '0'){
+			ajax_action('mainten-add.php',{act:'get_last_server' , gid:gid , sid:sid } , null , function(data){ 
+			
+				var obj = eval('(' + data + ')');
+				var tmp = '"{server_name}"正式开服时间为：{server_start}。敬请期待！';
+				//if($('#mainten_desc').val()==''){
+					var desc = tmp.replace('{server_name}',obj.server_name).replace('{server_start}',obj.server_start);
+					$('#mainten_desc').val(desc);
+				//}
+			});
+	}
+	
+	<? } ?>
+}
+</script>
+<div class="main">
+	<form id="form1" name="form1" method="post" action="">
+		<table width="100%" border="0" cellpadding="2" cellspacing="1" class="table_add">
+			<tr>
+				<th>游戏：</th>
+				<td>
+                	<select name="mainten_gid" id="mainten_gid">
+                    
+                    </select>
+					<input type="hidden" name="mainten_gid_default" id="mainten_gid_default" value="<?=$rs['mainten_gid']?>" class="input_w200"  />
+                    <input type="hidden" name="mainten_gname" id="mainten_gname" value="<?=$rs['mainten_gname']?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th>服务器：</th>
+				<td>
+                	<select name="mainten_sid" id="mainten_sid" >
+                    
+                    </select>
+					<input type="hidden" name="mainten_sid_default" id="mainten_sid_default" value="<?=$rs['mainten_sid']?>" class="input_w200"  />
+                    <input type="hidden" name="mainten_sname" id="mainten_sname" value="<?=$rs['mainten_sname']?>" class="input_w200"  />
+				</td>
+			</tr>
+		
+			<tr>
+				<th>开始时间：</th>
+				<td>
+					<input type="text" name="mainten_start" id="mainten_start" value="<?= empty($rs['mainten_start']) ? date('Y-m-d H:i:s',time()) : date('Y-m-d H:i:s',$rs['mainten_start']) ?>" class="input_w200"  />
+				</td>
+			</tr>
+			<tr>
+				<th>结束时间：</th>
+				<td>
+					<input type="text" name="mainten_end" id="mainten_end" value="<?= empty($rs['mainten_end']) ?  date('Y-m-d 11:00:00',strtotime("+1 day") ) : date('Y-m-d H:i:s',$rs['mainten_end']) ?>" class="input_w200"  />
+				</td>
+			</tr>
+            <tr>
+				<th>维护类型：</th>
+				<td>
+                	<? if($act=='add'){ ?>
+                    <select name="mainten_type" id="mainten_type">
+						<?=cfg_to_opt($cfg_mainten_type,false,$rs['mainten_type']); ?>
+					</select>
+                    <? }else{ ?>
+                    <?=$cfg_mainten_type[$rs['mainten_type']]?>
+                    <? } ?>
+				</td>
+			</tr>
+			<tr>
+				<th>生效状态：</th>
+				<td>
+                    <input name="mainten_status" value="1" <?=$rs['mainten_status']!='0' ? 'checked' : '' ?> type="radio">开启
+                    <input name="mainten_status" value="0" <?=$rs['mainten_status']=='0' ? 'checked' : '' ?> type="radio">关闭
+				</td>
+			</tr>
+            <tr>
+				<th>维护说明：</th>
+				<td>
+                	<textarea  name="mainten_desc" id="mainten_desc" class="input_w100"   style=" width:300px;" rows="5" ><?=$rs['mainten_desc']?></textarea>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" height="50">
+					<input type="hidden" name="act" id="act" value="<?=$act?>" />
+					<input name="" type="submit" value="提交" class="btn" />&nbsp;
+					<input name="" type="reset" value="重置" class="btn" />
+				</td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script language="javascript">
+function on_server_change(){
+	var obj_game = document.getElementById('mainten_gid');
+	var obj_server = document.getElementById('mainten_sid');
+	$('#mainten_gname').val(obj_game.options[obj_game.selectedIndex].text);
+	$('#mainten_sname').val(obj_server.options[obj_server.selectedIndex].text);
+	on_last_change();
+}
+function on_server_load(domid,game_id,obj){
+	$("<option value='0'>全部</option>").prependTo('#' + domid);
+}
+$(document).ready(function(){
+	
+	get_games('mainten_gid','mainten_sid');
+	
+});
+</script>
+<?php include_once("footer.html");?>

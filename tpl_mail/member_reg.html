@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>注册激活</title>
+
+<style type="text/css">
+<!--
+
+body {
+	padding: 0;
+	margin: 0;
+    font-family: Helvetica, Arial, FreeSans, sans-serif;
+	font-size:12px;
+	background:#eee;
+	color: #555;
+}
+li, ul {
+	padding:0;
+	margin:0;
+	list-style-type:none;
+}
+div, p, br, div, h1, h2, h3 {
+	padding:0;
+	margin:0;
+}
+
+img {border:0;}
+a {color:#6e6d6d; font-size:12px; text-decoration:none;}
+a:hover {color:#6e6d6d; font-size:12px; text-decoration:underline;}
+
+
+
+p {
+	white-space: pre-wrap; 
+	white-space: -moz-pre-wrap; 
+	white-space: -pre-wrap;
+	white-space: -o-pre-wrap;
+	word-wrap: break-word;
+	
+}
+
+.email_center { font-size:12px; font-weight:bold; color:#656464;  }
+
+ .email_msg {font-size:12px; font-weight:bold; color:#6f9d0c; padding:10px 0px 0px 33px;}
+-->
+</style>
+</head>
+<body style="background-color:#FFFFFF;">
+
+<table cellpadding="0" cellspacing="0"  width="600px" align="center">
+	<tr>
+    	<td colspan="3" height="10">
+        </td>
+    </tr>
+	<tr>
+    	<td colspan="3">
+        <img src="images/email_logo.jpg" border="0">
+        </td>
+    </tr>
+    <tr>
+    	<td colspan="3" height="10">
+        </td>
+    </tr>
+</table>
+<table cellpadding="0" cellspacing="0" style="border:1px #393 dotted;"  width="600px"  align="center">
+	<tr>
+    	<td height="10"  colspan="3">
+        　
+    	</td>
+    </tr>
+    <tr>
+    	<td width="10">
+        　
+    	</td>
+        <td class="email_center">
+        <p>欢迎您！<font class="red"><strong><?=$name?></strong></font>：</p>
+    <p>您好！您已经注册成功！请点击下列链接进行邮箱绑定：</p>
+	<br />
+ 	<p align="center">
+ 		<a href="<?=$link?>" target="_blank"><img src="images/active_account.png" border="0"></a>
+	</p>
+  	<br />
+<p>如果上面链接点击不开请复制地址在浏览器上打开：
+<font class="red"><?=$link?></font>
+</p>
+
+
+<p >如果您有疑问，请联系我们： <?=$config['service_tel1']?>
+</p>
+
+<p align="right">
+	www.49you.com
+</p>
+        </td>
+        <td width="10">
+        　
+        </td>
+    </tr>
+    <tr>
+    	<td colspan="3">
+        	
+        </td>
+    </tr>
+</table>
+<table cellpadding="0" cellspacing="0"  width="600px"  align="center">
+	<tr>
+    	<td>
+        <div class="email_msg">此信由49you发出，系统不接收回信，因此请勿直接回复。</div>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
